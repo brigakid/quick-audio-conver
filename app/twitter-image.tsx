@@ -1,10 +1,12 @@
 import { ImageResponse } from 'next/og';
 
-export const alt = 'QuickAudioConvert — Convert, Trim & Fade Audio Online';
-export const size = { width: 1200, height: 630 };
+// Next.js App Router — auto-wired as twitter:image in <head>.
+// Mirrors the OG image so both og:image and twitter:image are explicit.
+export const alt         = 'QuickAudioConvert — Convert, Trim & Fade Audio Online';
+export const size        = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-export default async function Image() {
+export default async function TwitterImage() {
   return new ImageResponse(
     (
       <div
@@ -34,7 +36,6 @@ export default async function Image() {
               flexShrink: 0,
             }}
           >
-            {/* Music note SVG — hardcoded path */}
             <svg
               width="40"
               height="40"
@@ -50,14 +51,7 @@ export default async function Image() {
               <circle cx="18" cy="16" r="3" />
             </svg>
           </div>
-          <span
-            style={{
-              color: 'white',
-              fontSize: '42px',
-              fontWeight: 800,
-              letterSpacing: '-1px',
-            }}
-          >
+          <span style={{ color: 'white', fontSize: '42px', fontWeight: 800, letterSpacing: '-1px' }}>
             QuickAudioConvert
           </span>
         </div>
@@ -110,6 +104,6 @@ export default async function Image() {
         </div>
       </div>
     ),
-    { ...size }
+    { ...size },
   );
 }
