@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=no --import-alias=\"@/*\" --yes)",
+      "Bash(npx create-next-app@latest . --typescript --tailwind --eslint --app --src-dir=no --import-alias=\"@/*\" -e \"\")",
+      "Read(//c/Users/User/Desktop/**)",
+      "Bash(npx create-next-app@latest quickaudioconvert-temp --typescript --tailwind --eslint --app --src-dir=no --import-alias=\"@/*\" --yes)",
+      "Bash(cp -r /c/Users/User/Desktop/quickaudioconvert-temp/. /c/Users/User/Desktop/QuickAudioConvert/)",
+      "Bash(rm -rf /c/Users/User/Desktop/quickaudioconvert-temp)",
+      "Bash(npm install:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npm run:*)",
+      "Bash(find /c/Users/User/Desktop/QuickAudioConvert/app -type d -name *[*)",
+      "Bash(Get-ChildItem -Recurse -Filter \"page.tsx\" \"C:\\\\Users\\\\User\\\\Desktop\\\\QuickAudioConvert\\\\app\")",
+      "Bash(Select-Object FullName)"
+    ]
+  }
+}
