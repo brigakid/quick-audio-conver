@@ -1,6 +1,6 @@
 import type { MetadataRoute } from 'next';
 
-const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://quickaudioconvert.com';
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://www.quickaudioconvert.com';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const toolPages = [
@@ -11,6 +11,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/mp3-to-wav',
     '/aac-to-mp3',
     '/ogg-to-mp3',
+    '/aiff-to-mp3',
+    '/opus-to-mp3',
+    '/wma-to-mp3',
   ];
 
   const staticPages = [
