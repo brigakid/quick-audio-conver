@@ -1,0 +1,41 @@
+const BASE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.quickaudioconvert.com';
+
+const pages = [
+  { url: '/',                   priority: '1.0', changefreq: 'weekly'  },
+  { url: '/supported-formats',  priority: '0.7', changefreq: 'monthly' },
+  { url: '/about',              priority: '0.6', changefreq: 'monthly' },
+  { url: '/contact',            priority: '0.5', changefreq: 'monthly' },
+  { url: '/privacy',            priority: '0.4', changefreq: 'monthly' },
+  { url: '/terms',              priority: '0.4', changefreq: 'monthly' },
+  { url: '/mp4-to-mp3',         priority: '0.9', changefreq: 'monthly' },
+  { url: '/wav-to-mp3',         priority: '0.9', changefreq: 'monthly' },
+  { url: '/m4a-to-mp3',         priority: '0.9', changefreq: 'monthly' },
+  { url: '/flac-to-mp3',        priority: '0.9', changefreq: 'monthly' },
+  { url: '/mp3-to-wav',         priority: '0.9', changefreq: 'monthly' },
+  { url: '/aac-to-mp3',         priority: '0.9', changefreq: 'monthly' },
+  { url: '/ogg-to-mp3',         priority: '0.9', changefreq: 'monthly' },
+  { url: '/aiff-to-mp3',        priority: '0.9', changefreq: 'monthly' },
+  { url: '/opus-to-mp3',        priority: '0.9', changefreq: 'monthly' },
+  { url: '/wma-to-mp3',         priority: '0.9', changefreq: 'monthly' },
+];
+
+export async function GET() {
+  const lastmod = new Date().toISOString().split('T')[0];
+
+  const urls = pages
+    .map(
+      ({ url, priority, changefreq }) =>
+        `  <url>\n    <loc>${BASE_URL}${url}</loc>\n    <lastmod>${lastmod}</lastmod>\n    <changefreq>${changefreq}</changefreq>\n    <priority>${priority}</priority>\n  </url>`,
+    )
+    .join('\n');
+
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>`;
+
+  return new Response(xml, {
+    headers: {
+      'Content-Type': 'application/xml; charset=utf-8',
+      'Cache-Control': 'public, max-age=86400, stale-while-revalidate=3600',
+    },
+  });
+}
