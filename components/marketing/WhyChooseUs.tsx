@@ -63,22 +63,22 @@ const features = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="py-20 bg-slate-50">
+    <section className="py-12 sm:py-20 bg-slate-50">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+        <div className="text-center mb-8 sm:mb-14">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
             Built to be reliable
           </h2>
-          <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
+          <p className="mt-3 text-sm sm:text-base text-gray-500 max-w-xl mx-auto">
             A fast, private, no-fuss tool you can trust with your files.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
           {features.map((f) => (
             <div
               key={f.title}
-              className="flex gap-4 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm"
+              className="flex gap-3 sm:gap-4 p-4 sm:p-5 bg-white rounded-2xl border border-gray-100 shadow-sm"
             >
               <div className="w-10 h-10 rounded-xl bg-red-50 text-brand flex items-center justify-center flex-shrink-0">
                 {f.icon}

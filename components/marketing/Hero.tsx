@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden bg-[#2B2B2F] pt-12 pb-16 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
+    <section className="relative overflow-hidden bg-[#2B2B2F] pt-8 pb-12 sm:pt-16 sm:pb-20 lg:pt-20 lg:pb-24">
       {/* Subtle dot grid */}
       <div
         aria-hidden="true"
@@ -17,19 +17,19 @@ export default function Hero() {
 
       <div className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Headline block */}
-        <div className="text-center mb-8 sm:mb-10">
-          <h1 className="text-4xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white tracking-tight leading-[1.1]">
+        <div className="text-center mb-6 sm:mb-10">
+          <h1 className="text-3xl sm:text-5xl lg:text-[3.5rem] font-extrabold text-white tracking-tight leading-[1.1]">
             Convert audio files
             <span className="block text-brand">in seconds.</span>
           </h1>
 
-          <p className="mt-4 text-base sm:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
+          <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
             Upload MP4, WAV, FLAC, M4A, MP3, AAC, or OGG — choose your output format and
             download instantly. No installation, no account.
           </p>
 
           {/* Trust indicators */}
-          <div className="mt-6 flex flex-wrap items-center justify-center gap-x-5 gap-y-2">
+          <div className="mt-4 sm:mt-6 flex flex-wrap items-center justify-center gap-x-4 gap-y-1.5">
             <span className="flex items-center gap-1.5 text-xs text-gray-400">
               <svg className="w-3.5 h-3.5 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -41,7 +41,7 @@ export default function Hero() {
               <svg className="w-3.5 h-3.5 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
-              Files auto-deleted after conversion
+              Files auto-deleted
             </span>
             <span className="hidden sm:block w-px h-3 bg-gray-600 flex-shrink-0" aria-hidden="true" />
             <span className="flex items-center gap-1.5 text-xs text-gray-400">

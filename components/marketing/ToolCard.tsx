@@ -12,7 +12,7 @@ export default function ToolCard({ href, inputFormat, outputFormat, description 
     <Link
       href={href}
       aria-label={`${inputFormat.toUpperCase()} to ${outputFormat.toUpperCase()} Converter`}
-      className="group flex flex-col gap-4 p-5 bg-white rounded-2xl border border-[#D9D9D9] shadow-sm hover:shadow-md hover:border-brand/40 transition-all duration-200"
+      className="group flex flex-col gap-3 p-4 sm:p-5 bg-white rounded-2xl border border-[#D9D9D9] shadow-sm hover:shadow-md hover:border-brand/40 transition-all duration-200"
     >
       <div className="flex items-center gap-3">
         {/* Format arrow badge */}

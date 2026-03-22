@@ -67,8 +67,8 @@ export default function UploadArea({ onFileSelected, disabled }: UploadAreaProps
         onClick={() => !disabled && inputRef.current?.click()}
         onKeyDown={(e) => e.key === 'Enter' && !disabled && inputRef.current?.click()}
         className={cn(
-          'relative flex flex-col items-center justify-center gap-3 w-full rounded-2xl border-2 border-dashed transition-all duration-200 cursor-pointer',
-          'py-12 px-6 text-center',
+          'relative flex flex-col items-center justify-center gap-2.5 w-full rounded-2xl border-2 border-dashed transition-all duration-200 cursor-pointer',
+          'py-8 sm:py-12 px-4 sm:px-6 text-center',
           dragging
             ? 'border-brand bg-red-50/30 scale-[1.01]'
             : 'border-[#D9D9D9] bg-white hover:border-brand hover:bg-gray-50',
@@ -77,7 +77,7 @@ export default function UploadArea({ onFileSelected, disabled }: UploadAreaProps
       >
         {/* Icon */}
         <div className={cn(
-          'w-14 h-14 rounded-2xl flex items-center justify-center transition-colors',
+          'w-12 h-12 sm:w-14 sm:h-14 rounded-2xl flex items-center justify-center transition-colors',
           dragging ? 'bg-red-50' : 'bg-white shadow-sm border border-gray-100'
         )}>
           <svg

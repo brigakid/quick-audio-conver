@@ -31,7 +31,7 @@ export default function Header() {
           {/* Logo — navigates home; full link area is clickable with hover + focus feedback */}
           <Link
             href="/"
-            className="flex items-center gap-2 group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+            className="flex items-center gap-2 min-w-0 group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
           >
             <div className="w-8 h-8 bg-brand rounded-lg flex items-center justify-center flex-shrink-0 group-hover:bg-brand-dark transition-colors">
               <svg
@@ -48,7 +48,7 @@ export default function Header() {
                 />
               </svg>
             </div>
-            <span className="font-bold text-gray-900 text-lg tracking-tight group-hover:text-brand transition-colors">
+            <span className="font-bold text-gray-900 text-sm sm:text-lg tracking-tight truncate group-hover:text-brand transition-colors">
               QuickAudioConvert
             </span>
           </Link>
@@ -77,17 +77,17 @@ export default function Header() {
           </nav>
 
           {/* Mobile: Formats link + CTA */}
-          <div className="sm:hidden flex items-center gap-2">
+          <div className="sm:hidden flex items-center gap-1.5 flex-shrink-0">
             <Link
               href="/supported-formats"
-              className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 rounded-lg transition-colors"
+              className="px-2.5 py-1.5 text-xs text-gray-600 hover:text-gray-900 rounded-lg transition-colors"
             >
               Formats
             </Link>
             <button
               type="button"
               onClick={handleConvertNow}
-              className="px-4 py-2 text-sm font-semibold bg-brand text-white rounded-lg hover:bg-brand-dark active:bg-brand-active transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
+              className="px-3 py-1.5 text-xs font-semibold bg-brand text-white rounded-lg hover:bg-brand-dark active:bg-brand-active transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
             >
               Convert
             </button>

@@ -36,28 +36,28 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 bg-white">
+    <section className="py-12 sm:py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-14">
-          <h2 className="text-3xl font-extrabold text-gray-900 tracking-tight">
+        <div className="text-center mb-8 sm:mb-14">
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-gray-900 tracking-tight">
             How It Works
           </h2>
-          <p className="mt-3 text-base text-gray-500 max-w-xl mx-auto">
+          <p className="mt-3 text-sm sm:text-base text-gray-500 max-w-xl mx-auto">
             Three steps from upload to download — no account, no waiting, no fuss.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-10">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-10">
           {steps.map((step) => (
             <div
               key={step.number}
-              className="relative flex flex-col gap-4 p-6 rounded-2xl border border-gray-100 bg-gray-50/50"
+              className="relative flex flex-col gap-3 p-4 sm:p-6 rounded-2xl border border-gray-100 bg-gray-50/50"
             >
               <div className="flex items-center gap-3">
-                <div className="w-11 h-11 rounded-xl bg-brand text-white flex items-center justify-center flex-shrink-0 shadow-sm shadow-brand/20">
+                <div className="w-10 h-10 sm:w-11 sm:h-11 rounded-xl bg-brand text-white flex items-center justify-center flex-shrink-0 shadow-sm shadow-brand/20">
                   {step.icon}
                 </div>
-                <span className="text-3xl font-black text-gray-100 select-none leading-none">
+                <span className="text-2xl sm:text-3xl font-black text-gray-100 select-none leading-none">
                   {step.number}
                 </span>
               </div>

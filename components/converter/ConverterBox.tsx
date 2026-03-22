@@ -287,7 +287,7 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
-    <div id="convert" className="bg-white rounded-3xl shadow-xl border border-gray-100 p-6 sm:p-8 w-full max-w-2xl mx-auto">
+    <div id="convert" className="bg-white rounded-2xl sm:rounded-3xl shadow-xl border border-gray-100 p-4 sm:p-6 lg:p-8 w-full max-w-2xl mx-auto">
 
       {/* Done state */}
       {phase === 'done' && downloadUrl && (
