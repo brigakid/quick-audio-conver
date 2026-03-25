@@ -7,6 +7,7 @@ const NAV_LINKS = [
   { href: '/converters', label: 'Converters' },
   { href: '/formats',    label: 'Formats'    },
   { href: '/guides',     label: 'Guides'     },
+  { href: '/learn',      label: 'Learn'      },
   { href: '/about',      label: 'About'      },
   { href: '/contact',    label: 'Contact'    },
 ];
@@ -94,6 +95,12 @@ export default function Header() {
               className="px-2.5 py-1.5 text-xs text-gray-600 hover:text-gray-900 rounded-lg transition-colors"
             >
               Guides
+            </Link>
+            <Link
+              href="/learn"
+              className="px-2.5 py-1.5 text-xs text-gray-600 hover:text-gray-900 rounded-lg transition-colors"
+            >
+              Learn
             </Link>
             <button
               type="button"

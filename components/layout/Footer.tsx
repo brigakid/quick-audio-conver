@@ -27,6 +27,15 @@ const GUIDES = [
   { href: '/guides/troubleshooting-audio-conversion', label: 'Troubleshooting'       },
 ];
 
+const LEARN = [
+  { href: '/learn/when-mp3-is-good-enough',                    label: 'When MP3 Is Good Enough'      },
+  { href: '/learn/wav-vs-mp3-editing-sharing-archiving',       label: 'WAV vs MP3 by Workflow'        },
+  { href: '/learn/how-bitrate-affects-file-size-and-sound',    label: 'How Bitrate Works'             },
+  { href: '/learn/converting-to-wav-does-not-improve-quality', label: 'WAV Doesn\'t Improve MP3'     },
+  { href: '/learn/aac-m4a-mp3-what-matters',                   label: 'AAC, M4A, and MP3'             },
+  { href: '/learn/why-audio-files-fail-to-convert',            label: 'Why Conversions Fail'          },
+];
+
 const COMPANY = [
   { href: '/about',      label: 'About'            },
   { href: '/contact',    label: 'Contact'           },
@@ -43,10 +52,10 @@ export default function Footer() {
     <footer className="bg-gray-950 text-gray-400 mt-12 sm:mt-24">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-14">
 
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8 md:gap-4">
 
           {/* Brand — spans full width on mobile */}
-          <div className="col-span-2 md:col-span-1">
+          <div className="col-span-2 md:col-span-1 md:col-start-1">
             <div className="flex items-center gap-2 mb-3">
               <div className="w-7 h-7 bg-brand rounded-lg flex items-center justify-center flex-shrink-0">
                 <svg className="w-3.5 h-3.5 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
@@ -127,6 +136,27 @@ export default function Footer() {
               <li>
                 <Link href="/guides" className="text-xs text-brand hover:text-white transition-colors">
                   All guides →
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Learn */}
+          <div>
+            <h3 className="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-4">
+              Learn
+            </h3>
+            <ul className="space-y-2">
+              {LEARN.map((l) => (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-xs text-gray-500 hover:text-white transition-colors">
+                    {l.label}
+                  </Link>
+                </li>
+              ))}
+              <li>
+                <Link href="/learn" className="text-xs text-brand hover:text-white transition-colors">
+                  All articles →
                 </Link>
               </li>
             </ul>
