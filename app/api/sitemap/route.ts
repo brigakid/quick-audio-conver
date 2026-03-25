@@ -2,22 +2,43 @@ const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || 'https://www.quickaudioconvert.com';
 
 const pages = [
-  { url: '/',                   priority: '1.0', changefreq: 'weekly'  },
-  { url: '/supported-formats',  priority: '0.7', changefreq: 'monthly' },
-  { url: '/about',              priority: '0.6', changefreq: 'monthly' },
-  { url: '/contact',            priority: '0.5', changefreq: 'monthly' },
-  { url: '/privacy',            priority: '0.4', changefreq: 'monthly' },
-  { url: '/terms',              priority: '0.4', changefreq: 'monthly' },
-  { url: '/mp4-to-mp3',         priority: '0.9', changefreq: 'monthly' },
-  { url: '/wav-to-mp3',         priority: '0.9', changefreq: 'monthly' },
-  { url: '/m4a-to-mp3',         priority: '0.9', changefreq: 'monthly' },
-  { url: '/flac-to-mp3',        priority: '0.9', changefreq: 'monthly' },
-  { url: '/mp3-to-wav',         priority: '0.9', changefreq: 'monthly' },
-  { url: '/aac-to-mp3',         priority: '0.9', changefreq: 'monthly' },
-  { url: '/ogg-to-mp3',         priority: '0.9', changefreq: 'monthly' },
-  { url: '/aiff-to-mp3',        priority: '0.9', changefreq: 'monthly' },
-  { url: '/opus-to-mp3',        priority: '0.9', changefreq: 'monthly' },
-  { url: '/wma-to-mp3',         priority: '0.9', changefreq: 'monthly' },
+  // Core
+  { url: '/',           priority: '1.0', changefreq: 'weekly'  },
+  { url: '/converters', priority: '0.9', changefreq: 'monthly' },
+  { url: '/formats',    priority: '0.9', changefreq: 'monthly' },
+  { url: '/guides',     priority: '0.9', changefreq: 'weekly'  },
+
+  // Conversion tool pages
+  { url: '/mp4-to-mp3',  priority: '0.9', changefreq: 'monthly' },
+  { url: '/wav-to-mp3',  priority: '0.9', changefreq: 'monthly' },
+  { url: '/m4a-to-mp3',  priority: '0.9', changefreq: 'monthly' },
+  { url: '/flac-to-mp3', priority: '0.9', changefreq: 'monthly' },
+  { url: '/mp3-to-wav',  priority: '0.9', changefreq: 'monthly' },
+  { url: '/aac-to-mp3',  priority: '0.8', changefreq: 'monthly' },
+  { url: '/ogg-to-mp3',  priority: '0.8', changefreq: 'monthly' },
+  { url: '/aiff-to-mp3', priority: '0.8', changefreq: 'monthly' },
+  { url: '/opus-to-mp3', priority: '0.8', changefreq: 'monthly' },
+  { url: '/wma-to-mp3',  priority: '0.8', changefreq: 'monthly' },
+
+  // Format knowledge pages
+  { url: '/formats/mp3',  priority: '0.8', changefreq: 'monthly' },
+  { url: '/formats/wav',  priority: '0.8', changefreq: 'monthly' },
+  { url: '/formats/flac', priority: '0.8', changefreq: 'monthly' },
+  { url: '/formats/m4a',  priority: '0.8', changefreq: 'monthly' },
+  { url: '/formats/aac',  priority: '0.7', changefreq: 'monthly' },
+  { url: '/formats/ogg',  priority: '0.7', changefreq: 'monthly' },
+
+  // Guides
+  { url: '/guides/mp3-vs-wav',                       priority: '0.8', changefreq: 'monthly' },
+  { url: '/guides/lossless-vs-lossy-audio',          priority: '0.8', changefreq: 'monthly' },
+  { url: '/guides/extract-audio-from-video',         priority: '0.8', changefreq: 'monthly' },
+  { url: '/guides/troubleshooting-audio-conversion', priority: '0.7', changefreq: 'monthly' },
+
+  // Trust / legal pages
+  { url: '/about',   priority: '0.6', changefreq: 'monthly' },
+  { url: '/contact', priority: '0.5', changefreq: 'monthly' },
+  { url: '/privacy', priority: '0.4', changefreq: 'monthly' },
+  { url: '/terms',   priority: '0.4', changefreq: 'monthly' },
 ];
 
 export async function GET() {

@@ -102,7 +102,7 @@ export default function ContactPage() {
           <h3 className="text-sm font-semibold text-gray-900 mb-2">Before reaching out</h3>
           <p className="text-xs text-gray-500 leading-relaxed mb-3">
             Check our{' '}
-            <Link href="/supported-formats" className="text-brand hover:underline font-medium">
+            <Link href="/formats" className="text-brand hover:underline font-medium">
               Supported Formats
             </Link>{' '}
             page — your format may already be supported, or a conversion limit may explain

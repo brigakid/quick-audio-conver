@@ -3,6 +3,8 @@ import Hero from '@/components/marketing/Hero';
 import ToolsGrid from '@/components/marketing/ToolsGrid';
 import HowItWorks from '@/components/marketing/HowItWorks';
 import WhyChooseUs from '@/components/marketing/WhyChooseUs';
+import GuidesBlock from '@/components/marketing/GuidesBlock';
+import FormatsAndHelp from '@/components/marketing/FormatsAndHelp';
 import FAQ from '@/components/marketing/FAQ';
 import SideRail from '@/components/ads/SideRail';
 import AdSlot from '@/components/ads/AdSlot';
@@ -10,7 +12,7 @@ import AdSlot from '@/components/ads/AdSlot';
 export const metadata: Metadata = {
   title: 'Free Online Audio Converter',
   description:
-    'Convert audio and video files to MP3, WAV, or M4A in seconds. Upload MP4, WAV, FLAC, M4A, MP3, AAC, or OGG — no account required, files deleted automatically.',
+    'Convert audio and video files to MP3, WAV, or M4A in seconds. Upload MP4, WAV, FLAC, M4A, MP3, AAC, OGG, AIFF, WMA, Opus, and more — no account required, files deleted automatically.',
 };
 
 export default function HomePage() {
@@ -55,6 +57,8 @@ export default function HomePage() {
 
       <HowItWorks />
       <WhyChooseUs />
+      <GuidesBlock />
+      <FormatsAndHelp />
       <FAQ />
     </>
   );

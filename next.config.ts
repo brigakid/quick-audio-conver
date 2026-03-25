@@ -1,6 +1,17 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      // /supported-formats is the legacy URL — redirect permanently to /formats
+      {
+        source:      '/supported-formats',
+        destination: '/formats',
+        permanent:   true,
+      },
+    ];
+  },
+
   async rewrites() {
     // beforeFiles runs BEFORE the filesystem/metadata-route check.
     // Without this, Next.js serves app/sitemap.ts first (which injects <script/>)

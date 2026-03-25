@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const EMAIL = 'youtubewatchtime1@gmail.com';
+const EMAIL = 'quickaudioconvert@protonmail.com';
 
 export default function ContactPanel() {
   const [copied, setCopied] = useState(false);

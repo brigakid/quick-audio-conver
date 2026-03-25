@@ -4,57 +4,62 @@ import ToolPageLayout from '@/components/converter/ToolPageLayout';
 export const metadata: Metadata = {
   title: 'M4A to MP3 Converter',
   description:
-    'Convert M4A to MP3 online for free. Upload your Apple M4A audio file and convert it to widely compatible MP3. Fast and private.',
+    'Convert M4A audio files to MP3 for broader device and platform compatibility. Works with iPhone voice memos, GarageBand exports, and iTunes audio.',
 };
 
 export default function M4aToMp3Page() {
   return (
     <ToolPageLayout
       title="M4A to MP3 Converter"
-      subtitle="Convert Apple M4A audio files to MP3 format for broader device and platform compatibility."
+      subtitle="Convert M4A audio files to MP3. Useful when the recipient's device, car stereo, or software doesn't support M4A."
       inputFormat="m4a"
       outputFormat="mp3"
       sourceFormatInfo={{
         name: 'M4A',
         description:
-          'M4A is an audio file format used primarily by Apple. It is a container using the MPEG-4 standard, typically encoding audio with AAC (Advanced Audio Codec). M4A files are commonly produced by iTunes, Apple Music, iOS devices, and GarageBand.',
+          "M4A is Apple's audio format — an MPEG-4 container using AAC encoding. It is produced by iPhone voice memos, GarageBand, Apple Music downloads, and audio exported from macOS apps. It works well within Apple devices but has inconsistent support elsewhere.",
       }}
       targetFormatInfo={{
         name: 'MP3',
         description:
-          'MP3 is the most widely supported audio format in the world. Unlike M4A, MP3 files are playable on virtually all devices, platforms, and apps — including older systems and third-party software that may not support M4A.',
+          'MP3 is supported universally — on Android, Windows, car stereos, Bluetooth players, streaming platforms, and older hardware that may reject M4A. The quality difference between M4A and MP3 at comparable bitrates is negligible in everyday listening.',
       }}
-      whyConvert="M4A files work well within the Apple ecosystem, but may not play on non-Apple devices or software that lacks AAC support. Converting M4A to MP3 ensures your audio is universally playable. It is also the preferred format for sharing audio online, via email, or for uploading to platforms that require MP3 input."
+      whyConvert={`M4A is perfectly fine within the Apple ecosystem, but it runs into problems outside of it. Older Android devices, most car stereos, Windows Media Player (without extra codecs), and many platforms that accept audio uploads do not support M4A. A common scenario: you record a voice memo on iPhone, try to share it, and the recipient can't play it. Or you export audio from GarageBand and the platform you're uploading to rejects the file. Converting to MP3 solves the compatibility problem.`}
       faqItems={[
         {
-          question: 'Is M4A better quality than MP3?',
+          question: 'Does converting M4A to MP3 reduce the audio quality?',
           answer:
-            'At the same bitrate, AAC (used in M4A) technically produces slightly better quality than MP3. However, both are lossy formats and the difference is usually not noticeable on typical playback equipment.',
+            'Both M4A (AAC) and MP3 are lossy formats. Converting from one lossy format to another causes a small additional quality reduction. For typical use — voice memos, music exports, podcast drafts — the difference is not noticeable. Choose 192 kbps or higher to minimise the impact. If quality is critical, keep the original M4A.',
         },
         {
-          question: 'Why can\'t some devices play M4A files?',
+          question: 'My iPhone voice memo is in M4A — will this work?',
           answer:
-            'M4A support is not universal. Older Android devices, some car stereos, and non-Apple media players may not support AAC/M4A. MP3 has much broader hardware and software support.',
+            'Yes. iPhone voice memos are M4A files. Upload directly from your device using the file browser. The conversion works on mobile browsers including Safari on iOS.',
         },
         {
-          question: 'Will I lose audio quality converting M4A to MP3?',
+          question: 'Why doesn\'t my car stereo play M4A?',
           answer:
-            'Since both are lossy formats, you are re-encoding already compressed audio, which can reduce quality slightly. Choosing 192 kbps or 320 kbps helps minimize this. For archival, keep your original M4A.',
+            'Most car stereos support MP3 and sometimes WMA, but M4A/AAC support is not standard in older or mid-range head units. Converting to MP3 is the reliable fix.',
         },
         {
-          question: 'Can I convert M4A files from my iPhone?',
+          question: 'Can I convert protected iTunes downloads?',
           answer:
-            'Yes. M4A files recorded or downloaded to your iPhone can be uploaded directly from your device using the file browser on mobile.',
+            'No. Files with Apple FairPlay DRM protection cannot be converted by any third-party tool. Most music purchased from iTunes today is DRM-free, but older purchases or tracks downloaded from Apple Music for offline playback are protected.',
         },
       ]}
       relatedTools={[
-        { href: '/mp4-to-mp3', label: 'MP4 to MP3' },
-        { href: '/wav-to-mp3', label: 'WAV to MP3' },
+        { href: '/mp4-to-mp3',  label: 'MP4 to MP3'  },
+        { href: '/wav-to-mp3',  label: 'WAV to MP3'  },
         { href: '/flac-to-mp3', label: 'FLAC to MP3' },
-        { href: '/aac-to-mp3', label: 'AAC to MP3' },
-        { href: '/ogg-to-mp3', label: 'OGG to MP3' },
-        { href: '/mp3-to-wav', label: 'MP3 to WAV' },
+        { href: '/aac-to-mp3',  label: 'AAC to MP3'  },
+        { href: '/mp3-to-wav',  label: 'MP3 to WAV'  },
       ]}
+      relatedGuides={[
+        { href: '/formats/m4a',                    label: 'M4A format guide'        },
+        { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio' },
+        { href: '/formats/mp3',                    label: 'MP3 format guide'        },
+      ]}
+      lastUpdated="2025-03-01"
     />
   );
 }

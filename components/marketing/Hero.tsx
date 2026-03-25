@@ -24,8 +24,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
-            Upload MP4, WAV, FLAC, M4A, MP3, AAC, or OGG — choose your output format and
-            download instantly. No installation, no account.
+            Upload any audio or video file — MP4, WAV, FLAC, M4A, MP3, AAC, OGG, AIFF, WMA,
+            Opus, and more. Convert to MP3, WAV, or M4A. No installation, no account.
           </p>
 
           {/* Trust indicators */}
@@ -59,7 +59,7 @@ export default function Hero() {
         {/* Subtle bottom link */}
         <p className="text-center text-xs text-gray-500 mt-4">
           <Link
-            href="/supported-formats"
+            href="/formats"
             className="hover:text-gray-300 transition-colors underline underline-offset-2"
           >
             View all supported formats and output options →

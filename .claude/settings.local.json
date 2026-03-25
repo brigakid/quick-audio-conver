@@ -13,7 +13,8 @@
       "Bash(find /c/Users/User/Desktop/QuickAudioConvert/app -type d -name *[*)",
       "Bash(Get-ChildItem -Recurse -Filter \"page.tsx\" \"C:\\\\Users\\\\User\\\\Desktop\\\\QuickAudioConvert\\\\app\")",
       "Bash(Select-Object FullName)",
-      "Bash(npx next:*)"
+      "Bash(npx next:*)",
+      "mcp__Claude_Preview__preview_start"
     ]
   }
 }

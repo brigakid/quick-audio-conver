@@ -24,7 +24,7 @@ export default function ToolsGrid() {
 
         <div className="mt-8 text-center">
           <Link
-            href="/supported-formats"
+            href="/formats"
             className="text-sm text-brand hover:text-brand-dark font-medium underline underline-offset-2 hover:no-underline transition-colors"
           >
             View the full conversion matrix →

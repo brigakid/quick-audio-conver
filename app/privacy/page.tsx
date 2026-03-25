@@ -64,9 +64,33 @@ export default function PrivacyPage() {
         </p>
       </Section>
 
-      <Section title="Cookies">
+      <Section title="Analytics and Cookies">
         <p>
-          QuickAudioConvert may use minimal session cookies necessary to operate the service. We do not use tracking cookies, advertising cookies, or cross-site tracking technologies. If we add analytics in the future, we will update this policy and implement appropriate consent mechanisms.
+          QuickAudioConvert uses <strong>Google Analytics 4</strong> to collect anonymized usage data. This service uses cookies to distinguish unique visitors and measure how the site is used. The data collected includes pages visited, session duration, browser type, device type, and approximate geographic region (country or city level). This data is aggregated and not linked to individually identifiable users.
+        </p>
+        <p>
+          Google Analytics data is processed by Google LLC and subject to{' '}
+          <a
+            href="https://policies.google.com/privacy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand hover:underline"
+          >
+            Google&apos;s Privacy Policy
+          </a>
+          . You can opt out of Google Analytics tracking by installing the{' '}
+          <a
+            href="https://tools.google.com/dlpage/gaoptout"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-brand hover:underline"
+          >
+            Google Analytics Opt-out Browser Add-on
+          </a>
+          .
+        </p>
+        <p>
+          We do not use advertising cookies, remarketing cookies, or cross-site tracking technologies beyond Google Analytics.
         </p>
       </Section>
 

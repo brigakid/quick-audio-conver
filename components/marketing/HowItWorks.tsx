@@ -3,7 +3,7 @@ const steps = [
     number: '01',
     title: 'Upload Your File',
     description:
-      'Drag and drop your file onto the converter, or click to browse. Accepts MP4, WAV, M4A, FLAC, MP3, AAC, and OGG — up to 200 MB.',
+      'Drag and drop your file onto the converter, or click to browse. Accepts 12 formats including MP4, WAV, M4A, FLAC, MP3, AAC, OGG, AIFF, WMA, and Opus — up to 200 MB.',
     icon: (
       <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
         <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />

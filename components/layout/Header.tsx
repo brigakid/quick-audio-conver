@@ -3,9 +3,17 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 
+const NAV_LINKS = [
+  { href: '/converters', label: 'Converters' },
+  { href: '/formats',    label: 'Formats'    },
+  { href: '/guides',     label: 'Guides'     },
+  { href: '/about',      label: 'About'      },
+  { href: '/contact',    label: 'Contact'    },
+];
+
 export default function Header() {
   const pathname = usePathname();
-  const router = useRouter();
+  const router   = useRouter();
 
   /**
    * "Convert Now" smart handler:
@@ -15,7 +23,6 @@ export default function Header() {
   function handleConvertNow() {
     if (pathname === '/') {
       window.dispatchEvent(new CustomEvent('converter:reset'));
-      // Small delay lets React flush the reset state before we scroll
       setTimeout(() => {
         document.getElementById('convert')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
       }, 50);
@@ -28,7 +35,8 @@ export default function Header() {
     <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-sm border-b border-gray-100 shadow-sm">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          {/* Logo — navigates home; full link area is clickable with hover + focus feedback */}
+
+          {/* Logo */}
           <Link
             href="/"
             className="flex items-center gap-2 min-w-0 group rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-2"
@@ -54,19 +62,16 @@ export default function Header() {
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden sm:flex items-center gap-1">
-            <Link
-              href="/supported-formats"
-              className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              Formats
-            </Link>
-            <Link
-              href="/about"
-              className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
-            >
-              About
-            </Link>
+          <nav className="hidden md:flex items-center gap-1">
+            {NAV_LINKS.map((link) => (
+              <Link
+                key={link.href}
+                href={link.href}
+                className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 hover:bg-gray-50 rounded-lg transition-colors"
+              >
+                {link.label}
+              </Link>
+            ))}
             <button
               type="button"
               onClick={handleConvertNow}
@@ -76,13 +81,19 @@ export default function Header() {
             </button>
           </nav>
 
-          {/* Mobile: Formats link + CTA */}
-          <div className="sm:hidden flex items-center gap-1.5 flex-shrink-0">
+          {/* Mobile: compact nav + CTA */}
+          <div className="md:hidden flex items-center gap-1 flex-shrink-0">
             <Link
-              href="/supported-formats"
+              href="/formats"
               className="px-2.5 py-1.5 text-xs text-gray-600 hover:text-gray-900 rounded-lg transition-colors"
             >
               Formats
+            </Link>
+            <Link
+              href="/guides"
+              className="px-2.5 py-1.5 text-xs text-gray-600 hover:text-gray-900 rounded-lg transition-colors"
+            >
+              Guides
             </Link>
             <button
               type="button"
@@ -92,6 +103,7 @@ export default function Header() {
               Convert
             </button>
           </div>
+
         </div>
       </div>
     </header>

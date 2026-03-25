@@ -1,9 +1,15 @@
 import ConverterBox from './ConverterBox';
 import FAQ, { type FAQItem } from '@/components/marketing/FAQ';
+import LastUpdated from '@/components/content/LastUpdated';
 import Link from 'next/link';
 import type { InputFormat, OutputFormat } from '@/types/conversion';
 
 interface RelatedTool {
+  href: string;
+  label: string;
+}
+
+interface RelatedGuide {
   href: string;
   label: string;
 }
@@ -18,6 +24,10 @@ interface ToolPageLayoutProps {
   whyConvert: string;
   faqItems: FAQItem[];
   relatedTools: RelatedTool[];
+  /** Optional links to format pages and guides — shown below related tools */
+  relatedGuides?: RelatedGuide[];
+  /** ISO date string for "Last updated" — e.g. "2025-03-01" */
+  lastUpdated?: string;
 }
 
 export default function ToolPageLayout({
@@ -30,10 +40,12 @@ export default function ToolPageLayout({
   whyConvert,
   faqItems,
   relatedTools,
+  relatedGuides,
+  lastUpdated,
 }: ToolPageLayoutProps) {
   return (
     <>
-      {/* Hero */}
+      {/* Hero + converter */}
       <section className="bg-[#2B2B2F] py-16 sm:py-24">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h1 className="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">{title}</h1>
@@ -50,7 +62,7 @@ export default function ToolPageLayout({
         </div>
       </section>
 
-      {/* Format Info */}
+      {/* Format info + why convert */}
       <section className="py-16 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
@@ -69,7 +81,7 @@ export default function ToolPageLayout({
           </div>
           <div className="p-6 rounded-2xl bg-white border border-gray-100 shadow-sm">
             <h2 className="text-base font-bold text-gray-900 mb-2">
-              Why Convert {sourceFormatInfo.name} to {targetFormatInfo.name}?
+              When to convert {sourceFormatInfo.name} to {targetFormatInfo.name}
             </h2>
             <p className="text-sm text-gray-600 leading-relaxed">{whyConvert}</p>
           </div>
@@ -82,10 +94,10 @@ export default function ToolPageLayout({
       {/* Related tools */}
       <section className="py-12 bg-slate-50 border-t border-slate-100">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-5">
-            Related Tools
+          <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+            Related converters
           </h2>
-          <div className="flex flex-wrap gap-3">
+          <div className="flex flex-wrap gap-3 mb-8">
             {relatedTools.map((tool) => (
               <Link
                 key={tool.href}
@@ -96,6 +108,29 @@ export default function ToolPageLayout({
               </Link>
             ))}
           </div>
+
+          {relatedGuides && relatedGuides.length > 0 && (
+            <>
+              <h2 className="text-xs font-semibold text-gray-400 uppercase tracking-widest mb-4">
+                Related guides
+              </h2>
+              <div className="flex flex-wrap gap-3">
+                {relatedGuides.map((guide) => (
+                  <Link
+                    key={guide.href}
+                    href={guide.href}
+                    className="px-4 py-2 rounded-xl bg-white border border-[#D9D9D9] text-sm font-medium text-gray-700 hover:border-brand hover:text-brand transition-colors shadow-sm"
+                  >
+                    {guide.label}
+                  </Link>
+                ))}
+              </div>
+            </>
+          )}
+
+          {lastUpdated && (
+            <LastUpdated date={lastUpdated} />
+          )}
         </div>
       </section>
     </>

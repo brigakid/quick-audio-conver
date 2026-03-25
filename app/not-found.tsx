@@ -34,7 +34,7 @@ export default function NotFound() {
           Go to converter
         </Link>
         <Link
-          href="/supported-formats"
+          href="/formats"
           className="px-6 py-3 text-sm font-semibold bg-white text-gray-700 border border-[#D9D9D9] rounded-xl hover:border-brand hover:text-brand transition-colors"
         >
           View supported formats
