@@ -5,10 +5,10 @@ const POPULAR_CONVERTERS = [
   { href: '/wav-to-mp3',  label: 'WAV to MP3'  },
   { href: '/flac-to-mp3', label: 'FLAC to MP3' },
   { href: '/m4a-to-mp3',  label: 'M4A to MP3'  },
-  { href: '/aac-to-mp3',  label: 'AAC to MP3'  },
-  { href: '/ogg-to-mp3',  label: 'OGG to MP3'  },
   { href: '/mp3-to-wav',  label: 'MP3 to WAV'  },
-  { href: '/wma-to-mp3',  label: 'WMA to MP3'  },
+  { href: '/mp4-to-wav',  label: 'MP4 to WAV'  },
+  { href: '/wav-to-m4a',  label: 'WAV to M4A'  },
+  { href: '/mp3-to-m4a',  label: 'MP3 to M4A'  },
 ];
 
 const AUDIO_FORMATS = [
@@ -21,10 +21,12 @@ const AUDIO_FORMATS = [
 ];
 
 const GUIDES = [
-  { href: '/guides/mp3-vs-wav',                    label: 'MP3 vs WAV'               },
-  { href: '/guides/lossless-vs-lossy-audio',       label: 'Lossless vs Lossy Audio'  },
-  { href: '/guides/extract-audio-from-video',      label: 'Extract Audio from Video' },
-  { href: '/guides/troubleshooting-audio-conversion', label: 'Troubleshooting'       },
+  { href: '/guides/mp3-vs-wav',                       label: 'MP3 vs WAV'              },
+  { href: '/guides/lossless-vs-lossy-audio',          label: 'Lossless vs Lossy Audio' },
+  { href: '/guides/best-audio-format-for-podcasting', label: 'Audio for Podcasting'    },
+  { href: '/guides/how-to-choose-mp3-bitrate',        label: 'Choosing MP3 Bitrate'    },
+  { href: '/guides/flac-vs-wav',                      label: 'FLAC vs WAV'             },
+  { href: '/guides/extract-audio-from-video',         label: 'Extract Audio from Video'},
 ];
 
 const LEARN = [

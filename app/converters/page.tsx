@@ -20,6 +20,11 @@ const OUTPUT_GROUPS = [
     description: 'Convert to uncompressed WAV — for editing software and professional workflows.',
     tools: TOOLS.filter((t) => t.outputFormat === 'wav'),
   },
+  {
+    output: 'to M4A',
+    description: 'Convert to M4A (AAC encoding) — the format preferred by Apple Podcasts, iTunes, and iOS devices.',
+    tools: TOOLS.filter((t) => t.outputFormat === 'm4a'),
+  },
 ];
 
 export default function ConvertersPage() {

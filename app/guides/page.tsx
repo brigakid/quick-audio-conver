@@ -4,7 +4,7 @@ import GuideCard from '@/components/content/GuideCard';
 export const metadata: Metadata = {
   title: 'Audio Guides',
   description:
-    'Practical guides on audio formats, quality, conversion decisions, and troubleshooting. Format comparisons, bitrate explanations, and how-to walkthroughs.',
+    'Practical guides on audio formats, quality, conversion decisions, and troubleshooting. Format comparisons, bitrate explanations, and workflow recommendations.',
 };
 
 const GUIDES = [
@@ -21,6 +21,11 @@ const GUIDES = [
         title: 'Lossless vs Lossy Audio Explained',
         description: 'What these terms actually mean, which formats fall into each category, and why it matters for conversion.',
       },
+      {
+        href: '/guides/flac-vs-wav',
+        title: 'FLAC vs WAV: Two Lossless Formats, Different Use Cases',
+        description: 'Both are lossless — the decoded audio is identical. The difference is file size, software support, and what you need to do next.',
+      },
     ],
   },
   {
@@ -30,6 +35,16 @@ const GUIDES = [
         href: '/guides/extract-audio-from-video',
         title: 'How to Extract Audio from a Video File',
         description: 'You have an MP4 or MKV. You just want the audio track. Here is the straightforward way to do it.',
+      },
+      {
+        href: '/guides/best-audio-format-for-podcasting',
+        title: 'The Best Audio Format for Podcasting at Each Stage',
+        description: 'Recording, editing, and submitting a podcast each call for a different format. Specific recommendations for the full workflow.',
+      },
+      {
+        href: '/guides/how-to-choose-mp3-bitrate',
+        title: 'How to Choose the Right MP3 Bitrate',
+        description: '128, 192, or 320 kbps — what actually changes between bitrates and which one you need for your specific use case.',
       },
     ],
   },
@@ -55,7 +70,7 @@ export default function GuidesPage() {
         </h1>
         <p className="mt-3 text-base text-gray-500 max-w-2xl leading-relaxed">
           Practical explanations for common audio format questions. Format comparisons,
-          quality trade-offs, and troubleshooting for when things go wrong.
+          workflow recommendations, and troubleshooting for when things go wrong.
         </p>
       </div>
 
@@ -74,12 +89,14 @@ export default function GuidesPage() {
         ))}
       </div>
 
-      {/* Coming soon note */}
+      {/* Cross-link to Learn */}
       <div className="mt-14 p-5 rounded-2xl bg-slate-50 border border-slate-100">
-        <h2 className="text-sm font-bold text-gray-900 mb-1.5">More guides coming</h2>
+        <h2 className="text-sm font-bold text-gray-900 mb-1.5">Looking for deeper explanations?</h2>
         <p className="text-xs text-gray-500 leading-relaxed">
-          Topics in progress include MP3 bitrate selection, best formats for podcasts and
-          music production, and format-specific conversion tips. Check back or{' '}
+          The{' '}
+          <a href="/learn" className="text-brand hover:underline">Learn section</a> covers
+          longer-form topics: bitrate theory, why WAV does not improve MP3 quality, the
+          difference between AAC and MP3, and more. Or{' '}
           <a href="/contact" className="text-brand hover:underline">send a question</a> if
           there is something specific you want covered.
         </p>
