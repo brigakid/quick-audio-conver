@@ -2,17 +2,24 @@
 
 import { useState } from 'react';
 import Button from '@/components/ui/Button';
+import { trackEvent } from '@/lib/analytics';
 
 interface DownloadResultProps {
   downloadUrl: string;
   filename: string;
+  outputFormat: string;
+  toolName: string;
   onReset: () => void;
 }
 
-export default function DownloadResult({ downloadUrl, filename, onReset }: DownloadResultProps) {
+export default function DownloadResult({ downloadUrl, filename, outputFormat, toolName, onReset }: DownloadResultProps) {
   const [downloading, setDownloading] = useState(false);
 
   async function handleDownload() {
+    trackEvent('audio_download_clicked', {
+      output_format: outputFormat,
+      tool_name:     toolName,
+    });
     setDownloading(true);
     try {
       // Fetch as Blob so iOS Safari triggers a real download instead of opening in-tab

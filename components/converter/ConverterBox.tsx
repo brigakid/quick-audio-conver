@@ -12,6 +12,7 @@ import Checkbox from '@/components/ui/Checkbox';
 import Button from '@/components/ui/Button';
 import { formatFileSize, buildOutputFilename, getExtension } from '@/lib/utils';
 import { getAllowedOutputs } from '@/lib/conversion-rules';
+import { trackEvent } from '@/lib/analytics';
 import type { Preset } from '@/lib/presets';
 import type { InputFormat, OutputFormat, Bitrate, SampleRate, Channels, JobStatus } from '@/types/conversion';
 
@@ -67,6 +68,15 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     return () => { cancelled = true; };
   }, [file]);
 
+  // ── Analytics ─────────────────────────────────────────────────────────────
+  // Stable tool identifier: "mp4-to-mp3", "wav-to-mp3", etc., or "homepage"
+  const toolName =
+    presetInputFormat && presetOutputFormat
+      ? `${presetInputFormat}-to-${presetOutputFormat}`
+      : 'homepage';
+  // Records Date.now() at the moment Convert is clicked — used to compute conversion_seconds
+  const conversionStartRef = useRef<number | null>(null);
+
   // ── Polling abort ref ────────────────────────────────────────────────────
   const abortRef = useRef<{ aborted: boolean }>({ aborted: false });
   useEffect(() => {
@@ -105,6 +115,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setInputFormat(getExtension(f.name) as InputFormat);
     setPhase('ready');
     setErrorMsg(null);
+    trackEvent('audio_upload_started', {
+      input_format: getExtension(f.name),
+      file_size_mb: Math.round((f.size / 1024 / 1024) * 100) / 100,
+      tool_name:    toolName,
+    });
     setJobId(null);
     setDownloadUrl(null);
     setSelectedPreset(null);
@@ -158,6 +173,7 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
   async function handleConvert() {
     if (!file || !inputFormat || !outputFormat) return;
     abortRef.current = { aborted: false };
+    conversionStartRef.current = Date.now();
     setPhase('uploading');
     setErrorMsg(null);
 
@@ -236,6 +252,18 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
       const status: JobStatus = data.status;
       if (status === 'done') {
         if (abortRef.current.aborted) return;
+        const conversionSeconds =
+          conversionStartRef.current !== null
+            ? Math.round((Date.now() - conversionStartRef.current) / 100) / 10
+            : 0;
+        trackEvent('audio_conversion_completed', {
+          input_format:       getExtension(currentFile.name),
+          output_format:      currentOutputFormat,
+          file_size_mb:       Math.round((currentFile.size / 1024 / 1024) * 100) / 100,
+          conversion_seconds: conversionSeconds,
+          tool_name:          toolName,
+          success:            true,
+        });
         setOutputFilename(data.outputFilename || buildOutputFilename(currentFile.name, currentOutputFormat));
         setDownloadUrl(`/api/download?jobId=${id}`);
         setPhase('done');
@@ -291,7 +319,13 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
 
       {/* Done state */}
       {phase === 'done' && downloadUrl && (
-        <DownloadResult downloadUrl={downloadUrl} filename={outputFilename} onReset={handleReset} />
+        <DownloadResult
+          downloadUrl={downloadUrl}
+          filename={outputFilename}
+          outputFormat={outputFormat as string}
+          toolName={toolName}
+          onReset={handleReset}
+        />
       )}
 
       {/* Converting / uploading */}
