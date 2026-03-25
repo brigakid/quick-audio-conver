@@ -6,7 +6,7 @@ export type InputFormat =
   | 'oga'            // OGG Vorbis alternate extension (IETF spec)
   | 'weba'           // WebM audio container (browser/web recordings)
   | 'wma';           // Windows Media Audio (old Windows libraries)
-export type OutputFormat = 'mp3' | 'wav' | 'm4a';
+export type OutputFormat = 'mp3' | 'wav' | 'm4a' | 'flac' | 'aac' | 'ogg' | 'opus';
 export type Bitrate = '128' | '192' | '320';
 export type SampleRate = '22050' | '44100' | '48000';
 export type Channels = 'mono' | 'stereo';

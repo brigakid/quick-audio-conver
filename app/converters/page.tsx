@@ -5,14 +5,14 @@ import { TOOLS } from '@/lib/tools';
 export const metadata: Metadata = {
   title: 'All Audio Converters',
   description:
-    'All available audio conversion tools on QuickAudioConvert. Convert MP4, WAV, FLAC, M4A, AAC, OGG, OPUS, WMA, and AIFF to MP3, WAV, or M4A.',
+    'All available audio conversion tools on QuickAudioConvert. Convert MP4, WAV, FLAC, M4A, AAC, OGG, OPUS, WMA, and AIFF to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.',
 };
 
 // Group tools by output format for scannable layout
 const OUTPUT_GROUPS = [
   {
     output: 'to MP3',
-    description: 'Convert to the universally supported MP3 format.',
+    description: 'Convert to the universally supported MP3 format. Plays on every device.',
     tools: TOOLS.filter((t) => t.outputFormat === 'mp3'),
   },
   {
@@ -25,7 +25,22 @@ const OUTPUT_GROUPS = [
     description: 'Convert to M4A (AAC encoding) — the format preferred by Apple Podcasts, iTunes, and iOS devices.',
     tools: TOOLS.filter((t) => t.outputFormat === 'm4a'),
   },
-];
+  {
+    output: 'to FLAC',
+    description: 'Convert to lossless FLAC — same quality as WAV, 40–60% smaller. Only available from uncompressed sources.',
+    tools: TOOLS.filter((t) => t.outputFormat === 'flac'),
+  },
+  {
+    output: 'to OGG',
+    description: 'Convert to OGG/Vorbis — open, royalty-free. Common in games, web audio, and Linux.',
+    tools: TOOLS.filter((t) => t.outputFormat === 'ogg'),
+  },
+  {
+    output: 'to AAC',
+    description: 'Convert to raw AAC (.aac file) — same codec as M4A, better compression than MP3 at equal bitrates.',
+    tools: TOOLS.filter((t) => t.outputFormat === 'aac'),
+  },
+].filter((g) => g.tools.length > 0); // hide groups with no tools yet
 
 export default function ConvertersPage() {
   return (
@@ -83,10 +98,14 @@ export default function ConvertersPage() {
           </Link>{' '}
           explains what each format is, when to use it, and which converter to choose.
           The{' '}
+          <Link href="/guides/flac-vs-wav" className="text-brand hover:underline">
+            FLAC vs WAV guide
+          </Link>{' '}
+          covers lossless format decisions, and the{' '}
           <Link href="/guides/mp3-vs-wav" className="text-brand hover:underline">
             MP3 vs WAV guide
           </Link>{' '}
-          covers the most common decision.
+          covers the most common lossy vs lossless question.
         </p>
       </div>
 

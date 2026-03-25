@@ -25,7 +25,7 @@ export default function Hero() {
 
           <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
             Upload any audio or video file — MP4, WAV, FLAC, M4A, MP3, AAC, OGG, AIFF, WMA,
-            Opus, and more. Convert to MP3, WAV, or M4A. No installation, no account.
+            Opus, and more. Convert to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS. No installation, no account.
           </p>
 
           {/* Trust indicators */}

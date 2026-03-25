@@ -62,8 +62,10 @@ export default function AboutPage() {
             nothing is processed in your browser and nothing installs on your device.
           </p>
           <p className="text-sm text-gray-600 leading-relaxed mt-3">
-            Output formats are MP3, WAV, and M4A. The converter shows which outputs are
-            available for the file you upload. Files up to 200 MB are supported.
+            Output formats are MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS. The converter
+            shows which outputs are available for the file you upload — not every combination
+            is offered (FLAC output, for instance, is only shown for uncompressed sources
+            like WAV and AIFF). Files up to 200 MB are supported.
           </p>
         </section>
 
@@ -156,8 +158,9 @@ export default function AboutPage() {
             </li>
             <li className="flex gap-2">
               <span className="text-gray-400 mt-0.5 flex-shrink-0">—</span>
-              Output formats are currently MP3, WAV, and M4A. FLAC and OGG output are not
-              supported yet.
+              FLAC output is only available when converting from an uncompressed or lossless
+              source (WAV, AIFF). Converting a lossy file like MP3 to FLAC produces a large
+              file with unchanged lossy quality — so that option is not offered.
             </li>
             <li className="flex gap-2">
               <span className="text-gray-400 mt-0.5 flex-shrink-0">—</span>

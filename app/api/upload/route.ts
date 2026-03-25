@@ -7,7 +7,7 @@ import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limit';
 import { runFullCleanup } from '@/lib/cleanup';
 import type { InputFormat, OutputFormat, Bitrate, SampleRate, Channels } from '@/types/conversion';
 
-const VALID_OUTPUT_FORMATS: OutputFormat[] = ['mp3', 'wav', 'm4a'];
+const VALID_OUTPUT_FORMATS: OutputFormat[] = ['mp3', 'wav', 'm4a', 'flac', 'aac', 'ogg', 'opus'];
 const VALID_BITRATES: Bitrate[] = ['128', '192', '320'];
 const VALID_SAMPLE_RATES: SampleRate[] = ['22050', '44100', '48000'];
 const VALID_CHANNELS: Channels[] = ['mono', 'stereo'];
@@ -113,7 +113,8 @@ export async function POST(req: NextRequest) {
   const job = createJob({
     inputFormat,
     outputFormat,
-    bitrate: outputFormat === 'mp3' ? bitrate : undefined,
+    // Bitrate applies to all variable-rate lossy formats: mp3, aac, ogg, opus
+    bitrate: (['mp3', 'aac', 'ogg', 'opus'] as OutputFormat[]).includes(outputFormat) ? bitrate : undefined,
     sampleRate,
     channels,
     originalName: file.name,

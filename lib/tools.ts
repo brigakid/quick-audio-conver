@@ -130,4 +130,40 @@ export const TOOLS: readonly ToolEntry[] = [
     outputFormat: 'm4a',
     description: 'Convert uncompressed WAV to M4A — the compressed format preferred by Apple Podcasts and iTunes.',
   },
+  // ── New output formats: FLAC, OGG, AAC ──────────────────────────────────
+  {
+    href: '/wav-to-flac',
+    label: 'WAV to FLAC',
+    inputFormat: 'wav',
+    outputFormat: 'flac',
+    description: 'Convert uncompressed WAV to lossless FLAC — same audio quality, 40–60% smaller file size.',
+  },
+  {
+    href: '/aiff-to-flac',
+    label: 'AIFF to FLAC',
+    inputFormat: 'aiff',
+    outputFormat: 'flac',
+    description: 'Convert Apple AIFF audio to lossless FLAC for compact, high-fidelity archiving.',
+  },
+  {
+    href: '/wav-to-ogg',
+    label: 'WAV to OGG',
+    inputFormat: 'wav',
+    outputFormat: 'ogg',
+    description: 'Convert WAV to OGG/Vorbis — the open, royalty-free format used in games and web audio.',
+  },
+  {
+    href: '/mp3-to-ogg',
+    label: 'MP3 to OGG',
+    inputFormat: 'mp3',
+    outputFormat: 'ogg',
+    description: 'Convert MP3 to OGG/Vorbis for game engines, Linux, and open-source audio workflows.',
+  },
+  {
+    href: '/wav-to-aac',
+    label: 'WAV to AAC',
+    inputFormat: 'wav',
+    outputFormat: 'aac',
+    description: 'Convert WAV to a raw AAC file (.aac) — efficient compressed audio without an MP4 wrapper.',
+  },
 ];

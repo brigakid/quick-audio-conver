@@ -439,7 +439,8 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
                 value={outputFormat}
                 onChange={handleDirectFormatChange}
               />
-              {outputFormat === 'mp3' && (
+              {/* Show bitrate selector for all variable-rate lossy output formats */}
+              {outputFormat && (['mp3', 'aac', 'ogg', 'opus'] as const).includes(outputFormat as 'mp3' | 'aac' | 'ogg' | 'opus') && (
                 <BitrateSelector value={bitrate} onChange={setBitrate} />
               )}
             </div>

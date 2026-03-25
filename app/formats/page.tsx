@@ -37,11 +37,13 @@ const FORMATS = [
     href: '/formats/flac',
     name: 'FLAC',
     type: 'Lossless',
-    tagline: 'Lossless compression for audiophiles.',
-    summary: 'Smaller than WAV, perfectly lossless. Best for archiving and high-fidelity listening — but not universally supported.',
+    tagline: 'Lossless compression for archiving and hi-fi.',
+    summary: 'Smaller than WAV, bit-perfectly lossless. Best for archiving and high-fidelity listening — and now available as an output format when converting from WAV or AIFF.',
     bestFor: 'Music archiving, hi-fi listening, local playback',
     converters: [
       { href: '/flac-to-mp3', label: 'FLAC to MP3' },
+      { href: '/wav-to-flac', label: 'WAV to FLAC' },
+      { href: '/flac-to-wav', label: 'FLAC to WAV' },
     ],
   },
   {
@@ -53,6 +55,7 @@ const FORMATS = [
     bestFor: 'Apple devices, iTunes libraries, GarageBand exports',
     converters: [
       { href: '/m4a-to-mp3', label: 'M4A to MP3' },
+      { href: '/wav-to-m4a', label: 'WAV to M4A' },
     ],
   },
   {
@@ -60,21 +63,24 @@ const FORMATS = [
     name: 'AAC',
     type: 'Lossy',
     tagline: 'The efficient successor to MP3.',
-    summary: 'Better compression than MP3 at equivalent quality. Used by Apple, YouTube, and most streaming platforms under the hood.',
+    summary: 'Better compression than MP3 at equivalent quality. Used by Apple, YouTube, and most streaming platforms. Now available as a direct output format (.aac files).',
     bestFor: 'Streaming, Apple Music, YouTube audio tracks',
     converters: [
       { href: '/aac-to-mp3', label: 'AAC to MP3' },
+      { href: '/wav-to-aac', label: 'WAV to AAC' },
     ],
   },
   {
     href: '/formats/ogg',
     name: 'OGG',
     type: 'Lossy',
-    tagline: 'Open source audio for games and Linux.',
-    summary: 'Royalty-free and open. Common in video games, game engines, and Linux environments. Limited hardware support outside those contexts.',
-    bestFor: 'Game audio, Linux, open-source projects',
+    tagline: 'Open, royalty-free audio for games and the web.',
+    summary: 'Royalty-free and open. Common in video games, game engines, and Linux. Now available as an output format — useful for game developers and web audio workflows.',
+    bestFor: 'Game audio, Linux, web audio, open-source projects',
     converters: [
       { href: '/ogg-to-mp3', label: 'OGG to MP3' },
+      { href: '/wav-to-ogg', label: 'WAV to OGG' },
+      { href: '/mp3-to-ogg', label: 'MP3 to OGG' },
     ],
   },
 ];
@@ -145,18 +151,20 @@ export default function FormatsPage() {
         ))}
       </div>
 
-      {/* Formats not yet covered */}
+      {/* Other input formats + new outputs note */}
       <div className="mt-10 p-5 rounded-2xl bg-slate-50 border border-slate-100">
         <h2 className="text-sm font-bold text-gray-900 mb-2">Other supported input formats</h2>
         <p className="text-xs text-gray-500 leading-relaxed mb-3">
-          QuickAudioConvert also accepts AIFF, OPUS, WMA, OGA, and WEBA files. These are
-          converted to MP3, WAV, or M4A using the same server-side process.
+          QuickAudioConvert also accepts AIFF, OPUS, WMA, OGA, and WEBA files as input.
+          All can be converted to MP3, WAV, M4A, AAC, OGG, or OPUS — and AIFF can also
+          be converted to FLAC (lossless-to-lossless).
         </p>
         <div className="flex flex-wrap gap-2">
           {[
-            { href: '/aiff-to-mp3', label: 'AIFF to MP3' },
-            { href: '/opus-to-mp3', label: 'OPUS to MP3' },
-            { href: '/wma-to-mp3',  label: 'WMA to MP3'  },
+            { href: '/aiff-to-mp3',  label: 'AIFF to MP3'  },
+            { href: '/aiff-to-flac', label: 'AIFF to FLAC' },
+            { href: '/opus-to-mp3',  label: 'OPUS to MP3'  },
+            { href: '/wma-to-mp3',   label: 'WMA to MP3'   },
           ].map((c) => (
             <Link
               key={c.href}

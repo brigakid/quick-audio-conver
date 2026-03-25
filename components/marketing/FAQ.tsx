@@ -51,7 +51,7 @@ export const DEFAULT_FAQ_ITEMS: FAQItem[] = [
   {
     question: 'What file formats are supported?',
     answer:
-      'QuickAudioConvert accepts MP4, WAV, M4A, FLAC, MP3, AAC, and OGG as input. You can convert to MP3, WAV, or M4A. After you upload a file, the converter automatically shows which output formats are available for that specific file type. Visit the Supported Formats page for the full matrix.',
+      'QuickAudioConvert accepts MP4, WAV, M4A, FLAC, MP3, AAC, OGG, AIFF, WMA, Opus, and more as input. Output formats are MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS. Not every output is available for every input — for example, FLAC output is only offered from uncompressed sources like WAV and AIFF, since encoding a lossy file to FLAC does not restore quality. After you upload, the converter shows which outputs are valid for your specific file.',
   },
   {
     question: 'Are my files stored permanently?',
@@ -66,7 +66,7 @@ export const DEFAULT_FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Why do I see different output format options for different files?',
     answer:
-      'Available output formats depend on the file you upload. For example, uploading an MP4 shows MP3, WAV, and M4A as options. Uploading an MP3 shows WAV and M4A. The converter detects your file type automatically and only shows valid, supported conversions.',
+      'Available outputs depend on your source file. Uploading a WAV shows the full range including FLAC (since WAV is uncompressed, converting to FLAC is a genuine lossless compression). Uploading an MP3 does not show FLAC as an option — encoding a lossy file to lossless would produce a large file with identical lossy quality, which is misleading. The converter only shows conversions that are technically meaningful.',
   },
   {
     question: 'Does QuickAudioConvert work on mobile?',
@@ -76,7 +76,7 @@ export const DEFAULT_FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Can I choose audio quality?',
     answer:
-      'Yes, when converting to MP3. Choose from 128 kbps (smaller file, good quality), 192 kbps (balanced — recommended for most uses), or 320 kbps (maximum quality, larger file). WAV is uncompressed and M4A uses a fixed high-quality AAC encode — bitrate does not apply to either.',
+      'Yes, for MP3, AAC, OGG, and OPUS output. Choose from 128 kbps (smaller file, good quality), 192 kbps (balanced — recommended for most uses), or 320 kbps (maximum quality, larger file). WAV and FLAC are lossless — bitrate does not apply. M4A uses a fixed 192 kbps AAC encode.',
   },
 ];
 

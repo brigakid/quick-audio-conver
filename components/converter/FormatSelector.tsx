@@ -11,6 +11,16 @@ interface FormatSelectorProps {
   disabled?: boolean;
 }
 
+/** Short note shown below the format buttons for non-bitrate formats */
+const FORMAT_NOTES: Partial<Record<OutputFormat, string>> = {
+  wav:  'WAV is uncompressed — bitrate does not apply.',
+  m4a:  'M4A uses AAC at 192 kbps — bitrate does not apply.',
+  flac: 'FLAC is lossless — the file size is smaller than WAV but the quality is identical. Bitrate does not apply.',
+  aac:  'Raw AAC file (.aac). Same codec as M4A, different container. Choose your bitrate below.',
+  ogg:  'OGG/Vorbis — open, royalty-free. Common in games and Linux. Choose your bitrate below.',
+  opus: 'OPUS — a modern, efficient codec. 128 kbps Opus matches ~192 kbps MP3 in quality. Choose your bitrate below.',
+};
+
 export default function FormatSelector({
   inputFormat,
   value,
@@ -59,12 +69,10 @@ export default function FormatSelector({
         ))}
       </div>
 
-      {/* Bitrate note: only shown when a non-MP3 output is selected */}
-      {value && value !== 'mp3' && (
+      {/* Format-specific note shown when a format is selected */}
+      {value && FORMAT_NOTES[value] && (
         <p className="text-xs text-gray-400 mt-2">
-          {value === 'wav'
-            ? 'WAV is uncompressed — bitrate does not apply.'
-            : 'M4A uses AAC at 192 kbps — bitrate does not apply.'}
+          {FORMAT_NOTES[value]}
         </p>
       )}
     </div>

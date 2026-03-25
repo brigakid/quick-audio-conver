@@ -24,6 +24,12 @@ const pages = [
   { url: '/flac-to-wav', priority: '0.8', changefreq: 'monthly' },
   { url: '/mp3-to-m4a',  priority: '0.8', changefreq: 'monthly' },
   { url: '/wav-to-m4a',  priority: '0.8', changefreq: 'monthly' },
+  // New output format converters — FLAC, OGG, AAC
+  { url: '/wav-to-flac',  priority: '0.8', changefreq: 'monthly' },
+  { url: '/aiff-to-flac', priority: '0.7', changefreq: 'monthly' },
+  { url: '/wav-to-ogg',   priority: '0.8', changefreq: 'monthly' },
+  { url: '/mp3-to-ogg',   priority: '0.8', changefreq: 'monthly' },
+  { url: '/wav-to-aac',   priority: '0.7', changefreq: 'monthly' },
 
   // Format knowledge pages
   { url: '/formats/mp3',  priority: '0.8', changefreq: 'monthly' },
