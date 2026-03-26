@@ -60,7 +60,7 @@ The one limitation is older hardware — car stereos, legacy players, and some b
       ]}
       relatedGuides={[
         { href: '/guides/best-audio-format-for-podcasting', label: 'Best Audio Format for Podcasting' },
-        { href: '/learn/aac-m4a-mp3-what-matters',         label: 'AAC vs MP3: What Actually Matters' },
+        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC vs MP3: What Actually Matters' },
         { href: '/formats/m4a',                            label: 'M4A format guide'                  },
       ]}
       lastUpdated="2025-03-01"

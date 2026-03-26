@@ -194,8 +194,8 @@ export default function WhenMp3IsGoodEnoughPage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/learn/how-bitrate-affects-file-size-and-sound',      label: 'How Bitrate Affects File Size and Sound'    },
-          { href: '/learn/converting-to-wav-does-not-improve-quality',    label: 'When Converting to WAV Doesn\'t Help'      },
+          { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Affects File Size and Sound'  },
+          { href: '/learn/when-converting-to-wav-does-not-improve-quality', label: "When Converting to WAV Doesn't Help"       },
           { href: '/formats/mp3',                                          label: 'MP3 format guide'                          },
           { href: '/formats/flac',                                         label: 'FLAC format guide'                         },
         ]}

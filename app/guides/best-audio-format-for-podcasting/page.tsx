@@ -198,7 +198,7 @@ export default function BestAudioFormatForPodcastingPage() {
         items={[
           { href: '/guides/how-to-choose-mp3-bitrate', label: 'How to Choose the Right MP3 Bitrate' },
           { href: '/guides/mp3-vs-wav', label: 'MP3 vs WAV' },
-          { href: '/learn/aac-m4a-mp3-what-matters', label: 'AAC, M4A, and MP3: What Actually Matters' },
+          { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, and MP3: What Actually Matters' },
         ]}
       />
 

@@ -8,46 +8,81 @@ export const metadata: Metadata = {
 };
 
 const ARTICLES = [
+  // Choosing a format
+  {
+    href: '/learn/wav-vs-mp3-for-editing-sharing-and-archiving',
+    title: 'WAV vs MP3 for Editing, Sharing, and Archiving',
+    description:
+      "The right format depends entirely on what you\u2019re doing next. A workflow-first guide to avoiding bad decisions.",
+    category: 'Choosing a format',
+    readTime: '7 min',
+  },
+  {
+    href: '/learn/aac-m4a-and-mp3-what-actually-matters',
+    title: 'AAC, M4A, and MP3: What Actually Matters',
+    description:
+      "AAC and M4A are the same codec in different containers. MP3 is older but more compatible. Here\u2019s what that means in practice.",
+    category: 'Choosing a format',
+    readTime: '6 min',
+  },
+  {
+    href: '/learn/best-audio-format-for-editing',
+    title: 'Best Audio Format for Editing',
+    description:
+      'WAV or AIFF for your DAW, MP3 or M4A for everything else. A practical breakdown of what format to use at each stage of a project.',
+    category: 'Choosing a format',
+    readTime: '6 min',
+  },
+  {
+    href: '/learn/best-audio-format-for-podcasts',
+    title: 'Best Audio Format for Podcasts',
+    description:
+      'MP3 at 128\u2013192 kbps covers nearly every podcast use case. Here\u2019s when to reconsider, and what the hosting platforms actually accept.',
+    category: 'Choosing a format',
+    readTime: '5 min',
+  },
+  {
+    href: '/learn/best-audio-format-for-voice-recordings',
+    title: 'Best Audio Format for Voice Recordings',
+    description:
+      'Voice is narrowband audio. The format that sounds great for music often wastes space on speech. Here\u2019s what to use instead.',
+    category: 'Choosing a format',
+    readTime: '5 min',
+  },
+  {
+    href: '/learn/extracting-audio-from-video-best-format-choices',
+    title: 'Extracting Audio from Video: Best Format Choices',
+    description:
+      'When you pull audio from video, you pick a format twice. What you choose depends on whether you\u2019re editing, archiving, or publishing.',
+    category: 'Choosing a format',
+    readTime: '6 min',
+  },
+  // Quality and file size
   {
     href: '/learn/when-mp3-is-good-enough',
     title: "When MP3 Is Good Enough \u2014 and When It Isn\u2019t",
     description:
       "MP3 at 192 kbps is transparent for most listeners. The exceptions are narrower than most people think.",
-    category: 'Quality decisions',
+    category: 'Quality and file size',
     readTime: '6 min',
   },
   {
-    href: '/learn/wav-vs-mp3-editing-sharing-archiving',
-    title: 'WAV vs MP3 for Editing, Sharing, and Archiving',
-    description:
-      "The right format depends entirely on what you\u2019re doing next. A workflow-first guide to avoiding bad decisions.",
-    category: 'Format decisions',
-    readTime: '7 min',
-  },
-  {
-    href: '/learn/how-bitrate-affects-file-size-and-sound',
+    href: '/learn/how-bitrate-affects-file-size-and-sound-quality',
     title: 'How Bitrate Actually Affects File Size and Sound',
     description:
       "Bitrate is a rate \u2014 bits per second. The math is simple. The quality implications are specific and often misunderstood.",
-    category: 'Technical',
+    category: 'Quality and file size',
     readTime: '7 min',
   },
   {
-    href: '/learn/converting-to-wav-does-not-improve-quality',
+    href: '/learn/when-converting-to-wav-does-not-improve-quality',
     title: 'When Converting to WAV Does Not Improve Quality',
     description:
       "WAV is a container, not a quality guarantee. Converting an MP3 to WAV makes the file larger \u2014 not better.",
-    category: 'Quality decisions',
+    category: 'Quality and file size',
     readTime: '5 min',
   },
-  {
-    href: '/learn/aac-m4a-mp3-what-matters',
-    title: 'AAC, M4A, and MP3: What Actually Matters',
-    description:
-      "AAC and M4A are the same codec in different containers. MP3 is older but more compatible. Here\u2019s what that means in practice.",
-    category: 'Format decisions',
-    readTime: '6 min',
-  },
+  // Troubleshooting
   {
     href: '/learn/why-audio-files-fail-to-convert',
     title: 'Why Some Audio Files Fail to Convert',
@@ -58,7 +93,7 @@ const ARTICLES = [
   },
 ];
 
-const CATEGORIES = ['Quality decisions', 'Format decisions', 'Technical', 'Troubleshooting'];
+const CATEGORIES = ['Choosing a format', 'Quality and file size', 'Troubleshooting'];
 
 export default function LearnPage() {
   return (

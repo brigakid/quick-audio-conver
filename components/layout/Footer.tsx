@@ -31,10 +31,10 @@ const GUIDES = [
 
 const LEARN = [
   { href: '/learn/when-mp3-is-good-enough',                    label: 'When MP3 Is Good Enough'      },
-  { href: '/learn/wav-vs-mp3-editing-sharing-archiving',       label: 'WAV vs MP3 by Workflow'        },
-  { href: '/learn/how-bitrate-affects-file-size-and-sound',    label: 'How Bitrate Works'             },
-  { href: '/learn/converting-to-wav-does-not-improve-quality', label: 'WAV Doesn\'t Improve MP3'     },
-  { href: '/learn/aac-m4a-mp3-what-matters',                   label: 'AAC, M4A, and MP3'             },
+  { href: '/learn/wav-vs-mp3-for-editing-sharing-and-archiving',    label: 'WAV vs MP3 by Workflow'    },
+  { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Works'         },
+  { href: '/learn/when-converting-to-wav-does-not-improve-quality', label: "WAV Doesn't Improve MP3"  },
+  { href: '/learn/aac-m4a-and-mp3-what-actually-matters',           label: 'AAC, M4A, and MP3'         },
   { href: '/learn/why-audio-files-fail-to-convert',            label: 'Why Conversions Fail'          },
 ];
 

@@ -49,13 +49,17 @@ const pages = [
   { url: '/guides/troubleshooting-audio-conversion',  priority: '0.7', changefreq: 'monthly' },
 
   // Learn articles
-  { url: '/learn',                                                    priority: '0.8', changefreq: 'monthly' },
-  { url: '/learn/when-mp3-is-good-enough',                           priority: '0.7', changefreq: 'monthly' },
-  { url: '/learn/wav-vs-mp3-editing-sharing-archiving',              priority: '0.7', changefreq: 'monthly' },
-  { url: '/learn/how-bitrate-affects-file-size-and-sound',           priority: '0.7', changefreq: 'monthly' },
-  { url: '/learn/converting-to-wav-does-not-improve-quality',        priority: '0.7', changefreq: 'monthly' },
-  { url: '/learn/aac-m4a-mp3-what-matters',                          priority: '0.7', changefreq: 'monthly' },
-  { url: '/learn/why-audio-files-fail-to-convert',                   priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn',                                                              priority: '0.8', changefreq: 'monthly' },
+  { url: '/learn/when-mp3-is-good-enough',                                     priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/wav-vs-mp3-for-editing-sharing-and-archiving',                priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/how-bitrate-affects-file-size-and-sound-quality',             priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/when-converting-to-wav-does-not-improve-quality',             priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/aac-m4a-and-mp3-what-actually-matters',                       priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/why-audio-files-fail-to-convert',                             priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/best-audio-format-for-editing',                               priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/best-audio-format-for-podcasts',                              priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/best-audio-format-for-voice-recordings',                      priority: '0.7', changefreq: 'monthly' },
+  { url: '/learn/extracting-audio-from-video-best-format-choices',             priority: '0.7', changefreq: 'monthly' },
 
   // Trust / legal pages
   { url: '/about',   priority: '0.6', changefreq: 'monthly' },

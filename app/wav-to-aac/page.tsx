@@ -59,7 +59,7 @@ At 192 kbps, WAV to AAC produces excellent quality that is transparent for most 
         { href: '/wav-to-ogg',  label: 'WAV to OGG'  },
       ]}
       relatedGuides={[
-        { href: '/learn/aac-m4a-mp3-what-matters', label: 'AAC, M4A, MP3: What Matters' },
+        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, MP3: What Matters' },
         { href: '/formats/aac',                    label: 'AAC format guide'            },
         { href: '/guides/mp3-vs-wav',              label: 'MP3 vs WAV'                 },
       ]}

@@ -243,7 +243,7 @@ export default function WhyAudioFilesFailPage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/learn/aac-m4a-mp3-what-matters', label: 'AAC, M4A, and MP3: What Matters'    },
+          { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, and MP3: What Matters' },
           { href: '/formats/aac',                    label: 'AAC format guide'                    },
           { href: '/formats/m4a',                    label: 'M4A format guide'                    },
         ]}

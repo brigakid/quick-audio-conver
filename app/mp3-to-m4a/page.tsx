@@ -57,7 +57,7 @@ That said, this is a lossy-to-lossy conversion. The output M4A will not sound be
         { href: '/mp3-to-wav', label: 'MP3 to WAV' },
       ]}
       relatedGuides={[
-        { href: '/learn/aac-m4a-mp3-what-matters', label: 'AAC, M4A, and MP3 — what actually matters' },
+        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, and MP3 — what actually matters' },
         { href: '/formats/m4a', label: 'M4A format guide' },
         { href: '/formats/mp3', label: 'MP3 format guide' },
       ]}

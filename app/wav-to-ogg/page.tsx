@@ -60,7 +60,7 @@ A secondary use: Linux environments where patent-encumbered formats like MP3 are
       ]}
       relatedGuides={[
         { href: '/formats/ogg',                      label: 'OGG format guide'              },
-        { href: '/learn/aac-m4a-mp3-what-matters',   label: 'AAC, M4A, MP3: What Matters'  },
+        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, MP3: What Matters' },
         { href: '/guides/mp3-vs-wav',                label: 'MP3 vs WAV'                   },
       ]}
       lastUpdated="2025-03-01"

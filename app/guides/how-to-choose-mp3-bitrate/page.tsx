@@ -197,7 +197,7 @@ export default function HowToChooseMp3BitratePage() {
       <RelatedContent
         title="Related guides"
         items={[
-          { href: '/learn/how-bitrate-affects-file-size-and-sound', label: 'How Bitrate Affects File Size and Sound' },
+          { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Affects File Size and Sound' },
           { href: '/learn/when-mp3-is-good-enough', label: 'When MP3 Is Good Enough' },
           { href: '/guides/mp3-vs-wav', label: 'MP3 vs WAV' },
         ]}
