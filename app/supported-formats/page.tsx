@@ -6,7 +6,7 @@ import type { InputFormat } from '@/types/conversion';
 export const metadata: Metadata = {
   title: 'Supported Audio Formats',
   description:
-    'See all supported audio conversion formats on QuickAudioConvert. Convert MP4, WAV, AIFF, FLAC, MP3, AAC, OGG, OPUS, WMA, WEBA and more to MP3, WAV, or M4A.',
+    'See all supported audio conversion formats on QuickAudioConvert. Convert MP4, WAV, AIFF, FLAC, MP3, AAC, OGG, OPUS, WMA, WEBA and more to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.',
 };
 
 /**
@@ -77,7 +77,7 @@ const conversionsMeta: ConversionRow[] = [
     inputKey: 'aac',
     href: '/aac-to-mp3',
     inputDesc: 'Advanced Audio Coding (lossy)',
-    description: 'Convert raw AAC audio files to MP3, WAV, or M4A.',
+    description: 'Convert raw AAC audio files to MP3, WAV, M4A, OGG, or OPUS.',
   },
   {
     input: 'OGG',

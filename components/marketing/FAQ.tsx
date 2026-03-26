@@ -61,7 +61,7 @@ export const DEFAULT_FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Can I convert an MP4 video to audio?',
     answer:
-      'Yes. Upload an MP4 file and the converter will extract the audio track. You can save it as MP3, WAV, or M4A. The video data is discarded — only the audio is retained in the output file.',
+      'Yes. Upload an MP4 file and the converter will extract the audio track. You can save it as MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS. The video data is discarded — only the audio is retained in the output file.',
   },
   {
     question: 'Why do I see different output format options for different files?',
