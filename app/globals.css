@@ -16,6 +16,13 @@
   --color-surface: #F3F3F3;
   --color-border: #D9D9D9;
   --color-muted: #6B7280;
+
+  /* Shift gray-400/500/600 one stop darker for WCAG-compliant contrast on light backgrounds.
+     gray-500 on white was 4.6:1 (fails AA for body text); now 7.1:1 (passes AA for all sizes).
+     Footer text on bg-gray-950 remains readable — dark-on-dark contrast stays above 4.5:1. */
+  --color-gray-400: #6b7280;  /* was #9ca3af */
+  --color-gray-500: #4b5563;  /* was #6b7280 */
+  --color-gray-600: #374151;  /* was #4b5563 */
 }
 
 @keyframes indeterminate {

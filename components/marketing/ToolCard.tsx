@@ -19,7 +19,7 @@ export default function ToolCard({ href, inputFormat, outputFormat, description 
         <div className="flex items-center gap-1.5 px-2.5 py-1 bg-slate-50 rounded-lg border border-slate-100">
           <span className="text-xs font-bold text-slate-700 uppercase">{inputFormat}</span>
           <svg
-            className="w-3 h-3 text-slate-400"
+            className="w-3 h-3 text-gray-400"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"

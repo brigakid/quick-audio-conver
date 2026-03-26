@@ -21,7 +21,7 @@ export default function FormatsAndHelp() {
                 {INPUT_FORMATS.map((fmt) => (
                   <span
                     key={fmt}
-                    className="px-2.5 py-1 rounded-full bg-slate-100 text-xs font-medium text-slate-600"
+                    className="px-2.5 py-1 rounded-full bg-slate-100 text-xs font-medium text-gray-600"
                   >
                     {fmt}
                   </span>

@@ -204,7 +204,7 @@ const formatDetails = [
 ];
 
 const roleColors: Record<string, string> = {
-  'Input': 'bg-slate-50 text-slate-600',
+  'Input': 'bg-slate-50 text-gray-600',
   'Input · Output': 'bg-red-50 text-brand',
 };
 

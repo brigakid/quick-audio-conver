@@ -67,7 +67,7 @@ export default function ToolPageLayout({
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-10">
             <div className="p-6 rounded-2xl bg-slate-50 border border-slate-100">
-              <h2 className="text-sm font-semibold text-slate-500 uppercase tracking-widest mb-2">
+              <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-widest mb-2">
                 About {sourceFormatInfo.name}
               </h2>
               <p className="text-sm text-gray-700 leading-relaxed">{sourceFormatInfo.description}</p>
