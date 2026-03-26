@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 const INPUT_FORMATS = ['MP4', 'MP3', 'WAV', 'FLAC', 'M4A', 'AAC', 'OGG', 'AIFF', 'WMA', 'Opus', 'OGA', 'WEBA'];
-const OUTPUT_FORMATS = ['MP3', 'WAV', 'M4A'];
+const OUTPUT_FORMATS = ['MP3', 'WAV', 'M4A', 'FLAC', 'AAC', 'OGG', 'OPUS'];
 
 export default function FormatsAndHelp() {
   return (
@@ -13,7 +13,7 @@ export default function FormatsAndHelp() {
           <div>
             <h2 className="text-base font-bold text-gray-900 mb-1">Supported Formats</h2>
             <p className="text-xs text-gray-500 mb-4">
-              Upload any of these — converted output can be MP3, WAV, or M4A.
+              Upload any of these — converted output can be MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.
             </p>
             <div className="mb-3">
               <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Input (12 formats)</p>
@@ -29,7 +29,7 @@ export default function FormatsAndHelp() {
               </div>
             </div>
             <div>
-              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Output (3 formats)</p>
+              <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Output (7 formats)</p>
               <div className="flex flex-wrap gap-1.5">
                 {OUTPUT_FORMATS.map((fmt) => (
                   <span

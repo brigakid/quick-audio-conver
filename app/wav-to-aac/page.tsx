@@ -63,7 +63,7 @@ At 192 kbps, WAV to AAC produces excellent quality that is transparent for most 
         { href: '/formats/aac',                    label: 'AAC format guide'            },
         { href: '/guides/mp3-vs-wav',              label: 'MP3 vs WAV'                 },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

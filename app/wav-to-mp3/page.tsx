@@ -59,7 +59,7 @@ export default function WavToMp3Page() {
         { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio'},
         { href: '/formats/wav',                    label: 'WAV format guide'       },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

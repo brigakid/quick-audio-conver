@@ -63,7 +63,7 @@ The trade-off: WAV files are significantly larger. A 20 MB FLAC will expand to 3
         { href: '/formats/flac',                   label: 'FLAC format guide'       },
         { href: '/formats/wav',                    label: 'WAV format guide'        },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

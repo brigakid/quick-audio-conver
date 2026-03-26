@@ -63,7 +63,7 @@ Quality caveat: the WAV will sound exactly as good as the source M4A — no bett
         { href: '/guides/mp3-vs-wav', label: 'MP3 vs WAV' },
         { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, and MP3 — what actually matters' },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

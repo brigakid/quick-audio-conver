@@ -61,7 +61,7 @@ Important caveat: this is a lossy-to-lossy conversion. The OGG output will not s
         { href: '/guides/mp3-vs-wav',              label: 'MP3 vs WAV'                 },
         { href: '/learn/when-mp3-is-good-enough',  label: 'When MP3 Is Good Enough'    },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

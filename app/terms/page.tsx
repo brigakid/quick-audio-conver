@@ -110,8 +110,8 @@ export default function TermsPage() {
 
       <Section title="Contact">
         <p>
-          If you have questions about these Terms of Service, please use our{' '}
-          <a href="/contact" className="text-brand hover:underline">contact form</a>.
+          If you have questions about these Terms of Service, please{' '}
+          <a href="/contact" className="text-brand hover:underline">contact us by email</a>.
         </p>
       </Section>
     </div>

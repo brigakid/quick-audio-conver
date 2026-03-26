@@ -61,7 +61,7 @@ That said, this is a lossy-to-lossy conversion. The output M4A will not sound be
         { href: '/formats/m4a', label: 'M4A format guide' },
         { href: '/formats/mp3', label: 'MP3 format guide' },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

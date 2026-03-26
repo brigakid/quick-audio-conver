@@ -65,7 +65,7 @@ One important note: the WAV will sound exactly as good as the AAC audio inside t
         { href: '/guides/mp3-vs-wav', label: 'MP3 vs WAV' },
         { href: '/formats/wav', label: 'WAV format guide' },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

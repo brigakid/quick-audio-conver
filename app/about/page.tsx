@@ -195,7 +195,7 @@ export default function AboutPage() {
             <Link href="/learn" className="text-brand hover:underline">learn articles</Link>{' '}
             are updated when formats change or something turns out to be unclear. If a
             conversion is not working as described, the{' '}
-            <Link href="/contact" className="text-brand hover:underline">contact form</Link>{' '}
+            <Link href="/contact" className="text-brand hover:underline">Contact page</Link>{' '}
             is the fastest way to flag it.
           </p>
         </section>

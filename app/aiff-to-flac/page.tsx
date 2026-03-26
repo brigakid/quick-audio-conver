@@ -65,7 +65,7 @@ Like WAV-to-FLAC, this is a lossless-to-lossless conversion: no quality is lost.
         { href: '/guides/lossless-vs-lossy-audio',  label: 'Lossless vs Lossy Audio' },
         { href: '/formats/flac',                    label: 'FLAC format guide'      },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

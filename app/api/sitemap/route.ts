@@ -1,5 +1,5 @@
 const BASE_URL =
-  process.env.NEXT_PUBLIC_SITE_URL || 'https://www.quickaudioconvert.com';
+  process.env.NEXT_PUBLIC_SITE_URL || 'https://quickaudioconvert.com';
 
 const pages = [
   // Core

@@ -123,8 +123,8 @@ export default function PrivacyPage() {
 
       <Section title="Contact">
         <p>
-          If you have questions or concerns about this Privacy Policy, please use our{' '}
-          <a href="/contact" className="text-brand hover:underline">contact form</a>.
+          If you have questions or concerns about this Privacy Policy, please{' '}
+          <a href="/contact" className="text-brand hover:underline">contact us by email</a>.
         </p>
       </Section>
     </div>

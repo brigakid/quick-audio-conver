@@ -59,7 +59,7 @@ export default function Mp4ToMp3Page() {
         { href: '/guides/mp3-vs-wav',               label: 'MP3 vs WAV'                      },
         { href: '/formats/mp3',                     label: 'MP3 format guide'                },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

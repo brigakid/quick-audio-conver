@@ -7,7 +7,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 export const metadata: Metadata = {
   title: 'How to Extract Audio from a Video File',
   description:
-    'Step-by-step: how to extract the audio track from an MP4, MKV, or MOV file and save it as MP3, WAV, or M4A. No software installation required.',
+    'Step-by-step: how to extract the audio track from an MP4, MKV, or MOV file and save it as MP3, WAV, M4A, FLAC, or AAC. No software installation required.',
 };
 
 export default function ExtractAudioFromVideoPage() {
@@ -29,8 +29,8 @@ export default function ExtractAudioFromVideoPage() {
 
       <QuickAnswer>
         Upload the video file to QuickAudioConvert and select an audio output format
-        (MP3, WAV, or M4A). The converter strips the video track and saves only the
-        audio. The video is discarded — only the audio is in the download.
+        (MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS). The converter strips the video track
+        and saves only the audio. The video is discarded — only the audio is in the download.
       </QuickAnswer>
 
       <div className="prose prose-sm max-w-none text-gray-600 space-y-8 mt-8">
@@ -52,7 +52,7 @@ export default function ExtractAudioFromVideoPage() {
               {
                 step: '3',
                 title: 'Choose your audio output format',
-                body: 'Select MP3, WAV, or M4A. MP3 is the best choice for most purposes — small file, plays everywhere. WAV if you need the audio for editing software. M4A for Apple device compatibility.',
+                body: 'Select MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS. MP3 is the best choice for most purposes — small file, plays everywhere. WAV or FLAC if you need the audio for editing. M4A for Apple devices.',
               },
               {
                 step: '4',
@@ -107,6 +107,14 @@ export default function ExtractAudioFromVideoPage() {
             <li className="flex gap-2">
               <span className="text-brand flex-shrink-0 font-bold">M4A</span>
               <span>— Good option if you primarily use Apple devices and apps.</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-brand flex-shrink-0 font-bold">FLAC</span>
+              <span>— Lossless output, same quality as WAV in a smaller file. Available when the source is WAV or AIFF.</span>
+            </li>
+            <li className="flex gap-2">
+              <span className="text-brand flex-shrink-0 font-bold">AAC / OGG / OPUS</span>
+              <span>— Efficient compressed formats. Good for streaming, web use, or when file size matters more than broad compatibility.</span>
             </li>
           </ul>
         </section>

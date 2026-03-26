@@ -156,8 +156,8 @@ export default function FormatsPage() {
         <h2 className="text-sm font-bold text-gray-900 mb-2">Other supported input formats</h2>
         <p className="text-xs text-gray-500 leading-relaxed mb-3">
           QuickAudioConvert also accepts AIFF, OPUS, WMA, OGA, and WEBA files as input.
-          All can be converted to MP3, WAV, M4A, AAC, OGG, or OPUS — and AIFF can also
-          be converted to FLAC (lossless-to-lossless).
+          All can be converted to MP3, WAV, M4A, AAC, OGG, or OPUS — WAV and AIFF can
+          also output FLAC (lossless-to-lossless only).
         </p>
         <div className="flex flex-wrap gap-2">
           {[

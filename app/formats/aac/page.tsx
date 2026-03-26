@@ -35,7 +35,7 @@ export default function AacFormatPage() {
             ['Developed by',      'ISO / IEC (1997)'],
             ['Common bitrates',   '96 / 128 / 192 / 256 kbps'],
             ['Typical file size', '~1 MB per minute at 128 kbps'],
-            ['Output support',    'Convert to MP3, WAV, or M4A'],
+            ['Output support',    'MP3, WAV, M4A, OGG, OPUS'],
           ].map(([label, value]) => (
             <div key={label} className="col-span-1">
               <dt className="text-xs text-gray-400">{label}</dt>

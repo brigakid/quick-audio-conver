@@ -63,7 +63,7 @@ The one limitation is older hardware — car stereos, legacy players, and some b
         { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC vs MP3: What Actually Matters' },
         { href: '/formats/m4a',                            label: 'M4A format guide'                  },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }

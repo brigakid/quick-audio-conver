@@ -59,7 +59,7 @@ export default function FlacToMp3Page() {
         { href: '/formats/flac',                   label: 'FLAC format guide'       },
         { href: '/formats/mp3',                    label: 'MP3 format guide'        },
       ]}
-      lastUpdated="2025-03-01"
+      lastUpdated="2026-03-01"
     />
   );
 }
