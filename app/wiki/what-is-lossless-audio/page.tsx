@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Lossless Audio? What It Means and When It Matters',
@@ -26,6 +27,8 @@ export default function WhatIsLosslessAudioPage() {
           What Is Lossless Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Lossless audio means no audio data was discarded during compression. When you decode a

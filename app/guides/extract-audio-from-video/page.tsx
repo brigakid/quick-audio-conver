@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'How to Extract Audio from a Video File',
@@ -26,6 +27,8 @@ export default function ExtractAudioFromVideoPage() {
           How to Extract Audio from a Video File
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Upload the video file to QuickAudioConvert and select an audio output format

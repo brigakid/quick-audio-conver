@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Noise Reduction in Audio? How It Works and When to Use It',
@@ -26,6 +27,8 @@ export default function WhatIsNoiseReductionPage() {
           What Is Noise Reduction?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Noise reduction identifies and attenuates consistent background noise in a recording —

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is a Limiter in Audio? Ceiling, Loudness, and True Peak',
@@ -26,6 +27,8 @@ export default function WhatIsALimiterPage() {
           What Is a Limiter in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         A limiter is a dynamic processor that prevents audio from exceeding a set threshold —

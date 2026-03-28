@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Bitrate in Audio? A Plain-English Explanation',
@@ -26,6 +27,8 @@ export default function WhatIsBitratePage() {
           What Is Bitrate in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Bitrate is the number of bits of audio data stored or transmitted per second. A 192 kbps MP3

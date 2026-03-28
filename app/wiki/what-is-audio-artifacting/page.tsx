@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Audio Artifacting? The Sounds Compression Creates',
@@ -26,6 +27,8 @@ export default function WhatIsAudioArtifactingPage() {
           What Is Audio Artifacting?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Audio artifacts are sounds that weren't in the original recording — introduced as a

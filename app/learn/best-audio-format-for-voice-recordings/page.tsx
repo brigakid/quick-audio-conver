@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'Best Audio Format for Voice Recordings',
@@ -26,6 +27,8 @@ export default function BestFormatForVoiceRecordingsPage() {
           Best Audio Format for Voice Recordings
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         It depends on what you're doing next. <strong>Sharing:</strong> MP3 at 128 kbps.{' '}

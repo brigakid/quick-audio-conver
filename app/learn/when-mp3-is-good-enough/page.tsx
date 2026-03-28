@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'When MP3 Is Good Enough — and When It Isn\'t',
@@ -26,6 +27,8 @@ export default function WhenMp3IsGoodEnoughPage() {
           When MP3 Is Good Enough — and When It Isn't
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         At <strong>192 kbps or higher</strong>, MP3 is transparent for most listeners on

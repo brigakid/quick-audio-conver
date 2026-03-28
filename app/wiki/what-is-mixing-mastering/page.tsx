@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Mixing and Mastering? Two Separate Jobs',
@@ -26,6 +27,8 @@ export default function WhatIsMixingMasteringPage() {
           What Is Mixing and Mastering?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Mixing is the process of combining and balancing individual recorded tracks into a single

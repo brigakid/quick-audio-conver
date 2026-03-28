@@ -38,6 +38,9 @@ const LIVE_SLUGS = new Set([
   '/wiki/what-is-a-limiter',
   '/wiki/what-is-panning',
   '/wiki/what-is-sidechain-compression',
+  '/wiki/what-is-aac',
+  '/wiki/what-is-ogg',
+  '/wiki/what-is-opus',
 ]);
 
 const CATEGORIES = [

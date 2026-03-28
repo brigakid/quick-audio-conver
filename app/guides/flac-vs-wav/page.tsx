@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'FLAC vs WAV: Which Lossless Format Should You Use?',
@@ -26,6 +27,8 @@ export default function FlacVsWavPage() {
           FLAC vs WAV: Two Lossless Formats, Different Use Cases
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Both formats preserve audio quality perfectly. Use FLAC for storage and archiving — it is

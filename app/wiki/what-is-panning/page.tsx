@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Panning in Audio? Stereo Placement and the Stereo Field',
@@ -26,6 +27,8 @@ export default function WhatIsPanningPage() {
           What Is Panning in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Panning determines where a sound appears in the stereo field — how far left or right it

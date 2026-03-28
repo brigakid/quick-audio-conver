@@ -55,9 +55,12 @@ export default function M4aToMp3Page() {
         { href: '/mp3-to-wav',  label: 'MP3 to WAV'  },
       ]}
       relatedGuides={[
-        { href: '/formats/m4a',                    label: 'M4A format guide'        },
-        { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio' },
-        { href: '/formats/mp3',                    label: 'MP3 format guide'        },
+        { href: '/formats/m4a',                                        label: 'M4A format guide'                          },
+        { href: '/guides/lossless-vs-lossy-audio',                     label: 'Lossless vs Lossy Audio'                   },
+        { href: '/formats/mp3',                                        label: 'MP3 format guide'                          },
+        { href: '/learn/aac-m4a-and-mp3-what-actually-matters',        label: 'AAC, M4A and MP3 — What Actually Matters'  },
+        { href: '/wiki/what-is-aac',                                   label: 'WikiSound: What Is AAC?'                   },
+        { href: '/wiki/what-is-transcoding',                           label: 'WikiSound: What Is Transcoding?'           },
       ]}
       lastUpdated="2026-03-01"
     />

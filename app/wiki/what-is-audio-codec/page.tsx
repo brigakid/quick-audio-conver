@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is an Audio Codec? How Encoding and Decoding Actually Work',
@@ -26,6 +27,8 @@ export default function WhatIsAudioCodecPage() {
           What Is an Audio Codec?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         A codec is the algorithm that <strong>encodes</strong> audio into a compressed format when

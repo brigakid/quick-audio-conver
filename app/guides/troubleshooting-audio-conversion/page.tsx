@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'Why Did My Audio Conversion Fail?',
@@ -29,6 +30,8 @@ export default function TroubleshootingPage() {
           ones — and what to do about each.
         </p>
       </div>
+
+      <Author />
 
       <div className="space-y-6">
 

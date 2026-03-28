@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Delay in Audio? Echo, Slap-Back, and Tempo Sync',
@@ -26,6 +27,8 @@ export default function WhatIsDelayPage() {
           What Is Delay in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Delay is a time-based effect that plays back a copy of the audio signal after a set time

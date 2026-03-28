@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'WAV vs MP3 for Editing, Sharing, and Archiving',
@@ -26,6 +27,8 @@ export default function WavVsMp3Page() {
           WAV vs MP3 for Editing, Sharing, and Archiving
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Use <strong>WAV while editing</strong> — lossless, no re-encoding degradation. Use{' '}

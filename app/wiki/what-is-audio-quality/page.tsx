@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Audio Quality? It\'s Not Just Bitrate',
@@ -26,6 +27,8 @@ export default function WhatIsAudioQualityPage() {
           What Is Audio Quality?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Audio quality is not a single number — it's a composite of multiple factors: frequency

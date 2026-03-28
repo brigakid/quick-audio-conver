@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'OPUS to MP3 Converter — Free Online',
+  title: 'Opus to MP3 Converter — Discord, WhatsApp, WebRTC Audio',
   description:
-    'Convert OPUS to MP3 online for free. Convert Discord voice messages, WhatsApp audio, and WebRTC recordings to MP3. No signup required.',
+    'Convert Opus audio files to MP3 online for free. Works with Discord voice messages, WhatsApp voice notes (.ogg), WebRTC recordings, and any .opus file.',
 };
 
 export default function OpusToMp3Page() {
@@ -24,27 +24,32 @@ export default function OpusToMp3Page() {
         description:
           'MP3 (MPEG Audio Layer III) is the most universally supported audio format. Despite being older technology than OPUS, MP3 plays on virtually every device, car stereo, media player, and platform — making it the best choice for sharing and broad compatibility.',
       }}
-      whyConvert="OPUS is highly efficient but not universally supported outside of browsers and modern apps. If you need to play a Discord voice message in a media player, edit a WhatsApp voice note in audio software, or archive a WebRTC recording in a standard format, converting to MP3 gives you the widest compatibility. MP3 is also better supported by older hardware and devices."
+      whyConvert="Opus is the codec behind almost all modern real-time audio — Discord voice messages, WhatsApp voice notes, Zoom calls recorded in the browser, Telegram audio. These files arrive as .opus or .ogg and often won't open in standard media players or audio editors. Converting to MP3 gives you a file that plays on any device, imports into any DAW, and shares without compatibility issues. It's also the right choice when archiving voice recordings you want to keep long-term."
       faqItems={[
         {
-          question: 'Where do OPUS files come from?',
+          question: 'Where do Opus files come from?',
           answer:
-            'OPUS files are commonly produced by Discord (voice messages and call recordings), WhatsApp (voice notes on some platforms), WebRTC browser recordings, Mumble, and various web-based voice tools. They often have a .opus or .ogg extension.',
+            'Opus files are produced by Discord (voice messages), WhatsApp (voice notes saved as .ogg on Android), Telegram voice messages, WebRTC browser recordings, Zoom (when using browser-based recording), and Mumble. They use .opus or .ogg extensions — both are OGG containers holding Opus audio.',
         },
         {
-          question: 'Will the quality be good after converting OPUS to MP3?',
+          question: 'What quality can I expect from the converted MP3?',
           answer:
-            'OPUS files are often already compressed at low bitrates (e.g. 32–64 kbps for voice), so the source quality is the main limiting factor. Converting to MP3 at 128 kbps is a good choice for voice content. For music, choose 192 or 320 kbps.',
+            'Voice messages and calls are typically encoded at 24–64 kbps Opus — the source sets the quality ceiling. Converting to 128 kbps MP3 is appropriate for voice content and won\'t introduce noticeable additional degradation. Opus music files (usually 96–160 kbps) should be converted to 192 kbps MP3 for best results.',
         },
         {
-          question: 'My OPUS file has a .ogg extension — can I still upload it?',
+          question: 'My Opus file has a .ogg extension — can I still upload it?',
           answer:
-            'Yes. OPUS audio is often wrapped in an OGG container and saved with a .ogg extension. Upload it as normal — FFmpeg will correctly decode the Opus stream regardless of the extension.',
+            'Yes. Opus audio is often stored in an OGG container with a .ogg extension — this is standard for WhatsApp voice notes and some other apps. Upload it normally; the converter reads the actual codec from the file, not just the extension.',
         },
         {
           question: 'Can I convert Discord voice messages with this tool?',
           answer:
-            'Yes. Discord voice messages are typically encoded in OPUS format. Download the voice message file from Discord and upload it here to convert it to MP3.',
+            'Yes. Discord voice messages are encoded in Opus format. Save the voice message file from Discord and upload it here. The converted MP3 can then be played in any media player or imported into audio editing software.',
+        },
+        {
+          question: 'Can I convert a WhatsApp voice note this way?',
+          answer:
+            'Yes. WhatsApp voice notes on Android are saved as .ogg files containing Opus audio. Export or locate the file (typically in WhatsApp/Media/WhatsApp Voice Notes on Android), upload it here, and download the MP3.',
         },
       ]}
       relatedTools={[
@@ -55,6 +60,14 @@ export default function OpusToMp3Page() {
         { href: '/flac-to-mp3',  label: 'FLAC to MP3' },
         { href: '/mp3-to-wav',   label: 'MP3 to WAV' },
       ]}
+      relatedGuides={[
+        { href: '/guides/troubleshooting-audio-conversion',  label: 'Troubleshooting Audio Conversion' },
+        { href: '/guides/how-to-choose-mp3-bitrate',         label: 'How to Choose MP3 Bitrate'        },
+        { href: '/wiki/what-is-opus',                        label: 'WikiSound: What Is Opus?'          },
+        { href: '/wiki/what-is-bitrate',                     label: 'WikiSound: What Is Bitrate?'       },
+        { href: '/wiki/what-is-lossy-audio',                 label: 'WikiSound: What Is Lossy Audio?'   },
+      ]}
+      lastUpdated="2026-03-28"
     />
   );
 }

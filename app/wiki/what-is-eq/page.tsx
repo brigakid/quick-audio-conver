@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is EQ in Audio? Equalisation Explained Simply',
@@ -26,6 +27,8 @@ export default function WhatIsEqPage() {
           What Is EQ in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         EQ (equalisation) adjusts the volume of specific frequency ranges within an audio signal.

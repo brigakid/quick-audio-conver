@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is a Container Format in Audio and Video?',
@@ -26,6 +27,8 @@ export default function WhatIsContainerFormatPage() {
           What Is a Container Format?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         A container format is the file's outer wrapper — it organises and stores audio (and

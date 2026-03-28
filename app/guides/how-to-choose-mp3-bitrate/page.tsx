@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'How to Choose the Right MP3 Bitrate',
@@ -26,6 +27,8 @@ export default function HowToChooseMp3BitratePage() {
           How to Choose the Right MP3 Bitrate
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         192 kbps is the right choice for most uses. Below 128 kbps, quality degrades noticeably

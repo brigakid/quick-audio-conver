@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'When Converting to WAV Does Not Improve Quality',
@@ -26,6 +27,8 @@ export default function WavNotImprovingQualityPage() {
           When Converting to WAV Does Not Improve Quality
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Converting a compressed file (MP3, AAC, OGG) to WAV does not improve its sound quality.

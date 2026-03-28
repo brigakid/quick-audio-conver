@@ -55,9 +55,12 @@ export default function Mp4ToMp3Page() {
         { href: '/mp3-to-wav',  label: 'MP3 to WAV'  },
       ]}
       relatedGuides={[
-        { href: '/guides/extract-audio-from-video', label: 'How to Extract Audio from Video' },
-        { href: '/guides/mp3-vs-wav',               label: 'MP3 vs WAV'                      },
-        { href: '/formats/mp3',                     label: 'MP3 format guide'                },
+        { href: '/guides/extract-audio-from-video',                       label: 'How to Extract Audio from Video'           },
+        { href: '/guides/mp3-vs-wav',                                     label: 'MP3 vs WAV'                                },
+        { href: '/formats/mp3',                                           label: 'MP3 format guide'                          },
+        { href: '/learn/extracting-audio-from-video-best-format-choices', label: 'Best Format Choices When Extracting Audio' },
+        { href: '/wiki/what-is-audio-codec',                              label: 'WikiSound: What Is an Audio Codec?'        },
+        { href: '/wiki/codec-vs-container',                               label: 'WikiSound: Codec vs Container'             },
       ]}
       lastUpdated="2026-03-01"
     />

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'Lossless vs Lossy Audio Explained',
@@ -26,6 +27,8 @@ export default function LosslessVsLossyPage() {
           Lossless vs Lossy Audio Explained
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         <strong>Lossy formats (MP3, AAC, OGG)</strong> permanently discard audio data to

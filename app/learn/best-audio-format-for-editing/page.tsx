@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'Best Audio Format for Editing',
@@ -26,6 +27,8 @@ export default function BestFormatForEditingPage() {
           Best Audio Format for Editing
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Use <strong>WAV</strong> as your working format during editing. It's lossless,

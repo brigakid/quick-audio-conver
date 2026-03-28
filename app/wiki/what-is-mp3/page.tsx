@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is MP3? How It Works, Why It\'s Still Everywhere',
@@ -26,6 +27,8 @@ export default function WhatIsMp3Page() {
           What Is MP3?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         MP3 (MPEG-1 Audio Layer III) is a <strong>lossy audio format</strong> that compresses audio

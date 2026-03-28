@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'CBR vs VBR: What\'s the Difference in MP3 Encoding?',
@@ -26,6 +27,8 @@ export default function CbrVsVbrPage() {
           CBR vs VBR: What's the Difference?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         <strong>CBR (constant bitrate)</strong> uses the same number of bits for every second of

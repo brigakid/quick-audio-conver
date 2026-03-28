@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Mono vs Stereo Audio? When One Channel Is Better Than Two',
@@ -26,6 +27,8 @@ export default function WhatIsMonoStereoPage() {
           What Is Mono vs Stereo?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         <strong>Mono</strong> is one audio channel — the same signal plays from every speaker.

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Audio Normalization? Peak, LUFS, and Why It Matters',
@@ -26,6 +27,8 @@ export default function WhatIsNormalizationPage() {
           What Is Audio Normalization?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Normalization adjusts the overall volume of an audio file to a target level. There are two

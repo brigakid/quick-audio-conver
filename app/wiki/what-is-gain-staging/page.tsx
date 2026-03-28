@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Gain Staging? Managing Audio Levels Through the Chain',
@@ -26,6 +27,8 @@ export default function WhatIsGainStagingPage() {
           What Is Gain Staging?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Gain staging means setting the signal level correctly at each step of the audio chain.

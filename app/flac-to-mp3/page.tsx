@@ -55,9 +55,12 @@ export default function FlacToMp3Page() {
         { href: '/mp3-to-wav',  label: 'MP3 to WAV'  },
       ]}
       relatedGuides={[
-        { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio' },
-        { href: '/formats/flac',                   label: 'FLAC format guide'       },
-        { href: '/formats/mp3',                    label: 'MP3 format guide'        },
+        { href: '/guides/lossless-vs-lossy-audio',             label: 'Lossless vs Lossy Audio'              },
+        { href: '/formats/flac',                               label: 'FLAC format guide'                    },
+        { href: '/formats/mp3',                                label: 'MP3 format guide'                     },
+        { href: '/wiki/what-is-flac',                          label: 'WikiSound: What Is FLAC?'             },
+        { href: '/wiki/what-is-lossless-audio',                label: 'WikiSound: What Is Lossless Audio?'   },
+        { href: '/wiki/what-is-transcoding',                   label: 'WikiSound: What Is Transcoding?'      },
       ]}
       lastUpdated="2026-03-01"
     />

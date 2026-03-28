@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Lossy Audio? How Compression Removes Sound',
@@ -26,6 +27,8 @@ export default function WhatIsLossyAudioPage() {
           What Is Lossy Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Unlike lossless compression, which can be fully reversed, lossy compression makes a

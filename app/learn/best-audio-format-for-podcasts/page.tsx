@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'Best Audio Format for Podcasts',
@@ -26,6 +27,8 @@ export default function BestFormatForPodcastsPage() {
           Best Audio Format for Podcasts
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         <strong>Record and edit in WAV. Publish in MP3.</strong> For voice-only podcasts,

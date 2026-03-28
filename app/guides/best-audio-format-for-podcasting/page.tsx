@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'Best Audio Format for Podcasting',
@@ -26,6 +27,8 @@ export default function BestAudioFormatForPodcastingPage() {
           The Best Audio Format for Podcasting at Each Stage
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Record and edit in WAV. Submit in MP3 at 192 kbps stereo (or 128 kbps mono) — or M4A/AAC

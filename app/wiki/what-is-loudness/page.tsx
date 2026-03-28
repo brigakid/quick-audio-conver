@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Loudness in Audio? LUFS, Volume, and Streaming Normalisation',
@@ -26,6 +27,8 @@ export default function WhatIsLoudnessPage() {
           What Is Loudness in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Loudness and volume are not the same thing. Volume is an instantaneous level. Loudness

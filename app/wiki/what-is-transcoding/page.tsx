@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Transcoding in Audio? When It Costs Quality and When It Doesn\'t',
@@ -26,6 +27,8 @@ export default function WhatIsTranscodingPage() {
           What Is Transcoding in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Transcoding means decoding audio from one codec and re-encoding it with a different codec.

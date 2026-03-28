@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Sample Rate in Audio? 44.1kHz, 48kHz, and Why It Matters',
@@ -26,6 +27,8 @@ export default function WhatIsSampleRatePage() {
           What Is Sample Rate in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Sample rate is the number of audio measurements (samples) captured per second.{' '}

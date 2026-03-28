@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Audio Compression? The Two Completely Different Meanings',
@@ -27,6 +28,8 @@ export default function WhatIsAudioCompressionPage() {
           <span className="block text-2xl sm:text-3xl text-gray-500 font-bold mt-1">(There Are Two Answers)</span>
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         "Audio compression" is genuinely ambiguous — it means two completely different things

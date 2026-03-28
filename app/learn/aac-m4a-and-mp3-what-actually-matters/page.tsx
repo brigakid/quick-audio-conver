@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'AAC, M4A, and MP3: What Actually Matters',
@@ -26,6 +27,8 @@ export default function AacM4aMp3Page() {
           AAC, M4A, and MP3: What Actually Matters
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         <strong>M4A is AAC audio in an MPEG-4 container.</strong> The codec is identical.

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is FLAC? Lossless Audio Compression Explained',
@@ -26,6 +27,8 @@ export default function WhatIsFlacPage() {
           What Is FLAC?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         FLAC (Free Lossless Audio Codec) is a compressed audio format that{' '}

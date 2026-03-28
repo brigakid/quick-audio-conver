@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Distortion in Audio? Damage vs Creative Effect',
@@ -26,6 +27,8 @@ export default function WhatIsDistortionPage() {
           What Is Distortion in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Distortion is one of the most unwanted sounds in a studio vocal recording and one of the

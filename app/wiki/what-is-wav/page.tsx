@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is WAV Audio? Why It\'s Used for Editing (and When to Avoid It)',
@@ -26,6 +27,8 @@ export default function WhatIsWavPage() {
           What Is WAV?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         WAV (Waveform Audio File Format) stores audio without compression. Every sample is kept

@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Frequency in Audio? Pitch, Hz, and the Audible Spectrum',
@@ -26,6 +27,8 @@ export default function WhatIsFrequencyPage() {
           What Is Frequency in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Frequency is the number of times a sound wave completes a full cycle per second, measured

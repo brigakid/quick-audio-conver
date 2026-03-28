@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Clipping in Audio? Why It Sounds Harsh and How to Avoid It',
@@ -26,6 +27,8 @@ export default function WhatIsClippingPage() {
           What Is Clipping in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Clipping happens when an audio signal exceeds the maximum level a system can handle. The

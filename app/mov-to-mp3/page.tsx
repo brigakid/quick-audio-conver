@@ -55,10 +55,13 @@ export default function MovToMp3Page() {
         { href: '/m4a-to-mp3',  label: 'M4A to MP3' },
       ]}
       relatedGuides={[
-        { href: '/formats/mov',                                           label: 'MOV format guide'                        },
-        { href: '/guides/extract-audio-from-video',                       label: 'How to Extract Audio from Video'         },
-        { href: '/learn/extracting-audio-from-video-best-format-choices', label: 'Best Format Choices When Extracting Audio' },
+        { href: '/formats/mov',                                           label: 'MOV format guide'                           },
+        { href: '/guides/extract-audio-from-video',                       label: 'How to Extract Audio from Video'            },
+        { href: '/learn/extracting-audio-from-video-best-format-choices', label: 'Best Format Choices When Extracting Audio'  },
+        { href: '/wiki/what-is-aac',                                      label: 'WikiSound: What Is AAC?'                    },
+        { href: '/wiki/codec-vs-container',                               label: 'WikiSound: Codec vs Container'              },
       ]}
+      lastUpdated="2026-03-28"
     />
   );
 }

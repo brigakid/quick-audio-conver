@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'MP3 vs WAV: Which Format Should You Use?',
@@ -26,6 +27,8 @@ export default function Mp3VsWavPage() {
           MP3 vs WAV: Which Format Should You Use?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         <strong>For most purposes, use MP3.</strong> It is smaller, plays everywhere, and

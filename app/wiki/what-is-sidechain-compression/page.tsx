@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Sidechain Compression? The Pumping Effect Explained',
@@ -26,6 +27,8 @@ export default function WhatIsSidechainCompressionPage() {
           What Is Sidechain Compression?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Sidechain compression uses one audio signal — the sidechain input — to control the

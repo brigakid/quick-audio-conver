@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'Why Some Audio Files Fail to Convert',
@@ -26,6 +27,8 @@ export default function WhyAudioFilesFailPage() {
           Why Some Audio Files Fail to Convert
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Most conversion failures fall into one of four categories: the file is corrupt or

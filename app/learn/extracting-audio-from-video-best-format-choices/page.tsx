@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'Extracting Audio from Video: Best Format Choices',
@@ -26,6 +27,8 @@ export default function ExtractingAudioFromVideoPage() {
           Extracting Audio from Video: Best Format Choices
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         When you extract audio from a video file, <strong>the quality ceiling is set by

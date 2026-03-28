@@ -101,6 +101,9 @@ const pages = [
   { url: '/wiki/what-is-mp3',                       priority: '0.8', changefreq: 'monthly' },
   { url: '/wiki/what-is-wav',                       priority: '0.8', changefreq: 'monthly' },
   { url: '/wiki/what-is-flac',                      priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-aac',                       priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-ogg',                       priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-opus',                      priority: '0.8', changefreq: 'monthly' },
   // Signal Processing
   { url: '/wiki/what-is-eq',                        priority: '0.8', changefreq: 'monthly' },
   { url: '/wiki/what-is-normalization',             priority: '0.8', changefreq: 'monthly' },

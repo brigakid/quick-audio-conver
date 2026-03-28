@@ -3,6 +3,7 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
+import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
   title: 'What Is Reverb in Audio? Room, Plate, Hall, and Why It Matters',
@@ -26,6 +27,8 @@ export default function WhatIsReverbPage() {
           What Is Reverb in Audio?
         </h1>
       </div>
+
+      <Author />
 
       <QuickAnswer>
         Reverb — reverberation — is the persistence of sound after its source has stopped. In a
