@@ -4,7 +4,7 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'Audio Formats Guide',
   description:
-    'Learn about MP3, WAV, FLAC, M4A, AAC, OGG, OPUS, and more. Understand what each format is, when to use it, and which converter to use.',
+    'Learn about MP3, WAV, FLAC, ALAC, M4A, AAC, OGG, AIFF, AMR, AC3, MOV, and more. Understand what each format is, when to use it, and which converter to use.',
 };
 
 const FORMATS = [
@@ -38,7 +38,7 @@ const FORMATS = [
     name: 'FLAC',
     type: 'Lossless',
     tagline: 'Lossless compression for archiving and hi-fi.',
-    summary: 'Smaller than WAV, bit-perfectly lossless. Best for archiving and high-fidelity listening — and now available as an output format when converting from WAV or AIFF.',
+    summary: 'Smaller than WAV, bit-perfectly lossless. Best for archiving and high-fidelity listening — available as an output format when converting from WAV, AIFF, or ALAC.',
     bestFor: 'Music archiving, hi-fi listening, local playback',
     converters: [
       { href: '/flac-to-mp3', label: 'FLAC to MP3' },
@@ -101,8 +101,8 @@ export default function FormatsPage() {
         </h1>
         <p className="mt-3 text-base text-gray-500 max-w-2xl leading-relaxed">
           Not sure which format you need? Each format has different trade-offs around file
-          size, quality, compatibility, and use case. This page covers the formats supported
-          by QuickAudioConvert and when to use each one.
+          size, quality, compatibility, and use case. This page covers the main output
+          formats and all supported input formats — including AIFF, ALAC, AMR, AC3, and MOV.
         </p>
       </div>
 
@@ -151,29 +151,137 @@ export default function FormatsPage() {
         ))}
       </div>
 
-      {/* Other input formats + new outputs note */}
+      {/* Other input formats */}
       <div className="mt-10 p-5 rounded-2xl bg-slate-50 border border-slate-100">
-        <h2 className="text-sm font-bold text-gray-900 mb-2">Other supported input formats</h2>
-        <p className="text-xs text-gray-500 leading-relaxed mb-3">
-          QuickAudioConvert also accepts AIFF, OPUS, WMA, OGA, and WEBA files as input.
-          All can be converted to MP3, WAV, M4A, AAC, OGG, or OPUS — WAV and AIFF can
-          also output FLAC (lossless-to-lossless only).
+        <h2 className="text-sm font-bold text-gray-900 mb-2">More supported input formats</h2>
+        <p className="text-xs text-gray-500 leading-relaxed mb-4">
+          QuickAudioConvert also accepts AIFF/AIF, ALAC, AMR, AC3, MOV, OPUS, WMA, OGA,
+          AIFC, and WEBA files as input. Output options depend on the source format —
+          FLAC output is only available from lossless sources (WAV, AIFF, ALAC).
         </p>
-        <div className="flex flex-wrap gap-2">
-          {[
-            { href: '/aiff-to-mp3',  label: 'AIFF to MP3'  },
-            { href: '/aiff-to-flac', label: 'AIFF to FLAC' },
-            { href: '/opus-to-mp3',  label: 'OPUS to MP3'  },
-            { href: '/wma-to-mp3',   label: 'WMA to MP3'   },
-          ].map((c) => (
-            <Link
-              key={c.href}
-              href={c.href}
-              className="text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-colors"
-            >
-              {c.label}
-            </Link>
-          ))}
+
+        {/* Apple lossless & uncompressed */}
+        <div className="mb-4">
+          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Apple / Lossless</p>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { href: '/formats/aiff',  label: 'AIFF — Apple uncompressed PCM' },
+              { href: '/formats/alac',  label: 'ALAC — Apple Lossless'         },
+            ].map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-colors"
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {[
+              { href: '/aiff-to-mp3',  label: 'AIFF to MP3'  },
+              { href: '/aiff-to-flac', label: 'AIFF to FLAC' },
+              { href: '/alac-to-mp3',  label: 'ALAC to MP3'  },
+              { href: '/alac-to-flac', label: 'ALAC to FLAC' },
+              { href: '/alac-to-wav',  label: 'ALAC to WAV'  },
+            ].map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-colors"
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Video containers */}
+        <div className="mb-4">
+          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Video containers (audio extraction)</p>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { href: '/formats/mov', label: 'MOV — QuickTime video container' },
+            ].map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-colors"
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {[
+              { href: '/mov-to-mp3', label: 'MOV to MP3' },
+              { href: '/mov-to-wav', label: 'MOV to WAV' },
+              { href: '/mov-to-m4a', label: 'MOV to M4A' },
+            ].map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-colors"
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Legacy / specialist */}
+        <div className="mb-4">
+          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Legacy &amp; specialist</p>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { href: '/formats/amr',  label: 'AMR — mobile voice recordings'   },
+              { href: '/formats/ac3',  label: 'AC3 — Dolby Digital audio tracks' },
+            ].map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-colors"
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-2 mt-2">
+            {[
+              { href: '/amr-to-mp3',  label: 'AMR to MP3'  },
+              { href: '/amr-to-wav',  label: 'AMR to WAV'  },
+              { href: '/ac3-to-mp3',  label: 'AC3 to MP3'  },
+              { href: '/ac3-to-wav',  label: 'AC3 to WAV'  },
+              { href: '/aifc-to-mp3', label: 'AIFC to MP3' },
+            ].map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-colors"
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
+        </div>
+
+        {/* Other */}
+        <div>
+          <p className="text-[11px] font-semibold text-gray-400 uppercase tracking-widest mb-2">Other inputs</p>
+          <div className="flex flex-wrap gap-2">
+            {[
+              { href: '/opus-to-mp3', label: 'OPUS to MP3' },
+              { href: '/wma-to-mp3',  label: 'WMA to MP3'  },
+            ].map((c) => (
+              <Link
+                key={c.href}
+                href={c.href}
+                className="text-xs px-3 py-1.5 rounded-lg bg-white border border-gray-200 text-gray-600 hover:border-brand hover:text-brand transition-colors"
+              >
+                {c.label}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 

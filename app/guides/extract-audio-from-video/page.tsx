@@ -81,15 +81,15 @@ export default function ExtractAudioFromVideoPage() {
         <section>
           <h2 className="text-xl font-bold text-gray-900 mb-3">Which video formats are supported?</h2>
           <p className="leading-relaxed">
-            The converter accepts MP4 files directly. It also accepts audio-containing files
-            in formats including MKV, MOV, WebM, and AVI through the general upload flow —
-            upload the file and the converter will detect the audio track. If your video
-            format is not recognised, the upload will fail with a format error.
+            The converter directly supports MP4 and MOV as video input formats for audio
+            extraction. MP4 is the most common — YouTube downloads, screen recordings, and
+            most downloaded video files are MP4. MOV is produced by iPhones, iPads, iMovie,
+            and Final Cut Pro. Both work the same way: upload the file, choose an audio
+            output format, and download the result.
           </p>
           <p className="leading-relaxed mt-3">
-            MP4 is by far the most common video format for this purpose. If you downloaded a
-            video from YouTube, a lecture, a screen recording, or a video message, it is
-            almost certainly MP4.
+            If you have a video file in another container (MKV, AVI, WebM), you may need
+            to remux it to MP4 first using a local tool like VLC or Handbrake before uploading.
           </p>
         </section>
 
@@ -110,7 +110,7 @@ export default function ExtractAudioFromVideoPage() {
             </li>
             <li className="flex gap-2">
               <span className="text-brand flex-shrink-0 font-bold">FLAC</span>
-              <span>— Lossless output, same quality as WAV in a smaller file. Available when the source is WAV or AIFF.</span>
+              <span>— Lossless output, same quality as WAV in a smaller file. FLAC is not offered for MP4 or MOV (these contain lossy audio). FLAC output is available when converting from lossless sources: WAV, AIFF, or ALAC.</span>
             </li>
             <li className="flex gap-2">
               <span className="text-brand flex-shrink-0 font-bold">AAC / OGG / OPUS</span>
@@ -151,7 +151,10 @@ export default function ExtractAudioFromVideoPage() {
       <RelatedContent
         title="Extract audio from video"
         items={[
-          { href: '/mp4-to-mp3', label: 'MP4 to MP3 Converter', note: 'Most common video-to-audio conversion' },
+          { href: '/mp4-to-mp3', label: 'MP4 to MP3', note: 'Most common video-to-audio conversion' },
+          { href: '/mp4-to-wav', label: 'MP4 to WAV', note: 'Uncompressed output for editing' },
+          { href: '/mov-to-mp3', label: 'MOV to MP3', note: 'iPhone, iMovie, Final Cut Pro files' },
+          { href: '/mov-to-wav', label: 'MOV to WAV', note: 'MOV audio for editing software' },
         ]}
       />
 

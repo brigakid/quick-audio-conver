@@ -204,9 +204,10 @@ export default function ExtractingAudioFromVideoPage() {
       <RelatedContent
         title="Converters"
         items={[
-          { href: '/mp4-to-mp3', label: 'MP4 to MP3', note: 'Extract audio for sharing'         },
-          { href: '/mp4-to-wav', label: 'MP4 to WAV', note: 'Extract audio for editing'         },
-          { href: '/mp4-to-m4a', label: 'MP4 to M4A', note: 'Same codec, Apple-compatible output'},
+          { href: '/mp4-to-mp3', label: 'MP4 to MP3', note: 'Extract audio for sharing'    },
+          { href: '/mp4-to-wav', label: 'MP4 to WAV', note: 'Extract audio for editing'    },
+          { href: '/mov-to-mp3', label: 'MOV to MP3', note: 'iPhone, iMovie, Final Cut Pro' },
+          { href: '/mov-to-wav', label: 'MOV to WAV', note: 'MOV audio for editing'         },
         ]}
       />
 

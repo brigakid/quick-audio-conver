@@ -42,7 +42,7 @@ export default function TroubleshootingPage() {
           </p>
           <p className="text-sm font-semibold text-gray-700 mb-1">Supported input formats:</p>
           <p className="text-sm text-gray-600">
-            MP4, WAV, M4A, FLAC, MP3, AAC, OGG, AIFF, OPUS, WMA, OGA, WEBA
+            MP4, MOV, WAV, M4A, FLAC, ALAC, MP3, AAC, OGG, AIFF, AIFC, AMR, AC3, OPUS, WMA, OGA, WEBA
           </p>
           <p className="text-sm text-gray-600 mt-3">
             <strong>Fix:</strong> Check your file extension and{' '}

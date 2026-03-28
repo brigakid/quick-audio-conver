@@ -57,15 +57,17 @@ export default function AboutPage() {
           <h2 className="text-xl font-bold text-gray-900 mb-3">What it does</h2>
           <p className="text-sm text-gray-600 leading-relaxed">
             QuickAudioConvert converts audio and video files between formats. Upload a file —
-            MP4, WAV, FLAC, M4A, MP3, AAC, OGG, OPUS, WMA, or AIFF — choose an output
-            format, and download the result. Conversion runs server-side using FFmpeg, so
-            nothing is processed in your browser and nothing installs on your device.
+            MP4, MOV, WAV, FLAC, ALAC, M4A, MP3, AAC, OGG, AIFF, AIFC, AMR, AC3, OPUS,
+            WMA, and more — choose an output format, and download the result. Conversion runs
+            server-side using FFmpeg, so nothing is processed in your browser and nothing
+            installs on your device.
           </p>
           <p className="text-sm text-gray-600 leading-relaxed mt-3">
-            Output formats are MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS. The converter
-            shows which outputs are available for the file you upload — not every combination
-            is offered (FLAC output, for instance, is only shown for uncompressed sources
-            like WAV and AIFF). Files up to 200 MB are supported.
+            Output formats are MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS. The converter shows
+            which outputs are available for the file you upload — not every combination is
+            offered. FLAC output is only shown for lossless sources (WAV, AIFF, and ALAC).
+            MOV files are treated as video containers for audio extraction, like MP4. Files
+            up to 200 MB are supported.
           </p>
         </section>
 
@@ -104,7 +106,7 @@ export default function AboutPage() {
           <ul className="mt-3 space-y-1.5 text-sm text-gray-600">
             <li className="flex gap-2">
               <span className="text-brand mt-0.5 flex-shrink-0">—</span>
-              Extracting audio from a video file (MP4 to MP3)
+              Extracting audio from a video file (MP4 or MOV to MP3, WAV, or M4A)
             </li>
             <li className="flex gap-2">
               <span className="text-brand mt-0.5 flex-shrink-0">—</span>
@@ -158,9 +160,9 @@ export default function AboutPage() {
             </li>
             <li className="flex gap-2">
               <span className="text-gray-400 mt-0.5 flex-shrink-0">—</span>
-              FLAC output is only available when converting from an uncompressed or lossless
-              source (WAV, AIFF). Converting a lossy file like MP3 to FLAC produces a large
-              file with unchanged lossy quality — so that option is not offered.
+              FLAC output is only available when converting from a lossless source (WAV, AIFF,
+              or ALAC). Converting a lossy file like MP3 or AAC to FLAC produces a large file
+              with unchanged lossy quality — so that option is not offered.
             </li>
             <li className="flex gap-2">
               <span className="text-gray-400 mt-0.5 flex-shrink-0">—</span>

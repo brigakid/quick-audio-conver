@@ -24,12 +24,24 @@ const pages = [
   { url: '/flac-to-wav', priority: '0.8', changefreq: 'monthly' },
   { url: '/mp3-to-m4a',  priority: '0.8', changefreq: 'monthly' },
   { url: '/wav-to-m4a',  priority: '0.8', changefreq: 'monthly' },
-  // New output format converters — FLAC, OGG, AAC
+  // Output format converters — FLAC, OGG, AAC
   { url: '/wav-to-flac',  priority: '0.8', changefreq: 'monthly' },
   { url: '/aiff-to-flac', priority: '0.7', changefreq: 'monthly' },
   { url: '/wav-to-ogg',   priority: '0.8', changefreq: 'monthly' },
   { url: '/mp3-to-ogg',   priority: '0.8', changefreq: 'monthly' },
   { url: '/wav-to-aac',   priority: '0.7', changefreq: 'monthly' },
+  // Wave 3 converters — MOV, ALAC, AMR, AC3, AIFC
+  { url: '/mov-to-mp3',   priority: '0.9', changefreq: 'monthly' },
+  { url: '/mov-to-wav',   priority: '0.8', changefreq: 'monthly' },
+  { url: '/mov-to-m4a',   priority: '0.8', changefreq: 'monthly' },
+  { url: '/alac-to-mp3',  priority: '0.8', changefreq: 'monthly' },
+  { url: '/alac-to-wav',  priority: '0.7', changefreq: 'monthly' },
+  { url: '/alac-to-flac', priority: '0.7', changefreq: 'monthly' },
+  { url: '/amr-to-mp3',   priority: '0.8', changefreq: 'monthly' },
+  { url: '/amr-to-wav',   priority: '0.7', changefreq: 'monthly' },
+  { url: '/ac3-to-mp3',   priority: '0.8', changefreq: 'monthly' },
+  { url: '/ac3-to-wav',   priority: '0.7', changefreq: 'monthly' },
+  { url: '/aifc-to-mp3',  priority: '0.6', changefreq: 'monthly' },
 
   // Format knowledge pages
   { url: '/formats/mp3',  priority: '0.8', changefreq: 'monthly' },
@@ -38,6 +50,12 @@ const pages = [
   { url: '/formats/m4a',  priority: '0.8', changefreq: 'monthly' },
   { url: '/formats/aac',  priority: '0.7', changefreq: 'monthly' },
   { url: '/formats/ogg',  priority: '0.7', changefreq: 'monthly' },
+  // New format pages
+  { url: '/formats/aiff', priority: '0.7', changefreq: 'monthly' },
+  { url: '/formats/alac', priority: '0.7', changefreq: 'monthly' },
+  { url: '/formats/amr',  priority: '0.6', changefreq: 'monthly' },
+  { url: '/formats/ac3',  priority: '0.6', changefreq: 'monthly' },
+  { url: '/formats/mov',  priority: '0.7', changefreq: 'monthly' },
 
   // Guides
   { url: '/guides/mp3-vs-wav',                        priority: '0.8', changefreq: 'monthly' },

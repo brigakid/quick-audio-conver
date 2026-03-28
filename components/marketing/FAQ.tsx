@@ -51,7 +51,7 @@ export const DEFAULT_FAQ_ITEMS: FAQItem[] = [
   {
     question: 'What file formats are supported?',
     answer:
-      'QuickAudioConvert accepts MP4, WAV, M4A, FLAC, MP3, AAC, OGG, AIFF, WMA, Opus, and more as input. Output formats are MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS. Not every output is available for every input — for example, FLAC output is only offered from uncompressed sources like WAV and AIFF, since encoding a lossy file to FLAC does not restore quality. After you upload, the converter shows which outputs are valid for your specific file.',
+      'QuickAudioConvert accepts MP4, MOV, WAV, FLAC, ALAC, M4A, MP3, AAC, OGG, AIFF, AMR, AC3, WMA, Opus, and more as input. Output formats are MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS. Not every output is available for every input — for example, FLAC output is only offered from lossless sources (WAV, AIFF, ALAC), since encoding a lossy file to FLAC does not restore quality. After you upload, the converter shows which outputs are valid for your specific file.',
   },
   {
     question: 'Are my files stored permanently?',
@@ -59,9 +59,9 @@ export const DEFAULT_FAQ_ITEMS: FAQItem[] = [
       'No. Uploaded files and converted output files are automatically deleted after a short window (typically 30 minutes). We do not keep permanent copies of your files and do not share them with anyone.',
   },
   {
-    question: 'Can I convert an MP4 video to audio?',
+    question: 'Can I convert a video file (MP4, MOV) to audio?',
     answer:
-      'Yes. Upload an MP4 file and the converter will extract the audio track. You can save it as MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS. The video data is discarded — only the audio is retained in the output file.',
+      'Yes. Upload an MP4 or MOV file and the converter will extract the audio track. You can save it as MP3, WAV, M4A, AAC, OGG, or OPUS. The video data is discarded — only the audio is retained in the output file.',
   },
   {
     question: 'Why do I see different output format options for different files?',

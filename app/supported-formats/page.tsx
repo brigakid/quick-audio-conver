@@ -6,7 +6,7 @@ import type { InputFormat } from '@/types/conversion';
 export const metadata: Metadata = {
   title: 'Supported Audio Formats',
   description:
-    'See all supported audio conversion formats on QuickAudioConvert. Convert MP4, WAV, AIFF, FLAC, MP3, AAC, OGG, OPUS, WMA, WEBA and more to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.',
+    'See all supported audio conversion formats on QuickAudioConvert. Convert MP4, MOV, WAV, AIFF, ALAC, FLAC, MP3, AAC, OGG, AMR, AC3, WMA, and more to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.',
 };
 
 /**
@@ -122,6 +122,42 @@ const conversionsMeta: ConversionRow[] = [
     inputDesc: 'WebM audio container (browser)',
     description: 'Convert WebM audio files recorded by browsers and web-based tools.',
   },
+  // Wave 3
+  {
+    input: 'MOV',
+    inputKey: 'mov',
+    href: '/mov-to-mp3',
+    inputDesc: 'QuickTime video container (Apple)',
+    description: 'Extract audio from iPhone, Mac, or Final Cut Pro MOV video files.',
+  },
+  {
+    input: 'ALAC',
+    inputKey: 'alac',
+    href: '/alac-to-mp3',
+    inputDesc: 'Apple Lossless Audio Codec',
+    description: 'Convert Apple Lossless audio to MP3, WAV, FLAC, or other formats.',
+  },
+  {
+    input: 'AIFC',
+    inputKey: 'aifc',
+    href: '/aifc-to-mp3',
+    inputDesc: 'Compressed AIFF variant (.aifc)',
+    description: 'Convert compressed AIFC files from legacy Apple Pro Audio workflows.',
+  },
+  {
+    input: 'AMR',
+    inputKey: 'amr',
+    href: '/amr-to-mp3',
+    inputDesc: 'Adaptive Multi-Rate (mobile voice)',
+    description: 'Convert voice recordings from Nokia and early Android phones to MP3 or WAV.',
+  },
+  {
+    input: 'AC3',
+    inputKey: 'ac3',
+    href: '/ac3-to-mp3',
+    inputDesc: 'Dolby Digital (AC-3)',
+    description: 'Convert Dolby Digital audio tracks from DVDs and video files to MP3 or WAV.',
+  },
 ];
 
 // Build the final rows by looking up allowed outputs from conversion-rules.ts.
@@ -200,6 +236,32 @@ const formatDetails = [
     name: 'WEBA',
     role: 'Input',
     desc: 'WebM audio container. Produced by browser-based recorders, video editors, and web tools. Contains Vorbis or Opus audio inside a WebM container.',
+  },
+  // Wave 3
+  {
+    name: 'MOV',
+    role: 'Input',
+    desc: "QuickTime video container produced by iPhone, iPad, Mac, iMovie, and Final Cut Pro. Treated as a video container for audio extraction — audio track is typically AAC or PCM.",
+  },
+  {
+    name: 'ALAC',
+    role: 'Input',
+    desc: "Apple Lossless Audio Codec. Lossless compression with the same quality as WAV, natively supported on all Apple devices. FLAC output is available since ALAC is lossless.",
+  },
+  {
+    name: 'AIFC',
+    role: 'Input',
+    desc: 'Compressed AIFF variant. Stores compressed audio (IMA ADPCM, MACE, etc.) inside an AIFF container. Less common than standard AIFF; used in legacy Apple Pro Audio gear.',
+  },
+  {
+    name: 'AMR',
+    role: 'Input',
+    desc: 'Adaptive Multi-Rate codec. Designed for mobile phone voice recordings — very small files, speech-only quality. Common in Nokia voice memos and early Android recorders.',
+  },
+  {
+    name: 'AC3',
+    role: 'Input',
+    desc: 'Dolby Digital (AC-3). Compressed multichannel audio from DVDs, Blu-rays, and broadcast TV. Standalone .ac3 files are audio tracks extracted from video containers.',
   },
 ];
 

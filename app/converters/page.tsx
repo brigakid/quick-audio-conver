@@ -5,7 +5,7 @@ import { TOOLS } from '@/lib/tools';
 export const metadata: Metadata = {
   title: 'All Audio Converters',
   description:
-    'All available audio conversion tools on QuickAudioConvert. Convert MP4, WAV, FLAC, M4A, AAC, OGG, OPUS, WMA, and AIFF to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.',
+    'All available audio conversion tools on QuickAudioConvert. Convert MP4, MOV, WAV, FLAC, ALAC, M4A, AAC, OGG, OPUS, WMA, AIFF, AMR, AC3, and more to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.',
 };
 
 // Group tools by output format for scannable layout
@@ -27,7 +27,7 @@ const OUTPUT_GROUPS = [
   },
   {
     output: 'to FLAC',
-    description: 'Convert to lossless FLAC — same quality as WAV, 40–60% smaller. Only available from uncompressed sources.',
+    description: 'Convert to lossless FLAC — same quality as WAV, 40–60% smaller. Only available from lossless sources (WAV, AIFF, ALAC).',
     tools: TOOLS.filter((t) => t.outputFormat === 'flac'),
   },
   {
