@@ -7,7 +7,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 export const metadata: Metadata = {
   title: 'How to Extract Audio from a Video File',
   description:
-    'Step-by-step: how to extract the audio track from an MP4, MKV, or MOV file and save it as MP3, WAV, M4A, FLAC, or AAC. No software installation required.',
+    'Step-by-step: how to extract the audio track from an MP4 or MOV file and save it as MP3, WAV, M4A, AAC, OGG, or OPUS. No software installation required.',
 };
 
 export default function ExtractAudioFromVideoPage() {
@@ -29,7 +29,7 @@ export default function ExtractAudioFromVideoPage() {
 
       <QuickAnswer>
         Upload the video file to QuickAudioConvert and select an audio output format
-        (MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS). The converter strips the video track
+        (MP3, WAV, M4A, AAC, OGG, or OPUS). The converter strips the video track
         and saves only the audio. The video is discarded — only the audio is in the download.
       </QuickAnswer>
 
@@ -42,7 +42,7 @@ export default function ExtractAudioFromVideoPage() {
               {
                 step: '1',
                 title: 'Go to the converter',
-                body: 'Visit the homepage or go directly to the MP4 to MP3 converter. The converter also works with MKV, MOV, and other video formats — just upload and it detects the file type.',
+                body: 'Visit the homepage or go directly to the MP4 to MP3 or MOV to MP3 converter. MP4 and MOV are directly supported for audio extraction. If you have an MKV, AVI, or WebM file, you will need to remux it to MP4 first using a local tool like VLC or Handbrake.',
               },
               {
                 step: '2',
@@ -52,7 +52,7 @@ export default function ExtractAudioFromVideoPage() {
               {
                 step: '3',
                 title: 'Choose your audio output format',
-                body: 'Select MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS. MP3 is the best choice for most purposes — small file, plays everywhere. WAV or FLAC if you need the audio for editing. M4A for Apple devices.',
+                body: 'Select MP3, WAV, M4A, AAC, OGG, or OPUS. MP3 is the best choice for most purposes — small file, plays everywhere. WAV if you need the audio for editing software. M4A for Apple devices.',
               },
               {
                 step: '4',

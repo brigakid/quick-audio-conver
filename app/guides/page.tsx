@@ -34,7 +34,7 @@ const GUIDES = [
       {
         href: '/guides/extract-audio-from-video',
         title: 'How to Extract Audio from a Video File',
-        description: 'You have an MP4 or MKV. You just want the audio track. Here is the straightforward way to do it.',
+        description: 'You have an MP4 or MOV. You just want the audio track. Here is the straightforward way to do it.',
       },
       {
         href: '/guides/best-audio-format-for-podcasting',
