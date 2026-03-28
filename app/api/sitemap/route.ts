@@ -79,6 +79,44 @@ const pages = [
   { url: '/learn/best-audio-format-for-voice-recordings',                      priority: '0.7', changefreq: 'monthly' },
   { url: '/learn/extracting-audio-from-video-best-format-choices',             priority: '0.7', changefreq: 'monthly' },
 
+  // WikiSound — audio education
+  { url: '/wiki',                                   priority: '0.9', changefreq: 'weekly'  },
+  // Audio Fundamentals
+  { url: '/wiki/what-is-bitrate',                   priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-sample-rate',               priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-frequency',                 priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-audio-quality',             priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-loudness',                  priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-mono-stereo',               priority: '0.8', changefreq: 'monthly' },
+  // Compression & Formats
+  { url: '/wiki/what-is-lossless-audio',            priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-lossy-audio',               priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-audio-compression',         priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-audio-codec',               priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-container-format',          priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/codec-vs-container',                priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/cbr-vs-vbr',                        priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-transcoding',               priority: '0.8', changefreq: 'monthly' },
+  // Format Guides
+  { url: '/wiki/what-is-mp3',                       priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-wav',                       priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-flac',                      priority: '0.8', changefreq: 'monthly' },
+  // Signal Processing
+  { url: '/wiki/what-is-eq',                        priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-normalization',             priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-clipping',                  priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-noise-reduction',           priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-audio-artifacting',         priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-gain-staging',              priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-distortion',                priority: '0.8', changefreq: 'monthly' },
+  // Mixing & Production
+  { url: '/wiki/what-is-mixing-mastering',          priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-reverb',                    priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-delay',                     priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-a-limiter',                 priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-panning',                   priority: '0.8', changefreq: 'monthly' },
+  { url: '/wiki/what-is-sidechain-compression',     priority: '0.8', changefreq: 'monthly' },
+
   // Trust / legal pages
   { url: '/about',   priority: '0.6', changefreq: 'monthly' },
   { url: '/contact', priority: '0.5', changefreq: 'monthly' },

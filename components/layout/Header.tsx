@@ -9,6 +9,7 @@ const NAV_LINKS = [
   { href: '/formats',    label: 'Formats'    },
   { href: '/guides',     label: 'Guides'     },
   { href: '/learn',      label: 'Learn'      },
+  { href: '/wiki',       label: 'WikiSound'  },
   { href: '/about',      label: 'About'      },
   { href: '/contact',    label: 'Contact'    },
 ];
