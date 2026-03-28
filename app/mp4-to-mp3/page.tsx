@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'MP4 to MP3 Converter',
   description:
     'Extract the audio from any MP4 video file and save it as MP3. Fast, private, no account required. Choose your bitrate and download in seconds.',
+  openGraph: {
+    title: 'MP4 to MP3 Converter',
+    description:
+      'Extract the audio from any MP4 video file and save it as MP3. Fast, private, no account required. Choose your bitrate and download in seconds.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MP4 to MP3 Converter',
+    description:
+      'Extract the audio from any MP4 video file and save it as MP3. Fast, private, no account required. Choose your bitrate and download in seconds.',
+  },
 };
 
 export default function Mp4ToMp3Page() {

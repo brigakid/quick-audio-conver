@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'Opus to MP3 Converter — Discord, WhatsApp, WebRTC Audio',
+  title: 'Opus to MP3 Converter',
   description:
-    'Convert Opus audio files to MP3 online for free. Works with Discord voice messages, WhatsApp voice notes (.ogg), WebRTC recordings, and any .opus file.',
+    'Convert Opus audio files to MP3. Works with Discord voice messages, WhatsApp voice notes, WebRTC recordings, and any .opus file. Free, no account needed.',
+  openGraph: {
+    title: 'Opus to MP3 Converter',
+    description:
+      'Convert Opus audio files to MP3. Works with Discord voice messages, WhatsApp voice notes, WebRTC recordings, and any .opus file. Free, no account needed.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Opus to MP3 Converter',
+    description:
+      'Convert Opus audio files to MP3. Works with Discord voice messages, WhatsApp voice notes, WebRTC recordings, and any .opus file. Free, no account needed.',
+  },
 };
 
 export default function OpusToMp3Page() {

@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is MOV? QuickTime Format Guide',
   description:
     "MOV is Apple's QuickTime video container format — commonly produced by iPhones, iPads, iMovie, and Final Cut Pro. Learn how to extract audio from MOV files and when to convert them.",
+  openGraph: {
+    title: 'What Is MOV? QuickTime Format Guide',
+    description:
+      "MOV is Apple's QuickTime video container format — commonly produced by iPhones, iPads, iMovie, and Final Cut Pro. Learn how to extract audio from MOV files and when to convert them.",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is MOV? QuickTime Format Guide',
+    description:
+      "MOV is Apple's QuickTime video container format — commonly produced by iPhones, iPads, iMovie, and Final Cut Pro. Learn how to extract audio from MOV files and when to convert them.",
+  },
 };
 
 export default function MovFormatPage() {

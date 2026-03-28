@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'When Converting to WAV Does Not Improve Quality',
   description:
     'WAV is a container, not a quality guarantee. Converting an MP3 or AAC file to WAV gives you a larger file — not a better-sounding one. Here is exactly why.',
+  openGraph: {
+    title: 'When Converting to WAV Does Not Improve Quality',
+    description:
+      'WAV is a container, not a quality guarantee. Converting an MP3 or AAC file to WAV gives you a larger file — not a better-sounding one. Here is exactly why.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'When Converting to WAV Does Not Improve Quality',
+    description:
+      'WAV is a container, not a quality guarantee. Converting an MP3 or AAC file to WAV gives you a larger file — not a better-sounding one. Here is exactly why.',
+  },
 };
 
 export default function WavNotImprovingQualityPage() {

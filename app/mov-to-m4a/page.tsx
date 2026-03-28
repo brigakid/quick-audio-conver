@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'MOV to M4A Converter — Free Online',
+  title: 'MOV to M4A Converter',
   description:
-    'Convert MOV to M4A online for free. Extract and compress audio from a QuickTime MOV video into M4A — ideal for Apple Podcasts, iTunes, and iOS devices.',
+    'Extract and compress audio from a QuickTime MOV video into M4A — ideal for Apple Podcasts, iOS devices, and iTunes libraries. Free, no account needed.',
+  openGraph: {
+    title: 'MOV to M4A Converter',
+    description:
+      'Extract and compress audio from a QuickTime MOV video into M4A — ideal for Apple Podcasts, iOS devices, and iTunes libraries. Free, no account needed.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MOV to M4A Converter',
+    description:
+      'Extract and compress audio from a QuickTime MOV video into M4A — ideal for Apple Podcasts, iOS devices, and iTunes libraries. Free, no account needed.',
+  },
 };
 
 export default function MovToM4aPage() {

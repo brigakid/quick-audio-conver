@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Opus Audio? Voice, Music, and Low-Bitrate Quality Explained',
   description:
     'Opus is a modern, royalty-free audio codec that outperforms MP3 and AAC at low bitrates. It\'s used by Discord, WhatsApp, Zoom, and most WebRTC applications for voice and audio streaming.',
+  openGraph: {
+    title: 'What Is Opus Audio? Voice, Music, and Low-Bitrate Quality Explained',
+    description:
+      'Opus is a modern, royalty-free audio codec that outperforms MP3 and AAC at low bitrates. It\'s used by Discord, WhatsApp, Zoom, and most WebRTC applications for voice and audio streaming.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Opus Audio? Voice, Music, and Low-Bitrate Quality Explained',
+    description:
+      'Opus is a modern, royalty-free audio codec that outperforms MP3 and AAC at low bitrates. It\'s used by Discord, WhatsApp, Zoom, and most WebRTC applications for voice and audio streaming.',
+  },
 };
 
 export default function WhatIsOpusPage() {

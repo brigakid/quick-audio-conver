@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'MP3 to OGG Converter',
   description:
     'Convert MP3 to OGG/Vorbis for game engines, Linux, and royalty-free audio workflows. No account, no installation.',
+  openGraph: {
+    title: 'MP3 to OGG Converter',
+    description:
+      'Convert MP3 to OGG/Vorbis for game engines, Linux, and royalty-free audio workflows. No account, no installation.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MP3 to OGG Converter',
+    description:
+      'Convert MP3 to OGG/Vorbis for game engines, Linux, and royalty-free audio workflows. No account, no installation.',
+  },
 };
 
 export default function Mp3ToOggPage() {

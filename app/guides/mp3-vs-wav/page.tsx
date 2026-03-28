@@ -8,7 +8,18 @@ import Author from '@/components/content/Author';
 export const metadata: Metadata = {
   title: 'MP3 vs WAV: Which Format Should You Use?',
   description:
-    'MP3 and WAV are the two most common audio formats. Learn the practical differences in quality, file size, and compatibility — and which one fits your situation.',
+    'The practical differences between MP3 and WAV — quality, file size, compatibility, and which one fits your situation. No fluff, just the decision.',
+  openGraph: {
+    title: 'MP3 vs WAV: Which Format Should You Use?',
+    description:
+      'The practical differences between MP3 and WAV — quality, file size, compatibility, and which one fits your situation. No fluff, just the decision.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MP3 vs WAV: Which Format Should You Use?',
+    description:
+      'The practical differences between MP3 and WAV — quality, file size, compatibility, and which one fits your situation. No fluff, just the decision.',
+  },
 };
 
 export default function Mp3VsWavPage() {

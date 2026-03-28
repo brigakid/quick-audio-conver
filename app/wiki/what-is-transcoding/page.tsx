@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Transcoding in Audio? When It Costs Quality and When It Doesn\'t',
   description:
     'Transcoding means re-encoding audio from one codec to another. Sometimes it\'s transparent. Sometimes it degrades quality. Here\'s how to know which situation you\'re in.',
+  openGraph: {
+    title: 'What Is Transcoding in Audio? When It Costs Quality and When It Doesn\'t',
+    description:
+      'Transcoding means re-encoding audio from one codec to another. Sometimes it\'s transparent. Sometimes it degrades quality. Here\'s how to know which situation you\'re in.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Transcoding in Audio? When It Costs Quality and When It Doesn\'t',
+    description:
+      'Transcoding means re-encoding audio from one codec to another. Sometimes it\'s transparent. Sometimes it degrades quality. Here\'s how to know which situation you\'re in.',
+  },
 };
 
 export default function WhatIsTranscodingPage() {

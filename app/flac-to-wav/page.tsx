@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'FLAC to WAV Converter',
   description:
     'Convert FLAC audio to WAV for software that requires uncompressed PCM. Both are lossless — the conversion is entirely about compatibility, not quality.',
+  openGraph: {
+    title: 'FLAC to WAV Converter',
+    description:
+      'Convert FLAC audio to WAV for software that requires uncompressed PCM. Both are lossless — the conversion is entirely about compatibility, not quality.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FLAC to WAV Converter',
+    description:
+      'Convert FLAC audio to WAV for software that requires uncompressed PCM. Both are lossless — the conversion is entirely about compatibility, not quality.',
+  },
 };
 
 export default function FlacToWavPage() {

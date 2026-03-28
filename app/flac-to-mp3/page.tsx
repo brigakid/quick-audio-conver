@@ -4,7 +4,18 @@ import ToolPageLayout from '@/components/converter/ToolPageLayout';
 export const metadata: Metadata = {
   title: 'FLAC to MP3 Converter',
   description:
-    'Convert FLAC audio files to MP3 for broader device and platform compatibility. Choose your bitrate and download in seconds. Free, private, no account needed.',
+    'Convert lossless FLAC to MP3 for broader device and platform compatibility. Choose your bitrate and download in seconds. Free, no account required.',
+  openGraph: {
+    title: 'FLAC to MP3 Converter',
+    description:
+      'Convert lossless FLAC to MP3 for broader device and platform compatibility. Choose your bitrate and download in seconds. Free, no account required.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FLAC to MP3 Converter',
+    description:
+      'Convert lossless FLAC to MP3 for broader device and platform compatibility. Choose your bitrate and download in seconds. Free, no account required.',
+  },
 };
 
 export default function FlacToMp3Page() {

@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'How Bitrate Affects File Size and Sound Quality',
   description:
     'Bitrate is bits per second — the math for file size is simple. The quality implications at different bitrate levels are specific and worth understanding before you convert.',
+  openGraph: {
+    title: 'How Bitrate Affects File Size and Sound Quality',
+    description:
+      'Bitrate is bits per second — the math for file size is simple. The quality implications at different bitrate levels are specific and worth understanding before you convert.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'How Bitrate Affects File Size and Sound Quality',
+    description:
+      'Bitrate is bits per second — the math for file size is simple. The quality implications at different bitrate levels are specific and worth understanding before you convert.',
+  },
 };
 
 export default function BitrateExplainedPage() {

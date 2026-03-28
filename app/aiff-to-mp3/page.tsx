@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'AIFF to MP3 Converter — Free Online',
+  title: 'AIFF to MP3 Converter',
   description:
-    'Convert AIFF to MP3 online for free. Upload your Apple uncompressed audio file and download a high-quality MP3 in seconds. No signup, no limits.',
+    'Convert Apple AIFF audio to MP3. Works with Logic Pro, GarageBand, and Pro Tools exports. Upload, choose your bitrate, and download instantly. Free, no account.',
+  openGraph: {
+    title: 'AIFF to MP3 Converter',
+    description:
+      'Convert Apple AIFF audio to MP3. Works with Logic Pro, GarageBand, and Pro Tools exports. Upload, choose your bitrate, and download instantly. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AIFF to MP3 Converter',
+    description:
+      'Convert Apple AIFF audio to MP3. Works with Logic Pro, GarageBand, and Pro Tools exports. Upload, choose your bitrate, and download instantly. Free, no account.',
+  },
 };
 
 export default function AiffToMp3Page() {

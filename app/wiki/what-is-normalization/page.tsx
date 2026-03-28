@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Audio Normalization? Peak, LUFS, and Why It Matters',
   description:
     'Normalization sets audio to a target volume level. Peak normalization adjusts by the loudest peak. Loudness normalization (LUFS) adjusts for perceived loudness. Here\'s the difference.',
+  openGraph: {
+    title: 'What Is Audio Normalization? Peak, LUFS, and Why It Matters',
+    description:
+      'Normalization sets audio to a target volume level. Peak normalization adjusts by the loudest peak. Loudness normalization (LUFS) adjusts for perceived loudness. Here\'s the difference.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Audio Normalization? Peak, LUFS, and Why It Matters',
+    description:
+      'Normalization sets audio to a target volume level. Peak normalization adjusts by the loudest peak. Loudness normalization (LUFS) adjusts for perceived loudness. Here\'s the difference.',
+  },
 };
 
 export default function WhatIsNormalizationPage() {

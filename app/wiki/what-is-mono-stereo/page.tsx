@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Mono vs Stereo Audio? When One Channel Is Better Than Two',
   description:
     'Mono is one channel. Stereo is two. Stereo sounds wider — but for voice, podcasts, and phone playback, mono is often the better choice. Here\'s the full breakdown.',
+  openGraph: {
+    title: 'What Is Mono vs Stereo Audio? When One Channel Is Better Than Two',
+    description:
+      'Mono is one channel. Stereo is two. Stereo sounds wider — but for voice, podcasts, and phone playback, mono is often the better choice. Here\'s the full breakdown.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Mono vs Stereo Audio? When One Channel Is Better Than Two',
+    description:
+      'Mono is one channel. Stereo is two. Stereo sounds wider — but for voice, podcasts, and phone playback, mono is often the better choice. Here\'s the full breakdown.',
+  },
 };
 
 export default function WhatIsMonoStereoPage() {

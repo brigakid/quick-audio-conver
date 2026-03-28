@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'AMR to WAV Converter — Free Online',
+  title: 'AMR to WAV Converter',
   description:
-    'Convert AMR to WAV online for free. Convert AMR voice recordings to uncompressed WAV for editing, transcription, or archiving.',
+    'Convert AMR voice recordings to uncompressed WAV for editing, transcription software, or archiving. Works with mobile call recordings and voice memos. Free, no account.',
+  openGraph: {
+    title: 'AMR to WAV Converter',
+    description:
+      'Convert AMR voice recordings to uncompressed WAV for editing, transcription software, or archiving. Works with mobile call recordings and voice memos. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AMR to WAV Converter',
+    description:
+      'Convert AMR voice recordings to uncompressed WAV for editing, transcription software, or archiving. Works with mobile call recordings and voice memos. Free, no account.',
+  },
 };
 
 export default function AmrToWavPage() {

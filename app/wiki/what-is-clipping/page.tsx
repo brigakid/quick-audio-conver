@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Clipping in Audio? Why It Sounds Harsh and How to Avoid It',
   description:
     'Clipping happens when audio exceeds the maximum level a system can handle. The waveform gets cut off — creating a harsh, distorted sound. Here\'s what causes it and how to fix it.',
+  openGraph: {
+    title: 'What Is Clipping in Audio? Why It Sounds Harsh and How to Avoid It',
+    description:
+      'Clipping happens when audio exceeds the maximum level a system can handle. The waveform gets cut off — creating a harsh, distorted sound. Here\'s what causes it and how to fix it.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Clipping in Audio? Why It Sounds Harsh and How to Avoid It',
+    description:
+      'Clipping happens when audio exceeds the maximum level a system can handle. The waveform gets cut off — creating a harsh, distorted sound. Here\'s what causes it and how to fix it.',
+  },
 };
 
 export default function WhatIsClippingPage() {

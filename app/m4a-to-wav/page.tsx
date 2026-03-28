@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'M4A to WAV Converter',
   description:
     'Convert M4A audio to WAV for use in DAWs, audio editing software, and professional workflows. Works with iPhone voice memos and GarageBand exports.',
+  openGraph: {
+    title: 'M4A to WAV Converter',
+    description:
+      'Convert M4A audio to WAV for use in DAWs, audio editing software, and professional workflows. Works with iPhone voice memos and GarageBand exports.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'M4A to WAV Converter',
+    description:
+      'Convert M4A audio to WAV for use in DAWs, audio editing software, and professional workflows. Works with iPhone voice memos and GarageBand exports.',
+  },
 };
 
 export default function M4aToWavPage() {

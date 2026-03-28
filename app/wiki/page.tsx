@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'WikiSound — Audio Terms Explained in Plain English',
+  title: 'WikiSound — Audio Terms Explained',
   description:
-    'Clear explanations of audio terminology — bitrate, codecs, sample rate, lossless, lossy, and more. No jargon. No filler. Just useful answers for real questions.',
+    'Plain-English explanations of audio terminology — bitrate, codecs, sample rate, lossless, lossy, and more. No jargon, no filler. Just useful answers.',
+  openGraph: {
+    title: 'WikiSound — Audio Terms Explained',
+    description:
+      'Plain-English explanations of audio terminology — bitrate, codecs, sample rate, lossless, lossy, and more. No jargon, no filler. Just useful answers.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WikiSound — Audio Terms Explained',
+    description:
+      'Plain-English explanations of audio terminology — bitrate, codecs, sample rate, lossless, lossy, and more. No jargon, no filler. Just useful answers.',
+  },
 };
 
 const LIVE_SLUGS = new Set([

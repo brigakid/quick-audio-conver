@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Best Audio Format for Editing',
   description:
     'WAV is the standard editing format — lossless, widely supported, and safe to save repeatedly. FLAC works for storage between sessions. The format you export to depends on your destination.',
+  openGraph: {
+    title: 'Best Audio Format for Editing',
+    description:
+      'WAV is the standard editing format — lossless, widely supported, and safe to save repeatedly. FLAC works for storage between sessions. The format you export to depends on your destination.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Best Audio Format for Editing',
+    description:
+      'WAV is the standard editing format — lossless, widely supported, and safe to save repeatedly. FLAC works for storage between sessions. The format you export to depends on your destination.',
+  },
 };
 
 export default function BestFormatForEditingPage() {

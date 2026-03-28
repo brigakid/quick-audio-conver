@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Best Audio Format for Voice Recordings',
   description:
     'The right format for a voice recording depends on what you will do with it next. For sharing: MP3. For transcription: any format works. For editing or archiving: WAV or FLAC.',
+  openGraph: {
+    title: 'Best Audio Format for Voice Recordings',
+    description:
+      'The right format for a voice recording depends on what you will do with it next. For sharing: MP3. For transcription: any format works. For editing or archiving: WAV or FLAC.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Best Audio Format for Voice Recordings',
+    description:
+      'The right format for a voice recording depends on what you will do with it next. For sharing: MP3. For transcription: any format works. For editing or archiving: WAV or FLAC.',
+  },
 };
 
 export default function BestFormatForVoiceRecordingsPage() {

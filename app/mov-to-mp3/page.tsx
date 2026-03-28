@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'MOV to MP3 Converter — Free Online',
+  title: 'MOV to MP3 Converter',
   description:
-    'Convert MOV to MP3 online for free. Extract the audio track from a QuickTime MOV video and download a high-quality MP3. No signup required.',
+    'Extract audio from a QuickTime MOV video and save it as MP3. Works with iPhone recordings, iMovie exports, and Final Cut Pro files. Free, no account.',
+  openGraph: {
+    title: 'MOV to MP3 Converter',
+    description:
+      'Extract audio from a QuickTime MOV video and save it as MP3. Works with iPhone recordings, iMovie exports, and Final Cut Pro files. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MOV to MP3 Converter',
+    description:
+      'Extract audio from a QuickTime MOV video and save it as MP3. Works with iPhone recordings, iMovie exports, and Final Cut Pro files. Free, no account.',
+  },
 };
 
 export default function MovToMp3Page() {

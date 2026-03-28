@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is WAV? Format Guide',
   description:
     'WAV is an uncompressed audio format used widely in audio editing and professional production. Learn when to use it and when a smaller format makes more sense.',
+  openGraph: {
+    title: 'What Is WAV? Format Guide',
+    description:
+      'WAV is an uncompressed audio format used widely in audio editing and professional production. Learn when to use it and when a smaller format makes more sense.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is WAV? Format Guide',
+    description:
+      'WAV is an uncompressed audio format used widely in audio editing and professional production. Learn when to use it and when a smaller format makes more sense.',
+  },
 };
 
 export default function WavFormatPage() {

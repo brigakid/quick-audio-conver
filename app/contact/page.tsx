@@ -3,9 +3,20 @@ import Link from 'next/link';
 import ContactPanel from '@/components/contact/ContactPanel';
 
 export const metadata: Metadata = {
-  title: 'Contact — QuickAudioConvert',
+  title: 'Contact',
   description:
-    'Get in touch with QuickAudioConvert. Reach us for support, bug reports, format requests, or any general question about audio conversion.',
+    'Reach the QuickAudioConvert team for support, bug reports, format requests, or any question about audio conversion.',
+  openGraph: {
+    title: 'Contact QuickAudioConvert',
+    description:
+      'Reach the QuickAudioConvert team for support, bug reports, format requests, or any question about audio conversion.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Contact QuickAudioConvert',
+    description:
+      'Reach the QuickAudioConvert team for support, bug reports, or format requests.',
+  },
 };
 
 const topics = [

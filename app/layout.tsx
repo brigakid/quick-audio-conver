@@ -8,8 +8,8 @@ const GA_ID = 'G-XHEXJ0V2Y1';
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://quickaudioconvert.com';
 
-const title       = 'QuickAudioConvert | Free Online Audio Converter';
-const description = 'Convert audio files online — MP3, WAV, FLAC, M4A, AAC, OGG, OPUS, and more. Fast server-side processing, no account required, files deleted automatically after 30 minutes.';
+const title       = 'QuickAudioConvert — Free Online Audio Converter';
+const description = 'Convert audio files to MP3, WAV, FLAC, M4A, and more — free, no account. Fast server-side processing, files deleted automatically after 30 minutes.';
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

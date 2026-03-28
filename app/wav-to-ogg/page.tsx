@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'WAV to OGG Converter',
   description:
     'Convert WAV audio to OGG/Vorbis — the open, royalty-free format used in games, web audio, and Linux. Free, no account needed.',
+  openGraph: {
+    title: 'WAV to OGG Converter',
+    description:
+      'Convert WAV audio to OGG/Vorbis — the open, royalty-free format used in games, web audio, and Linux. Free, no account needed.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WAV to OGG Converter',
+    description:
+      'Convert WAV audio to OGG/Vorbis — the open, royalty-free format used in games, web audio, and Linux. Free, no account needed.',
+  },
 };
 
 export default function WavToOggPage() {

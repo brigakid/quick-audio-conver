@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is AIFF? Format Guide (AIF and AIFC)',
   description:
     "AIFF is Apple's uncompressed audio format — lossless PCM audio in an Apple-native container. Learn about AIFF, AIF, and AIFC, their differences, and when to convert them.",
+  openGraph: {
+    title: 'What Is AIFF? Format Guide (AIF and AIFC)',
+    description:
+      "AIFF is Apple's uncompressed audio format — lossless PCM audio in an Apple-native container. Learn about AIFF, AIF, and AIFC, their differences, and when to convert them.",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is AIFF? Format Guide (AIF and AIFC)',
+    description:
+      "AIFF is Apple's uncompressed audio format — lossless PCM audio in an Apple-native container. Learn about AIFF, AIF, and AIFC, their differences, and when to convert them.",
+  },
 };
 
 export default function AiffFormatPage() {

@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'AAC to MP3 Converter — Free Online, No Signup',
+  title: 'AAC to MP3 Converter',
   description:
-    'Convert AAC or M4A files to MP3 online for free. iTunes libraries, iPhone recordings, YouTube-extracted audio — download a compatible MP3 in seconds.',
+    'Convert AAC or M4A files to MP3. iTunes libraries, iPhone recordings, YouTube-extracted audio — upload and download a compatible MP3 in seconds. Free, no account.',
+  openGraph: {
+    title: 'AAC to MP3 Converter',
+    description:
+      'Convert AAC or M4A files to MP3. iTunes libraries, iPhone recordings, YouTube-extracted audio — upload and download a compatible MP3 in seconds. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AAC to MP3 Converter',
+    description:
+      'Convert AAC or M4A files to MP3. iTunes libraries, iPhone recordings, YouTube-extracted audio — upload and download a compatible MP3 in seconds. Free, no account.',
+  },
 };
 
 export default function AacToMp3Page() {

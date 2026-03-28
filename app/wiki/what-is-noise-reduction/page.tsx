@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Noise Reduction in Audio? How It Works and When to Use It',
   description:
     'Noise reduction removes background hiss, hum, and ambient sound from recordings. Here\'s how it works, when it genuinely helps, and when it makes audio sound worse.',
+  openGraph: {
+    title: 'What Is Noise Reduction in Audio? How It Works and When to Use It',
+    description:
+      'Noise reduction removes background hiss, hum, and ambient sound from recordings. Here\'s how it works, when it genuinely helps, and when it makes audio sound worse.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Noise Reduction in Audio? How It Works and When to Use It',
+    description:
+      'Noise reduction removes background hiss, hum, and ambient sound from recordings. Here\'s how it works, when it genuinely helps, and when it makes audio sound worse.',
+  },
 };
 
 export default function WhatIsNoiseReductionPage() {

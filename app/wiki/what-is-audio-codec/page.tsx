@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is an Audio Codec? How Encoding and Decoding Actually Work',
   description:
     'A codec is the algorithm that compresses audio when saving and decompresses it during playback. Every audio format you\'ve heard of — MP3, AAC, FLAC — is a codec.',
+  openGraph: {
+    title: 'What Is an Audio Codec? How Encoding and Decoding Actually Work',
+    description:
+      'A codec is the algorithm that compresses audio when saving and decompresses it during playback. Every audio format you\'ve heard of — MP3, AAC, FLAC — is a codec.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is an Audio Codec? How Encoding and Decoding Actually Work',
+    description:
+      'A codec is the algorithm that compresses audio when saving and decompresses it during playback. Every audio format you\'ve heard of — MP3, AAC, FLAC — is a codec.',
+  },
 };
 
 export default function WhatIsAudioCodecPage() {

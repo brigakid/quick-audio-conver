@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is a Container Format in Audio and Video?',
   description:
     'A container format is the file wrapper — the packaging that holds audio, video, metadata, and more. MP4, WAV, MKV, and M4A are containers. Here\'s what they actually do.',
+  openGraph: {
+    title: 'What Is a Container Format in Audio and Video?',
+    description:
+      'A container format is the file wrapper — the packaging that holds audio, video, metadata, and more. MP4, WAV, MKV, and M4A are containers. Here\'s what they actually do.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is a Container Format in Audio and Video?',
+    description:
+      'A container format is the file wrapper — the packaging that holds audio, video, metadata, and more. MP4, WAV, MKV, and M4A are containers. Here\'s what they actually do.',
+  },
 };
 
 export default function WhatIsContainerFormatPage() {

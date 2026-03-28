@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'WAV to M4A Converter',
   description:
     'Convert WAV audio to M4A (AAC) for Apple Podcasts, iTunes, and iOS devices. Better audio efficiency than MP3 at the same bitrate.',
+  openGraph: {
+    title: 'WAV to M4A Converter',
+    description:
+      'Convert WAV audio to M4A (AAC) for Apple Podcasts, iTunes, and iOS devices. Better audio efficiency than MP3 at the same bitrate.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WAV to M4A Converter',
+    description:
+      'Convert WAV audio to M4A (AAC) for Apple Podcasts, iTunes, and iOS devices. Better audio efficiency than MP3 at the same bitrate.',
+  },
 };
 
 export default function WavToM4aPage() {

@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Frequency in Audio? Pitch, Hz, and the Audible Spectrum',
   description:
     'Frequency is measured in Hz and determines pitch — low Hz is bass, high Hz is treble. Here\'s how the audible spectrum maps to what you hear, and why it matters for audio.',
+  openGraph: {
+    title: 'What Is Frequency in Audio? Pitch, Hz, and the Audible Spectrum',
+    description:
+      'Frequency is measured in Hz and determines pitch — low Hz is bass, high Hz is treble. Here\'s how the audible spectrum maps to what you hear, and why it matters for audio.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Frequency in Audio? Pitch, Hz, and the Audible Spectrum',
+    description:
+      'Frequency is measured in Hz and determines pitch — low Hz is bass, high Hz is treble. Here\'s how the audible spectrum maps to what you hear, and why it matters for audio.',
+  },
 };
 
 export default function WhatIsFrequencyPage() {

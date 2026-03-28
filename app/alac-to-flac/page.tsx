@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'ALAC to FLAC Converter — Free Online',
+  title: 'ALAC to FLAC Converter',
   description:
-    'Convert ALAC to FLAC online for free. Convert Apple Lossless to FLAC with no quality loss — lossless to lossless, with broader cross-platform support.',
+    'Convert Apple Lossless (ALAC) to FLAC with no quality loss. Lossless to lossless — same audio, smaller file, broader cross-platform support. Free, no account.',
+  openGraph: {
+    title: 'ALAC to FLAC Converter',
+    description:
+      'Convert Apple Lossless (ALAC) to FLAC with no quality loss. Lossless to lossless — same audio, smaller file, broader cross-platform support. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ALAC to FLAC Converter',
+    description:
+      'Convert Apple Lossless (ALAC) to FLAC with no quality loss. Lossless to lossless — same audio, smaller file, broader cross-platform support. Free, no account.',
+  },
 };
 
 export default function AlacToFlacPage() {

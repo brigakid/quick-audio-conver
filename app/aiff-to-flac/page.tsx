@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'AIFF to FLAC Converter',
   description:
     'Convert Apple AIFF audio to lossless FLAC — compact archiving with no quality loss. Works with Logic Pro, Pro Tools, and GarageBand exports.',
+  openGraph: {
+    title: 'AIFF to FLAC Converter',
+    description:
+      'Convert Apple AIFF audio to lossless FLAC — compact archiving with no quality loss. Works with Logic Pro, Pro Tools, and GarageBand exports.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AIFF to FLAC Converter',
+    description:
+      'Convert Apple AIFF audio to lossless FLAC — compact archiving with no quality loss. Works with Logic Pro, Pro Tools, and GarageBand exports.',
+  },
 };
 
 export default function AiffToFlacPage() {

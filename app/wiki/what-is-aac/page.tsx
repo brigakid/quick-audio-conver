@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is AAC? The Codec Inside M4A Files Explained',
   description:
     'AAC (Advanced Audio Coding) is a lossy codec that sounds better than MP3 at the same bitrate. It\'s inside every M4A file, used by Apple Music, YouTube, and most streaming platforms.',
+  openGraph: {
+    title: 'What Is AAC? The Codec Inside M4A Files Explained',
+    description:
+      'AAC (Advanced Audio Coding) is a lossy codec that sounds better than MP3 at the same bitrate. It\'s inside every M4A file, used by Apple Music, YouTube, and most streaming platforms.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is AAC? The Codec Inside M4A Files Explained',
+    description:
+      'AAC (Advanced Audio Coding) is a lossy codec that sounds better than MP3 at the same bitrate. It\'s inside every M4A file, used by Apple Music, YouTube, and most streaming platforms.',
+  },
 };
 
 export default function WhatIsAacPage() {

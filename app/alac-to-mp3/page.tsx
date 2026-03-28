@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'ALAC to MP3 Converter — Free Online',
+  title: 'ALAC to MP3 Converter',
   description:
-    'Convert ALAC to MP3 online for free. Upload Apple Lossless audio and download a high-quality MP3 for universal playback. No signup required.',
+    'Convert Apple Lossless (ALAC) to MP3 for universal device compatibility. Upload your ALAC file and download a high-quality MP3. Free, no account, no install.',
+  openGraph: {
+    title: 'ALAC to MP3 Converter',
+    description:
+      'Convert Apple Lossless (ALAC) to MP3 for universal device compatibility. Upload your ALAC file and download a high-quality MP3. Free, no account, no install.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ALAC to MP3 Converter',
+    description:
+      'Convert Apple Lossless (ALAC) to MP3 for universal device compatibility. Upload your ALAC file and download a high-quality MP3. Free, no account, no install.',
+  },
 };
 
 export default function AlacToMp3Page() {

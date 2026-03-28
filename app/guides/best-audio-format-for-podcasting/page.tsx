@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Best Audio Format for Podcasting',
   description:
     'Which audio format to use when recording, editing, and submitting your podcast. Specific recommendations for each stage of the workflow.',
+  openGraph: {
+    title: 'Best Audio Format for Podcasting',
+    description:
+      'Which audio format to use when recording, editing, and submitting your podcast. Specific recommendations for each stage of the workflow.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Best Audio Format for Podcasting',
+    description:
+      'Which audio format to use when recording, editing, and submitting your podcast. Specific recommendations for each stage of the workflow.',
+  },
 };
 
 export default function BestAudioFormatForPodcastingPage() {

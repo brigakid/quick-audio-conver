@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'CBR vs VBR: What\'s the Difference in MP3 Encoding?',
   description:
     'CBR (constant bitrate) uses the same bit allocation throughout. VBR (variable bitrate) uses more bits on complex passages. Here\'s the quality, file size, and compatibility trade-offs.',
+  openGraph: {
+    title: 'CBR vs VBR: What\'s the Difference in MP3 Encoding?',
+    description:
+      'CBR (constant bitrate) uses the same bit allocation throughout. VBR (variable bitrate) uses more bits on complex passages. Here\'s the quality, file size, and compatibility trade-offs.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'CBR vs VBR: What\'s the Difference in MP3 Encoding?',
+    description:
+      'CBR (constant bitrate) uses the same bit allocation throughout. VBR (variable bitrate) uses more bits on complex passages. Here\'s the quality, file size, and compatibility trade-offs.',
+  },
 };
 
 export default function CbrVsVbrPage() {

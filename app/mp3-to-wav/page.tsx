@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'MP3 to WAV Converter',
   description:
     'Convert MP3 to uncompressed WAV format for use in audio editing software, DAWs, and video editors. Fast, free, no account required.',
+  openGraph: {
+    title: 'MP3 to WAV Converter',
+    description:
+      'Convert MP3 to uncompressed WAV format for use in audio editing software, DAWs, and video editors. Fast, free, no account required.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MP3 to WAV Converter',
+    description:
+      'Convert MP3 to uncompressed WAV format for use in audio editing software, DAWs, and video editors. Fast, free, no account required.',
+  },
 };
 
 export default function Mp3ToWavPage() {

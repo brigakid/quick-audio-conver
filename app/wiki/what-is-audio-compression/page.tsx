@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Audio Compression? The Two Completely Different Meanings',
   description:
     '"Audio compression" means two different things: data compression (making files smaller) and dynamic range compression (controlling loud and quiet levels). Both explained here.',
+  openGraph: {
+    title: 'What Is Audio Compression? The Two Completely Different Meanings',
+    description:
+      '"Audio compression" means two different things: data compression (making files smaller) and dynamic range compression (controlling loud and quiet levels). Both explained here.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Audio Compression? The Two Completely Different Meanings',
+    description:
+      '"Audio compression" means two different things: data compression (making files smaller) and dynamic range compression (controlling loud and quiet levels). Both explained here.',
+  },
 };
 
 export default function WhatIsAudioCompressionPage() {

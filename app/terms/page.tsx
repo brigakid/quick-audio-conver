@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
-  description: 'Terms of Service for QuickAudioConvert. Read our usage rules, limitations, and legal disclaimers.',
+  description: 'Usage rules, limitations, and legal disclaimers for QuickAudioConvert.',
+  robots: { index: false },
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

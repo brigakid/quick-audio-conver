@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'WAV vs MP3 for Editing, Sharing, and Archiving',
   description:
     'WAV and MP3 serve different purposes at different stages of working with audio. The decision changes depending on whether you are editing, distributing, or storing a file.',
+  openGraph: {
+    title: 'WAV vs MP3 for Editing, Sharing, and Archiving',
+    description:
+      'WAV and MP3 serve different purposes at different stages of working with audio. The decision changes depending on whether you are editing, distributing, or storing a file.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WAV vs MP3 for Editing, Sharing, and Archiving',
+    description:
+      'WAV and MP3 serve different purposes at different stages of working with audio. The decision changes depending on whether you are editing, distributing, or storing a file.',
+  },
 };
 
 export default function WavVsMp3Page() {

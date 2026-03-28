@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Audio Conversion \u2014 In-Depth Articles',
+  title: 'Audio Conversion — In-Depth Articles',
   description:
     'Long-form explanations for audio format decisions, bitrate selection, conversion quality, and why some conversions are pointless. Practical and specific.',
+  openGraph: {
+    title: 'Audio Conversion — In-Depth Articles',
+    description:
+      'Long-form explanations for audio format decisions, bitrate selection, conversion quality, and why some conversions are pointless.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Audio Conversion — In-Depth Articles',
+    description:
+      'Long-form explanations for audio format decisions, bitrate selection, conversion quality, and why some conversions are pointless.',
+  },
 };
 
 const ARTICLES = [

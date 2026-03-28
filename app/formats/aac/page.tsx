@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is AAC? Format Guide',
   description:
     'AAC (Advanced Audio Coding) is a lossy audio format designed to replace MP3. Learn how it works, where it\'s supported, and when to convert to or from AAC.',
+  openGraph: {
+    title: 'What Is AAC? Format Guide',
+    description:
+      'AAC (Advanced Audio Coding) is a lossy audio format designed to replace MP3. Learn how it works, where it\'s supported, and when to convert to or from AAC.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is AAC? Format Guide',
+    description:
+      'AAC (Advanced Audio Coding) is a lossy audio format designed to replace MP3. Learn how it works, where it\'s supported, and when to convert to or from AAC.',
+  },
 };
 
 export default function AacFormatPage() {

@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'FLAC vs WAV: Which Lossless Format Should You Use?',
   description:
     'Both FLAC and WAV are lossless. The decoded audio is identical. The difference is in file size, software support, and what you need to do with the file.',
+  openGraph: {
+    title: 'FLAC vs WAV: Which Lossless Format Should You Use?',
+    description:
+      'Both FLAC and WAV are lossless. The decoded audio is identical. The difference is in file size, software support, and what you need to do with the file.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'FLAC vs WAV: Which Lossless Format Should You Use?',
+    description:
+      'Both FLAC and WAV are lossless. The decoded audio is identical. The difference is in file size, software support, and what you need to do with the file.',
+  },
 };
 
 export default function FlacVsWavPage() {

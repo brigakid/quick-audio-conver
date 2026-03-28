@@ -8,6 +8,17 @@ export const metadata: Metadata = {
   title: 'Why Did My Audio Conversion Fail?',
   description:
     'Common reasons an audio conversion fails on QuickAudioConvert — unsupported formats, corrupt files, file size limits, and how to fix each one.',
+  openGraph: {
+    title: 'Why Did My Audio Conversion Fail?',
+    description:
+      'Common reasons an audio conversion fails on QuickAudioConvert — unsupported formats, corrupt files, file size limits, and how to fix each one.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Why Did My Audio Conversion Fail?',
+    description:
+      'Common reasons an audio conversion fails on QuickAudioConvert — unsupported formats, corrupt files, file size limits, and how to fix each one.',
+  },
 };
 
 export default function TroubleshootingPage() {

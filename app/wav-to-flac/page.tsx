@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'WAV to FLAC Converter',
   description:
     'Convert uncompressed WAV audio to lossless FLAC — same quality, 40–60% smaller file. Free, server-side, no account needed.',
+  openGraph: {
+    title: 'WAV to FLAC Converter',
+    description:
+      'Convert uncompressed WAV audio to lossless FLAC — same quality, 40–60% smaller file. Free, server-side, no account needed.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WAV to FLAC Converter',
+    description:
+      'Convert uncompressed WAV audio to lossless FLAC — same quality, 40–60% smaller file. Free, server-side, no account needed.',
+  },
 };
 
 export default function WavToFlacPage() {

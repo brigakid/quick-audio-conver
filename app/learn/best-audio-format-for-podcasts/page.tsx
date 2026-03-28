@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Best Audio Format for Podcasts',
   description:
     'Record in WAV. Edit in WAV. Publish in MP3. The format decisions in podcasting are straightforward once you understand which stage you are at and what the distribution platforms expect.',
+  openGraph: {
+    title: 'Best Audio Format for Podcasts',
+    description:
+      'Record in WAV. Edit in WAV. Publish in MP3. The format decisions in podcasting are straightforward once you understand which stage you are at and what the distribution platforms expect.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Best Audio Format for Podcasts',
+    description:
+      'Record in WAV. Edit in WAV. Publish in MP3. The format decisions in podcasting are straightforward once you understand which stage you are at and what the distribution platforms expect.',
+  },
 };
 
 export default function BestFormatForPodcastsPage() {

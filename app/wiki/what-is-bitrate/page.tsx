@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Bitrate in Audio? A Plain-English Explanation',
   description:
     'Bitrate is how many bits of audio data are stored per second. Here\'s what that means for file size, sound quality, and choosing the right setting when you convert.',
+  openGraph: {
+    title: 'What Is Bitrate in Audio? A Plain-English Explanation',
+    description:
+      'Bitrate is how many bits of audio data are stored per second. Here\'s what that means for file size, sound quality, and choosing the right setting when you convert.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Bitrate in Audio? A Plain-English Explanation',
+    description:
+      'Bitrate is how many bits of audio data are stored per second. Here\'s what that means for file size, sound quality, and choosing the right setting when you convert.',
+  },
 };
 
 export default function WhatIsBitratePage() {

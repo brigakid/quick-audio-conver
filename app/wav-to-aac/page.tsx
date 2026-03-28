@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'WAV to AAC Converter',
   description:
     'Convert uncompressed WAV to a raw AAC file (.aac). Better compression efficiency than MP3 at the same bitrate. Free, no account.',
+  openGraph: {
+    title: 'WAV to AAC Converter',
+    description:
+      'Convert uncompressed WAV to a raw AAC file (.aac). Better compression efficiency than MP3 at the same bitrate. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WAV to AAC Converter',
+    description:
+      'Convert uncompressed WAV to a raw AAC file (.aac). Better compression efficiency than MP3 at the same bitrate. Free, no account.',
+  },
 };
 
 export default function WavToAacPage() {

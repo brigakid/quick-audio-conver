@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'How to Choose the Right MP3 Bitrate',
   description:
     '128, 192, or 320 kbps — what actually changes between bitrates and which one you need for your use case.',
+  openGraph: {
+    title: 'How to Choose the Right MP3 Bitrate',
+    description:
+      '128, 192, or 320 kbps — what actually changes between bitrates and which one you need for your use case.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'How to Choose the Right MP3 Bitrate',
+    description:
+      '128, 192, or 320 kbps — what actually changes between bitrates and which one you need for your use case.',
+  },
 };
 
 export default function HowToChooseMp3BitratePage() {

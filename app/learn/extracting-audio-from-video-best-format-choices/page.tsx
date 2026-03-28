@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Extracting Audio from Video: Best Format Choices',
   description:
     'When you extract audio from an MP4 or MOV, the output format you choose determines file size and compatibility — not quality. Quality is fixed by the source video.',
+  openGraph: {
+    title: 'Extracting Audio from Video: Best Format Choices',
+    description:
+      'When you extract audio from an MP4 or MOV, the output format you choose determines file size and compatibility — not quality. Quality is fixed by the source video.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Extracting Audio from Video: Best Format Choices',
+    description:
+      'When you extract audio from an MP4 or MOV, the output format you choose determines file size and compatibility — not quality. Quality is fixed by the source video.',
+  },
 };
 
 export default function ExtractingAudioFromVideoPage() {

@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'MP3 to M4A Converter',
   description:
     'Convert MP3 audio to M4A for iTunes, Apple Music, and devices that prefer AAC encoding. Free, private, no account needed.',
+  openGraph: {
+    title: 'MP3 to M4A Converter',
+    description:
+      'Convert MP3 audio to M4A for iTunes, Apple Music, and devices that prefer AAC encoding. Free, private, no account needed.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MP3 to M4A Converter',
+    description:
+      'Convert MP3 audio to M4A for iTunes, Apple Music, and devices that prefer AAC encoding. Free, private, no account needed.',
+  },
 };
 
 export default function Mp3ToM4aPage() {

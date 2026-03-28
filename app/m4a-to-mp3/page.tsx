@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'M4A to MP3 Converter',
   description:
     'Convert M4A audio files to MP3 for broader device and platform compatibility. Works with iPhone voice memos, GarageBand exports, and iTunes audio.',
+  openGraph: {
+    title: 'M4A to MP3 Converter',
+    description:
+      'Convert M4A audio files to MP3 for broader device and platform compatibility. Works with iPhone voice memos, GarageBand exports, and iTunes audio.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'M4A to MP3 Converter',
+    description:
+      'Convert M4A audio files to MP3 for broader device and platform compatibility. Works with iPhone voice memos, GarageBand exports, and iTunes audio.',
+  },
 };
 
 export default function M4aToMp3Page() {

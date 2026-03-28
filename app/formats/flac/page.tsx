@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is FLAC? Format Guide',
   description:
     'FLAC is a lossless compressed audio format. Learn what makes it different from MP3 and WAV, its compatibility limitations, and when to use or convert it.',
+  openGraph: {
+    title: 'What Is FLAC? Format Guide',
+    description:
+      'FLAC is a lossless compressed audio format. Learn what makes it different from MP3 and WAV, its compatibility limitations, and when to use or convert it.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is FLAC? Format Guide',
+    description:
+      'FLAC is a lossless compressed audio format. Learn what makes it different from MP3 and WAV, its compatibility limitations, and when to use or convert it.',
+  },
 };
 
 export default function FlacFormatPage() {

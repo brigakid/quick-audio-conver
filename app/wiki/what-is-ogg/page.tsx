@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is OGG? Open-Source Audio Format Explained',
   description:
     'OGG is an open-source container format that usually holds Vorbis audio — a royalty-free lossy codec comparable to MP3 and AAC. It\'s common in PC games, Linux, and open-source software.',
+  openGraph: {
+    title: 'What Is OGG? Open-Source Audio Format Explained',
+    description:
+      'OGG is an open-source container format that usually holds Vorbis audio — a royalty-free lossy codec comparable to MP3 and AAC. It\'s common in PC games, Linux, and open-source software.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is OGG? Open-Source Audio Format Explained',
+    description:
+      'OGG is an open-source container format that usually holds Vorbis audio — a royalty-free lossy codec comparable to MP3 and AAC. It\'s common in PC games, Linux, and open-source software.',
+  },
 };
 
 export default function WhatIsOggPage() {

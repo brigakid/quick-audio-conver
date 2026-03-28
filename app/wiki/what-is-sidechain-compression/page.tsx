@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Sidechain Compression? The Pumping Effect Explained',
   description:
     'Sidechain compression uses one audio signal to control the dynamics of another. The kick drum makes the bass duck. The vocal pushes the music down. Here\'s how it works.',
+  openGraph: {
+    title: 'What Is Sidechain Compression? The Pumping Effect Explained',
+    description:
+      'Sidechain compression uses one audio signal to control the dynamics of another. The kick drum makes the bass duck. The vocal pushes the music down. Here\'s how it works.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Sidechain Compression? The Pumping Effect Explained',
+    description:
+      'Sidechain compression uses one audio signal to control the dynamics of another. The kick drum makes the bass duck. The vocal pushes the music down. Here\'s how it works.',
+  },
 };
 
 export default function WhatIsSidechainCompressionPage() {

@@ -3,9 +3,20 @@ import Link from 'next/link';
 import { TOOLS } from '@/lib/tools';
 
 export const metadata: Metadata = {
-  title: 'All Audio Converters',
+  title: 'Audio Converters',
   description:
-    'All available audio conversion tools on QuickAudioConvert. Convert MP4, MOV, WAV, FLAC, ALAC, M4A, AAC, OGG, OPUS, WMA, AIFF, AMR, AC3, and more to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.',
+    'Browse all audio conversion tools — convert between MP3, WAV, FLAC, M4A, AAC, OGG, Opus, and more. Free, no account, no install required.',
+  openGraph: {
+    title: 'Audio Converters — QuickAudioConvert',
+    description:
+      'Browse all audio conversion tools — convert between MP3, WAV, FLAC, M4A, AAC, OGG, Opus, and more. Free, no account, no install required.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Audio Converters — QuickAudioConvert',
+    description:
+      'Browse all audio conversion tools — convert between MP3, WAV, FLAC, M4A, AAC, OGG, Opus, and more. Free, no account, no install required.',
+  },
 };
 
 // Group tools by output format for scannable layout

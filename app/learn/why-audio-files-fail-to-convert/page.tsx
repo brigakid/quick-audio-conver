@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Why Some Audio Files Fail to Convert',
   description:
     'Conversion failures have specific causes. Understanding which one applies determines whether a fix exists — and what it is. A diagnostic guide to the most common failure types.',
+  openGraph: {
+    title: 'Why Some Audio Files Fail to Convert',
+    description:
+      'Conversion failures have specific causes. Understanding which one applies determines whether a fix exists — and what it is. A diagnostic guide to the most common failure types.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Why Some Audio Files Fail to Convert',
+    description:
+      'Conversion failures have specific causes. Understanding which one applies determines whether a fix exists — and what it is. A diagnostic guide to the most common failure types.',
+  },
 };
 
 export default function WhyAudioFilesFailPage() {

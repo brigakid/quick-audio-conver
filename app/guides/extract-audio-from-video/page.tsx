@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'How to Extract Audio from a Video File',
   description:
     'Step-by-step: how to extract the audio track from an MP4 or MOV file and save it as MP3, WAV, M4A, AAC, OGG, or OPUS. No software installation required.',
+  openGraph: {
+    title: 'How to Extract Audio from a Video File',
+    description:
+      'Step-by-step: how to extract the audio track from an MP4 or MOV file and save it as MP3, WAV, M4A, AAC, OGG, or OPUS. No software installation required.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'How to Extract Audio from a Video File',
+    description:
+      'Step-by-step: how to extract the audio track from an MP4 or MOV file and save it as MP3, WAV, M4A, AAC, OGG, or OPUS. No software installation required.',
+  },
 };
 
 export default function ExtractAudioFromVideoPage() {

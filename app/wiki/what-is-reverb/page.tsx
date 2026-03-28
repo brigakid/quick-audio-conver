@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Reverb in Audio? Room, Plate, Hall, and Why It Matters',
   description:
     'Reverb is the persistence of sound after the source stops — the natural result of sound bouncing off surfaces. In audio production, it places sounds in imaginary spaces.',
+  openGraph: {
+    title: 'What Is Reverb in Audio? Room, Plate, Hall, and Why It Matters',
+    description:
+      'Reverb is the persistence of sound after the source stops — the natural result of sound bouncing off surfaces. In audio production, it places sounds in imaginary spaces.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Reverb in Audio? Room, Plate, Hall, and Why It Matters',
+    description:
+      'Reverb is the persistence of sound after the source stops — the natural result of sound bouncing off surfaces. In audio production, it places sounds in imaginary spaces.',
+  },
 };
 
 export default function WhatIsReverbPage() {

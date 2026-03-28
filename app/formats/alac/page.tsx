@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is ALAC? Apple Lossless Audio Format Guide',
   description:
     "ALAC is Apple's lossless audio codec — same quality as WAV, 40–60% smaller, natively supported on Apple devices. Learn when to use ALAC and how to convert it.",
+  openGraph: {
+    title: 'What Is ALAC? Apple Lossless Audio Format Guide',
+    description:
+      "ALAC is Apple's lossless audio codec — same quality as WAV, 40–60% smaller, natively supported on Apple devices. Learn when to use ALAC and how to convert it.",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is ALAC? Apple Lossless Audio Format Guide',
+    description:
+      "ALAC is Apple's lossless audio codec — same quality as WAV, 40–60% smaller, natively supported on Apple devices. Learn when to use ALAC and how to convert it.",
+  },
 };
 
 export default function AlacFormatPage() {

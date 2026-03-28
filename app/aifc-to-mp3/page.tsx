@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'AIFC to MP3 Converter — Free Online',
+  title: 'AIFC to MP3 Converter',
   description:
-    'Convert AIFC to MP3 online for free. Convert compressed AIFF audio files to widely compatible MP3. No signup required.',
+    'Convert AIFC (compressed AIFF) audio to MP3. Works with AIFC files from Apple and professional audio software. Free, no account, no install required.',
+  openGraph: {
+    title: 'AIFC to MP3 Converter',
+    description:
+      'Convert AIFC (compressed AIFF) audio to MP3. Works with AIFC files from Apple and professional audio software. Free, no account, no install required.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AIFC to MP3 Converter',
+    description:
+      'Convert AIFC (compressed AIFF) audio to MP3. Works with AIFC files from Apple and professional audio software. Free, no account, no install required.',
+  },
 };
 
 export default function AifcToMp3Page() {

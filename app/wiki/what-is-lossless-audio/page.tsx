@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Lossless Audio? What It Means and When It Matters',
   description:
     'Lossless audio means no audio data was discarded during compression. Formats like FLAC, WAV, and ALAC are lossless. Here\'s what that actually guarantees — and when it matters.',
+  openGraph: {
+    title: 'What Is Lossless Audio? What It Means and When It Matters',
+    description:
+      'Lossless audio means no audio data was discarded during compression. Formats like FLAC, WAV, and ALAC are lossless. Here\'s what that actually guarantees — and when it matters.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Lossless Audio? What It Means and When It Matters',
+    description:
+      'Lossless audio means no audio data was discarded during compression. Formats like FLAC, WAV, and ALAC are lossless. Here\'s what that actually guarantees — and when it matters.',
+  },
 };
 
 export default function WhatIsLosslessAudioPage() {

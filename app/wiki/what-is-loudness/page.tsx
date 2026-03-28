@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Loudness in Audio? LUFS, Volume, and Streaming Normalisation',
   description:
     'Loudness isn\'t the same as volume. It\'s a measure of how audio is perceived over time. Streaming platforms normalise to specific LUFS targets — here\'s what that means for your audio.',
+  openGraph: {
+    title: 'What Is Loudness in Audio? LUFS, Volume, and Streaming Normalisation',
+    description:
+      'Loudness isn\'t the same as volume. It\'s a measure of how audio is perceived over time. Streaming platforms normalise to specific LUFS targets — here\'s what that means for your audio.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Loudness in Audio? LUFS, Volume, and Streaming Normalisation',
+    description:
+      'Loudness isn\'t the same as volume. It\'s a measure of how audio is perceived over time. Streaming platforms normalise to specific LUFS targets — here\'s what that means for your audio.',
+  },
 };
 
 export default function WhatIsLoudnessPage() {

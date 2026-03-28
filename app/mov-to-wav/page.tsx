@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'MOV to WAV Converter — Free Online',
+  title: 'MOV to WAV Converter',
   description:
-    'Convert MOV to WAV online for free. Extract uncompressed audio from a QuickTime MOV video file — ideal for editing software and professional audio workflows.',
+    'Extract uncompressed audio from a QuickTime MOV video and save it as WAV — ideal for DAWs, audio editors, and professional workflows. Free, no account.',
+  openGraph: {
+    title: 'MOV to WAV Converter',
+    description:
+      'Extract uncompressed audio from a QuickTime MOV video and save it as WAV — ideal for DAWs, audio editors, and professional workflows. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'MOV to WAV Converter',
+    description:
+      'Extract uncompressed audio from a QuickTime MOV video and save it as WAV — ideal for DAWs, audio editors, and professional workflows. Free, no account.',
+  },
 };
 
 export default function MovToWavPage() {

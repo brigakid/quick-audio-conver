@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Audio Quality? It\'s Not Just Bitrate',
   description:
     'Audio quality isn\'t one number. It\'s a combination of frequency response, dynamic range, noise floor, and more. Here\'s what actually determines whether audio sounds good.',
+  openGraph: {
+    title: 'What Is Audio Quality? It\'s Not Just Bitrate',
+    description:
+      'Audio quality isn\'t one number. It\'s a combination of frequency response, dynamic range, noise floor, and more. Here\'s what actually determines whether audio sounds good.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Audio Quality? It\'s Not Just Bitrate',
+    description:
+      'Audio quality isn\'t one number. It\'s a combination of frequency response, dynamic range, noise floor, and more. Here\'s what actually determines whether audio sounds good.',
+  },
 };
 
 export default function WhatIsAudioQualityPage() {

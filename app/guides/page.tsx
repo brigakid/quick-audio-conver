@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import GuideCard from '@/components/content/GuideCard';
 
 export const metadata: Metadata = {
-  title: 'Audio Guides',
+  title: 'Audio Conversion Guides',
   description:
-    'Practical guides on audio formats, quality, conversion decisions, and troubleshooting. Format comparisons, bitrate explanations, and workflow recommendations.',
+    'Practical guides for audio format decisions — MP3 vs WAV, bitrate selection, podcast formats, and conversion troubleshooting. Written for real workflows.',
+  openGraph: {
+    title: 'Audio Conversion Guides — QuickAudioConvert',
+    description:
+      'Practical guides for audio format decisions — MP3 vs WAV, bitrate selection, podcast formats, and conversion troubleshooting.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Audio Conversion Guides — QuickAudioConvert',
+    description:
+      'Practical guides for audio format decisions — MP3 vs WAV, bitrate selection, podcast formats, and conversion troubleshooting.',
+  },
 };
 
 const GUIDES = [

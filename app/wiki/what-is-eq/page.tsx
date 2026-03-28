@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is EQ in Audio? Equalisation Explained Simply',
   description:
     'EQ (equalisation) adjusts the volume of specific frequency ranges in audio. It\'s the most fundamental audio tool — in recording, mixing, mastering, and podcast production.',
+  openGraph: {
+    title: 'What Is EQ in Audio? Equalisation Explained Simply',
+    description:
+      'EQ (equalisation) adjusts the volume of specific frequency ranges in audio. It\'s the most fundamental audio tool — in recording, mixing, mastering, and podcast production.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is EQ in Audio? Equalisation Explained Simply',
+    description:
+      'EQ (equalisation) adjusts the volume of specific frequency ranges in audio. It\'s the most fundamental audio tool — in recording, mixing, mastering, and podcast production.',
+  },
 };
 
 export default function WhatIsEqPage() {

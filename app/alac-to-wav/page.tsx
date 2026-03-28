@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'ALAC to WAV Converter — Free Online',
+  title: 'ALAC to WAV Converter',
   description:
-    'Convert ALAC to WAV online for free. Convert Apple Lossless audio to uncompressed WAV for editing software, DAWs, and professional workflows.',
+    'Convert Apple Lossless (ALAC) to uncompressed WAV for editing software, DAWs, and professional workflows. Both are lossless — no quality change. Free, no account.',
+  openGraph: {
+    title: 'ALAC to WAV Converter',
+    description:
+      'Convert Apple Lossless (ALAC) to uncompressed WAV for editing software, DAWs, and professional workflows. Both are lossless — no quality change. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'ALAC to WAV Converter',
+    description:
+      'Convert Apple Lossless (ALAC) to uncompressed WAV for editing software, DAWs, and professional workflows. Both are lossless — no quality change. Free, no account.',
+  },
 };
 
 export default function AlacToWavPage() {

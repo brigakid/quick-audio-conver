@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Codec vs Container: What\'s the Difference in Audio?',
   description:
     'A container is the file wrapper (MP4, M4A, WAV). A codec is the compression algorithm inside it (AAC, MP3, PCM). The same container can hold different codecs — here\'s why that matters.',
+  openGraph: {
+    title: 'Codec vs Container: What\'s the Difference in Audio?',
+    description:
+      'A container is the file wrapper (MP4, M4A, WAV). A codec is the compression algorithm inside it (AAC, MP3, PCM). The same container can hold different codecs — here\'s why that matters.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Codec vs Container: What\'s the Difference in Audio?',
+    description:
+      'A container is the file wrapper (MP4, M4A, WAV). A codec is the compression algorithm inside it (AAC, MP3, PCM). The same container can hold different codecs — here\'s why that matters.',
+  },
 };
 
 export default function CodecVsContainerPage() {

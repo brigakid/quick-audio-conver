@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'WMA to MP3 Converter — Convert Old Windows Media Audio Files',
+  title: 'WMA to MP3 Converter',
   description:
-    'Convert WMA files to MP3 online for free. Works with Windows Media Player rips, old music libraries, and WMA voice recordings. No software needed.',
+    'Convert WMA files to MP3. Works with Windows Media Player rips, old music libraries, and WMA voice recordings. Free, no account, no software to install.',
+  openGraph: {
+    title: 'WMA to MP3 Converter',
+    description:
+      'Convert WMA files to MP3. Works with Windows Media Player rips, old music libraries, and WMA voice recordings. Free, no account, no software to install.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WMA to MP3 Converter',
+    description:
+      'Convert WMA files to MP3. Works with Windows Media Player rips, old music libraries, and WMA voice recordings. Free, no account, no software to install.',
+  },
 };
 
 export default function WmaToMp3Page() {

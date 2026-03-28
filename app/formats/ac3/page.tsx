@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is AC3? Dolby Digital Audio Format Guide',
   description:
     'AC3 (Dolby Digital) is a compressed multichannel audio format used in DVDs, Blu-rays, and broadcast media. Learn what AC3 is and how to convert AC3 files to MP3 or WAV.',
+  openGraph: {
+    title: 'What Is AC3? Dolby Digital Audio Format Guide',
+    description:
+      'AC3 (Dolby Digital) is a compressed multichannel audio format used in DVDs, Blu-rays, and broadcast media. Learn what AC3 is and how to convert AC3 files to MP3 or WAV.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is AC3? Dolby Digital Audio Format Guide',
+    description:
+      'AC3 (Dolby Digital) is a compressed multichannel audio format used in DVDs, Blu-rays, and broadcast media. Learn what AC3 is and how to convert AC3 files to MP3 or WAV.',
+  },
 };
 
 export default function Ac3FormatPage() {

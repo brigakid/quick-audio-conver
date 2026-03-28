@@ -4,7 +4,18 @@ import Link from 'next/link';
 export const metadata: Metadata = {
   title: 'About',
   description:
-    'QuickAudioConvert is a free audio converter built on the principle that converting a file should not require an account, a download, or a guess about what happens to your data.',
+    'QuickAudioConvert is a free audio converter — no account, no downloads, no guessing about what happens to your files. Fast, private, and straightforward.',
+  openGraph: {
+    title: 'About QuickAudioConvert',
+    description:
+      'QuickAudioConvert is a free audio converter — no account, no downloads, no guessing about what happens to your files. Fast, private, and straightforward.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'About QuickAudioConvert',
+    description:
+      'QuickAudioConvert is a free audio converter — no account, no downloads, no guessing about what happens to your files.',
+  },
 };
 
 const quickLinks = [

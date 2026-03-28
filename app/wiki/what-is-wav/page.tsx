@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is WAV Audio? Why It\'s Used for Editing (and When to Avoid It)',
   description:
     'WAV stores uncompressed audio — no quality trade-off, but very large files. The standard for professional editing. Here\'s when WAV makes sense and when it doesn\'t.',
+  openGraph: {
+    title: 'What Is WAV Audio? Why It\'s Used for Editing (and When to Avoid It)',
+    description:
+      'WAV stores uncompressed audio — no quality trade-off, but very large files. The standard for professional editing. Here\'s when WAV makes sense and when it doesn\'t.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is WAV Audio? Why It\'s Used for Editing (and When to Avoid It)',
+    description:
+      'WAV stores uncompressed audio — no quality trade-off, but very large files. The standard for professional editing. Here\'s when WAV makes sense and when it doesn\'t.',
+  },
 };
 
 export default function WhatIsWavPage() {

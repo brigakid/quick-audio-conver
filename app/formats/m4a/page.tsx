@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is M4A? Format Guide',
   description:
     "M4A is Apple's audio format, built on the AAC codec. Learn how it compares to MP3, when it works well, and when you should convert it for broader compatibility.",
+  openGraph: {
+    title: 'What Is M4A? Format Guide',
+    description:
+      "M4A is Apple's audio format, built on the AAC codec. Learn how it compares to MP3, when it works well, and when you should convert it for broader compatibility.",
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is M4A? Format Guide',
+    description:
+      "M4A is Apple's audio format, built on the AAC codec. Learn how it compares to MP3, when it works well, and when you should convert it for broader compatibility.",
+  },
 };
 
 export default function M4aFormatPage() {

@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'When MP3 Is Good Enough — and When It Isn\'t',
   description:
     'MP3 at 192 kbps is audibly transparent for most listeners in most situations. The genuine exceptions — editing, archiving, professional monitoring — are narrower than most people assume.',
+  openGraph: {
+    title: 'When MP3 Is Good Enough — and When It Isn\'t',
+    description:
+      'MP3 at 192 kbps is audibly transparent for most listeners in most situations. The genuine exceptions — editing, archiving, professional monitoring — are narrower than most people assume.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'When MP3 Is Good Enough — and When It Isn\'t',
+    description:
+      'MP3 at 192 kbps is audibly transparent for most listeners in most situations. The genuine exceptions — editing, archiving, professional monitoring — are narrower than most people assume.',
+  },
 };
 
 export default function WhenMp3IsGoodEnoughPage() {

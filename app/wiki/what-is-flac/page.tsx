@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is FLAC? Lossless Audio Compression Explained',
   description:
     'FLAC stores the exact same audio as WAV but in 40–60% less space. The preferred format for archiving, hi-fi listening, and sharing audio between producers. Here\'s how it works.',
+  openGraph: {
+    title: 'What Is FLAC? Lossless Audio Compression Explained',
+    description:
+      'FLAC stores the exact same audio as WAV but in 40–60% less space. The preferred format for archiving, hi-fi listening, and sharing audio between producers. Here\'s how it works.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is FLAC? Lossless Audio Compression Explained',
+    description:
+      'FLAC stores the exact same audio as WAV but in 40–60% less space. The preferred format for archiving, hi-fi listening, and sharing audio between producers. Here\'s how it works.',
+  },
 };
 
 export default function WhatIsFlacPage() {

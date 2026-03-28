@@ -7,6 +7,17 @@ export const metadata: Metadata = {
   title: 'What Is MP3? Format Guide',
   description:
     'MP3 is the most widely supported audio format. Learn how it works, when to use it, its trade-offs, and which formats to compare it against.',
+  openGraph: {
+    title: 'What Is MP3? Format Guide',
+    description:
+      'MP3 is the most widely supported audio format. Learn how it works, when to use it, its trade-offs, and which formats to compare it against.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is MP3? Format Guide',
+    description:
+      'MP3 is the most widely supported audio format. Learn how it works, when to use it, its trade-offs, and which formats to compare it against.',
+  },
 };
 
 export default function Mp3FormatPage() {

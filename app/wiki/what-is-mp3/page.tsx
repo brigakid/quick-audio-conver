@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is MP3? How It Works, Why It\'s Still Everywhere',
   description:
     'MP3 is a lossy audio format from 1993. It\'s not the best-sounding codec available today — but it plays on everything, which is why it still dominates audio distribution.',
+  openGraph: {
+    title: 'What Is MP3? How It Works, Why It\'s Still Everywhere',
+    description:
+      'MP3 is a lossy audio format from 1993. It\'s not the best-sounding codec available today — but it plays on everything, which is why it still dominates audio distribution.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is MP3? How It Works, Why It\'s Still Everywhere',
+    description:
+      'MP3 is a lossy audio format from 1993. It\'s not the best-sounding codec available today — but it plays on everything, which is why it still dominates audio distribution.',
+  },
 };
 
 export default function WhatIsMp3Page() {

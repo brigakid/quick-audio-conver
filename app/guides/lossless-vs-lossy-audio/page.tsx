@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'Lossless vs Lossy Audio Explained',
   description:
     'What lossless and lossy audio mean, which formats fall into each category, and why the distinction matters when you are converting or archiving audio.',
+  openGraph: {
+    title: 'Lossless vs Lossy Audio Explained',
+    description:
+      'What lossless and lossy audio mean, which formats fall into each category, and why the distinction matters when you are converting or archiving audio.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Lossless vs Lossy Audio Explained',
+    description:
+      'What lossless and lossy audio mean, which formats fall into each category, and why the distinction matters when you are converting or archiving audio.',
+  },
 };
 
 export default function LosslessVsLossyPage() {

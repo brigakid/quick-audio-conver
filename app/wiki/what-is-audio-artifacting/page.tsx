@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Audio Artifacting? The Sounds Compression Creates',
   description:
     'Audio artifacts are strange sounds introduced by lossy compression or over-processing. Smearing, pre-echo, the metallic shimmer. Here\'s what causes each type and how to avoid them.',
+  openGraph: {
+    title: 'What Is Audio Artifacting? The Sounds Compression Creates',
+    description:
+      'Audio artifacts are strange sounds introduced by lossy compression or over-processing. Smearing, pre-echo, the metallic shimmer. Here\'s what causes each type and how to avoid them.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Audio Artifacting? The Sounds Compression Creates',
+    description:
+      'Audio artifacts are strange sounds introduced by lossy compression or over-processing. Smearing, pre-echo, the metallic shimmer. Here\'s what causes each type and how to avoid them.',
+  },
 };
 
 export default function WhatIsAudioArtifactingPage() {

@@ -5,6 +5,17 @@ export const metadata: Metadata = {
   title: 'WAV to MP3 Converter',
   description:
     'Convert large WAV audio files to MP3 for easy sharing and uploading. Choose your bitrate and download a compressed MP3 in seconds. Free and private.',
+  openGraph: {
+    title: 'WAV to MP3 Converter',
+    description:
+      'Convert large WAV audio files to MP3 for easy sharing and uploading. Choose your bitrate and download a compressed MP3 in seconds. Free and private.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'WAV to MP3 Converter',
+    description:
+      'Convert large WAV audio files to MP3 for easy sharing and uploading. Choose your bitrate and download a compressed MP3 in seconds. Free and private.',
+  },
 };
 
 export default function WavToMp3Page() {

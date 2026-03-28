@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
-  description: 'Learn how QuickAudioConvert handles your files and data. We do not store your files permanently.',
+  description: 'How QuickAudioConvert handles your files and data. Uploaded files are processed server-side and deleted automatically — never stored permanently.',
+  robots: { index: false },
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

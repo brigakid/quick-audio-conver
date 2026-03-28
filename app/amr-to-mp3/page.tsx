@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'AMR to MP3 Converter — Free Online',
+  title: 'AMR to MP3 Converter',
   description:
-    'Convert AMR to MP3 online for free. Convert voice recordings from older mobile phones to widely compatible MP3. No signup required.',
+    'Convert AMR voice recordings to MP3. Works with mobile phone call recordings, voice memos, and any .amr file. Free, no account, no install required.',
+  openGraph: {
+    title: 'AMR to MP3 Converter',
+    description:
+      'Convert AMR voice recordings to MP3. Works with mobile phone call recordings, voice memos, and any .amr file. Free, no account, no install required.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AMR to MP3 Converter',
+    description:
+      'Convert AMR voice recordings to MP3. Works with mobile phone call recordings, voice memos, and any .amr file. Free, no account, no install required.',
+  },
 };
 
 export default function AmrToMp3Page() {

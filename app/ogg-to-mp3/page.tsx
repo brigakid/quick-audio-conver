@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'OGG to MP3 Converter — Game Audio, Linux Files, Bandcamp Downloads',
+  title: 'OGG to MP3 Converter',
   description:
-    'Convert OGG Vorbis files to MP3 online for free. Extract audio from games, convert Bandcamp downloads, or move Linux audio files to a universally compatible format.',
+    'Convert OGG Vorbis files to MP3. Works with game audio, Bandcamp downloads, and Linux audio files. Upload, choose your bitrate, and download instantly. Free, no account.',
+  openGraph: {
+    title: 'OGG to MP3 Converter',
+    description:
+      'Convert OGG Vorbis files to MP3. Works with game audio, Bandcamp downloads, and Linux audio files. Upload, choose your bitrate, and download instantly. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'OGG to MP3 Converter',
+    description:
+      'Convert OGG Vorbis files to MP3. Works with game audio, Bandcamp downloads, and Linux audio files. Upload, choose your bitrate, and download instantly. Free, no account.',
+  },
 };
 
 export default function OggToMp3Page() {

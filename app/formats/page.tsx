@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
-  title: 'Audio Formats Guide',
+  title: 'Audio Format Guide',
   description:
-    'Learn about MP3, WAV, FLAC, ALAC, M4A, AAC, OGG, AIFF, AMR, AC3, MOV, and more. Understand what each format is, when to use it, and which converter to use.',
+    'Reference guide to MP3, WAV, FLAC, M4A, AAC, OGG, AIFF, ALAC, AMR, AC3, MOV, and more — what each format is, when to use it, and which converters apply.',
 };
 
 const FORMATS = [

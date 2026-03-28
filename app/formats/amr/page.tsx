@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is AMR? Audio Format Guide',
   description:
     'AMR is a voice-optimised audio codec used in mobile phone recordings. Learn what AMR is, where it comes from, and how to convert AMR files to MP3 or WAV.',
+  openGraph: {
+    title: 'What Is AMR? Audio Format Guide',
+    description:
+      'AMR is a voice-optimised audio codec used in mobile phone recordings. Learn what AMR is, where it comes from, and how to convert AMR files to MP3 or WAV.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is AMR? Audio Format Guide',
+    description:
+      'AMR is a voice-optimised audio codec used in mobile phone recordings. Learn what AMR is, where it comes from, and how to convert AMR files to MP3 or WAV.',
+  },
 };
 
 export default function AmrFormatPage() {

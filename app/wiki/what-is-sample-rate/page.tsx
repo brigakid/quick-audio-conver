@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Sample Rate in Audio? 44.1kHz, 48kHz, and Why It Matters',
   description:
     'Sample rate is how many times per second audio is measured. Higher isn\'t always better. Here\'s what 44.1kHz and 48kHz actually mean — and when the difference matters.',
+  openGraph: {
+    title: 'What Is Sample Rate in Audio? 44.1kHz, 48kHz, and Why It Matters',
+    description:
+      'Sample rate is how many times per second audio is measured. Higher isn\'t always better. Here\'s what 44.1kHz and 48kHz actually mean — and when the difference matters.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Sample Rate in Audio? 44.1kHz, 48kHz, and Why It Matters',
+    description:
+      'Sample rate is how many times per second audio is measured. Higher isn\'t always better. Here\'s what 44.1kHz and 48kHz actually mean — and when the difference matters.',
+  },
 };
 
 export default function WhatIsSampleRatePage() {

@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'What Is Lossy Audio? How Compression Removes Sound',
   description:
     'Lossy audio formats permanently remove audio data to shrink file sizes. Here\'s exactly what gets removed, how audible it is, and when lossy compression is completely fine.',
+  openGraph: {
+    title: 'What Is Lossy Audio? How Compression Removes Sound',
+    description:
+      'Lossy audio formats permanently remove audio data to shrink file sizes. Here\'s exactly what gets removed, how audible it is, and when lossy compression is completely fine.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is Lossy Audio? How Compression Removes Sound',
+    description:
+      'Lossy audio formats permanently remove audio data to shrink file sizes. Here\'s exactly what gets removed, how audible it is, and when lossy compression is completely fine.',
+  },
 };
 
 export default function WhatIsLossyAudioPage() {

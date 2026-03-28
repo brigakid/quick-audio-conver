@@ -9,6 +9,17 @@ export const metadata: Metadata = {
   title: 'AAC, M4A, and MP3: What Actually Matters',
   description:
     'AAC is a codec. M4A is a container. MP3 is a different, older codec. Understanding the difference tells you when to convert and when compatibility is the only real concern.',
+  openGraph: {
+    title: 'AAC, M4A, and MP3: What Actually Matters',
+    description:
+      'AAC is a codec. M4A is a container. MP3 is a different, older codec. Understanding the difference tells you when to convert and when compatibility is the only real concern.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AAC, M4A, and MP3: What Actually Matters',
+    description:
+      'AAC is a codec. M4A is a container. MP3 is a different, older codec. Understanding the difference tells you when to convert and when compatibility is the only real concern.',
+  },
 };
 
 export default function AacM4aMp3Page() {

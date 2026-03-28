@@ -6,6 +6,17 @@ export const metadata: Metadata = {
   title: 'What Is OGG? Format Guide',
   description:
     'OGG Vorbis is a free, open-source audio format. Learn how it compares to MP3, where it\'s supported, and when you might need to convert OGG files.',
+  openGraph: {
+    title: 'What Is OGG? Format Guide',
+    description:
+      'OGG Vorbis is a free, open-source audio format. Learn how it compares to MP3, where it\'s supported, and when you might need to convert OGG files.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'What Is OGG? Format Guide',
+    description:
+      'OGG Vorbis is a free, open-source audio format. Learn how it compares to MP3, where it\'s supported, and when you might need to convert OGG files.',
+  },
 };
 
 export default function OggFormatPage() {

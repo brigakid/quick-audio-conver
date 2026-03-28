@@ -12,7 +12,18 @@ import AdSlot from '@/components/ads/AdSlot';
 export const metadata: Metadata = {
   title: 'Free Online Audio Converter',
   description:
-    'Convert audio and video files to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS. Upload MP4, MOV, WAV, FLAC, ALAC, M4A, MP3, AAC, OGG, AIFF, AMR, AC3, WMA, and more — no account required, files deleted automatically.',
+    'Convert audio and video to MP3, WAV, FLAC, M4A, and more. No account needed — upload, convert, and download in seconds. Files are deleted automatically.',
+  openGraph: {
+    title: 'QuickAudioConvert — Free Online Audio Converter',
+    description:
+      'Convert audio and video to MP3, WAV, FLAC, M4A, and more. No account needed — upload, convert, and download in seconds. Files are deleted automatically.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'QuickAudioConvert — Free Online Audio Converter',
+    description:
+      'Convert audio and video to MP3, WAV, FLAC, M4A, and more. No account needed — upload, convert, and download in seconds.',
+  },
 };
 
 export default function HomePage() {

@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'AC3 to MP3 Converter — Free Online',
+  title: 'AC3 to MP3 Converter',
   description:
-    'Convert AC3 to MP3 online for free. Convert Dolby Digital audio tracks from video files to universally compatible MP3. No signup required.',
+    'Convert Dolby Digital (AC3) audio tracks from video files to MP3. Works with standalone .ac3 files and extracted audio tracks. Free, no account needed.',
+  openGraph: {
+    title: 'AC3 to MP3 Converter',
+    description:
+      'Convert Dolby Digital (AC3) audio tracks from video files to MP3. Works with standalone .ac3 files and extracted audio tracks. Free, no account needed.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AC3 to MP3 Converter',
+    description:
+      'Convert Dolby Digital (AC3) audio tracks from video files to MP3. Works with standalone .ac3 files and extracted audio tracks. Free, no account needed.',
+  },
 };
 
 export default function Ac3ToMp3Page() {

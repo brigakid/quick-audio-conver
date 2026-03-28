@@ -2,9 +2,20 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
-  title: 'AC3 to WAV Converter — Free Online',
+  title: 'AC3 to WAV Converter',
   description:
-    'Convert AC3 to WAV online for free. Convert Dolby Digital audio to uncompressed WAV for editing, mixing, and audio post-production workflows.',
+    'Convert Dolby Digital (AC3) audio to uncompressed WAV for editing, mixing, and post-production workflows. Works with AC3 tracks from video containers. Free, no account.',
+  openGraph: {
+    title: 'AC3 to WAV Converter',
+    description:
+      'Convert Dolby Digital (AC3) audio to uncompressed WAV for editing, mixing, and post-production workflows. Works with AC3 tracks from video containers. Free, no account.',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'AC3 to WAV Converter',
+    description:
+      'Convert Dolby Digital (AC3) audio to uncompressed WAV for editing, mixing, and post-production workflows. Works with AC3 tracks from video containers. Free, no account.',
+  },
 };
 
 export default function Ac3ToWavPage() {
