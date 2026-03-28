@@ -2,13 +2,16 @@
  * lib/tools.ts — canonical list of dedicated conversion tool pages.
  *
  * This is the single source of truth consumed by:
- *   - components/layout/Footer.tsx       (navigation links)
- *   - components/marketing/ToolsGrid.tsx (homepage tool cards)
+ *   - components/layout/Footer.tsx         (navigation links)
+ *   - components/marketing/ToolsGrid.tsx   (homepage tabbed converter section)
+ *   - app/converters/page.tsx              (full conversion matrix page)
  *
  * To add a new tool page:
  *   1. Add one entry to the TOOLS array below.
  *   2. Create the corresponding app/[route]/page.tsx.
- *   Footer and ToolsGrid update automatically — no other changes needed.
+ *   Footer and the output-filtered tabs (To MP3, To WAV, To M4A) update
+ *   automatically. The hand-curated tabs (Popular, Lossless, Video, Legacy)
+ *   require explicit additions to the byHrefs() lists in ToolsGrid.tsx.
  */
 
 export interface ToolEntry {
@@ -20,7 +23,7 @@ export interface ToolEntry {
   inputFormat: string;
   /** Output format key — must match a value in the OutputFormat union */
   outputFormat: string;
-  /** One-sentence description shown in the homepage ToolsGrid card */
+  /** One-sentence description — shown on the /converters index and on dedicated tool pages */
   description: string;
 }
 
