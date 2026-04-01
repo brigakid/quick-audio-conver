@@ -18,7 +18,7 @@ type GaParams = Record<string, string | number | boolean>;
 /**
  * Fire a GA4 custom event.  No-ops gracefully if gtag is unavailable.
  *
- * @param name   GA4 event name  (e.g. 'audio_conversion_completed')
+ * @param name   GA4 event name  (e.g. 'conversion_success')
  * @param params Key/value event parameters to send alongside the event
  */
 export function trackEvent(name: string, params: GaParams): void {

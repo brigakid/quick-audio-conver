@@ -4,6 +4,7 @@ import { useRef, useState, DragEvent, ChangeEvent } from 'react';
 import { cn } from '@/lib/utils';
 import type { InputFormat } from '@/types/conversion';
 import { SUPPORTED_INPUT_FORMATS } from '@/lib/conversion-rules';
+import { trackEvent } from '@/lib/analytics';
 
 interface UploadAreaProps {
   onFileSelected: (file: File) => void;
@@ -64,7 +65,7 @@ export default function UploadArea({ onFileSelected, disabled }: UploadAreaProps
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
-        onClick={() => !disabled && inputRef.current?.click()}
+        onClick={() => { if (!disabled) { trackEvent('upload_click', {}); inputRef.current?.click(); } }}
         onKeyDown={(e) => e.key === 'Enter' && !disabled && inputRef.current?.click()}
         className={cn(
           'relative flex flex-col items-center justify-center gap-2.5 w-full rounded-2xl border-2 border-dashed transition-all duration-200 cursor-pointer',

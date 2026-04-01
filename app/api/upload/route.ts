@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import fs from 'fs';
-import { validateFile } from '@/lib/file-validation';
+import { validateFile, MAX_FILE_SIZE_MB } from '@/lib/file-validation';
 import { isConversionAllowed } from '@/lib/conversion-rules';
 import { createJob, getTempInputPath } from '@/lib/temp-storage';
 import { checkRateLimit, getClientIdentifier } from '@/lib/rate-limit';
@@ -11,6 +11,12 @@ const VALID_OUTPUT_FORMATS: OutputFormat[] = ['mp3', 'wav', 'm4a', 'flac', 'aac'
 const VALID_BITRATES: Bitrate[] = ['128', '192', '320'];
 const VALID_SAMPLE_RATES: SampleRate[] = ['22050', '44100', '48000'];
 const VALID_CHANNELS: Channels[] = ['mono', 'stereo'];
+
+// Limit simultaneous file uploads to cap peak RAM from request-body buffering.
+// Each concurrent upload holds the full file in RAM (via req.formData()).
+// At the 200 MB file limit, 3 concurrent uploads = up to ~600 MB of upload RAM.
+const MAX_CONCURRENT_UPLOADS = parseInt(process.env.MAX_CONCURRENT_UPLOADS || '3', 10);
+let activeUploads = 0;
 
 export async function POST(req: NextRequest) {
   // Rate limiting
@@ -23,9 +29,45 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Run cleanup in the background on each upload (lightweight)
+  // Reject clearly oversized requests BEFORE buffering the body.
+  // req.formData() buffers the entire multipart body into RAM; if a client sends
+  // a 1 GB file, all 1 GB is allocated before validateFile() can reject it.
+  // Content-Length is always sent by browsers for multipart/form-data POSTs.
+  // Multipart boundary/header overhead is a few KB; the 5 MB margin is generous.
+  const rawContentLength = req.headers.get('content-length');
+  if (rawContentLength) {
+    const contentLength = parseInt(rawContentLength, 10);
+    if (!isNaN(contentLength) && contentLength > (MAX_FILE_SIZE_MB + 5) * 1024 * 1024) {
+      return NextResponse.json(
+        { success: false, error: `File too large. Maximum allowed size is ${MAX_FILE_SIZE_MB} MB.` },
+        { status: 413 }
+      );
+    }
+  }
+
+  // Concurrent upload gate — checked BEFORE body parsing to prevent queued
+  // requests from buffering the body while waiting for a slot.
+  if (activeUploads >= MAX_CONCURRENT_UPLOADS) {
+    return NextResponse.json(
+      { success: false, error: 'Server is busy. Please try again in a moment.' },
+      { status: 503, headers: { 'Retry-After': '5' } }
+    );
+  }
+
+  // Run cleanup in the background on each upload
   try { runFullCleanup(); } catch {}
 
+  // Increment BEFORE formData parsing — that is the expensive RAM allocation.
+  // Use try/finally so the counter always decrements, even on unexpected throws.
+  activeUploads++;
+  try {
+    return await handleUpload(req);
+  } finally {
+    activeUploads--;
+  }
+}
+
+async function handleUpload(req: NextRequest): Promise<NextResponse> {
   let formData: FormData;
   try {
     formData = await req.formData();
@@ -99,10 +141,12 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  // Write file to temp storage
+  // Write file to temp storage asynchronously to avoid blocking the event loop.
+  // writeFileSync holds the event loop for the full duration of the write (up to
+  // several hundred milliseconds for a large file on a busy disk).
   const inputPath = getTempInputPath(inputFormat);
   try {
-    fs.writeFileSync(inputPath, buffer);
+    await fs.promises.writeFile(inputPath, buffer);
   } catch {
     return NextResponse.json(
       { success: false, error: 'Failed to save the uploaded file. Please try again.' },

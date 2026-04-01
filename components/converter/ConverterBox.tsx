@@ -16,6 +16,23 @@ import { trackEvent } from '@/lib/analytics';
 import type { Preset } from '@/lib/presets';
 import type { InputFormat, OutputFormat, Bitrate, SampleRate, Channels, JobStatus } from '@/types/conversion';
 
+function fileSizeBucket(bytes: number): string {
+  const mb = bytes / 1024 / 1024;
+  if (mb < 1)  return '<1MB';
+  if (mb < 10) return '1-10MB';
+  if (mb < 50) return '10-50MB';
+  return '>50MB';
+}
+
+function getErrorType(message: string): string {
+  const m = message.toLowerCase();
+  if (m.includes('upload'))           return 'upload_failed';
+  if (m.includes('taking too long'))  return 'timeout';
+  if (m.includes('status check'))     return 'status_check_failed';
+  if (m.includes('conversion fail') || m.includes('corrupt')) return 'conversion_failed';
+  return 'unknown';
+}
+
 interface ConverterBoxProps {
   presetInputFormat?: InputFormat;
   presetOutputFormat?: OutputFormat;
@@ -115,10 +132,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setInputFormat(getExtension(f.name) as InputFormat);
     setPhase('ready');
     setErrorMsg(null);
-    trackEvent('audio_upload_started', {
-      input_format: getExtension(f.name),
-      file_size_mb: Math.round((f.size / 1024 / 1024) * 100) / 100,
-      tool_name:    toolName,
+    trackEvent('file_selected', {
+      file_extension:   getExtension(f.name),
+      file_size_bucket: fileSizeBucket(f.size),
+      source_format:    getExtension(f.name),
+      tool_name:        toolName,
     });
     setJobId(null);
     setDownloadUrl(null);
@@ -141,6 +159,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setBitrate(preset.bitrate);
     setSampleRate(preset.sampleRate);
     setChannels(preset.channels);
+    trackEvent('format_chosen', {
+      output_format: preset.outputFormat,
+      source_format: inputFormat || '',
+      tool_name:     toolName,
+    });
   }
 
   function handleDirectFormatChange(fmt: OutputFormat) {
@@ -148,6 +171,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setSelectedPreset(null);
     setSampleRate('44100');
     setChannels('stereo');
+    trackEvent('format_chosen', {
+      output_format: fmt,
+      source_format: inputFormat || '',
+      tool_name:     toolName,
+    });
   }
 
   const handleTrimChange = useCallback((start: number, end: number) => {
@@ -176,6 +204,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     conversionStartRef.current = Date.now();
     setPhase('uploading');
     setErrorMsg(null);
+    trackEvent('conversion_start', {
+      source_format: inputFormat,
+      output_format: outputFormat,
+      tool_name:     toolName,
+    });
 
     try {
       const formData = new FormData();
@@ -231,8 +264,15 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
 
       await pollStatus(id, file, outputFormat);
     } catch (err) {
+      const msg = err instanceof Error ? err.message : 'An unexpected error occurred.';
+      trackEvent('conversion_error', {
+        source_format: inputFormat,
+        output_format: outputFormat,
+        error_type:    getErrorType(msg),
+        tool_name:     toolName,
+      });
       setPhase('error');
-      setErrorMsg(err instanceof Error ? err.message : 'An unexpected error occurred.');
+      setErrorMsg(msg);
     }
   }
 
@@ -256,13 +296,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
           conversionStartRef.current !== null
             ? Math.round((Date.now() - conversionStartRef.current) / 100) / 10
             : 0;
-        trackEvent('audio_conversion_completed', {
-          input_format:       getExtension(currentFile.name),
+        trackEvent('conversion_success', {
+          source_format:      getExtension(currentFile.name),
           output_format:      currentOutputFormat,
-          file_size_mb:       Math.round((currentFile.size / 1024 / 1024) * 100) / 100,
           conversion_seconds: conversionSeconds,
           tool_name:          toolName,
-          success:            true,
         });
         setOutputFilename(data.outputFilename || buildOutputFilename(currentFile.name, currentOutputFormat));
         setDownloadUrl(`/api/download?jobId=${id}`);

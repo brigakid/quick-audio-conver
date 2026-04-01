@@ -75,3 +75,17 @@ export function getTempOutputPath(ext: string): string {
 export function getAllJobs(): ConversionJob[] {
   return Array.from(jobStore.values());
 }
+
+/**
+ * Deletes only the input file for a job and clears inputPath from the record.
+ * Call this immediately after a successful conversion — the input is no longer
+ * needed and keeping it until TTL expiry wastes disk space (and RAM on upload).
+ */
+export function deleteInputFile(jobId: string): void {
+  const job = jobStore.get(jobId);
+  if (!job) return;
+  try {
+    if (job.inputPath && fs.existsSync(job.inputPath)) fs.unlinkSync(job.inputPath);
+  } catch {}
+  jobStore.set(jobId, { ...job, inputPath: '' });
+}

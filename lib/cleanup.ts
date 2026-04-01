@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import { getAllJobs, deleteJob, TEMP_DIR } from './temp-storage';
 
-const TTL_MINUTES = parseInt(process.env.TEMP_FILE_TTL_MINUTES || '30', 10);
+const TTL_MINUTES = parseInt(process.env.TEMP_FILE_TTL_MINUTES || '5', 10);
 const TTL_MS = TTL_MINUTES * 60 * 1000;
 
 /**
@@ -17,8 +17,13 @@ export function cleanupExpiredJobs(): number {
   for (const job of jobs) {
     // Never delete a job that is actively being converted — wait for it to finish
     if (job.status === 'processing') continue;
-    const age = now - job.createdAt;
-    if (age > TTL_MS) {
+
+    // For completed jobs, start the TTL clock from completedAt so the user
+    // always has a full TTL_MINUTES window to download after conversion finishes,
+    // regardless of how long the conversion itself took.  For failed/uploaded
+    // jobs (nothing to download) fall back to createdAt.
+    const anchor = job.completedAt ?? job.createdAt;
+    if (now - anchor > TTL_MS) {
       deleteJob(job.jobId);
       removed++;
     }
@@ -61,3 +66,12 @@ export function runFullCleanup(): { jobs: number; files: number } {
 }
 
 export { TTL_MINUTES };
+
+// Periodic background cleanup — runs every 2 minutes while the process is alive.
+// Without this, orphaned files accumulate whenever uploads are infrequent (e.g.
+// overnight), and files left by a previous crashed process are never removed.
+// .unref() prevents this timer from blocking graceful process shutdown.
+const _cleanupInterval = setInterval(() => {
+  try { runFullCleanup(); } catch {}
+}, 2 * 60 * 1000);
+if (_cleanupInterval.unref) _cleanupInterval.unref();

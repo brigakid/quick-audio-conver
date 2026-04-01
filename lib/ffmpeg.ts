@@ -1,6 +1,10 @@
 import ffmpeg from 'fluent-ffmpeg';
 import type { InputFormat, OutputFormat, Bitrate, SampleRate, Channels } from '@/types/conversion';
 
+// Hard limit on how long a single conversion may run.
+// Prevents hung ffmpeg processes from consuming CPU/RAM indefinitely.
+const CONVERSION_TIMEOUT_MS = 5 * 60 * 1000; // 5 minutes
+
 export interface ConversionOptions {
   inputPath: string;
   outputPath: string;
@@ -50,6 +54,14 @@ export function convertFile(options: ConversionOptions): Promise<ConversionResul
 
   return new Promise((resolve) => {
     const command = ffmpeg(inputPath);
+    let settled = false;
+
+    const timeoutHandle = setTimeout(() => {
+      if (settled) return;
+      settled = true;
+      try { command.kill('SIGKILL'); } catch {}
+      resolve({ success: false, error: 'Conversion timed out. Please try a smaller or simpler file.' });
+    }, CONVERSION_TIMEOUT_MS);
 
     if (outputFormat === 'mp3') {
       command
@@ -127,12 +139,15 @@ export function convertFile(options: ConversionOptions): Promise<ConversionResul
 
     command
       .on('error', (err) => {
-        resolve({
-          success: false,
-          error: sanitizeFfmpegError(err.message),
-        });
+        if (settled) return;
+        settled = true;
+        clearTimeout(timeoutHandle);
+        resolve({ success: false, error: sanitizeFfmpegError(err.message) });
       })
       .on('end', () => {
+        if (settled) return;
+        settled = true;
+        clearTimeout(timeoutHandle);
         resolve({ success: true });
       })
       .save(outputPath);

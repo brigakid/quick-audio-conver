@@ -16,7 +16,7 @@ export default function DownloadResult({ downloadUrl, filename, outputFormat, to
   const [downloading, setDownloading] = useState(false);
 
   async function handleDownload() {
-    trackEvent('audio_download_clicked', {
+    trackEvent('download_click', {
       output_format: outputFormat,
       tool_name:     toolName,
     });
