@@ -45,3 +45,4 @@ next-env.d.ts
 
 # keep .env.example but not .env.local
 !.env.example
+.claude/
