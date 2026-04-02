@@ -8,6 +8,7 @@ import PresetSelector from './PresetSelector';
 import ProgressBar from './ProgressBar';
 import DownloadResult from './DownloadResult';
 import AudioEditor from './AudioEditor';
+import BpmPanel from './BpmPanel';
 import Checkbox from '@/components/ui/Checkbox';
 import Button from '@/components/ui/Button';
 import { formatFileSize, buildOutputFilename, getExtension } from '@/lib/utils';
@@ -55,10 +56,8 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
   const [outputFilename, setOutputFilename] = useState<string>('');
   const [selectedPreset, setSelectedPreset] = useState<Preset | null>(null);
 
-  // ── Edit / trim / fade state ─────────────────────────────────────────────
-  // editEnabled controls whether the unified "Edit audio" panel is open.
-  // Trim is implicitly active when the handles have been moved from defaults.
-  const [editEnabled,     setEditEnabled]     = useState(false);
+  // ── Trim / Fade state ────────────────────────────────────────────────────
+  const [trimFadeEnabled, setTrimFadeEnabled] = useState(false);
   const [trimStart,       setTrimStart]       = useState(0);
   const [trimEnd,         setTrimEnd]         = useState(0);
   const [audioDuration,   setAudioDuration]   = useState(0);
@@ -66,9 +65,7 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
   const [fadeOutDuration, setFadeOutDuration] = useState<number | null>(null);
 
   // ── BPM / tempo state ────────────────────────────────────────────────────
-  // detectedBpm: auto-detected by AudioEditor (or null if detection failed)
-  // targetBpmStr: the user's desired output BPM as a raw input string
-  // sourceBpmStr: fallback when detection fails — user can enter source BPM manually
+  const [bpmEnabled,   setBpmEnabled]   = useState(false);
   const [detectedBpm,  setDetectedBpm]  = useState<number | null>(null);
   const [targetBpmStr, setTargetBpmStr] = useState('');
   const [sourceBpmStr, setSourceBpmStr] = useState('');
@@ -94,12 +91,10 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
   }, [file]);
 
   // ── Analytics ─────────────────────────────────────────────────────────────
-  // Stable tool identifier: "mp4-to-mp3", "wav-to-mp3", etc., or "homepage"
   const toolName =
     presetInputFormat && presetOutputFormat
       ? `${presetInputFormat}-to-${presetOutputFormat}`
       : 'homepage';
-  // Records Date.now() at the moment Convert is clicked — used to compute conversion_seconds
   const conversionStartRef = useRef<number | null>(null);
 
   // ── Polling abort ref ────────────────────────────────────────────────────
@@ -152,14 +147,15 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setOutputFormat('');
     setSampleRate('44100');
     setChannels('stereo');
-    // Reset edit state
-    setEditEnabled(false);
+    // Reset trim/fade state
+    setTrimFadeEnabled(false);
     setTrimStart(0);
     setTrimEnd(0);
     setAudioDuration(0);
     setFadeInDuration(null);
     setFadeOutDuration(null);
     // Reset BPM state
+    setBpmEnabled(false);
     setDetectedBpm(null);
     setTargetBpmStr('');
     setSourceBpmStr('');
@@ -200,21 +196,25 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setTrimEnd(dur);
   }, []);
 
-  const handleEditClose = useCallback(() => {
-    setEditEnabled(false);
+  const handleTrimFadeClose = useCallback(() => {
+    setTrimFadeEnabled(false);
     setTrimStart(0);
     setTrimEnd(audioDuration);
     setFadeInDuration(null);
     setFadeOutDuration(null);
+  }, [audioDuration]);
+
+  const handleBpmClose = useCallback(() => {
+    setBpmEnabled(false);
     setTargetBpmStr('');
     setSourceBpmStr('');
     // detectedBpm is kept — it reflects the file, not the edit settings
-  }, [audioDuration]);
+  }, []);
 
   // Block conversion when the user has typed a target BPM that is out of range.
   // An empty targetBpmStr is fine (means "no tempo change").
   const targetBpmValid =
-    !editEnabled ||
+    !bpmEnabled ||
     targetBpmStr === '' ||
     (() => { const n = parseFloat(targetBpmStr); return !isNaN(n) && n >= 20 && n <= 300; })();
   const canConvert = !!(file && inputFormat && outputFormat && agreed && phase === 'ready' && targetBpmValid);
@@ -239,9 +239,9 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
       formData.append('sampleRate', sampleRate);
       formData.append('channels', channels);
 
-      // Trim: only send when edit panel was used and handles were actually moved
+      // Trim: only send when the trim panel was used and handles were moved
       const isTrimmed =
-        editEnabled &&
+        trimFadeEnabled &&
         audioDuration > 0 &&
         (trimStart > 0.01 || trimEnd < audioDuration - 0.01);
 
@@ -250,8 +250,8 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
         formData.append('trimEnd',   trimEnd.toString());
       }
 
-      // Fade: send whenever edit is open and a fade duration was chosen
-      if (editEnabled && audioDuration > 0) {
+      // Fade: send whenever the trim/fade panel is open and a fade was chosen
+      if (trimFadeEnabled && audioDuration > 0) {
         const effectiveDur = isTrimmed ? trimEnd - trimStart : audioDuration;
         if (fadeInDuration !== null && fadeInDuration > 0) {
           formData.append('fadeIn', fadeInDuration.toString());
@@ -263,9 +263,8 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
         }
       }
 
-      // Tempo: send when edit is open and the user specified a valid target BPM.
-      // The effective source BPM is either auto-detected or manually entered.
-      if (editEnabled && targetBpmStr !== '') {
+      // Tempo: send when the BPM panel is open and the user specified a valid target BPM.
+      if (bpmEnabled && targetBpmStr !== '') {
         const parsedTarget = parseFloat(targetBpmStr);
         const effectiveSource = detectedBpm !== null
           ? detectedBpm
@@ -366,12 +365,13 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setDownloadUrl(null);
     setOutputFilename('');
     setSelectedPreset(null);
-    setEditEnabled(false);
+    setTrimFadeEnabled(false);
     setTrimStart(0);
     setTrimEnd(0);
     setAudioDuration(0);
     setFadeInDuration(null);
     setFadeOutDuration(null);
+    setBpmEnabled(false);
     setDetectedBpm(null);
     setTargetBpmStr('');
     setSourceBpmStr('');
@@ -383,21 +383,33 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
   const showFormatControls = phase === 'ready' && inputFormat !== null;
   const showActionRow      = phase === 'ready' && outputFormat !== '';
 
-  // Summary label for the collapsed edit button
-  const editSummary: string[] = [];
-  if (audioDuration > 0 && editEnabled) {
-    if (trimStart > 0.01 || trimEnd < audioDuration - 0.01) editSummary.push('Trimmed');
-    if (fadeInDuration  !== null) editSummary.push(`Fade in ${fadeInDuration}s`);
-    if (fadeOutDuration !== null) editSummary.push(`Fade out ${fadeOutDuration}s`);
-    const parsedTarget = parseFloat(targetBpmStr);
+  // Summary labels for collapsed trigger buttons
+  const trimFadeSummary: string[] = [];
+  if (audioDuration > 0 && trimFadeEnabled) {
+    if (trimStart > 0.01 || trimEnd < audioDuration - 0.01) trimFadeSummary.push('Trimmed');
+    if (fadeInDuration  !== null) trimFadeSummary.push(`Fade in ${fadeInDuration}s`);
+    if (fadeOutDuration !== null) trimFadeSummary.push(`Fade out ${fadeOutDuration}s`);
+  }
+
+  const bpmSummaryLabel = (() => {
+    if (!bpmEnabled) return '';
+    const parsedTarget    = parseFloat(targetBpmStr);
     const effectiveSource = detectedBpm !== null ? detectedBpm : parseFloat(sourceBpmStr);
     if (
       !isNaN(parsedTarget) && parsedTarget >= 20 && parsedTarget <= 300 &&
       !isNaN(effectiveSource) && effectiveSource > 0
     ) {
-      editSummary.push(`${parsedTarget} BPM`);
+      return `${effectiveSource.toFixed(1)} → ${parsedTarget} BPM`;
     }
-  }
+    return '';
+  })();
+
+  // Shared class for the dashed collapsed trigger buttons
+  const triggerCls =
+    'w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-brand ' +
+    'border border-dashed border-brand/40 rounded-xl bg-brand-tint/50 ' +
+    'hover:bg-brand-tint hover:border-brand transition-colors ' +
+    'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1';
 
   // ── Render ────────────────────────────────────────────────────────────────
   return (
@@ -451,66 +463,108 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
             <UploadArea onFileSelected={handleFileSelected} />
           )}
 
-          {/* ── Unified "Edit audio" section (trim + fade + playback) ──────── */}
+          {/* ── Optional tools: Trim & Fade + BPM Changer ────────────────── */}
           {phase === 'ready' && file && (
-            editEnabled ? (
-              <div className="rounded-xl border border-[#D9D9D9] overflow-hidden">
-                {/* Panel header */}
-                <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-[#D9D9D9]">
-                  <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
-                    {/* Scissors icon */}
-                    <svg className="w-4 h-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 11-5.196 3 3 3 0 015.196-3zm1.536-.887a2.165 2.165 0 001.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863l2.077-1.199m0-3.328a2.165 2.165 0 001.083 1.839l1.676.967m-1.676-2.806l1.676-.967m0 3.773a3 3 0 105.196 3 3 3 0 00-5.196-3zm0-3.773a3 3 0 105.196-3 3 3 0 00-5.196 3z" />
-                    </svg>
-                    Edit audio
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleEditClose}
-                    className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
-                  >
-                    Use full file
-                  </button>
-                </div>
+            <div className="space-y-3">
 
-                {/* AudioEditor — waveform + playback + time inputs + fade */}
-                <div className="p-4">
-                  <AudioEditor
-                    file={file}
-                    trimStart={trimStart}
-                    trimEnd={trimEnd}
-                    duration={audioDuration}
-                    fadeInDuration={fadeInDuration}
-                    fadeOutDuration={fadeOutDuration}
-                    onTrimChange={handleTrimChange}
-                    onDurationLoaded={handleDurationLoaded}
-                    onFadeInChange={setFadeInDuration}
-                    onFadeOutChange={setFadeOutDuration}
-                    detectedBpm={detectedBpm}
-                    targetBpmStr={targetBpmStr}
-                    sourceBpmStr={sourceBpmStr}
-                    onDetectedBpmChange={setDetectedBpm}
-                    onTargetBpmChange={setTargetBpmStr}
-                    onSourceBpmChange={setSourceBpmStr}
-                  />
+              {/* ── Trim & Fade ─────────────────────────────────────────── */}
+              {trimFadeEnabled ? (
+                <div className="rounded-xl border border-[#D9D9D9] overflow-hidden">
+                  <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-[#D9D9D9]">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                      {/* Scissors icon */}
+                      <svg className="w-4 h-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 11-5.196 3 3 3 0 015.196-3zm1.536-.887a2.165 2.165 0 001.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863l2.077-1.199m0-3.328a2.165 2.165 0 001.083 1.839l1.676.967m-1.676-2.806l1.676-.967m0 3.773a3 3 0 105.196 3 3 3 0 00-5.196-3zm0-3.773a3 3 0 105.196-3 3 3 0 00-5.196 3z" />
+                      </svg>
+                      Trim & Fade
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleTrimFadeClose}
+                      className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      Use full file
+                    </button>
+                  </div>
+                  <div className="p-4">
+                    <AudioEditor
+                      file={file}
+                      trimStart={trimStart}
+                      trimEnd={trimEnd}
+                      duration={audioDuration}
+                      fadeInDuration={fadeInDuration}
+                      fadeOutDuration={fadeOutDuration}
+                      onTrimChange={handleTrimChange}
+                      onDurationLoaded={handleDurationLoaded}
+                      onFadeInChange={setFadeInDuration}
+                      onFadeOutChange={setFadeOutDuration}
+                    />
+                  </div>
                 </div>
-              </div>
-            ) : (
-              /* Collapsed: single dashed trigger button */
-              <button
-                type="button"
-                onClick={() => setEditEnabled(true)}
-                className="w-full flex items-center justify-center gap-2 py-2.5 text-xs font-semibold text-brand border border-dashed border-brand/40 rounded-xl bg-brand-tint/50 hover:bg-brand-tint hover:border-brand transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand focus-visible:ring-offset-1"
-              >
-                {/* Scissors icon */}
-                <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 11-5.196 3 3 3 0 015.196-3zm1.536-.887a2.165 2.165 0 001.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863l2.077-1.199m0-3.328a2.165 2.165 0 001.083 1.839l1.676.967m-1.676-2.806l1.676-.967m0 3.773a3 3 0 105.196 3 3 3 0 00-5.196-3zm0-3.773a3 3 0 105.196-3 3 3 0 00-5.196 3z" />
-                </svg>
-                {editSummary.length > 0
-                  ? editSummary.join(' · ')
-                  : 'Trim & Fade (optional)'}
-              </button>
-            )
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setTrimFadeEnabled(true)}
+                  className={triggerCls}
+                >
+                  {/* Scissors icon */}
+                  <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M7.848 8.25l1.536.887M7.848 8.25a3 3 0 11-5.196-3 3 3 0 015.196 3zm1.536.887a2.165 2.165 0 011.083 1.839c.005.351.054.695.14 1.024M9.384 9.137l2.077 1.199M7.848 15.75l1.536-.887m-1.536.887a3 3 0 11-5.196 3 3 3 0 015.196-3zm1.536-.887a2.165 2.165 0 001.083-1.838c.005-.352.054-.695.14-1.025m-1.223 2.863l2.077-1.199m0-3.328a2.165 2.165 0 001.083 1.839l1.676.967m-1.676-2.806l1.676-.967m0 3.773a3 3 0 105.196 3 3 3 0 00-5.196-3zm0-3.773a3 3 0 105.196-3 3 3 0 00-5.196 3z" />
+                  </svg>
+                  {trimFadeSummary.length > 0 ? trimFadeSummary.join(' · ') : 'Trim & Fade (optional)'}
+                </button>
+              )}
+
+              {/* ── BPM Changer ─────────────────────────────────────────── */}
+              {bpmEnabled ? (
+                <div className="rounded-xl border border-[#D9D9D9] overflow-hidden">
+                  <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-[#D9D9D9]">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                      {/* Metronome icon */}
+                      <svg className="w-4 h-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                      </svg>
+                      BPM Changer
+                      <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 rounded">Beta</span>
+                      {bpmSummaryLabel && (
+                        <span className="text-[10px] text-brand font-medium">{bpmSummaryLabel}</span>
+                      )}
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleBpmClose}
+                      className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  <div className="p-4">
+                    <BpmPanel
+                      file={file}
+                      detectedBpm={detectedBpm}
+                      targetBpmStr={targetBpmStr}
+                      sourceBpmStr={sourceBpmStr}
+                      onDetectedBpmChange={setDetectedBpm}
+                      onTargetBpmChange={setTargetBpmStr}
+                      onSourceBpmChange={setSourceBpmStr}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setBpmEnabled(true)}
+                  className={triggerCls}
+                >
+                  {/* Metronome icon */}
+                  <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                  </svg>
+                  BPM Changer (optional)
+                </button>
+              )}
+
+            </div>
           )}
 
           {/* Format controls */}
@@ -531,7 +585,6 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
                 value={outputFormat}
                 onChange={handleDirectFormatChange}
               />
-              {/* Show bitrate selector for all variable-rate lossy output formats */}
               {outputFormat && (['mp3', 'aac', 'ogg', 'opus'] as const).includes(outputFormat as 'mp3' | 'aac' | 'ogg' | 'opus') && (
                 <BitrateSelector value={bitrate} onChange={setBitrate} />
               )}
