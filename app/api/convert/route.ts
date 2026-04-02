@@ -78,6 +78,8 @@ export async function POST(req: NextRequest) {
     fadeIn: job.fadeIn,
     fadeOut: job.fadeOut,
     fadeOutStart: job.fadeOutStart,
+    detectedBpm: job.detectedBpm,
+    targetBpm: job.targetBpm,
   }).then((result) => {
     if (result.success) {
       updateJob(jobId, { status: 'done', completedAt: Date.now() });

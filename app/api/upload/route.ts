@@ -85,6 +85,8 @@ async function handleUpload(req: NextRequest): Promise<NextResponse> {
   const rawFadeIn = formData.get('fadeIn');
   const rawFadeOut = formData.get('fadeOut');
   const rawFadeOutStart = formData.get('fadeOutStart');
+  const rawDetectedBpm = formData.get('detectedBpm');
+  const rawTargetBpm = formData.get('targetBpm');
 
   // Whitelist-validate all conversion parameters
   const outputFormat: OutputFormat = VALID_OUTPUT_FORMATS.includes(rawOutputFormat as OutputFormat)
@@ -115,6 +117,17 @@ async function handleUpload(req: NextRequest): Promise<NextResponse> {
   const fadeOut = parseFadeDuration(rawFadeOut);
   const fadeOutStartRaw = rawFadeOutStart !== null ? parseFloat(rawFadeOutStart as string) : undefined;
   const fadeOutStart = (fadeOutStartRaw !== undefined && !isNaN(fadeOutStartRaw) && fadeOutStartRaw >= 0) ? fadeOutStartRaw : undefined;
+
+  // BPM values: both must be present and in [20, 300] for tempo change to apply.
+  // The detectedBpm may be auto-detected or user-supplied (when detection fails).
+  function parseBpm(raw: FormDataEntryValue | null): number | undefined {
+    if (!raw) return undefined;
+    const n = parseFloat(raw as string);
+    if (isNaN(n) || n < 20 || n > 300) return undefined;
+    return n;
+  }
+  const detectedBpm = parseBpm(rawDetectedBpm);
+  const targetBpm   = parseBpm(rawTargetBpm);
 
   if (!fileEntry || typeof fileEntry === 'string') {
     return NextResponse.json({ success: false, error: 'No file provided.' }, { status: 400 });
@@ -168,6 +181,8 @@ async function handleUpload(req: NextRequest): Promise<NextResponse> {
     fadeIn,
     fadeOut,
     fadeOutStart,
+    detectedBpm,
+    targetBpm,
   });
 
   return NextResponse.json({ success: true, jobId: job.jobId }, { status: 200 });

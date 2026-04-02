@@ -76,6 +76,149 @@ function FadeDurationPicker({ label, value, onChange }: FadeDurationPickerProps)
 }
 
 // ---------------------------------------------------------------------------
+// TempoPanel — module-level so it is never recreated on parent re-renders
+// ---------------------------------------------------------------------------
+interface TempoPanelProps {
+  bpmDetecting: boolean;
+  bpmFailed:    boolean;
+  detectedBpm:  number | null;
+  targetBpmStr: string;
+  sourceBpmStr: string;
+  onTargetBpmChange: (v: string) => void;
+  onSourceBpmChange: (v: string) => void;
+}
+
+function TempoPanel({
+  bpmDetecting, bpmFailed, detectedBpm,
+  targetBpmStr, sourceBpmStr,
+  onTargetBpmChange, onSourceBpmChange,
+}: TempoPanelProps) {
+  // The effective source BPM is either auto-detected or manually entered.
+  const effectiveSource = detectedBpm !== null
+    ? detectedBpm
+    : parseFloat(sourceBpmStr);
+
+  const targetVal = parseFloat(targetBpmStr);
+  const targetValid = !isNaN(targetVal) && targetVal >= 20 && targetVal <= 300;
+  const sourceValid = !isNaN(effectiveSource) && effectiveSource >= 20 && effectiveSource <= 300;
+
+  // Warn on large tempo changes — more than 3× faster or slower.
+  const ratio = sourceValid && targetValid ? targetVal / effectiveSource : null;
+  const isLargeChange = ratio !== null && (ratio > 3.0 || ratio < 0.33);
+
+  return (
+    <div className="pt-1 border-t border-gray-100 space-y-3">
+
+      {/* Section header */}
+      <div className="flex items-center gap-1.5">
+        {/* Metronome icon */}
+        <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+          <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+        </svg>
+        <span className="text-[11px] font-semibold text-gray-400 uppercase tracking-wide">Tempo</span>
+        <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 rounded">Beta</span>
+        {sourceValid && targetValid && (
+          <span className="ml-auto text-[10px] text-brand font-medium">
+            {effectiveSource.toFixed(1)} → {targetVal.toFixed(1)} BPM
+          </span>
+        )}
+      </div>
+
+      {/* Detected BPM row */}
+      <div className="flex items-start gap-2">
+        <span className="text-xs font-medium text-gray-500 w-[80px] shrink-0 pt-0.5">Detected</span>
+        <div className="flex-1 space-y-1.5">
+          {detectedBpm !== null ? (
+            // Show the known value immediately — even if re-detection is running in the
+            // background (happens when the edit panel is closed and reopened with the same file).
+            <span className="text-xs font-mono font-semibold text-gray-700">{detectedBpm.toFixed(1)} BPM</span>
+          ) : bpmDetecting ? (
+            <div className="flex items-center gap-1.5 text-xs text-gray-400">
+              <svg className="w-3 h-3 animate-spin text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
+              </svg>
+              Detecting…
+            </div>
+          ) : bpmFailed ? (
+            <div className="space-y-1.5">
+              <span className="text-xs text-gray-400 italic">Could not detect</span>
+              {/* Fallback: manual source BPM entry */}
+              <div className="flex items-center gap-2">
+                <input
+                  type="number"
+                  min="20"
+                  max="300"
+                  step="0.5"
+                  value={sourceBpmStr}
+                  onChange={(e) => onSourceBpmChange(e.target.value)}
+                  placeholder="Enter source BPM"
+                  className="w-36 px-2 py-1 text-xs font-mono border border-[#D9D9D9] rounded-lg focus:outline-none focus:border-brand bg-white"
+                />
+              </div>
+            </div>
+          ) : (
+            <span className="text-xs text-gray-300 italic">Waiting…</span>
+          )}
+        </div>
+      </div>
+
+      {/* Target BPM row — always visible so manual entry is possible */}
+      <div className="flex items-center gap-2">
+        <span className="text-xs font-medium text-gray-500 w-[80px] shrink-0">Target BPM</span>
+        <div className="flex items-center gap-1.5 flex-wrap">
+          <input
+            type="number"
+            min="20"
+            max="300"
+            step="0.5"
+            value={targetBpmStr}
+            onChange={(e) => onTargetBpmChange(e.target.value)}
+            placeholder="e.g. 140"
+            className="w-24 px-2 py-1 text-xs font-mono border border-[#D9D9D9] rounded-lg focus:outline-none focus:border-brand bg-white"
+          />
+          {/* ÷2 / ×2 helpers — only shown when the result would be within the valid range */}
+          {sourceValid && (effectiveSource / 2) >= 20 && (
+            <button
+              type="button"
+              onClick={() => onTargetBpmChange((effectiveSource / 2).toFixed(1))}
+              title="Set target to half the source BPM"
+              className="px-2.5 py-1 text-xs rounded-lg border border-[#D9D9D9] text-gray-600 hover:border-brand hover:text-brand bg-white transition-colors"
+            >
+              ÷2
+            </button>
+          )}
+          {sourceValid && (effectiveSource * 2) <= 300 && (
+            <button
+              type="button"
+              onClick={() => onTargetBpmChange((effectiveSource * 2).toFixed(1))}
+              title="Set target to double the source BPM"
+              className="px-2.5 py-1 text-xs rounded-lg border border-[#D9D9D9] text-gray-600 hover:border-brand hover:text-brand bg-white transition-colors"
+            >
+              ×2
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* Inline validation / warning messages */}
+      {targetBpmStr !== '' && !targetValid && (
+        <p className="text-[11px] text-red-500">BPM must be between 20 and 300.</p>
+      )}
+      {isLargeChange && (
+        <p className="text-[11px] text-amber-600">Large tempo change — audio quality may be reduced.</p>
+      )}
+
+      {/* Disclaimer */}
+      <p className="text-[11px] text-gray-400 leading-relaxed">
+        Works best on rhythmic music with a steady beat. Results may vary on speech or ambient audio.
+      </p>
+
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // AudioEditor
 // ---------------------------------------------------------------------------
 export interface AudioEditorProps {
@@ -89,6 +232,13 @@ export interface AudioEditorProps {
   onDurationLoaded: (duration: number) => void;
   onFadeInChange: (v: number | null) => void;
   onFadeOutChange: (v: number | null) => void;
+  // Tempo / BPM props
+  detectedBpm: number | null;
+  targetBpmStr: string;
+  sourceBpmStr: string;          // fallback when detection fails, user can enter manually
+  onDetectedBpmChange: (bpm: number | null) => void;
+  onTargetBpmChange: (v: string) => void;
+  onSourceBpmChange: (v: string) => void;
 }
 
 export default function AudioEditor({
@@ -102,6 +252,12 @@ export default function AudioEditor({
   onDurationLoaded,
   onFadeInChange,
   onFadeOutChange,
+  detectedBpm,
+  targetBpmStr,
+  sourceBpmStr,
+  onDetectedBpmChange,
+  onTargetBpmChange,
+  onSourceBpmChange,
 }: AudioEditorProps) {
 
   // ── Canvas refs ──────────────────────────────────────────────────────────
@@ -113,6 +269,10 @@ export default function AudioEditor({
   const [peaks,     setPeaks]     = useState<Float32Array | null>(null);
   const [loading,   setLoading]   = useState(true);
   const [waveError, setWaveError] = useState(false);
+
+  // ── BPM detection ─────────────────────────────────────────────────────────
+  const [bpmDetecting, setBpmDetecting] = useState(false);
+  const [bpmFailed,    setBpmFailed]    = useState(false);
 
   // ── Stable refs (for callbacks that must not cause re-renders) ───────────
   const stateRef = useRef({ trimStart, trimEnd, duration });
@@ -143,6 +303,7 @@ export default function AudioEditor({
 
   // Audio engine refs — mutated imperatively, never trigger renders
   const audioCtxRef    = useRef<AudioContext | null>(null);
+  const decodeCtxRef   = useRef<AudioContext | null>(null); // separate context used only for waveform decode
   const audioBufferRef = useRef<AudioBuffer | null>(null);
   const sourceRef      = useRef<AudioBufferSourceNode | null>(null);
   const gainRef        = useRef<GainNode | null>(null);
@@ -294,10 +455,10 @@ export default function AudioEditor({
 
       file.arrayBuffer().then((buf) => {
         if (cancelled) return undefined;
-        const actx = new (window.AudioContext ||
+        decodeCtxRef.current = new (window.AudioContext ||
           (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext)();
-        return actx.decodeAudioData(buf);
-      }).then((decoded) => {
+        return decodeCtxRef.current.decodeAudioData(buf);
+      }).then(async (decoded) => {
         if (!decoded || cancelled) return;
         audioBufferRef.current = decoded;            // store for playback
         const ch    = decoded.getChannelData(0);
@@ -313,6 +474,38 @@ export default function AudioEditor({
           out[i] = peak;
         }
         if (!cancelled) { setPeaks(out); setLoading(false); }
+
+        // BPM detection runs after the waveform is visible.
+        // We require at least 5 seconds of audio — shorter clips rarely have
+        // a detectable rhythmic pattern.
+        if (cancelled || decoded.duration < 5) {
+          if (!cancelled) { setBpmFailed(true); onDetectedBpmChange(null); }
+          return;
+        }
+        if (!cancelled) setBpmDetecting(true);
+        // Yield to the browser so the "Detecting…" state paints before the
+        // synchronous MusicTempo constructor blocks the thread.
+        await new Promise<void>((resolve) => setTimeout(resolve, 50));
+        if (cancelled) return;
+        try {
+          const { default: MusicTempo } = await import('music-tempo');
+          if (cancelled) return;
+          const mt  = new MusicTempo(ch);
+          const raw = parseFloat(String(mt.tempo));
+          if (!cancelled) {
+            if (!isNaN(raw) && raw > 0 && raw !== -1) {
+              onDetectedBpmChange(Math.round(raw * 10) / 10);
+              setBpmFailed(false);
+            } else {
+              onDetectedBpmChange(null);
+              setBpmFailed(true);
+            }
+          }
+        } catch {
+          if (!cancelled) { onDetectedBpmChange(null); setBpmFailed(true); }
+        } finally {
+          if (!cancelled) setBpmDetecting(false);
+        }
       }).catch(() => {
         if (!cancelled) { setWaveError(true); setLoading(false); }
       });
@@ -324,8 +517,19 @@ export default function AudioEditor({
 
     return () => {
       cancelled = true;
+      // Close the decode-only AudioContext to release OS audio handles.
+      // Chrome/Firefox cap concurrent contexts at ~6; without this, repeated
+      // file loads in the same session will eventually fail to decode.
+      if (decodeCtxRef.current) {
+        try { decodeCtxRef.current.close(); } catch {}
+        decodeCtxRef.current = null;
+      }
       stopPlayback();
+      audio.src = '';        // release buffered media data from the element
       URL.revokeObjectURL(url);
+      // Reset BPM state so a new file starts fresh
+      setBpmDetecting(false);
+      setBpmFailed(false);
     };
   }, [file]); // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -480,6 +684,10 @@ export default function AudioEditor({
       stopPlayback();
       if (audioCtxRef.current) {
         try { audioCtxRef.current.close(); } catch { /* ignore */ }
+      }
+      if (decodeCtxRef.current) {
+        try { decodeCtxRef.current.close(); } catch {}
+        decodeCtxRef.current = null;
       }
     };
   }, [stopPlayback]);
@@ -768,6 +976,17 @@ export default function AudioEditor({
         <FadeDurationPicker label="Fade In"  value={fadeInDuration}  onChange={onFadeInChange}  />
         <FadeDurationPicker label="Fade Out" value={fadeOutDuration} onChange={onFadeOutChange} />
       </div>
+
+      {/* ── Tempo controls ───────────────────────────────────────────────── */}
+      <TempoPanel
+        bpmDetecting={bpmDetecting}
+        bpmFailed={bpmFailed}
+        detectedBpm={detectedBpm}
+        targetBpmStr={targetBpmStr}
+        sourceBpmStr={sourceBpmStr}
+        onTargetBpmChange={onTargetBpmChange}
+        onSourceBpmChange={onSourceBpmChange}
+      />
 
     </div>
   );

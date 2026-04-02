@@ -39,6 +39,11 @@ export interface ConversionJob {
   fadeIn?: number;
   fadeOut?: number;
   fadeOutStart?: number;
+  // Tempo / BPM change — both required together to compute the atempo ratio.
+  // detectedBpm: the source BPM (auto-detected or user-supplied).
+  // targetBpm:   the desired output BPM.
+  detectedBpm?: number;
+  targetBpm?: number;
 }
 
 export interface ConversionRule {

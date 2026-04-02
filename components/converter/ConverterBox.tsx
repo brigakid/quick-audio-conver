@@ -65,6 +65,14 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
   const [fadeInDuration,  setFadeInDuration]  = useState<number | null>(null);
   const [fadeOutDuration, setFadeOutDuration] = useState<number | null>(null);
 
+  // ── BPM / tempo state ────────────────────────────────────────────────────
+  // detectedBpm: auto-detected by AudioEditor (or null if detection failed)
+  // targetBpmStr: the user's desired output BPM as a raw input string
+  // sourceBpmStr: fallback when detection fails — user can enter source BPM manually
+  const [detectedBpm,  setDetectedBpm]  = useState<number | null>(null);
+  const [targetBpmStr, setTargetBpmStr] = useState('');
+  const [sourceBpmStr, setSourceBpmStr] = useState('');
+
   // Preload audio duration as soon as a file is selected so we have it for the
   // fade-out-start calculation in handleConvert, even before the edit panel opens.
   useEffect(() => {
@@ -151,6 +159,10 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setAudioDuration(0);
     setFadeInDuration(null);
     setFadeOutDuration(null);
+    // Reset BPM state
+    setDetectedBpm(null);
+    setTargetBpmStr('');
+    setSourceBpmStr('');
   }, []);
 
   function handlePresetSelected(preset: Preset) {
@@ -194,9 +206,18 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setTrimEnd(audioDuration);
     setFadeInDuration(null);
     setFadeOutDuration(null);
+    setTargetBpmStr('');
+    setSourceBpmStr('');
+    // detectedBpm is kept — it reflects the file, not the edit settings
   }, [audioDuration]);
 
-  const canConvert = file && inputFormat && outputFormat && agreed && phase === 'ready';
+  // Block conversion when the user has typed a target BPM that is out of range.
+  // An empty targetBpmStr is fine (means "no tempo change").
+  const targetBpmValid =
+    !editEnabled ||
+    targetBpmStr === '' ||
+    (() => { const n = parseFloat(targetBpmStr); return !isNaN(n) && n >= 20 && n <= 300; })();
+  const canConvert = !!(file && inputFormat && outputFormat && agreed && phase === 'ready' && targetBpmValid);
 
   async function handleConvert() {
     if (!file || !inputFormat || !outputFormat) return;
@@ -239,6 +260,22 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
           const fadeOutStart = Math.max(0, effectiveDur - fadeOutDuration);
           formData.append('fadeOut',      fadeOutDuration.toString());
           formData.append('fadeOutStart', fadeOutStart.toString());
+        }
+      }
+
+      // Tempo: send when edit is open and the user specified a valid target BPM.
+      // The effective source BPM is either auto-detected or manually entered.
+      if (editEnabled && targetBpmStr !== '') {
+        const parsedTarget = parseFloat(targetBpmStr);
+        const effectiveSource = detectedBpm !== null
+          ? detectedBpm
+          : parseFloat(sourceBpmStr);
+        if (
+          !isNaN(parsedTarget) && parsedTarget >= 20 && parsedTarget <= 300 &&
+          !isNaN(effectiveSource) && effectiveSource >= 20 && effectiveSource <= 300
+        ) {
+          formData.append('detectedBpm', effectiveSource.toString());
+          formData.append('targetBpm',   parsedTarget.toString());
         }
       }
 
@@ -335,6 +372,9 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setAudioDuration(0);
     setFadeInDuration(null);
     setFadeOutDuration(null);
+    setDetectedBpm(null);
+    setTargetBpmStr('');
+    setSourceBpmStr('');
   }
 
   handleResetRef.current = handleReset;
@@ -349,6 +389,14 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     if (trimStart > 0.01 || trimEnd < audioDuration - 0.01) editSummary.push('Trimmed');
     if (fadeInDuration  !== null) editSummary.push(`Fade in ${fadeInDuration}s`);
     if (fadeOutDuration !== null) editSummary.push(`Fade out ${fadeOutDuration}s`);
+    const parsedTarget = parseFloat(targetBpmStr);
+    const effectiveSource = detectedBpm !== null ? detectedBpm : parseFloat(sourceBpmStr);
+    if (
+      !isNaN(parsedTarget) && parsedTarget >= 20 && parsedTarget <= 300 &&
+      !isNaN(effectiveSource) && effectiveSource > 0
+    ) {
+      editSummary.push(`${parsedTarget} BPM`);
+    }
   }
 
   // ── Render ────────────────────────────────────────────────────────────────
@@ -438,6 +486,12 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
                     onDurationLoaded={handleDurationLoaded}
                     onFadeInChange={setFadeInDuration}
                     onFadeOutChange={setFadeOutDuration}
+                    detectedBpm={detectedBpm}
+                    targetBpmStr={targetBpmStr}
+                    sourceBpmStr={sourceBpmStr}
+                    onDetectedBpmChange={setDetectedBpm}
+                    onTargetBpmChange={setTargetBpmStr}
+                    onSourceBpmChange={setSourceBpmStr}
                   />
                 </div>
               </div>

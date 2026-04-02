@@ -18,11 +18,43 @@ export interface ConversionOptions {
   fadeIn?: number;
   fadeOut?: number;
   fadeOutStart?: number;
+  // Tempo change: both values required together to compute the atempo ratio.
+  // The ratio (targetBpm / detectedBpm) is decomposed into a chain of atempo
+  // filters, each in the range [0.5, 2.0], which is the supported per-filter range.
+  detectedBpm?: number;
+  targetBpm?: number;
 }
 
 export interface ConversionResult {
   success: boolean;
   error?: string;
+}
+
+/**
+ * Decomposes a tempo ratio into a chain of atempo filter strings.
+ * Each atempo filter only accepts values in [0.5, 2.0].  For ratios outside
+ * that range, we chain multiple filters whose product equals the target ratio.
+ *
+ * Examples:
+ *   ratio 4.0  → ['atempo=2.0', 'atempo=2.0']
+ *   ratio 0.25 → ['atempo=0.5', 'atempo=0.5']
+ *   ratio 1.5  → ['atempo=1.500000']
+ */
+function buildAtempoFilters(ratio: number): string[] {
+  const filters: string[] = [];
+  let r = ratio;
+  // Extract factors of 2.0 for ratios above the single-filter ceiling
+  while (r > 2.0 + 1e-9) {
+    filters.push('atempo=2.0');
+    r /= 2.0;
+  }
+  // Extract factors of 0.5 for ratios below the single-filter floor
+  while (r < 0.5 - 1e-9) {
+    filters.push('atempo=0.5');
+    r *= 2.0; // dividing by 0.5 == multiplying by 2
+  }
+  filters.push(`atempo=${r.toFixed(6)}`);
+  return filters;
 }
 
 /**
@@ -50,6 +82,7 @@ export function convertFile(options: ConversionOptions): Promise<ConversionResul
     inputPath, outputPath, inputFormat, outputFormat,
     bitrate, sampleRate, channels,
     trimStart, trimEnd, fadeIn, fadeOut, fadeOutStart,
+    detectedBpm, targetBpm,
   } = options;
 
   return new Promise((resolve) => {
@@ -129,12 +162,27 @@ export function convertFile(options: ConversionOptions): Promise<ConversionResul
       command.duration(trimEnd - trimStart);
     }
 
-    // Apply fade in/out via afade audio filter
+    // Apply fade in/out via afade audio filter.
+    // Fade filters are added first so they operate on the pre-tempo audio
+    // timeline — the atempo filter then compresses/stretches the result.
     const audioFilters: string[] = [];
     if (fadeIn && fadeIn > 0) audioFilters.push(`afade=t=in:st=0:d=${fadeIn}`);
     if (fadeOut && fadeOut > 0 && fadeOutStart !== undefined && fadeOutStart >= 0) {
       audioFilters.push(`afade=t=out:st=${fadeOutStart}:d=${fadeOut}`);
     }
+
+    // Apply tempo change via a chain of atempo filters (pitch-preserving WSOLA).
+    // atempo is a standard FFmpeg filter available in all builds — no external
+    // library required.  Only apply when both BPM values are present and the
+    // change is meaningful (guard against floating-point near-equality).
+    if (
+      detectedBpm && targetBpm &&
+      detectedBpm > 0 && targetBpm > 0 &&
+      Math.abs(targetBpm / detectedBpm - 1.0) > 0.005
+    ) {
+      audioFilters.push(...buildAtempoFilters(targetBpm / detectedBpm));
+    }
+
     if (audioFilters.length > 0) command.audioFilters(audioFilters);
 
     command
