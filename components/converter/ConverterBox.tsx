@@ -9,6 +9,7 @@ import ProgressBar from './ProgressBar';
 import DownloadResult from './DownloadResult';
 import AudioEditor from './AudioEditor';
 import BpmPanel from './BpmPanel';
+import KeyPitchPanel, { type DetectedKey } from './KeyPitchPanel';
 import Checkbox from '@/components/ui/Checkbox';
 import Button from '@/components/ui/Button';
 import { formatFileSize, buildOutputFilename, getExtension } from '@/lib/utils';
@@ -69,6 +70,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
   const [detectedBpm,  setDetectedBpm]  = useState<number | null>(null);
   const [targetBpmStr, setTargetBpmStr] = useState('');
   const [sourceBpmStr, setSourceBpmStr] = useState('');
+
+  // ── Key & Pitch state ─────────────────────────────────────────────────────
+  const [keyEnabled,   setKeyEnabled]   = useState(false);
+  const [detectedKey,  setDetectedKey]  = useState<DetectedKey | null>(null);
+  const [pitchSemitones, setPitchSemitones] = useState(0);
 
   // Preload audio duration as soon as a file is selected so we have it for the
   // fade-out-start calculation in handleConvert, even before the edit panel opens.
@@ -174,6 +180,10 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setDetectedBpm(null);
     setTargetBpmStr('');
     setSourceBpmStr('');
+    // Reset Key & Pitch state
+    setKeyEnabled(false);
+    setDetectedKey(null);
+    setPitchSemitones(0);
   }, []);
 
   function handlePresetSelected(preset: Preset) {
@@ -224,6 +234,12 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setTargetBpmStr('');
     setSourceBpmStr('');
     // detectedBpm is kept — it reflects the file, not the edit settings
+  }, []);
+
+  const handleKeyClose = useCallback(() => {
+    setKeyEnabled(false);
+    setPitchSemitones(0);
+    // detectedKey is kept — it reflects the file, not the edit settings
   }, []);
 
   // Block conversion when the user has typed a target BPM that is out of range.
@@ -291,6 +307,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
           formData.append('detectedBpm', effectiveSource.toString());
           formData.append('targetBpm',   parsedTarget.toString());
         }
+      }
+
+      // Pitch: send when the Key & Pitch panel is open and shift is non-zero.
+      if (keyEnabled && pitchSemitones !== 0) {
+        formData.append('pitchSemitones', pitchSemitones.toString());
       }
 
       const uploadRes  = await fetch('/api/upload', { method: 'POST', body: formData });
@@ -395,6 +416,9 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     setDetectedBpm(null);
     setTargetBpmStr('');
     setSourceBpmStr('');
+    setKeyEnabled(false);
+    setDetectedKey(null);
+    setPitchSemitones(0);
   }
 
   handleResetRef.current = handleReset;
@@ -566,6 +590,50 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                   </svg>
                   BPM Changer (optional)
+                </button>
+              )}
+
+              {/* ── Key & Pitch ──────────────────────────────────────────── */}
+              {keyEnabled ? (
+                <div className="rounded-xl border border-[#D9D9D9] overflow-hidden">
+                  <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-[#D9D9D9]">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 min-w-0">
+                      {/* Music note icon */}
+                      <svg className="w-4 h-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                      </svg>
+                      <span className="truncate">Key &amp; Pitch</span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 rounded flex-shrink-0">Beta</span>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleKeyClose}
+                      className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+                    >
+                      Remove
+                    </button>
+                  </div>
+                  <div className="p-4">
+                    <KeyPitchPanel
+                      file={file}
+                      detectedKey={detectedKey}
+                      semitones={pitchSemitones}
+                      onDetectedKeyChange={setDetectedKey}
+                      onSemitonesChange={setPitchSemitones}
+                    />
+                  </div>
+                </div>
+              ) : (
+                <button
+                  type="button"
+                  onClick={() => setKeyEnabled(true)}
+                  className={triggerCls}
+                >
+                  {/* Music note icon */}
+                  <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
+                  </svg>
+                  Key &amp; Pitch (optional)
                 </button>
               )}
 

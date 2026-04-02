@@ -30,6 +30,7 @@ export function createJob(params: {
   fadeOutStart?: number;
   detectedBpm?: number;
   targetBpm?: number;
+  pitchSemitones?: number;
 }): ConversionJob {
   const jobId = uuidv4();
   const job: ConversionJob = {

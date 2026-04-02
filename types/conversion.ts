@@ -44,6 +44,9 @@ export interface ConversionJob {
   // targetBpm:   the desired output BPM.
   detectedBpm?: number;
   targetBpm?: number;
+  // Pitch shift in semitones [-12, 12]. 0 or absent = no shift.
+  // Applied via FFmpeg rubberband filter; tempo/duration unchanged.
+  pitchSemitones?: number;
 }
 
 export interface ConversionRule {

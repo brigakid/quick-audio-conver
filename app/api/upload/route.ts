@@ -87,6 +87,7 @@ async function handleUpload(req: NextRequest): Promise<NextResponse> {
   const rawFadeOutStart = formData.get('fadeOutStart');
   const rawDetectedBpm = formData.get('detectedBpm');
   const rawTargetBpm = formData.get('targetBpm');
+  const rawPitchSemitones = formData.get('pitchSemitones');
 
   // Whitelist-validate all conversion parameters
   const outputFormat: OutputFormat = VALID_OUTPUT_FORMATS.includes(rawOutputFormat as OutputFormat)
@@ -128,6 +129,15 @@ async function handleUpload(req: NextRequest): Promise<NextResponse> {
   }
   const detectedBpm = parseBpm(rawDetectedBpm);
   const targetBpm   = parseBpm(rawTargetBpm);
+
+  // Pitch shift: integer in [-12, 12]. 0 and absent are treated identically.
+  function parsePitchSemitones(raw: FormDataEntryValue | null): number | undefined {
+    if (!raw) return undefined;
+    const n = parseInt(raw as string, 10);
+    if (isNaN(n) || n < -12 || n > 12 || n === 0) return undefined;
+    return n;
+  }
+  const pitchSemitones = parsePitchSemitones(rawPitchSemitones);
 
   if (!fileEntry || typeof fileEntry === 'string') {
     return NextResponse.json({ success: false, error: 'No file provided.' }, { status: 400 });
@@ -183,6 +193,7 @@ async function handleUpload(req: NextRequest): Promise<NextResponse> {
     fadeOutStart,
     detectedBpm,
     targetBpm,
+    pitchSemitones,
   });
 
   return NextResponse.json({ success: true, jobId: job.jobId }, { status: 200 });

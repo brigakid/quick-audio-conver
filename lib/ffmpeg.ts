@@ -23,6 +23,9 @@ export interface ConversionOptions {
   // filters, each in the range [0.5, 2.0], which is the supported per-filter range.
   detectedBpm?: number;
   targetBpm?: number;
+  // Pitch shift in semitones [-12, 12] via rubberband filter.
+  // 2^(n/12) gives the frequency ratio; tempo/duration is preserved (tempo=1).
+  pitchSemitones?: number;
 }
 
 export interface ConversionResult {
@@ -82,7 +85,7 @@ export function convertFile(options: ConversionOptions): Promise<ConversionResul
     inputPath, outputPath, inputFormat, outputFormat,
     bitrate, sampleRate, channels,
     trimStart, trimEnd, fadeIn, fadeOut, fadeOutStart,
-    detectedBpm, targetBpm,
+    detectedBpm, targetBpm, pitchSemitones,
   } = options;
 
   return new Promise((resolve) => {
@@ -181,6 +184,14 @@ export function convertFile(options: ConversionOptions): Promise<ConversionResul
       Math.abs(targetBpm / detectedBpm - 1.0) > 0.005
     ) {
       audioFilters.push(...buildAtempoFilters(targetBpm / detectedBpm));
+    }
+
+    // Apply pitch shift via rubberband (tempo=1 preserves duration).
+    // ratio = 2^(semitones/12); rubberband is confirmed available in this build.
+    // Guard: skip if semitones is 0 or undefined/null.
+    if (pitchSemitones && pitchSemitones !== 0 && Math.abs(pitchSemitones) <= 12) {
+      const ratio = Math.pow(2, pitchSemitones / 12);
+      audioFilters.push(`rubberband=pitch=${ratio.toFixed(6)}:tempo=1`);
     }
 
     if (audioFilters.length > 0) command.audioFilters(audioFilters);
