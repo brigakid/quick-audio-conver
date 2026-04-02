@@ -101,12 +101,13 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
       : 'homepage';
   const conversionStartRef = useRef<number | null>(null);
 
-  // ── Scroll to converter card when result or error arrives ────────────────
-  // On mobile users often scroll away during conversion; bring the result into view.
+  // ── Scroll to hero/converter section when result or error arrives ─────────
+  // On mobile users often scroll away during conversion; return to the top of
+  // the hero so the result card appears in the same focused area as the upload.
   useEffect(() => {
     if (phase === 'done' || phase === 'error') {
       setTimeout(() => {
-        document.getElementById('convert')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 100);
     }
   }, [phase]);
@@ -124,7 +125,7 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     function onConverterReset() {
       handleResetRef.current();
       setTimeout(() => {
-        document.getElementById('convert')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        window.scrollTo({ top: 0, behavior: 'smooth' });
       }, 50);
     }
     window.addEventListener('converter:reset', onConverterReset);
