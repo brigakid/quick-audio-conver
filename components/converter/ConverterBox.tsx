@@ -87,7 +87,11 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
       URL.revokeObjectURL(url);
     }, { once: true });
     audio.addEventListener('error', () => { if (!cancelled) URL.revokeObjectURL(url); }, { once: true });
-    return () => { cancelled = true; };
+    return () => {
+      cancelled = true;
+      audio.src = '';              // release media pipeline before GC
+      URL.revokeObjectURL(url);   // safe to call twice — second call is a no-op per spec
+    };
   }, [file]);
 
   // ── Analytics ─────────────────────────────────────────────────────────────
@@ -96,6 +100,16 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
       ? `${presetInputFormat}-to-${presetOutputFormat}`
       : 'homepage';
   const conversionStartRef = useRef<number | null>(null);
+
+  // ── Scroll to converter card when result or error arrives ────────────────
+  // On mobile users often scroll away during conversion; bring the result into view.
+  useEffect(() => {
+    if (phase === 'done' || phase === 'error') {
+      setTimeout(() => {
+        document.getElementById('convert')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }, 100);
+    }
+  }, [phase]);
 
   // ── Polling abort ref ────────────────────────────────────────────────────
   const abortRef = useRef<{ aborted: boolean }>({ aborted: false });
@@ -285,6 +299,10 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
       }
 
       const id: string = uploadData.jobId;
+      // Guard: user may have clicked reset while the upload was in-flight.
+      // Without this check, setPhase('converting') would override the 'idle'
+      // that handleReset already set, leaving the UI stuck in a fake converting state.
+      if (abortRef.current.aborted) return;
       setJobId(id);
       setPhase('converting');
 
@@ -298,6 +316,7 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
         throw new Error(convertData.error || 'Conversion failed. Please try again.');
       }
 
+      if (abortRef.current.aborted) return;
       await pollStatus(id, file, outputFormat);
     } catch (err) {
       const msg = err instanceof Error ? err.message : 'An unexpected error occurred.';
@@ -391,18 +410,6 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
     if (fadeOutDuration !== null) trimFadeSummary.push(`Fade out ${fadeOutDuration}s`);
   }
 
-  const bpmSummaryLabel = (() => {
-    if (!bpmEnabled) return '';
-    const parsedTarget    = parseFloat(targetBpmStr);
-    const effectiveSource = detectedBpm !== null ? detectedBpm : parseFloat(sourceBpmStr);
-    if (
-      !isNaN(parsedTarget) && parsedTarget >= 20 && parsedTarget <= 300 &&
-      !isNaN(effectiveSource) && effectiveSource > 0
-    ) {
-      return `${effectiveSource.toFixed(1)} → ${parsedTarget} BPM`;
-    }
-    return '';
-  })();
 
   // Shared class for the dashed collapsed trigger buttons
   const triggerCls =
@@ -519,16 +526,13 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
               {bpmEnabled ? (
                 <div className="rounded-xl border border-[#D9D9D9] overflow-hidden">
                   <div className="flex items-center justify-between px-4 py-2.5 bg-gray-50 border-b border-[#D9D9D9]">
-                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-700">
+                    <div className="flex items-center gap-2 text-sm font-semibold text-gray-700 min-w-0">
                       {/* Metronome icon */}
-                      <svg className="w-4 h-4 text-brand" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <svg className="w-4 h-4 text-brand flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M9 19V6l12-3v13M9 19c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zm12-3c0 1.105-1.343 2-3 2s-3-.895-3-2 1.343-2 3-2 3 .895 3 2zM9 10l12-3" />
                       </svg>
-                      BPM Changer
-                      <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 rounded">Beta</span>
-                      {bpmSummaryLabel && (
-                        <span className="text-[10px] text-brand font-medium">{bpmSummaryLabel}</span>
-                      )}
+                      <span className="truncate">BPM Changer</span>
+                      <span className="px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-wide bg-amber-100 text-amber-700 rounded flex-shrink-0">Beta</span>
                     </div>
                     <button
                       type="button"

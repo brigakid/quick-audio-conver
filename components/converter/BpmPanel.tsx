@@ -71,8 +71,8 @@ function TempoPanel({
       </div>
 
       {/* Target BPM row */}
-      <div className="flex items-center gap-2">
-        <span className="text-xs font-medium text-gray-500 w-[80px] shrink-0">Target BPM</span>
+      <div className="flex items-start gap-2">
+        <span className="text-xs font-medium text-gray-500 w-[80px] shrink-0 pt-1">Target BPM</span>
         <div className="flex items-center gap-1.5 flex-wrap">
           <input
             type="number"
