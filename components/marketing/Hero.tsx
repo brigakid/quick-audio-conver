@@ -24,8 +24,8 @@ export default function Hero() {
           </h1>
 
           <p className="mt-3 sm:mt-4 text-sm sm:text-lg text-gray-400 max-w-xl mx-auto leading-relaxed">
-            Upload any audio or video file — MP4, MOV, WAV, FLAC, ALAC, M4A, MP3, AAC, OGG,
-            AIFF, AMR, AC3, WMA, and more. Convert to MP3, WAV, M4A, FLAC, AAC, OGG, or OPUS.
+            Free online audio converter — supports MP4, WAV, FLAC, MP3, AAC, OGG, AIFF, and more.
+            Convert to MP3, WAV, FLAC, M4A, OGG, or OPUS and download in seconds.
             No installation, no account.
           </p>
 
@@ -50,6 +50,13 @@ export default function Hero() {
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
               Secure server-side processing
+            </span>
+            <span className="hidden sm:block w-px h-3 bg-gray-600 flex-shrink-0" aria-hidden="true" />
+            <span className="flex items-center gap-1.5 text-xs text-gray-400">
+              <svg className="w-3.5 h-3.5 text-green-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              BPM &amp; key detection
             </span>
           </div>
         </div>

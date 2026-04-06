@@ -10,19 +10,22 @@ import SideRail from '@/components/ads/SideRail';
 import AdSlot from '@/components/ads/AdSlot';
 
 export const metadata: Metadata = {
-  title: 'Free Online Audio Converter',
+  title: { absolute: 'QuickAudioConvert — Free Online Audio Converter' },
   description:
-    'Convert audio and video to MP3, WAV, FLAC, M4A, and more. No account needed — upload, convert, and download in seconds. Files are deleted automatically.',
+    'Free online audio converter. Convert to MP3, WAV, FLAC, OGG, and more — plus BPM detection, tempo change, and key shifting built in. Free, instant, no account.',
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'QuickAudioConvert — Free Online Audio Converter',
     description:
-      'Convert audio and video to MP3, WAV, FLAC, M4A, and more. No account needed — upload, convert, and download in seconds. Files are deleted automatically.',
+      'Free online audio converter. Convert to MP3, WAV, FLAC, OGG, and more — plus BPM detection, tempo change, and key shifting built in. Free, instant, no account.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'QuickAudioConvert — Free Online Audio Converter',
     description:
-      'Convert audio and video to MP3, WAV, FLAC, M4A, and more. No account needed — upload, convert, and download in seconds.',
+      'Free online audio converter. Convert to MP3, WAV, FLAC, OGG, and more — plus BPM detection, tempo change, and key shifting. Free, instant, no account.',
   },
 };
 

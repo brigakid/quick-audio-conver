@@ -194,6 +194,7 @@ export default function WhatIsFrequencyPage() {
       <RelatedContent
         title="Related"
         items={[
+          { href: '/key-changer',                                           label: 'Key Changer & Detector',           note: 'Shift audio pitch by semitones online' },
           { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Affects Sound Quality' },
           { href: '/learn/best-audio-format-for-voice-recordings',          label: 'Best Format for Voice Recordings'  },
         ]}

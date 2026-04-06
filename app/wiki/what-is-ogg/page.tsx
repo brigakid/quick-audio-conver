@@ -6,19 +6,22 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
-  title: 'What Is OGG? Open-Source Audio Format Explained',
+  title: 'What Is an OGG File? OGG Format Explained',
   description:
-    'OGG is an open-source container format that usually holds Vorbis audio — a royalty-free lossy codec comparable to MP3 and AAC. It\'s common in PC games, Linux, and open-source software.',
+    'An OGG file is typically OGG Vorbis — an open-source, royalty-free audio format comparable in quality to MP3. Common in PC games, Linux, and open-source software. Here\'s how it compares to MP3 and AAC, and when to convert it.',
+  alternates: {
+    canonical: '/wiki/what-is-ogg',
+  },
   openGraph: {
-    title: 'What Is OGG? Open-Source Audio Format Explained',
+    title: 'What Is an OGG File? OGG Format Explained',
     description:
-      'OGG is an open-source container format that usually holds Vorbis audio — a royalty-free lossy codec comparable to MP3 and AAC. It\'s common in PC games, Linux, and open-source software.',
+      'An OGG file is typically OGG Vorbis — an open-source, royalty-free audio format comparable in quality to MP3. Common in PC games, Linux, and open-source software. Here\'s how it compares to MP3 and AAC, and when to convert it.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'What Is OGG? Open-Source Audio Format Explained',
+    title: 'What Is an OGG File? OGG Format Explained',
     description:
-      'OGG is an open-source container format that usually holds Vorbis audio — a royalty-free lossy codec comparable to MP3 and AAC. It\'s common in PC games, Linux, and open-source software.',
+      'An OGG file is typically OGG Vorbis — open-source, royalty-free audio comparable to MP3. Common in games and Linux. Here\'s how it compares and when to convert.',
   },
 };
 
@@ -35,18 +38,19 @@ export default function WhatIsOggPage() {
       <div className="mb-8">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Format Guides</p>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
-          What Is OGG?
+          What Is an OGG File?
         </h1>
       </div>
 
       <Author />
 
       <QuickAnswer>
-        OGG is an <strong>open-source, royalty-free container format</strong> developed by Xiph.Org.
-        When people say "OGG file," they usually mean OGG Vorbis — the container holding Vorbis
-        audio, a lossy codec comparable in quality to MP3 and AAC. OGG is widely used in PC games,
-        Linux audio, and open-source applications, but has limited support on hardware devices and
-        the Apple ecosystem.
+        An <strong>OGG file (.ogg)</strong> is almost always OGG Vorbis — an open-source,
+        royalty-free container format developed by Xiph.Org, holding Vorbis audio: a lossy codec
+        comparable in quality to MP3 and AAC. OGG is widely used in PC games (Minecraft, Godot,
+        Unity), Linux audio, and open-source applications, but has limited support on hardware
+        devices and the Apple ecosystem. If you need to play an OGG file on an iPhone or a car
+        stereo, you'll need to convert it first.
       </QuickAnswer>
 
       <div className="prose prose-sm max-w-none text-gray-600 space-y-8 mt-8">
@@ -178,7 +182,10 @@ export default function WhatIsOggPage() {
         <section>
           <h2 className="text-xl font-bold text-gray-900 mb-3">OGG vs Opus: the newer alternative</h2>
           <p className="leading-relaxed">
-            Opus is the newer Xiph.Org codec that supersedes Vorbis for most purposes. Opus handles
+            <Link href="/wiki/what-is-opus" className="underline hover:text-brand transition-colors">
+              Opus
+            </Link>{' '}
+            is the newer Xiph.Org codec that supersedes Vorbis for most purposes. Opus handles
             both voice and music, achieves better quality at lower bitrates than Vorbis, and is
             standardised by the IETF as the audio codec for WebRTC (real-time communication on the
             web). Opus is also stored in OGG containers — .opus files are OGG + Opus audio.
@@ -193,9 +200,13 @@ export default function WhatIsOggPage() {
         <section>
           <h2 className="text-xl font-bold text-gray-900 mb-3">When to convert OGG files</h2>
           <p className="leading-relaxed">
-            The most common reason to convert an OGG file is compatibility. If you've extracted audio
-            from a game, downloaded something from a Linux system, or received a file from an
-            open-source application, converting to MP3 or AAC makes it playable on any device.
+            The most common reason to convert an OGG file is compatibility. If you've extracted
+            audio from a game, downloaded something from a Linux system, or received a file from an
+            open-source application,{' '}
+            <Link href="/ogg-to-mp3" className="underline hover:text-brand transition-colors">
+              converting OGG to MP3
+            </Link>{' '}
+            makes it playable on any device.
           </p>
           <p className="leading-relaxed mt-3">
             Converting OGG to MP3 involves decoding the Vorbis codec and re-encoding to MP3 —
@@ -204,6 +215,58 @@ export default function WhatIsOggPage() {
             result will still be good. If the source is already low-quality, the re-encode will
             compound the existing artifacts.
           </p>
+          <p className="leading-relaxed mt-3">
+            Going the other direction — converting WAV or MP3 to OGG — is common in game
+            development. If you're building in Godot, Unity, or another engine that prefers OGG
+            for streaming audio, you can{' '}
+            <Link href="/wav-to-ogg" className="underline hover:text-brand transition-colors">
+              convert WAV to OGG
+            </Link>{' '}
+            or{' '}
+            <Link href="/mp3-to-ogg" className="underline hover:text-brand transition-colors">
+              convert MP3 to OGG
+            </Link>{' '}
+            to get royalty-free, game-ready audio files.
+          </p>
+        </section>
+
+        <section>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Frequently asked questions</h2>
+          <div className="space-y-5">
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-1">What is the difference between OGG and MP3?</h3>
+              <p className="leading-relaxed">
+                Both are lossy compressed formats with similar file sizes at equivalent bitrates.
+                OGG Vorbis is royalty-free and open-source; MP3 has broader hardware support. For
+                game engines (Godot, Unity) and Linux, OGG is often the preferred format. For
+                universal playback on hardware devices and car stereos, MP3 is the safer choice.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-1">Can iPhones or Macs play OGG files?</h3>
+              <p className="leading-relaxed">
+                No — Apple devices do not natively support OGG Vorbis. iOS won't play an OGG file
+                without a third-party app, and iTunes won't import OGG. To use an OGG file on Apple
+                devices, convert it to MP3 or AAC first.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-1">Is OGG better quality than MP3?</h3>
+              <p className="leading-relaxed">
+                OGG Vorbis is slightly more efficient than MP3, meaning it can achieve similar quality
+                with a smaller file size at comparable bitrates. In practice, at common listening
+                bitrates (160 kbps and above), the difference is negligible for most listeners.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-1">What programs open OGG files?</h3>
+              <p className="leading-relaxed">
+                VLC, foobar2000, and most modern desktop browsers (Chrome, Firefox) open OGG files
+                natively. Windows Media Player does not support OGG by default. iTunes and macOS
+                Finder require conversion or a third-party plugin.
+              </p>
+            </div>
+          </div>
         </section>
 
       </div>
@@ -211,8 +274,9 @@ export default function WhatIsOggPage() {
       <RelatedContent
         title="Convert OGG files"
         items={[
-          { href: '/ogg-to-mp3',  label: 'OGG to MP3',  note: 'Convert for universal compatibility' },
-          { href: '/wav-to-mp3',  label: 'WAV to MP3',  note: 'If you have a lossless source, encode fresh' },
+          { href: '/ogg-to-mp3',  label: 'OGG to MP3',  note: 'Convert for universal compatibility'          },
+          { href: '/wav-to-ogg',  label: 'WAV to OGG',  note: 'For game engines and Linux audio pipelines'   },
+          { href: '/mp3-to-ogg',  label: 'MP3 to OGG',  note: 'Convert to royalty-free format'               },
         ]}
       />
 

@@ -246,6 +246,8 @@ export default function ToolsGrid() {
           <li><Link href="/wav-to-ogg">WAV to OGG Converter</Link></li>
           <li><Link href="/mp3-to-ogg">MP3 to OGG Converter</Link></li>
           <li><Link href="/wav-to-aac">WAV to AAC Converter</Link></li>
+          <li><Link href="/bpm-changer">BPM Changer &amp; Detector</Link></li>
+          <li><Link href="/key-changer">Audio Key Changer &amp; Detector</Link></li>
         </ul>
 
         {/* Bottom CTA */}

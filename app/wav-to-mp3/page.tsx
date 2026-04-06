@@ -70,6 +70,8 @@ export default function WavToMp3Page() {
         { href: '/guides/lossless-vs-lossy-audio',                       label: 'Lossless vs Lossy Audio'              },
         { href: '/formats/wav',                                          label: 'WAV format guide'                     },
         { href: '/guides/how-to-choose-mp3-bitrate',                     label: 'How to Choose MP3 Bitrate'            },
+        { href: '/bpm-changer',                                          label: 'BPM Changer & Detector'               },
+        { href: '/key-changer',                                          label: 'Key Changer & Detector'               },
         { href: '/wiki/what-is-wav',                                     label: 'WikiSound: What Is WAV?'              },
         { href: '/wiki/what-is-lossless-audio',                          label: 'WikiSound: What Is Lossless Audio?'   },
         { href: '/wiki/what-is-bitrate',                                 label: 'WikiSound: What Is Bitrate?'          },

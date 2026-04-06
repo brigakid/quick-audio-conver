@@ -56,6 +56,16 @@ export default function GuidesBlock() {
           </Link>
         </div>
 
+        <div className="mt-8 pt-6 border-t border-gray-100 text-center">
+          <p className="text-sm text-gray-500">
+            Want to understand audio formats in depth?{' '}
+            <Link href="/wiki" className="font-semibold text-brand hover:underline">
+              Browse WikiSound
+            </Link>
+            {' '}— codec explanations, bitrate guides, and format comparisons, all in plain language.
+          </p>
+        </div>
+
       </div>
     </section>
   );

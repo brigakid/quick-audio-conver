@@ -4,17 +4,20 @@ import ToolPageLayout from '@/components/converter/ToolPageLayout';
 export const metadata: Metadata = {
   title: 'FLAC to MP3 Converter',
   description:
-    'Convert lossless FLAC to MP3 for broader device and platform compatibility. Choose your bitrate and download in seconds. Free, no account required.',
+    'Convert lossless FLAC to MP3 — choose 128, 192, or 320 kbps and download in seconds. Works on iPhone, car stereos, and anywhere FLAC isn\'t supported. Free, no account.',
+  alternates: {
+    canonical: '/flac-to-mp3',
+  },
   openGraph: {
     title: 'FLAC to MP3 Converter',
     description:
-      'Convert lossless FLAC to MP3 for broader device and platform compatibility. Choose your bitrate and download in seconds. Free, no account required.',
+      'Convert lossless FLAC to MP3 — choose 128, 192, or 320 kbps and download in seconds. Works on iPhone, car stereos, and anywhere FLAC isn\'t supported. Free, no account.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'FLAC to MP3 Converter',
     description:
-      'Convert lossless FLAC to MP3 for broader device and platform compatibility. Choose your bitrate and download in seconds. Free, no account required.',
+      'Convert lossless FLAC to MP3 — choose 128, 192, or 320 kbps. Works on iPhone, car stereos, and anywhere FLAC isn\'t supported. Free, no account.',
   },
 };
 
@@ -22,7 +25,7 @@ export default function FlacToMp3Page() {
   return (
     <ToolPageLayout
       title="FLAC to MP3 Converter"
-      subtitle="Convert lossless FLAC audio to MP3. Get compatibility with devices, apps, and platforms that don't support FLAC."
+      subtitle="Convert your lossless FLAC files to MP3 — 128, 192, or 320 kbps. Plays on iPhone, car stereos, and everywhere FLAC doesn't."
       inputFormat="flac"
       outputFormat="mp3"
       sourceFormatInfo={{
@@ -57,6 +60,11 @@ export default function FlacToMp3Page() {
           answer:
             'In blind listening tests, most people cannot reliably distinguish a 320 kbps MP3 from a lossless source on typical equipment. If you are listening through high-end audiophile gear, you may notice a small difference. For most uses, 320 kbps is excellent.',
         },
+        {
+          question: 'Will converting FLAC to MP3 introduce audio artifacts?',
+          answer:
+            'Any MP3 encoding introduces some level of compression artifacts — but because FLAC is lossless, you are encoding from the cleanest possible source. At 320 kbps, artifacts are inaudible for virtually all listeners. At 128 kbps, you may notice subtle smearing on complex music. This is why converting from FLAC (rather than re-encoding from another lossy file) gives you the cleanest possible MP3: there is no accumulated quality loss from previous compressions.',
+        },
       ]}
       relatedTools={[
         { href: '/wav-to-mp3',  label: 'WAV to MP3'  },
@@ -71,6 +79,7 @@ export default function FlacToMp3Page() {
         { href: '/formats/mp3',                                label: 'MP3 format guide'                     },
         { href: '/wiki/what-is-flac',                          label: 'WikiSound: What Is FLAC?'             },
         { href: '/wiki/what-is-lossless-audio',                label: 'WikiSound: What Is Lossless Audio?'   },
+        { href: '/wiki/what-is-audio-artifacting',             label: 'WikiSound: What Are Audio Artifacts?' },
         { href: '/wiki/what-is-transcoding',                   label: 'WikiSound: What Is Transcoding?'      },
       ]}
       lastUpdated="2026-03-01"

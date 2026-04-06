@@ -6,19 +6,22 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
-  title: 'What Is Audio Artifacting? The Sounds Compression Creates',
+  title: 'What Are Audio Artifacts? Causes, Types & How to Avoid Them',
   description:
-    'Audio artifacts are strange sounds introduced by lossy compression or over-processing. Smearing, pre-echo, the metallic shimmer. Here\'s what causes each type and how to avoid them.',
+    'Audio artifacts (or artefacts) are sounds that weren\'t in the original recording — created by lossy compression, re-encoding, or over-processing. Pre-echo, smearing, the metallic shimmer: here\'s what causes each type and how to avoid them.',
+  alternates: {
+    canonical: '/wiki/what-is-audio-artifacting',
+  },
   openGraph: {
-    title: 'What Is Audio Artifacting? The Sounds Compression Creates',
+    title: 'What Are Audio Artifacts? Causes, Types & How to Avoid Them',
     description:
-      'Audio artifacts are strange sounds introduced by lossy compression or over-processing. Smearing, pre-echo, the metallic shimmer. Here\'s what causes each type and how to avoid them.',
+      'Audio artifacts (or artefacts) are sounds that weren\'t in the original recording — created by lossy compression, re-encoding, or over-processing. Pre-echo, smearing, the metallic shimmer: here\'s what causes each type and how to avoid them.',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'What Is Audio Artifacting? The Sounds Compression Creates',
+    title: 'What Are Audio Artifacts? Causes, Types & How to Avoid Them',
     description:
-      'Audio artifacts are strange sounds introduced by lossy compression or over-processing. Smearing, pre-echo, the metallic shimmer. Here\'s what causes each type and how to avoid them.',
+      'Audio artifacts are sounds created by lossy compression or over-processing. Pre-echo, smearing, metallic shimmer — here\'s what causes each type and how to avoid them.',
   },
 };
 
@@ -35,17 +38,21 @@ export default function WhatIsAudioArtifactingPage() {
       <div className="mb-8">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Signal Processing</p>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight leading-tight">
-          What Is Audio Artifacting?
+          What Are Audio Artifacts?
         </h1>
       </div>
 
       <Author />
 
       <QuickAnswer>
-        Audio artifacts are sounds that weren't in the original recording — introduced as a
-        side effect of lossy compression, noise reduction, or other processing. They range from
-        subtle (barely noticeable at high bitrates) to severe (the "underwater" sound of very
-        low-bitrate MP3). <strong>They're not random — each type has a specific cause.</strong>
+        Audio artifacts (also spelled <em>artefacts</em> in British English) are sounds that
+        weren't in the original recording — introduced as a side effect of{' '}
+        <Link href="/wiki/what-is-lossy-audio" className="underline hover:text-brand transition-colors">
+          lossy compression
+        </Link>
+        , noise reduction, or other processing. They range from subtle (barely noticeable at high
+        bitrates) to severe (the "underwater" sound of very low-bitrate MP3).{' '}
+        <strong>They're not random — each type has a specific cause.</strong>
       </QuickAnswer>
 
       <div className="prose prose-sm max-w-none text-gray-600 space-y-8 mt-8">
@@ -140,7 +147,14 @@ export default function WhatIsAudioArtifactingPage() {
           <ul className="space-y-2">
             <li className="flex gap-2">
               <span className="text-brand font-semibold flex-shrink-0">Use an appropriate bitrate:</span>
-              <span>192 kbps MP3 eliminates most audible codec artifacts for music. 128 kbps is acceptable for voice. Below 96 kbps, artifacts are consistently audible on complex material.</span>
+              <span>
+                192 kbps MP3 eliminates most audible codec artifacts for music. 128 kbps is acceptable for
+                voice. Below 96 kbps, artifacts are consistently audible on complex material. See{' '}
+                <Link href="/wiki/what-is-bitrate" className="underline hover:text-brand transition-colors">
+                  what bitrate means
+                </Link>{' '}
+                for a full explanation.
+              </span>
             </li>
             <li className="flex gap-2">
               <span className="text-brand font-semibold flex-shrink-0">Choose the right codec:</span>
@@ -148,7 +162,19 @@ export default function WhatIsAudioArtifactingPage() {
             </li>
             <li className="flex gap-2">
               <span className="text-brand font-semibold flex-shrink-0">Encode from a lossless source:</span>
-              <span>Encoding from a lossy source (re-encoding MP3 to AAC) compounds artifacts. Always encode from the original lossless source when possible.</span>
+              <span>
+                Encoding from a lossy source (re-encoding MP3 to AAC) compounds artifacts — each
+                re-encode adds another layer of quality loss on top of what already exists. Always encode
+                from the original lossless source when possible. If you have a{' '}
+                <Link href="/flac-to-mp3" className="underline hover:text-brand transition-colors">
+                  FLAC file and need MP3
+                </Link>
+                {' '}or a{' '}
+                <Link href="/wav-to-mp3" className="underline hover:text-brand transition-colors">
+                  WAV file and need MP3
+                </Link>
+                , converting directly from the lossless source gives you the cleanest possible result.
+              </span>
             </li>
             <li className="flex gap-2">
               <span className="text-brand font-semibold flex-shrink-0">Limit noise reduction intensity:</span>
@@ -157,7 +183,56 @@ export default function WhatIsAudioArtifactingPage() {
           </ul>
         </section>
 
+        <section>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Frequently asked questions</h2>
+          <div className="space-y-5">
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-1">What do audio artifacts sound like?</h3>
+              <p className="leading-relaxed">
+                The most common sounds are a metallic shimmer on high frequencies (like distorted
+                cymbals), a watery or "underwater" quality on voices and instruments, a faint
+                reverb-like echo just before sharp sounds (pre-echo), and rhythmic volume pulsing.
+                The exact character depends on the codec and how aggressively it compressed the audio.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-1">Does converting MP3 to another format create more artifacts?</h3>
+              <p className="leading-relaxed">
+                Yes. Each lossy-to-lossy re-encode adds another layer of quality loss. Converting MP3 to
+                AAC, for example, decodes the MP3 (exposing all existing artifacts into the raw audio)
+                and then re-encodes with AAC's own lossy decisions. When you need to convert, always
+                start from the lossless source — WAV or FLAC — rather than re-encoding from MP3.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-1">At what bitrate do audio artifacts become noticeable?</h3>
+              <p className="leading-relaxed">
+                For MP3: most people notice artifacts on music below 128 kbps. At 192 kbps and above,
+                artifacts are rarely audible on typical playback equipment. Below 96 kbps, artifacts are
+                consistently audible on complex material like music with cymbals or dense orchestration.
+              </p>
+            </div>
+            <div>
+              <h3 className="font-semibold text-gray-800 mb-1">Are audio artifacts the same as audio distortion?</h3>
+              <p className="leading-relaxed">
+                No — they're related but different. Distortion adds harmonics that weren't in the
+                original signal (like clipping). Artifacts are sounds created by compression algorithm
+                decisions — things like pre-echo and smearing that have no acoustic equivalent in
+                natural audio.
+              </p>
+            </div>
+          </div>
+        </section>
+
       </div>
+
+      <RelatedContent
+        title="Convert from a lossless source — avoid compounding artifacts"
+        items={[
+          { href: '/flac-to-mp3', label: 'FLAC to MP3', note: 'Start from lossless for the cleanest MP3' },
+          { href: '/wav-to-mp3',  label: 'WAV to MP3',  note: 'Convert from uncompressed source'         },
+        ]}
+      />
 
       <RelatedContent
         title="WikiSound"

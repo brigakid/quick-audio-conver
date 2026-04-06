@@ -4,17 +4,20 @@ import ToolPageLayout from '@/components/converter/ToolPageLayout';
 export const metadata: Metadata = {
   title: 'WAV to OGG Converter',
   description:
-    'Convert WAV audio to OGG/Vorbis — the open, royalty-free format used in games, web audio, and Linux. Free, no account needed.',
+    'Convert WAV to OGG/Vorbis online — the royalty-free format used in Godot, Unity, web audio, and Linux. Choose your bitrate, download instantly. Free, no account needed.',
+  alternates: {
+    canonical: '/wav-to-ogg',
+  },
   openGraph: {
     title: 'WAV to OGG Converter',
     description:
-      'Convert WAV audio to OGG/Vorbis — the open, royalty-free format used in games, web audio, and Linux. Free, no account needed.',
+      'Convert WAV to OGG/Vorbis online — the royalty-free format used in Godot, Unity, web audio, and Linux. Choose your bitrate, download instantly. Free, no account needed.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'WAV to OGG Converter',
     description:
-      'Convert WAV audio to OGG/Vorbis — the open, royalty-free format used in games, web audio, and Linux. Free, no account needed.',
+      'Convert WAV to OGG/Vorbis online — the royalty-free format used in Godot, Unity, web audio, and Linux. Free, no account needed.',
   },
 };
 
@@ -22,7 +25,7 @@ export default function WavToOggPage() {
   return (
     <ToolPageLayout
       title="WAV to OGG Converter"
-      subtitle="Convert uncompressed WAV to OGG/Vorbis — the open-source format used in game engines, web browsers, and Linux."
+      subtitle="Convert uncompressed WAV to OGG/Vorbis — the royalty-free format used in Godot, Unity, and Linux game audio pipelines."
       inputFormat="wav"
       outputFormat="ogg"
       sourceFormatInfo={{
@@ -70,9 +73,11 @@ A secondary use: Linux environments where patent-encumbered formats like MP3 are
         { href: '/flac-to-mp3', label: 'FLAC to MP3' },
       ]}
       relatedGuides={[
-        { href: '/formats/ogg',                      label: 'OGG format guide'              },
+        { href: '/wiki/what-is-ogg',                 label: 'WikiSound: What Is an OGG File?'  },
+        { href: '/formats/ogg',                      label: 'OGG format guide'                 },
+        { href: '/bpm-changer',                      label: 'BPM Changer & Detector'           },
         { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, MP3: What Matters' },
-        { href: '/guides/mp3-vs-wav',                label: 'MP3 vs WAV'                   },
+        { href: '/guides/mp3-vs-wav',                label: 'MP3 vs WAV'                       },
       ]}
       lastUpdated="2026-03-01"
     />

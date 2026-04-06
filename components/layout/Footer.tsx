@@ -9,6 +9,8 @@ const POPULAR_CONVERTERS = [
   { href: '/mp4-to-wav',  label: 'MP4 to WAV'  },
   { href: '/wav-to-m4a',  label: 'WAV to M4A'  },
   { href: '/mp3-to-m4a',  label: 'MP3 to M4A'  },
+  { href: '/bpm-changer', label: 'BPM Changer' },
+  { href: '/key-changer', label: 'Key Changer'  },
 ];
 
 const AUDIO_FORMATS = [
