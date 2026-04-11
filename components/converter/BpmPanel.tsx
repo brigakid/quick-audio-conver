@@ -2,6 +2,19 @@
 
 import { useEffect, useRef, useState } from 'react';
 
+/**
+ * Single-pass half/double-time correction.
+ * music-tempo occasionally locks onto a sub-beat grid (half-time: returns 65
+ * instead of 130) or an eighth-note grid (double-time: returns 200 instead of
+ * 100).  One correction pass normalises the most obvious outliers without
+ * touching values already in the practical working range.
+ */
+function normalizeBpm(bpm: number): number {
+  if (bpm < 80  && bpm * 2 <= 190) return bpm * 2;  // probable half-time
+  if (bpm > 180 && bpm / 2 >= 70)  return bpm / 2;  // probable double-time
+  return bpm;
+}
+
 // ---------------------------------------------------------------------------
 // TempoPanel UI — module-level so it is never recreated on parent re-renders
 // ---------------------------------------------------------------------------
@@ -39,7 +52,7 @@ function TempoPanel({
         <span className="text-xs font-medium text-gray-500 w-[80px] shrink-0 pt-0.5">Detected</span>
         <div className="flex-1 space-y-1.5">
           {detectedBpm !== null ? (
-            <span className="text-xs font-mono font-semibold text-gray-700">{detectedBpm.toFixed(1)} BPM</span>
+            <span className="text-xs font-mono font-semibold text-gray-700">{detectedBpm} BPM</span>
           ) : bpmDetecting ? (
             <div className="flex items-center gap-1.5 text-xs text-gray-400">
               <svg className="w-3 h-3 animate-spin text-gray-300 flex-shrink-0" fill="none" viewBox="0 0 24 24">
@@ -194,13 +207,21 @@ export default function BpmPanel({
         const { default: MusicTempo } = await import('music-tempo');
         if (cancelled) return;
 
-        const ch  = decoded.getChannelData(0);
+        // Extract up to 60 s from the centre of the track for stable beat
+        // detection.  Full-track analysis is unreliable: sparse intros and
+        // fade-out outros distort the onset density the library uses for
+        // tempo estimation.  The middle of the track typically contains a
+        // full verse or chorus with a consistent rhythmic pattern.
+        const sr      = decoded.sampleRate;
+        const segLen  = Math.min(Math.floor(60 * sr), decoded.length);
+        const segStart = Math.floor((decoded.length - segLen) / 2);
+        const ch  = decoded.getChannelData(0).slice(segStart, segStart + segLen);
         const mt  = new MusicTempo(ch);
         const raw = parseFloat(String(mt.tempo));
 
         if (!cancelled) {
           if (!isNaN(raw) && raw > 0 && raw !== -1) {
-            onDetectedBpmChange(Math.round(raw * 10) / 10);
+            onDetectedBpmChange(Math.round(normalizeBpm(raw)));
             setBpmFailed(false);
           } else {
             onDetectedBpmChange(null);
