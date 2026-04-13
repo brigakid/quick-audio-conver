@@ -57,7 +57,7 @@ export default function AboutPage() {
         </h1>
         <p className="mt-3 text-base text-gray-500 leading-relaxed max-w-2xl">
           A free tool for converting audio files between common formats. No account required.
-          No software to install. Files deleted automatically after 30 minutes.
+          No software to install. Files deleted automatically after 5 minutes.
         </p>
       </div>
 
@@ -155,7 +155,7 @@ export default function AboutPage() {
           <h2 className="text-xl font-bold text-gray-900 mb-3">How files are handled</h2>
           <p className="text-sm text-gray-600 leading-relaxed">
             Files are uploaded to our server only to perform the conversion. Both the original
-            and the converted output are automatically deleted within 30 minutes — whether you
+            and the converted output are automatically deleted within 5 minutes — whether you
             download them or not. We do not read, analyse, share, or retain your files beyond
             what is needed to process your request.
           </p>
@@ -194,7 +194,7 @@ export default function AboutPage() {
             </li>
             <li className="flex gap-2">
               <span className="text-gray-400 mt-0.5 flex-shrink-0">—</span>
-              Files must be downloaded within 30 minutes of conversion. After that, they are
+              Files must be downloaded within 5 minutes of conversion. After that, they are
               permanently deleted.
             </li>
             <li className="flex gap-2">

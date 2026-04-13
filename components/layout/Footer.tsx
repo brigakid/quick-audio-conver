@@ -72,7 +72,7 @@ export default function Footer() {
               Free online audio conversion. Server-side processing, no account required.
             </p>
             <p className="text-xs text-gray-600">
-              Files deleted after 30 minutes.
+              Files deleted after 5 minutes.
             </p>
             <a
               href="mailto:contact@quickaudioconvert.com"

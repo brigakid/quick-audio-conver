@@ -134,7 +134,7 @@ export default function TroubleshootingPage() {
           <h2 className="text-base font-bold text-gray-900 mb-1">The download expired</h2>
           <p className="text-xs text-gray-400 mb-3">Error: "File not found" or download link no longer works</p>
           <p className="text-sm text-gray-600 leading-relaxed">
-            Converted files are available for download for 30 minutes after conversion.
+            Converted files are available for download for 5 minutes after conversion.
             After that, they are permanently deleted. There is no way to recover a file
             once it has been deleted.
           </p>

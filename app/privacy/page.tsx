@@ -36,7 +36,7 @@ export default function PrivacyPage() {
           When you upload a file for conversion, it is stored temporarily on our servers for the sole purpose of processing your conversion request. Uploaded files are not shared with any third parties, indexed, or analyzed beyond what is necessary to complete your conversion.
         </p>
         <p>
-          <strong>Temporary retention:</strong> Uploaded files and converted output files are automatically deleted from our servers within 30 minutes of upload. We do not maintain permanent archives or backups of user-uploaded content.
+          <strong>Temporary retention:</strong> Uploaded files and converted output files are automatically deleted from our servers within 5 minutes of upload. We do not maintain permanent archives or backups of user-uploaded content.
         </p>
         <p>
           You are responsible for only uploading files you own or have authorization to convert. Do not upload personal documents, confidential content, or files that contain sensitive information.

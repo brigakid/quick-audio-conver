@@ -86,7 +86,7 @@ export default function ExtractAudioFromVideoPage() {
               {
                 step: '5',
                 title: 'Convert and download',
-                body: 'Click Convert and wait a few seconds. When complete, click Download. The file is automatically deleted from the server after 30 minutes.',
+                body: 'Click Convert and wait a few seconds. When complete, click Download. The file is automatically deleted from the server after 5 minutes.',
               },
             ].map(({ step, title, body }) => (
               <li key={step} className="flex gap-4">

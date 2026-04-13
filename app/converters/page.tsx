@@ -63,7 +63,7 @@ export default function ConvertersPage() {
         </h1>
         <p className="mt-3 text-base text-gray-500 max-w-2xl leading-relaxed">
           Upload a file, choose an output format, and download. All conversions run
-          server-side — nothing installs. Files are deleted automatically after 30 minutes.
+          server-side — nothing installs. Files are deleted automatically after 5 minutes.
         </p>
       </div>
 

@@ -61,7 +61,7 @@ export default function TermsPage() {
 
       <Section title="Temporary File Storage">
         <p>
-          Uploaded files and converted output files are stored temporarily on our servers for the purpose of completing your conversion. These files are automatically deleted within a short window (approximately 30 minutes). We do not retain permanent copies of user files.
+          Uploaded files and converted output files are stored temporarily on our servers for the purpose of completing your conversion. These files are automatically deleted within a short window (approximately 5 minutes). We do not retain permanent copies of user files.
         </p>
         <p>
           You are solely responsible for downloading your converted file within the available time window. We are not liable for files that are no longer available due to automatic deletion.

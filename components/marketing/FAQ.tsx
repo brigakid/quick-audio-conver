@@ -56,7 +56,7 @@ export const DEFAULT_FAQ_ITEMS: FAQItem[] = [
   {
     question: 'Are my files stored permanently?',
     answer:
-      'No. Uploaded files and converted output files are automatically deleted after a short window (typically 30 minutes). We do not keep permanent copies of your files and do not share them with anyone.',
+      'No. Uploaded files and converted output files are automatically deleted after a short window (typically 5 minutes). We do not keep permanent copies of your files and do not share them with anyone.',
   },
   {
     question: 'Can I convert a video file (MP4, MOV) to audio?',
