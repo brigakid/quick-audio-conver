@@ -33,7 +33,7 @@ export default function AifcToMp3Page() {
       targetFormatInfo={{
         name: 'MP3',
         description:
-          'MP3 (MPEG Audio Layer III) is the most universally supported audio format. It plays on every device, operating system, car stereo, and media player. MP3 is the practical choice when you need a file that works everywhere without special software.',
+          'MP3 is the practical output when your goal is playback on modern hardware. AIFC files require specific decoder support that is absent on most current devices and software. MP3 removes that dependency entirely — it plays on any phone, media player, or computer without additional codecs.',
       }}
       whyConvert="AIFC files are rarely playable in modern software outside of macOS and professional audio applications. Converting to MP3 produces a file that plays on any device. AIFC's compressed variants (IMA ADPCM, MACE) were used in older Apple Pro Audio gear, Logic Pro sessions, and legacy Mac audio workflows. If you have AIFC files from these sources and need to play or share them on modern systems, MP3 is the practical output format."
       faqItems={[

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       'Panning places audio in the stereo field — left, right, or centre. It\'s how a mix sounds wide rather than flat. Here\'s how panning works and the practical rules for using it.',
   },
+  robots: { index: false },
   twitter: {
     card: 'summary_large_image',
     title: 'What Is Panning in Audio? Stereo Placement and the Stereo Field',

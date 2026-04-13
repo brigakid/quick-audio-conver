@@ -3,7 +3,6 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Terms of Service',
   description: 'Usage rules, limitations, and legal disclaimers for QuickAudioConvert.',
-  robots: { index: false },
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
@@ -105,7 +104,7 @@ export default function TermsPage() {
 
       <Section title="Governing Law">
         <p>
-          These Terms shall be governed by and construed in accordance with applicable laws. Any disputes arising from these Terms or your use of the Service shall be resolved in the appropriate jurisdiction.
+          These Terms shall be governed by and construed in accordance with the laws of England and Wales, without regard to conflict of law principles. Any disputes arising from these Terms or your use of the Service shall be resolved in the courts of England and Wales.
         </p>
       </Section>
 

@@ -33,7 +33,7 @@ export default function OpusToMp3Page() {
       targetFormatInfo={{
         name: 'MP3',
         description:
-          'MP3 (MPEG Audio Layer III) is the most universally supported audio format. Despite being older technology than OPUS, MP3 plays on virtually every device, car stereo, media player, and platform — making it the best choice for sharing and broad compatibility.',
+          'Opus is technically superior to MP3, but MP3 wins on compatibility. Opus files from Discord, WhatsApp, or WebRTC recordings will not open in most standard audio software, media managers, or older devices. MP3 will. Converting from Opus to MP3 trades codec efficiency for the near-universal playback support that Opus lacks.',
       }}
       whyConvert="Opus is the codec behind almost all modern real-time audio — Discord voice messages, WhatsApp voice notes, Zoom calls recorded in the browser, Telegram audio. These files arrive as .opus or .ogg and often won't open in standard media players or audio editors. Converting to MP3 gives you a file that plays on any device, imports into any DAW, and shares without compatibility issues. It's also the right choice when archiving voice recordings you want to keep long-term."
       faqItems={[

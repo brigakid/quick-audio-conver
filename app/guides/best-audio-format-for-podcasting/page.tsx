@@ -41,6 +41,16 @@ export default function BestAudioFormatForPodcastingPage() {
 
       <Author />
 
+      <div className="mb-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-sm text-gray-600 leading-relaxed">
+        This is a workflow guide covering format choice at each stage of podcast production —
+        recording, editing, and submission — including a platform requirements table with
+        bitrate recommendations by host. For a direct MP3 vs WAV comparison, see the{' '}
+        <Link href="/guides/mp3-vs-wav" className="text-brand hover:underline">
+          MP3 vs WAV guide
+        </Link>
+        .
+      </div>
+
       <QuickAnswer>
         Record and edit in WAV. Submit in MP3 at 192 kbps stereo (or 128 kbps mono) — or M4A/AAC
         if your host specifically recommends it.
@@ -216,7 +226,7 @@ export default function BestAudioFormatForPodcastingPage() {
         ]}
       />
 
-      <LastUpdated date="2025-03-01" />
+      <LastUpdated date="2026-04-14" />
 
     </div>
   );

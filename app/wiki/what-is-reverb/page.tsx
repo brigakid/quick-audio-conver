@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       'Reverb is the persistence of sound after the source stops — the natural result of sound bouncing off surfaces. In audio production, it places sounds in imaginary spaces.',
   },
+  robots: { index: false },
   twitter: {
     card: 'summary_large_image',
     title: 'What Is Reverb in Audio? Room, Plate, Hall, and Why It Matters',

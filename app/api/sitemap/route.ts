@@ -75,7 +75,6 @@ const pages = [
   { url: '/learn/aac-m4a-and-mp3-what-actually-matters',                       priority: '0.7', changefreq: 'monthly' },
   { url: '/learn/why-audio-files-fail-to-convert',                             priority: '0.7', changefreq: 'monthly' },
   { url: '/learn/best-audio-format-for-editing',                               priority: '0.7', changefreq: 'monthly' },
-  { url: '/learn/best-audio-format-for-podcasts',                              priority: '0.7', changefreq: 'monthly' },
   { url: '/learn/best-audio-format-for-voice-recordings',                      priority: '0.7', changefreq: 'monthly' },
   { url: '/learn/extracting-audio-from-video-best-format-choices',             priority: '0.7', changefreq: 'monthly' },
 
@@ -112,13 +111,9 @@ const pages = [
   { url: '/wiki/what-is-audio-artifacting',         priority: '0.8', changefreq: 'monthly' },
   { url: '/wiki/what-is-gain-staging',              priority: '0.8', changefreq: 'monthly' },
   { url: '/wiki/what-is-distortion',                priority: '0.8', changefreq: 'monthly' },
-  // Mixing & Production
+  // Mixing & Production (reverb, delay, panning, sidechain-compression are noindexed — excluded from sitemap)
   { url: '/wiki/what-is-mixing-mastering',          priority: '0.8', changefreq: 'monthly' },
-  { url: '/wiki/what-is-reverb',                    priority: '0.8', changefreq: 'monthly' },
-  { url: '/wiki/what-is-delay',                     priority: '0.8', changefreq: 'monthly' },
   { url: '/wiki/what-is-a-limiter',                 priority: '0.8', changefreq: 'monthly' },
-  { url: '/wiki/what-is-panning',                   priority: '0.8', changefreq: 'monthly' },
-  { url: '/wiki/what-is-sidechain-compression',     priority: '0.8', changefreq: 'monthly' },
 
   // Trust / legal pages
   { url: '/about',   priority: '0.6', changefreq: 'monthly' },

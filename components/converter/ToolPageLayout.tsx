@@ -28,6 +28,8 @@ interface ToolPageLayoutProps {
   relatedGuides?: RelatedGuide[];
   /** ISO date string for "Last updated" — e.g. "2025-03-01" */
   lastUpdated?: string;
+  /** Optional factual callout shown below the converter and above the format info cards */
+  converterNote?: string;
 }
 
 export default function ToolPageLayout({
@@ -42,6 +44,7 @@ export default function ToolPageLayout({
   relatedTools,
   relatedGuides,
   lastUpdated,
+  converterNote,
 }: ToolPageLayoutProps) {
   return (
     <>
@@ -61,6 +64,15 @@ export default function ToolPageLayout({
           </p>
         </div>
       </section>
+
+      {/* Converter note */}
+      {converterNote && (
+        <section className="bg-slate-800 border-t border-white/10">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <p className="text-sm text-gray-300 leading-relaxed">{converterNote}</p>
+          </div>
+        </section>
+      )}
 
       {/* Format info + why convert */}
       <section className="py-16 bg-white">

@@ -26,6 +26,7 @@ export default function FlacToMp3Page() {
     <ToolPageLayout
       title="FLAC to MP3 Converter"
       subtitle="Convert your lossless FLAC files to MP3 — 128, 192, or 320 kbps. Plays on iPhone, car stereos, and everywhere FLAC doesn't."
+      converterNote="You're converting from a lossless source. The MP3 encoder has the full uncompressed signal to work from — producing a cleaner result than re-encoding from another lossy file."
       inputFormat="flac"
       outputFormat="mp3"
       sourceFormatInfo={{

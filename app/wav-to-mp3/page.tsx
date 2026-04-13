@@ -23,6 +23,7 @@ export default function WavToMp3Page() {
     <ToolPageLayout
       title="WAV to MP3 Converter"
       subtitle="Compress a WAV file to MP3. A 30 MB WAV typically becomes 3–5 MB — small enough to share by email, attach to a message, or upload anywhere."
+      converterNote="WAV files are typically 8–10x larger than an equivalent MP3. A 40 MB WAV at CD quality becomes approximately 4 MB at 192 kbps. Your original WAV is unchanged on your device."
       inputFormat="wav"
       outputFormat="mp3"
       sourceFormatInfo={{

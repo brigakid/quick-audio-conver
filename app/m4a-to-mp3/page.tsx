@@ -23,6 +23,7 @@ export default function M4aToMp3Page() {
     <ToolPageLayout
       title="M4A to MP3 Converter"
       subtitle="Convert M4A audio files to MP3. Useful when the recipient's device, car stereo, or software doesn't support M4A."
+      converterNote="Common M4A sources: iPhone Voice Memos, GarageBand exports, iTunes purchases. Note: Apple Music downloads with active DRM cannot be converted by any online tool."
       inputFormat="m4a"
       outputFormat="mp3"
       sourceFormatInfo={{

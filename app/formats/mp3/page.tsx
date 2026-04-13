@@ -191,11 +191,11 @@ export default function Mp3FormatPage() {
         items={[
           { href: '/guides/mp3-vs-wav',              label: 'MP3 vs WAV'              },
           { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio' },
-          { href: '/guides/mp3-bitrate-guide',       label: 'MP3 Bitrate Guide'       },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How to Choose the Right MP3 Bitrate' },
         ]}
       />
 
-      <LastUpdated date="2025-03-01" />
+      <LastUpdated date="2026-04-14" />
 
     </div>
   );

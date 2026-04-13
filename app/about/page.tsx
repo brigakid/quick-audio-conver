@@ -63,6 +63,18 @@ export default function AboutPage() {
 
       <div className="space-y-10">
 
+        {/* Who built this */}
+        <section>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Who built this</h2>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            QuickAudioConvert was created by James in 2026. I built it because I needed a
+            good audio converter myself, but most of the tools I found were cluttered,
+            misleading, or forced users to sign up before doing anything useful.
+            QuickAudioConvert was made to be a simpler alternative: fast, straightforward,
+            and focused on getting the conversion done without unnecessary friction.
+          </p>
+        </section>
+
         {/* What it does */}
         <section>
           <h2 className="text-xl font-bold text-gray-900 mb-3">What it does</h2>

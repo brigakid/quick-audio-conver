@@ -75,10 +75,10 @@ export default function Footer() {
               Files deleted after 30 minutes.
             </p>
             <a
-              href="mailto:quickaudioconvert@protonmail.com"
+              href="mailto:contact@quickaudioconvert.com"
               className="mt-2 block text-xs text-gray-500 hover:text-white transition-colors break-all [overflow-wrap:anywhere]"
             >
-              quickaudioconvert@protonmail.com
+              contact@quickaudioconvert.com
             </a>
           </div>
 

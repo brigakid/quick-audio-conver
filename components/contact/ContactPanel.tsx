@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 
-const EMAIL = 'quickaudioconvert@protonmail.com';
+const EMAIL = 'contact@quickaudioconvert.com';
 
 export default function ContactPanel() {
   const [copied, setCopied] = useState(false);

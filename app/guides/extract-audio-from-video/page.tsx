@@ -41,6 +41,16 @@ export default function ExtractAudioFromVideoPage() {
 
       <Author />
 
+      <div className="mb-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-sm text-gray-600 leading-relaxed">
+        This is the step-by-step how-to for extracting audio using QuickAudioConvert: upload,
+        choose a format, download. For a deeper look at which output format suits which use case —
+        codec trade-offs, why WAV vs MP3 matters for editing — see{' '}
+        <Link href="/learn/extracting-audio-from-video-best-format-choices" className="text-brand hover:underline">
+          Best Format Choices When Extracting Audio from Video
+        </Link>
+        .
+      </div>
+
       <QuickAnswer>
         Upload the video file to QuickAudioConvert and select an audio output format
         (MP3, WAV, M4A, AAC, OGG, or OPUS). The converter strips the video track
@@ -181,7 +191,7 @@ export default function ExtractAudioFromVideoPage() {
         ]}
       />
 
-      <LastUpdated date="2025-03-01" />
+      <LastUpdated date="2026-04-14" />
 
     </div>
   );

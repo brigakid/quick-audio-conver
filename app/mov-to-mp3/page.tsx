@@ -33,7 +33,7 @@ export default function MovToMp3Page() {
       targetFormatInfo={{
         name: 'MP3',
         description:
-          'MP3 (MPEG Audio Layer III) is the most universally supported audio format. It uses lossy compression to produce small files that play on every device, operating system, car stereo, and media player. At 192–320 kbps, the quality is excellent for most use cases.',
+          'MP3 is the practical output format when the goal is portability. A MOV file contains both video and audio data — MP3 contains only audio. The resulting file is 10–20x smaller, plays without a video player, and works on every device that the MOV container does not.',
       }}
       whyConvert="MOV files contain both video and audio data, making them large and impractical to share when you only need the audio. Converting MOV to MP3 strips out the video track and compresses the audio into a small, portable file. Common scenarios include extracting music or speech from iPhone screen recordings, pulling voiceover audio from video projects, converting recorded lectures or interviews, and getting audio from iMovie or Final Cut Pro exports. MP3 plays on every device and platform, making it the most practical format for distribution."
       faqItems={[

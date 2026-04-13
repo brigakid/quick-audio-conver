@@ -23,6 +23,7 @@ export default function Mp4ToMp3Page() {
     <ToolPageLayout
       title="MP4 to MP3 Converter"
       subtitle="Strip the audio track from an MP4 video and save it as an MP3. The video is discarded — only the audio is in the download."
+      converterNote="Only the audio track is extracted. The video stream is not saved in the output and the original file on your device is not changed."
       inputFormat="mp4"
       outputFormat="mp3"
       sourceFormatInfo={{
@@ -33,7 +34,7 @@ export default function Mp4ToMp3Page() {
       targetFormatInfo={{
         name: 'MP3',
         description:
-          'MP3 is the most widely supported audio format. It plays on every device, platform, and media player. Choose 192 kbps for a good balance of quality and file size, or 320 kbps if the source audio is high quality and you want to preserve it.',
+          'MP3 is the standard format for sharing extracted video audio. Unlike the MP4 container, it plays without a video player — on any phone, car stereo, or audio app. For lectures or interviews, 128 kbps is sufficient. For music video audio, use 192 kbps or higher.',
       }}
       whyConvert={`If you have downloaded a video and only need the audio — a podcast recording, a music video, a lecture, a YouTube clip — this converter handles it. The resulting MP3 is typically 10–20x smaller than the original MP4 and plays on any device without needing video playback capability. This is also the right tool for extracting audio from screen recordings, interviews, or any video where the audio track is what you actually need.`}
       faqItems={[

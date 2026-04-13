@@ -33,7 +33,7 @@ export default function AiffToMp3Page() {
       targetFormatInfo={{
         name: 'MP3',
         description:
-          'MP3 (MPEG Audio Layer III) is the most universally supported audio format. It uses lossy compression to produce small files without dramatically sacrificing perceived audio quality. MP3 plays on every device, operating system, car stereo, and media player.',
+          'MP3 is the distribution format that pairs with AIFF as a production format. Where AIFF is native to macOS and professional audio tools, MP3 plays on everything: iPhone, Android, Windows, car stereos, and any platform you are uploading to. Since AIFF is lossless, you are encoding from the cleanest possible source.',
       }}
       whyConvert="AIFF files are large — a 3-minute track can easily be 30–50 MB of raw audio data. Converting to MP3 compresses that down to 3–7 MB while maintaining good perceived quality, making files easy to share, stream, or store on mobile devices. AIFF is an ideal production format but a poor distribution format; MP3 solves that. This conversion is common for musicians, podcasters, and anyone working in Apple's audio ecosystem who needs files that play anywhere."
       faqItems={[
@@ -66,6 +66,7 @@ export default function AiffToMp3Page() {
         { href: '/ogg-to-mp3',   label: 'OGG to MP3' },
         { href: '/mp3-to-wav',   label: 'MP3 to WAV' },
       ]}
+      lastUpdated="2026-04-14"
     />
   );
 }

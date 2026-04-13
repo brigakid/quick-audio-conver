@@ -44,6 +44,16 @@ export default function TroubleshootingPage() {
 
       <Author />
 
+      <div className="mb-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-sm text-gray-600 leading-relaxed">
+        This guide covers errors specific to QuickAudioConvert — each entry includes the exact
+        error message and a specific fix. For a broader explanation of why audio files fail to
+        convert (codec issues, container mismatches, re-encoding problems), see{' '}
+        <Link href="/learn/why-audio-files-fail-to-convert" className="text-brand hover:underline">
+          Why Audio Files Fail to Convert
+        </Link>
+        .
+      </div>
+
       <div className="space-y-6">
 
         {/* Problem 1 */}
@@ -186,7 +196,7 @@ export default function TroubleshootingPage() {
         ]}
       />
 
-      <LastUpdated date="2025-03-01" />
+      <LastUpdated date="2026-04-14" />
 
     </div>
   );

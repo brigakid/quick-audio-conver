@@ -14,6 +14,7 @@ export const metadata: Metadata = {
     description:
       'Delay is a time-based effect that repeats a sound after a set interval. From subtle slap-back to cascading echoes, here\'s how delay works and how it\'s used.',
   },
+  robots: { index: false },
   twitter: {
     card: 'summary_large_image',
     title: 'What Is Delay in Audio? Echo, Slap-Back, and Tempo Sync',

@@ -40,12 +40,22 @@ export default function Ac3ToMp3Page() {
         {
           question: 'What happens to surround sound channels when converting AC3 to MP3?',
           answer:
-            'MP3 is a stereo format. When converting a 5.1 or 7.1 AC3 file to MP3, FFmpeg automatically downmixes the surround channels to stereo. Centre dialogue, front left/right, and rear channels are all mixed into two output channels. The result is a usable stereo file, not a multichannel one.',
+            'MP3 is a stereo format. When converting a 5.1 or 7.1 AC3 file to MP3, FFmpeg automatically downmixes the surround channels to stereo. Centre dialogue, front left/right, and surround/rear channels are all folded into two output channels. The result is a usable stereo file. Spatial positioning from the original surround mix is not preserved.',
+        },
+        {
+          question: 'What should I expect when converting movie or TV audio from AC3 to MP3?',
+          answer:
+            'The dialogue and overall mix will come through clearly. What is lost is the surround positioning — sounds that were placed behind or beside you in the original mix will appear blended into the stereo field. For dialogue-heavy content like TV shows or movies, this is barely noticeable. For action sequences or music with strong surround use, the stereo downmix is a meaningful trade-off. If spatial audio matters, convert to WAV instead and process with a stereo tool that handles downmix routing.',
+        },
+        {
+          question: 'What bitrate should I choose for AC3 to MP3?',
+          answer:
+            'For dialogue-heavy content (TV, podcasts, commentary tracks), 128 kbps is sufficient. For movie audio with music and effects, 192 kbps is recommended. 320 kbps is rarely necessary unless the source AC3 was high-bitrate and you want to preserve as much of the mix as possible.',
         },
         {
           question: 'Will the AC3 to MP3 conversion lose quality?',
           answer:
-            'Yes — both AC3 and MP3 are lossy. Re-encoding from one lossy format to another does cause some additional quality loss. At 192 or 320 kbps, the resulting MP3 is still highly listenable, but audiophile-level quality is not the goal here. Converting to WAV (which is lossless output) gives a better intermediate if you plan to edit further.',
+            'Yes — both AC3 and MP3 are lossy. Re-encoding from one lossy format to another causes some additional quality loss. At 192 or 320 kbps, the result is still highly listenable. If you plan to edit the audio further, convert to WAV instead — it is uncompressed output and avoids the lossy-to-lossy penalty.',
         },
         {
           question: 'Where do .ac3 files come from?',
@@ -55,7 +65,7 @@ export default function Ac3ToMp3Page() {
         {
           question: 'Can I also convert AC3 to WAV?',
           answer:
-            'Yes. AC3 to WAV is supported and gives you an uncompressed stereo output — better for editing. The same channel downmix applies.',
+            'Yes. AC3 to WAV is supported and gives you an uncompressed stereo output — better for editing. The same surround-to-stereo downmix applies.',
         },
       ]}
       relatedTools={[
@@ -66,9 +76,13 @@ export default function Ac3ToMp3Page() {
         { href: '/aac-to-mp3',   label: 'AAC to MP3' },
       ]}
       relatedGuides={[
-        { href: '/formats/ac3',                   label: 'What Is AC3 (Dolby Digital)?' },
-        { href: '/guides/extract-audio-from-video', label: 'How to Extract Audio from Video' },
+        { href: '/formats/ac3',                                           label: 'What Is AC3 (Dolby Digital)?'             },
+        { href: '/guides/extract-audio-from-video',                       label: 'How to Extract Audio from Video'          },
+        { href: '/learn/extracting-audio-from-video-best-format-choices', label: 'Best Format Choices When Extracting Audio' },
+        { href: '/wiki/what-is-transcoding',                              label: 'WikiSound: What Is Transcoding?'          },
+        { href: '/wiki/what-is-lossy-audio',                              label: 'WikiSound: What Is Lossy Audio?'          },
       ]}
+      lastUpdated="2026-04-14"
     />
   );
 }

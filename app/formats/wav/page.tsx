@@ -171,18 +171,25 @@ export default function WavFormatPage() {
         items={[
           { href: '/wav-to-mp3',  label: 'WAV to MP3',  note: 'Compress WAV for sharing' },
           { href: '/mp3-to-wav',  label: 'MP3 to WAV',  note: 'Convert MP3 for editing software' },
+          { href: '/flac-to-wav', label: 'FLAC to WAV', note: 'Lossless to WAV for editing' },
+          { href: '/m4a-to-wav',  label: 'M4A to WAV',  note: 'Convert M4A for DAW import' },
+          { href: '/mp4-to-wav',  label: 'MP4 to WAV',  note: 'Extract audio from video for editing' },
+          { href: '/alac-to-wav', label: 'ALAC to WAV', note: 'Apple lossless to WAV' },
+          { href: '/amr-to-wav',  label: 'AMR to WAV',  note: 'Convert voice recordings for editing' },
         ]}
       />
 
       <RelatedContent
         title="Related guides"
         items={[
-          { href: '/guides/mp3-vs-wav',              label: 'MP3 vs WAV'              },
-          { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio' },
+          { href: '/guides/mp3-vs-wav',                                       label: 'MP3 vs WAV'              },
+          { href: '/guides/lossless-vs-lossy-audio',                          label: 'Lossless vs Lossy Audio' },
+          { href: '/wiki/what-is-wav',                                        label: 'WikiSound: What Is WAV?' },
+          { href: '/learn/wav-vs-mp3-for-editing-sharing-and-archiving',      label: 'WAV vs MP3 by Workflow'  },
         ]}
       />
 
-      <LastUpdated date="2025-03-01" />
+      <LastUpdated date="2026-04-14" />
 
     </div>
   );

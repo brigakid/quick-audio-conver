@@ -9,6 +9,12 @@ const nextConfig: NextConfig = {
         destination: '/formats',
         permanent:   true,
       },
+      // /learn/best-audio-format-for-podcasts duplicates the guide — consolidate to the stronger page
+      {
+        source:      '/learn/best-audio-format-for-podcasts',
+        destination: '/guides/best-audio-format-for-podcasting',
+        permanent:   true,
+      },
     ];
   },
 
