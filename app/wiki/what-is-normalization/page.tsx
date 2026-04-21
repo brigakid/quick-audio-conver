@@ -178,11 +178,11 @@ export default function WhatIsNormalizationPage() {
           </p>
           <p className="leading-relaxed mt-3">
             The risk is the other direction. If you normalize a file upward and it has peaks near
-            0 dBFS, those peaks can now exceed the ceiling and{' '}
-            <Link href="/wiki/what-is-clipping" className="text-brand hover:underline">clip</Link>.
-            This is why export normalisation should always be combined with a -1 dBFS or -1 dBTP
-            ceiling — normalize to the target LUFS, then ensure no peak exceeds the ceiling. The
-            order is: apply EQ and dynamics processing first, normalize last, encode after.
+            0 dBFS, those peaks can now exceed the ceiling and clip (the waveform is cut off at the
+            maximum level, producing harsh digital distortion). This is why export normalisation
+            should always be combined with a -1 dBFS or -1 dBTP ceiling — normalize to the target
+            LUFS, then ensure no peak exceeds the ceiling. The order is: apply dynamics processing
+            first, normalize last, encode after.
           </p>
         </section>
 
@@ -191,10 +191,10 @@ export default function WhatIsNormalizationPage() {
       <RelatedContent
         title="WikiSound"
         items={[
-          { href: '/wiki/what-is-loudness',          label: 'What Is Loudness?'             },
-          { href: '/wiki/what-is-a-limiter',         label: 'What Is a Limiter?'            },
-          { href: '/wiki/what-is-audio-compression', label: 'What Is Audio Compression?'   },
-          { href: '/wiki/what-is-clipping',          label: 'What Is Clipping?'             },
+          { href: '/wiki/what-is-loudness',          label: 'What Is Loudness?'           },
+          { href: '/wiki/what-is-audio-compression', label: 'What Is Audio Compression?' },
+          { href: '/wiki/what-is-mono-stereo',       label: 'What Is Mono vs Stereo?'    },
+          { href: '/wiki/what-is-bitrate',           label: 'What Is Bitrate?'            },
         ]}
       />
 

@@ -223,9 +223,9 @@ export default function CodecVsContainerPage() {
         title="WikiSound"
         items={[
           { href: '/wiki/what-is-audio-codec',    label: 'What Is an Audio Codec?'    },
-          { href: '/wiki/what-is-mp3',            label: 'What Is MP3?'               },
-          { href: '/wiki/what-is-wav',            label: 'What Is WAV?'               },
-          { href: '/wiki/what-is-flac',           label: 'What Is FLAC?'              },
+          { href: '/formats/mp3',            label: 'What Is MP3?'               },
+          { href: '/formats/wav',            label: 'What Is WAV?'               },
+          { href: '/formats/flac',           label: 'What Is FLAC?'              },
           { href: '/wiki/what-is-lossy-audio',    label: 'What Is Lossy Audio?'       },
         ]}
       />

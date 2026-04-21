@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MOV to M4A Converter',
   description:
     'Extract and compress audio from a QuickTime MOV video into M4A — ideal for Apple Podcasts, iOS devices, and iTunes libraries. Free, no account needed.',
+  alternates: {
+    canonical: '/mov-to-m4a',
+  },
+
   openGraph: {
     title: 'MOV to M4A Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function MovToM4aPage() {
   return (
     <ToolPageLayout
+      slug="/mov-to-m4a"
       title="MOV to M4A Converter"
       subtitle="Extract audio from a QuickTime MOV video and save it as M4A — the compressed format preferred by Apple Podcasts, iTunes, and iOS."
       inputFormat="mov"
@@ -68,7 +73,7 @@ export default function MovToM4aPage() {
       relatedGuides={[
         { href: '/formats/mov',                                 label: 'MOV format guide'                        },
         { href: '/guides/extract-audio-from-video',             label: 'How to Extract Audio from Video'         },
-        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, and MP3 — What Actually Matters' },
+        { href: '/formats/aac', label: 'AAC, M4A, and MP3 — What Actually Matters' },
       ]}
     />
   );

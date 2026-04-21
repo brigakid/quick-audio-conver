@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'AIFC to MP3 Converter',
   description:
     'Convert AIFC (compressed AIFF) audio to MP3. Works with AIFC files from Apple and professional audio software. Free, no account, no install required.',
+  alternates: {
+    canonical: '/aifc-to-mp3',
+  },
+
   openGraph: {
     title: 'AIFC to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AifcToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/aifc-to-mp3"
       title="AIFC to MP3 Converter"
       subtitle="Convert AIFC compressed audio to MP3 — a universally compatible format that plays on any device."
       inputFormat="aifc"

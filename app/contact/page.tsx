@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Contact',
   description:
     'Reach the QuickAudioConvert team for support, bug reports, format requests, or any question about audio conversion.',
+  alternates: {
+    canonical: '/contact',
+  },
   openGraph: {
     title: 'Contact QuickAudioConvert',
     description:

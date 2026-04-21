@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'AMR to WAV Converter',
   description:
     'Convert AMR voice recordings to uncompressed WAV for editing, transcription software, or archiving. Works with mobile call recordings and voice memos. Free, no account.',
+  alternates: {
+    canonical: '/amr-to-wav',
+  },
+
   openGraph: {
     title: 'AMR to WAV Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AmrToWavPage() {
   return (
     <ToolPageLayout
+      slug="/amr-to-wav"
       title="AMR to WAV Converter"
       subtitle="Convert AMR voice recordings to uncompressed WAV — ready for editing software, transcription tools, and archiving."
       inputFormat="amr"
@@ -35,7 +40,11 @@ export default function AmrToWavPage() {
         description:
           'WAV (Waveform Audio File Format) stores uncompressed PCM audio. It is the format expected by most audio editing software, transcription tools, and broadcasting workflows. WAV files are larger than AMR but work with virtually any audio application.',
       }}
-      whyConvert="Converting AMR to WAV makes old voice recordings usable in modern software. Audio editors like Audacity, transcription services, and speech-to-text tools generally accept WAV but may not handle AMR. This conversion is useful for editing recorded calls or voice memos, running AMR recordings through transcription or captioning software, archiving voice recordings in a long-term format, and importing old mobile recordings into a podcast or audio project."
+      whyConvert={`Most modern audio software — Audacity, Premiere, Descript, Otter, and mainstream transcription services — does not accept AMR input. Converting to WAV is the unlock: every audio editor, transcription tool, and speech-to-text engine reliably reads WAV.
+
+Typical use cases: editing recorded phone calls or voice memos, feeding old mobile recordings into speech-to-text or captioning tools, importing AMR voice memos into a podcast or video project, and archiving recordings in a format that will still be usable in ten years.
+
+One caveat worth stating plainly: AMR is a narrow-band, heavily compressed voice codec. Converting to WAV does not recover audio quality — the new file simply contains the same speech audio in a form that modern tools can open. The WAV will be larger but editable.`}
       faqItems={[
         {
           question: 'Will the WAV file sound better than the AMR?',
@@ -65,9 +74,12 @@ export default function AmrToWavPage() {
         { href: '/ogg-to-mp3',   label: 'OGG to MP3' },
       ]}
       relatedGuides={[
-        { href: '/formats/amr',            label: 'What Is AMR?' },
-        { href: '/guides/mp3-vs-wav',       label: 'MP3 vs WAV' },
+        { href: '/formats/amr',              label: 'AMR format guide'        },
+        { href: '/formats/wav',              label: 'WAV format guide'        },
+        { href: '/guides/mp3-vs-wav',        label: 'MP3 vs WAV'              },
+        { href: '/wiki/what-is-audio-codec', label: 'What Is an Audio Codec?' },
       ]}
+      lastUpdated="2026-04-14"
     />
   );
 }

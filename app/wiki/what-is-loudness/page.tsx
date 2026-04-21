@@ -178,10 +178,10 @@ export default function WhatIsLoudnessPage() {
       <RelatedContent
         title="WikiSound"
         items={[
-          { href: '/wiki/what-is-normalization',     label: 'What Is Normalization?'        },
-          { href: '/wiki/what-is-a-limiter',         label: 'What Is a Limiter?'            },
-          { href: '/wiki/what-is-audio-compression', label: 'What Is Audio Compression?'   },
-          { href: '/wiki/what-is-mixing-mastering',  label: 'What Is Mixing vs Mastering?'  },
+          { href: '/wiki/what-is-normalization',     label: 'What Is Normalization?'      },
+          { href: '/wiki/what-is-audio-compression', label: 'What Is Audio Compression?'  },
+          { href: '/wiki/what-is-mono-stereo',       label: 'What Is Mono vs Stereo?'     },
+          { href: '/wiki/what-is-bitrate',           label: 'What Is Bitrate?'            },
         ]}
       />
 
@@ -189,7 +189,7 @@ export default function WhatIsLoudnessPage() {
         title="Related"
         items={[
           { href: '/guides/best-audio-format-for-podcasting', label: 'Best Format for Podcasting' },
-          { href: '/learn/best-audio-format-for-podcasts',    label: 'Best Audio Format for Podcasts' },
+          { href: '/guides/best-audio-format-for-podcasting',    label: 'Best Audio Format for Podcasts' },
         ]}
       />
 

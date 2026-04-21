@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MP3 to WAV Converter',
   description:
     'Convert MP3 to uncompressed WAV format for use in audio editing software, DAWs, and video editors. Fast, free, no account required.',
+  alternates: {
+    canonical: '/mp3-to-wav',
+  },
+
   openGraph: {
     title: 'MP3 to WAV Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function Mp3ToWavPage() {
   return (
     <ToolPageLayout
+      slug="/mp3-to-wav"
       title="MP3 to WAV Converter"
       subtitle="Convert MP3 to uncompressed WAV — needed when your editing software or workflow requires WAV input."
       inputFormat="mp3"

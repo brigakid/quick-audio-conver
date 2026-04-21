@@ -2,6 +2,8 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
+import JsonLd from '@/components/seo/JsonLd';
+import { websiteSchema, organizationSchema } from '@/lib/seo';
 import './globals.css';
 
 const GA_ID = 'G-XHEXJ0V2Y1';
@@ -59,6 +61,8 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5139615638375778" crossOrigin="anonymous" />
       </head>
       <body className="min-h-screen bg-white">
+        {/* Site-wide structured data — WebSite + Organization */}
+        <JsonLd data={[websiteSchema(), organizationSchema()]} />
         {/* Google Analytics 4 */}
         <Script
           src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`}

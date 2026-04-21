@@ -182,7 +182,7 @@ export default function CbrVsVbrPage() {
         title="WikiSound"
         items={[
           { href: '/wiki/what-is-bitrate',     label: 'What Is Bitrate?'        },
-          { href: '/wiki/what-is-mp3',         label: 'What Is MP3?'            },
+          { href: '/formats/mp3',         label: 'What Is MP3?'            },
           { href: '/wiki/what-is-audio-codec', label: 'What Is an Audio Codec?' },
         ]}
       />
@@ -191,7 +191,7 @@ export default function CbrVsVbrPage() {
         title="Related"
         items={[
           { href: '/guides/how-to-choose-mp3-bitrate',                      label: 'How to Choose MP3 Bitrate'    },
-          { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Affects Quality'  },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How Bitrate Affects Quality'  },
         ]}
       />
 

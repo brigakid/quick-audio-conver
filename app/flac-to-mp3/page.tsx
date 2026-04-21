@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 export default function FlacToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/flac-to-mp3"
       title="FLAC to MP3 Converter"
       subtitle="Convert your lossless FLAC files to MP3 — 128, 192, or 320 kbps. Plays on iPhone, car stereos, and everywhere FLAC doesn't."
       converterNote="You're converting from a lossless source. The MP3 encoder has the full uncompressed signal to work from — producing a cleaner result than re-encoding from another lossy file."
@@ -39,7 +40,11 @@ export default function FlacToMp3Page() {
         description:
           'MP3 plays on every device and platform without exception — including car stereos, older hardware, and streaming platforms that reject FLAC. The trade-off is that the compression is lossy: some audio data is permanently discarded. At 320 kbps, a FLAC-to-MP3 conversion sounds excellent for everyday listening.',
       }}
-      whyConvert={`FLAC is the right format for archiving music or listening on hardware that supports it. The problem is that support is inconsistent. iPhone and iTunes do not play FLAC natively. Many car stereos, Bluetooth speakers, and older Android devices cannot play it either. Social media and messaging platforms reject FLAC uploads. Converting to MP3 at 320 kbps gives you a file with excellent sound quality that plays everywhere — while the FLAC remains your lossless archive.`}
+      whyConvert={`FLAC is the right format for archiving music and for listening on hardware that supports it. The problem is that support is inconsistent. iPhone and iTunes do not play FLAC natively. Many car stereos, Bluetooth speakers, and older Android devices cannot play it either. Social media and messaging platforms reject FLAC uploads. Even a lot of podcast and DJ software refuses FLAC at import.
+
+Converting to MP3 at 320 kbps gives you a file with excellent sound quality that plays everywhere — while the FLAC stays as your lossless archive. Because you are encoding from a lossless source, the MP3 comes out cleaner than a transcode from another lossy format (MP3 to MP3, AAC to MP3). There is no accumulated quality loss.
+
+Typical workflows: shrinking a FLAC music library for a phone or car, preparing FLAC masters for upload to platforms that do not accept lossless files, creating a shareable version of a FLAC recording, and building a secondary listening copy while keeping the FLAC as the archive.`}
       faqItems={[
         {
           question: 'Which bitrate should I choose for FLAC to MP3?',
@@ -75,13 +80,12 @@ export default function FlacToMp3Page() {
         { href: '/mp3-to-wav',  label: 'MP3 to WAV'  },
       ]}
       relatedGuides={[
-        { href: '/guides/lossless-vs-lossy-audio',             label: 'Lossless vs Lossy Audio'              },
-        { href: '/formats/flac',                               label: 'FLAC format guide'                    },
-        { href: '/formats/mp3',                                label: 'MP3 format guide'                     },
-        { href: '/wiki/what-is-flac',                          label: 'WikiSound: What Is FLAC?'             },
-        { href: '/wiki/what-is-lossless-audio',                label: 'WikiSound: What Is Lossless Audio?'   },
-        { href: '/wiki/what-is-audio-artifacting',             label: 'WikiSound: What Are Audio Artifacts?' },
-        { href: '/wiki/what-is-transcoding',                   label: 'WikiSound: What Is Transcoding?'      },
+        { href: '/guides/lossless-vs-lossy-audio',   label: 'Lossless vs Lossy Audio'      },
+        { href: '/guides/how-to-choose-mp3-bitrate', label: 'How to Choose the Right MP3 Bitrate' },
+        { href: '/formats/flac',                     label: 'FLAC format guide'            },
+        { href: '/formats/mp3',                      label: 'MP3 format guide'             },
+        { href: '/wiki/what-is-transcoding',         label: 'What Is Transcoding?'         },
+        { href: '/wiki/what-is-audio-artifacting',   label: 'What Are Audio Artifacts?'    },
       ]}
       lastUpdated="2026-03-01"
     />

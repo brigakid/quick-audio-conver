@@ -1,11 +1,40 @@
 import type { Metadata } from 'next';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema, faqPageSchema } from '@/lib/seo';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Is WAV better quality than FLAC?',
+    answer:
+      'No. Both are lossless. WAV and FLAC at the same source quality sound identical — the difference is that FLAC compresses the file without any quality loss, making it smaller. If quality is your concern, choose whichever your software supports.',
+  },
+  {
+    question: 'Will converting MP3 to WAV improve quality?',
+    answer:
+      'No. Converting from a lossy format to WAV makes a larger file but does not restore any quality. The audio in the WAV will sound exactly the same as the MP3 source.',
+  },
+  {
+    question: 'Why does my audio editor require WAV?',
+    answer:
+      'Many audio editors and DAWs work natively with uncompressed PCM audio because it is simpler to process in real time. They may import MP3 and convert it internally, or they may require WAV input explicitly. Either way, WAV is the reliable choice for editing workflows.',
+  },
+  {
+    question: 'What bit depth and sample rate should I use?',
+    answer:
+      '16-bit / 44.1 kHz (CD quality) is standard for music distribution. 24-bit / 48 kHz is standard for video production and DAW work. 24-bit / 96 kHz is sometimes used for mastering. Higher bit depths reduce quantisation noise; higher sample rates capture ultrasonic frequencies that most playback equipment cannot reproduce.',
+  },
+];
 
 export const metadata: Metadata = {
-  title: 'What Is WAV? Format Guide',
+  title: 'What Is WAV? Format Guide for Editing, Recording, and Archiving',
   description:
-    'WAV is an uncompressed audio format used widely in audio editing and professional production. Learn when to use it and when a smaller format makes more sense.',
+    'WAV is the uncompressed PCM audio standard used in DAWs, video editors, and professional recording. Learn when to use WAV and when FLAC or MP3 is a better choice.',
+  alternates: {
+    canonical: '/formats/wav',
+  },
   openGraph: {
     title: 'What Is WAV? Format Guide',
     description:
@@ -22,6 +51,27 @@ export const metadata: Metadata = {
 export default function WavFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <JsonLd
+        data={[
+          articleSchema({
+            headline: 'What Is WAV? Format Guide for Editing, Recording, and Archiving',
+            description:
+              'WAV is the uncompressed PCM audio standard used in DAWs, video editors, and professional recording.',
+            path: '/formats/wav',
+            datePublished: '2026-01-15',
+            dateModified: '2026-04-14',
+          }),
+          faqPageSchema(FAQ_ITEMS),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Formats', path: '/formats' },
+          { name: 'WAV', path: '/formats/wav' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Audio Format</p>
@@ -145,23 +195,10 @@ export default function WavFormatPage() {
       {/* FAQ */}
       <div className="mt-12 space-y-5">
         <h2 className="text-xl font-bold text-gray-900">Frequently asked questions</h2>
-        {[
-          {
-            q: 'Is WAV better quality than FLAC?',
-            a: 'No. Both are lossless. WAV and FLAC at the same source quality sound identical — the difference is that FLAC compresses the file without any quality loss, making it smaller. If quality is your concern, choose whichever your software supports.',
-          },
-          {
-            q: 'Will converting MP3 to WAV improve quality?',
-            a: 'No. Converting from a lossy format to WAV makes a larger file but does not restore any quality. The audio in the WAV will sound exactly the same as the MP3 source.',
-          },
-          {
-            q: 'Why does my audio editor require WAV?',
-            a: 'Many audio editors and DAWs work natively with uncompressed PCM audio because it is simpler to process in real time. They may import MP3 and convert it internally, or they may require WAV input explicitly. Either way, WAV is the reliable choice for editing workflows.',
-          },
-        ].map(({ q, a }) => (
-          <div key={q} className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm">
-            <h3 className="text-sm font-bold text-gray-900 mb-1.5">{q}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
+        {FAQ_ITEMS.map(({ question, answer }) => (
+          <div key={question} className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm">
+            <h3 className="text-sm font-bold text-gray-900 mb-1.5">{question}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">{answer}</p>
           </div>
         ))}
       </div>
@@ -184,8 +221,8 @@ export default function WavFormatPage() {
         items={[
           { href: '/guides/mp3-vs-wav',                                       label: 'MP3 vs WAV'              },
           { href: '/guides/lossless-vs-lossy-audio',                          label: 'Lossless vs Lossy Audio' },
-          { href: '/wiki/what-is-wav',                                        label: 'WikiSound: What Is WAV?' },
-          { href: '/learn/wav-vs-mp3-for-editing-sharing-and-archiving',      label: 'WAV vs MP3 by Workflow'  },
+          { href: '/formats/wav',                                        label: 'WikiSound: What Is WAV?' },
+          { href: '/guides/mp3-vs-wav',      label: 'WAV vs MP3 by Workflow'  },
         ]}
       />
 

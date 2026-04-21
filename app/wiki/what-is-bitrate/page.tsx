@@ -248,7 +248,7 @@ export default function WhatIsBitratePage() {
       <RelatedContent
         title="Go deeper"
         items={[
-          { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'Bitrate: The Calculations in Full' },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'Bitrate: The Calculations in Full' },
           { href: '/guides/how-to-choose-mp3-bitrate',                      label: 'How to Choose the Right MP3 Bitrate' },
           { href: '/formats/mp3',                                            label: 'MP3 format guide'                  },
         ]}

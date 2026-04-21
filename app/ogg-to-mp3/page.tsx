@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'OGG to MP3 Converter',
   description:
     'Convert OGG Vorbis files to MP3. Works with game audio, Bandcamp downloads, and Linux audio files. Upload, choose your bitrate, and download instantly. Free, no account.',
+  alternates: {
+    canonical: '/ogg-to-mp3',
+  },
+
   openGraph: {
     title: 'OGG to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function OggToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/ogg-to-mp3"
       title="OGG to MP3 Converter"
       subtitle="Convert OGG Vorbis audio files to widely compatible MP3 format. Fast server-side conversion, no software to install."
       inputFormat="ogg"
@@ -75,7 +80,7 @@ export default function OggToMp3Page() {
         { href: '/guides/mp3-vs-wav',                          label: 'MP3 vs WAV'                      },
         { href: '/guides/how-to-choose-mp3-bitrate',           label: 'How to Choose MP3 Bitrate'        },
         { href: '/guides/troubleshooting-audio-conversion',    label: 'Troubleshooting Audio Conversion' },
-        { href: '/wiki/what-is-ogg',                          label: 'WikiSound: What Is OGG?'          },
+        { href: '/formats/ogg',                          label: 'WikiSound: What Is OGG?'          },
         { href: '/wiki/what-is-lossy-audio',                  label: 'WikiSound: What Is Lossy Audio?'  },
         { href: '/wiki/cbr-vs-vbr',                           label: 'WikiSound: CBR vs VBR'            },
       ]}

@@ -202,19 +202,19 @@ export default function WhatIsAudioQualityPage() {
       <RelatedContent
         title="WikiSound"
         items={[
-          { href: '/wiki/what-is-bitrate',        label: 'What Is Bitrate?'          },
-          { href: '/wiki/what-is-sample-rate',    label: 'What Is Sample Rate?'      },
-          { href: '/wiki/what-is-lossy-audio',    label: 'What Is Lossy Audio?'      },
-          { href: '/wiki/what-is-clipping',       label: 'What Is Clipping?'         },
-          { href: '/wiki/what-is-distortion',     label: 'What Is Distortion?'       },
+          { href: '/wiki/what-is-bitrate',           label: 'What Is Bitrate?'            },
+          { href: '/wiki/what-is-sample-rate',       label: 'What Is Sample Rate?'        },
+          { href: '/wiki/what-is-lossy-audio',       label: 'What Is Lossy Audio?'        },
+          { href: '/wiki/what-is-audio-artifacting', label: 'What Is Audio Artifacting?'  },
+          { href: '/wiki/what-is-transcoding',       label: 'What Is Transcoding?'        },
         ]}
       />
 
       <RelatedContent
         title="Related"
         items={[
-          { href: '/learn/when-converting-to-wav-does-not-improve-quality', label: 'When Converting to WAV Doesn\'t Improve Quality' },
-          { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Affects Quality'                     },
+          { href: '/guides/mp3-vs-wav', label: 'When Converting to WAV Doesn\'t Improve Quality' },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How Bitrate Affects Quality'                     },
         ]}
       />
 

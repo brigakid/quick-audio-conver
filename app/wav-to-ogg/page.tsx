@@ -24,6 +24,7 @@ export const metadata: Metadata = {
 export default function WavToOggPage() {
   return (
     <ToolPageLayout
+      slug="/wav-to-ogg"
       title="WAV to OGG Converter"
       subtitle="Convert uncompressed WAV to OGG/Vorbis — the royalty-free format used in Godot, Unity, and Linux game audio pipelines."
       inputFormat="wav"
@@ -73,11 +74,11 @@ A secondary use: Linux environments where patent-encumbered formats like MP3 are
         { href: '/flac-to-mp3', label: 'FLAC to MP3' },
       ]}
       relatedGuides={[
-        { href: '/wiki/what-is-ogg',                 label: 'WikiSound: What Is an OGG File?'  },
-        { href: '/formats/ogg',                      label: 'OGG format guide'                 },
-        { href: '/bpm-changer',                      label: 'BPM Changer & Detector'           },
-        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, MP3: What Matters' },
-        { href: '/guides/mp3-vs-wav',                label: 'MP3 vs WAV'                       },
+        { href: '/formats/ogg',              label: 'OGG format guide'         },
+        { href: '/formats/wav',              label: 'WAV format guide'         },
+        { href: '/guides/mp3-vs-wav',        label: 'MP3 vs WAV'               },
+        { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio' },
+        { href: '/wiki/cbr-vs-vbr',          label: 'CBR vs VBR Encoding'      },
       ]}
       lastUpdated="2026-03-01"
     />

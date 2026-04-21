@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MP3 to M4A Converter',
   description:
     'Convert MP3 audio to M4A for iTunes, Apple Music, and devices that prefer AAC encoding. Free, private, no account needed.',
+  alternates: {
+    canonical: '/mp3-to-m4a',
+  },
+
   openGraph: {
     title: 'MP3 to M4A Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function Mp3ToM4aPage() {
   return (
     <ToolPageLayout
+      slug="/mp3-to-m4a"
       title="MP3 to M4A Converter"
       subtitle="Convert MP3 to the M4A format used by Apple devices and iTunes — slightly better audio efficiency at comparable bitrates."
       inputFormat="mp3"
@@ -68,7 +73,7 @@ That said, this is a lossy-to-lossy conversion. The output M4A will not sound be
         { href: '/mp3-to-wav', label: 'MP3 to WAV' },
       ]}
       relatedGuides={[
-        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, and MP3 — what actually matters' },
+        { href: '/formats/aac', label: 'AAC, M4A, and MP3 — what actually matters' },
         { href: '/formats/m4a', label: 'M4A format guide' },
         { href: '/formats/mp3', label: 'MP3 format guide' },
       ]}

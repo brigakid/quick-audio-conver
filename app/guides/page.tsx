@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Audio Conversion Guides',
   description:
     'Practical guides for audio format decisions — MP3 vs WAV, bitrate selection, podcast formats, and conversion troubleshooting. Written for real workflows.',
+  alternates: {
+    canonical: '/guides',
+  },
   openGraph: {
     title: 'Audio Conversion Guides — QuickAudioConvert',
     description:
@@ -100,14 +103,14 @@ export default function GuidesPage() {
         ))}
       </div>
 
-      {/* Cross-link to Learn */}
+      {/* Cross-link to WikiSound */}
       <div className="mt-14 p-5 rounded-2xl bg-slate-50 border border-slate-100">
-        <h2 className="text-sm font-bold text-gray-900 mb-1.5">Looking for deeper explanations?</h2>
+        <h2 className="text-sm font-bold text-gray-900 mb-1.5">Want to understand the terminology?</h2>
         <p className="text-xs text-gray-500 leading-relaxed">
           The{' '}
-          <a href="/learn" className="text-brand hover:underline">Learn section</a> covers
-          longer-form topics: bitrate theory, why WAV does not improve MP3 quality, the
-          difference between AAC and MP3, and more. Or{' '}
+          <a href="/wiki" className="text-brand hover:underline">WikiSound section</a> covers
+          audio concepts in plain English: bitrate, sample rate, codecs, containers,
+          lossless vs lossy, and more. Or{' '}
           <a href="/contact" className="text-brand hover:underline">send a question</a> if
           there is something specific you want covered.
         </p>

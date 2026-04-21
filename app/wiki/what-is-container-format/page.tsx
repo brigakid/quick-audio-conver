@@ -199,7 +199,7 @@ export default function WhatIsContainerFormatPage() {
           { href: '/wiki/codec-vs-container',  label: 'Codec vs Container'          },
           { href: '/wiki/what-is-audio-codec', label: 'What Is an Audio Codec?'     },
           { href: '/wiki/what-is-transcoding', label: 'What Is Transcoding?'        },
-          { href: '/wiki/what-is-mp3',         label: 'What Is MP3?'                },
+          { href: '/formats/mp3',         label: 'What Is MP3?'                },
         ]}
       />
 
@@ -207,7 +207,7 @@ export default function WhatIsContainerFormatPage() {
         title="Related"
         items={[
           { href: '/guides/extract-audio-from-video', label: 'How to Extract Audio from Video' },
-          { href: '/learn/extracting-audio-from-video-best-format-choices', label: 'Best Format Choices When Extracting Audio' },
+          { href: '/guides/extract-audio-from-video', label: 'Best Format Choices When Extracting Audio' },
         ]}
       />
 

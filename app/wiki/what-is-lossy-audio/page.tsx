@@ -235,7 +235,7 @@ export default function WhatIsLossyAudioPage() {
           { href: '/wiki/what-is-lossless-audio',    label: 'What Is Lossless Audio?'    },
           { href: '/wiki/what-is-bitrate',           label: 'What Is Bitrate?'           },
           { href: '/wiki/what-is-audio-compression', label: 'What Is Audio Compression?' },
-          { href: '/wiki/what-is-mp3',               label: 'What Is MP3?'               },
+          { href: '/formats/mp3',               label: 'What Is MP3?'               },
         ]}
       />
 
@@ -243,7 +243,7 @@ export default function WhatIsLossyAudioPage() {
         title="Related"
         items={[
           { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio Guide' },
-          { href: '/learn/when-mp3-is-good-enough',  label: 'When MP3 Is Good Enough'      },
+          { href: '/formats/mp3',  label: 'When MP3 Is Good Enough'      },
         ]}
       />
 

@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'WMA to MP3 Converter',
   description:
     'Convert WMA files to MP3. Works with Windows Media Player rips, old music libraries, and WMA voice recordings. Free, no account, no software to install.',
+  alternates: {
+    canonical: '/wma-to-mp3',
+  },
+
   openGraph: {
     title: 'WMA to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function WmaToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/wma-to-mp3"
       title="WMA to MP3 Converter"
       subtitle="Upload a WMA file and convert it to a broadly compatible MP3 — works with Windows Media Player exports, old media libraries, and radio recordings."
       inputFormat="wma"

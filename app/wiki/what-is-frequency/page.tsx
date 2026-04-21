@@ -184,7 +184,7 @@ export default function WhatIsFrequencyPage() {
         title="WikiSound"
         items={[
           { href: '/wiki/what-is-sample-rate',   label: 'What Is Sample Rate?'    },
-          { href: '/wiki/what-is-eq',            label: 'What Is EQ?'             },
+          { href: '/wiki/what-is-audio-quality', label: 'What Is Audio Quality?'  },
           { href: '/wiki/what-is-bitrate',       label: 'What Is Bitrate?'        },
           { href: '/wiki/what-is-audio-codec',   label: 'What Is an Audio Codec?' },
           { href: '/wiki/what-is-lossy-audio',   label: 'What Is Lossy Audio?'    },
@@ -195,8 +195,8 @@ export default function WhatIsFrequencyPage() {
         title="Related"
         items={[
           { href: '/key-changer',                                           label: 'Key Changer & Detector',           note: 'Shift audio pitch by semitones online' },
-          { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Affects Sound Quality' },
-          { href: '/learn/best-audio-format-for-voice-recordings',          label: 'Best Format for Voice Recordings'  },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How Bitrate Affects Sound Quality' },
+          { href: '/guides/best-audio-format-for-podcasting',          label: 'Best Format for Voice Recordings'  },
         ]}
       />
 

@@ -6,8 +6,11 @@ import WhyChooseUs from '@/components/marketing/WhyChooseUs';
 import GuidesBlock from '@/components/marketing/GuidesBlock';
 import FormatsAndHelp from '@/components/marketing/FormatsAndHelp';
 import FAQ from '@/components/marketing/FAQ';
+import { DEFAULT_FAQ_ITEMS } from '@/lib/faq-items';
 import SideRail from '@/components/ads/SideRail';
 import AdSlot from '@/components/ads/AdSlot';
+import JsonLd from '@/components/seo/JsonLd';
+import { softwareApplicationSchema, faqPageSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: { absolute: 'QuickAudioConvert — Free Online Audio Converter' },
@@ -32,6 +35,29 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      <JsonLd
+        data={[
+          softwareApplicationSchema({
+            name: 'QuickAudioConvert',
+            description:
+              'Free online audio converter supporting MP3, WAV, FLAC, M4A, AAC, OGG, OPUS, and video-to-audio extraction, plus BPM and key shifting.',
+            url: '/',
+            featureList: [
+              'Convert between MP3, WAV, FLAC, M4A, AAC, OGG, OPUS',
+              'Extract audio from MP4 and MOV video files',
+              'Detect and change BPM (tempo)',
+              'Detect musical key and shift pitch',
+              'Remove vocals from songs',
+              'Choose MP3 bitrate (128/192/320 kbps)',
+              'No account or install required',
+              'Files auto-deleted after 5 minutes',
+            ],
+          }),
+          faqPageSchema(
+            DEFAULT_FAQ_ITEMS.map((f) => ({ question: f.question, answer: f.answer })),
+          ),
+        ]}
+      />
       {/*
        * ── Desktop side rail ads ────────────────────────────────────────────
        * Fixed columns that sit in the natural margin space beside the centered

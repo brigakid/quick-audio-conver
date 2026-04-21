@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MP4 to WAV Converter',
   description:
     'Extract the audio from an MP4 video as an uncompressed WAV file — ready for audio editing, DAWs, and production workflows.',
+  alternates: {
+    canonical: '/mp4-to-wav',
+  },
+
   openGraph: {
     title: 'MP4 to WAV Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function Mp4ToWavPage() {
   return (
     <ToolPageLayout
+      slug="/mp4-to-wav"
       title="MP4 to WAV Converter"
       subtitle="Pull the audio track from an MP4 and save it as uncompressed WAV — the format audio editing software and DAWs work with natively."
       inputFormat="mp4"

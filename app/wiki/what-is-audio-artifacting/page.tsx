@@ -239,7 +239,7 @@ export default function WhatIsAudioArtifactingPage() {
         items={[
           { href: '/wiki/what-is-lossy-audio',       label: 'What Is Lossy Audio?'        },
           { href: '/wiki/what-is-bitrate',           label: 'What Is Bitrate?'            },
-          { href: '/wiki/what-is-noise-reduction',   label: 'What Is Noise Reduction?'    },
+          { href: '/wiki/what-is-transcoding',       label: 'What Is Transcoding?'        },
           { href: '/wiki/what-is-audio-compression', label: 'What Is Audio Compression?'  },
         ]}
       />

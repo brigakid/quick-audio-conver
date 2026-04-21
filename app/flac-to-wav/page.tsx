@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'FLAC to WAV Converter',
   description:
     'Convert FLAC audio to WAV for software that requires uncompressed PCM. Both are lossless — the conversion is entirely about compatibility, not quality.',
+  alternates: {
+    canonical: '/flac-to-wav',
+  },
+
   openGraph: {
     title: 'FLAC to WAV Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function FlacToWavPage() {
   return (
     <ToolPageLayout
+      slug="/flac-to-wav"
       title="FLAC to WAV Converter"
       subtitle="Convert lossless FLAC to lossless WAV — for software and hardware that cannot handle FLAC but requires uncompressed audio."
       inputFormat="flac"
@@ -70,9 +75,11 @@ The trade-off: WAV files are significantly larger. A 20 MB FLAC will expand to 3
         { href: '/wav-to-mp3',  label: 'WAV to MP3'  },
       ]}
       relatedGuides={[
+        { href: '/guides/flac-vs-wav',             label: 'FLAC vs WAV'             },
         { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio' },
         { href: '/formats/flac',                   label: 'FLAC format guide'       },
         { href: '/formats/wav',                    label: 'WAV format guide'        },
+        { href: '/wiki/what-is-lossless-audio',    label: 'What Is Lossless Audio?' },
       ]}
       lastUpdated="2026-03-01"
     />

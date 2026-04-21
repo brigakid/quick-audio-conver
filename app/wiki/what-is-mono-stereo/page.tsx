@@ -211,9 +211,9 @@ export default function WhatIsMonoStereoPage() {
       <RelatedContent
         title="WikiSound"
         items={[
-          { href: '/wiki/what-is-loudness', label: 'What Is Loudness?'    },
-          { href: '/wiki/what-is-panning',  label: 'What Is Panning?'     },
-          { href: '/wiki/what-is-bitrate',  label: 'What Is Bitrate?'     },
+          { href: '/wiki/what-is-loudness',      label: 'What Is Loudness?'      },
+          { href: '/wiki/what-is-audio-quality', label: 'What Is Audio Quality?' },
+          { href: '/wiki/what-is-bitrate',       label: 'What Is Bitrate?'       },
         ]}
       />
 
@@ -221,7 +221,7 @@ export default function WhatIsMonoStereoPage() {
         title="Related"
         items={[
           { href: '/guides/best-audio-format-for-podcasting',   label: 'Best Format for Podcasting' },
-          { href: '/learn/best-audio-format-for-voice-recordings', label: 'Best Format for Voice' },
+          { href: '/guides/best-audio-format-for-podcasting', label: 'Best Format for Voice' },
         ]}
       />
 

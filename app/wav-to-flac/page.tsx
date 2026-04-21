@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'WAV to FLAC Converter',
   description:
     'Convert uncompressed WAV audio to lossless FLAC — same quality, 40–60% smaller file. Free, server-side, no account needed.',
+  alternates: {
+    canonical: '/wav-to-flac',
+  },
+
   openGraph: {
     title: 'WAV to FLAC Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function WavToFlacPage() {
   return (
     <ToolPageLayout
+      slug="/wav-to-flac"
       title="WAV to FLAC Converter"
       subtitle="Compress uncompressed WAV into lossless FLAC — identical audio quality, significantly smaller file."
       inputFormat="wav"

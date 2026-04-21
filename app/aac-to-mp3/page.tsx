@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'AAC to MP3 Converter',
   description:
     'Convert AAC or M4A files to MP3. iTunes libraries, iPhone recordings, YouTube-extracted audio — upload and download a compatible MP3 in seconds. Free, no account.',
+  alternates: {
+    canonical: '/aac-to-mp3',
+  },
+
   openGraph: {
     title: 'AAC to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AacToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/aac-to-mp3"
       title="AAC to MP3 Converter"
       subtitle="Convert AAC audio files to universally compatible MP3 format. Upload, choose quality, and download instantly."
       inputFormat="aac"
@@ -72,10 +77,10 @@ export default function AacToMp3Page() {
         { href: '/mp3-to-wav', label: 'MP3 to WAV' },
       ]}
       relatedGuides={[
-        { href: '/learn/aac-m4a-and-mp3-what-actually-matters',        label: 'AAC, M4A and MP3 — What Actually Matters' },
+        { href: '/formats/aac',        label: 'AAC, M4A and MP3 — What Actually Matters' },
         { href: '/guides/mp3-vs-wav',                                  label: 'MP3 vs WAV'                              },
         { href: '/guides/how-to-choose-mp3-bitrate',                   label: 'How to Choose MP3 Bitrate'               },
-        { href: '/wiki/what-is-aac',                                   label: 'WikiSound: What Is AAC?'                 },
+        { href: '/formats/aac',                                   label: 'WikiSound: What Is AAC?'                 },
         { href: '/wiki/what-is-lossy-audio',                           label: 'WikiSound: What Is Lossy Audio?'         },
         { href: '/wiki/what-is-transcoding',                           label: 'WikiSound: What Is Transcoding?'         },
       ]}

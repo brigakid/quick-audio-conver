@@ -6,6 +6,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is EQ in Audio? Equalisation Explained Simply',
   description:
     'EQ (equalisation) adjusts the volume of specific frequency ranges in audio. It\'s the most fundamental audio tool — in recording, mixing, mastering, and podcast production.',
@@ -195,8 +196,8 @@ export default function WhatIsEqPage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/learn/best-audio-format-for-voice-recordings', label: 'Best Format for Voice Recordings' },
-          { href: '/learn/best-audio-format-for-editing',          label: 'Best Format for Editing'          },
+          { href: '/guides/best-audio-format-for-podcasting', label: 'Best Format for Voice Recordings' },
+          { href: '/guides/mp3-vs-wav',          label: 'Best Format for Editing'          },
         ]}
       />
 

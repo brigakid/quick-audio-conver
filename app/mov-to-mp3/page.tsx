@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MOV to MP3 Converter',
   description:
     'Extract audio from a QuickTime MOV video and save it as MP3. Works with iPhone recordings, iMovie exports, and Final Cut Pro files. Free, no account.',
+  alternates: {
+    canonical: '/mov-to-mp3',
+  },
+
   openGraph: {
     title: 'MOV to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function MovToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/mov-to-mp3"
       title="MOV to MP3 Converter"
       subtitle="Upload a QuickTime MOV video and extract its audio as a compact, universally compatible MP3 — instantly and privately."
       inputFormat="mov"
@@ -35,7 +40,11 @@ export default function MovToMp3Page() {
         description:
           'MP3 is the practical output format when the goal is portability. A MOV file contains both video and audio data — MP3 contains only audio. The resulting file is 10–20x smaller, plays without a video player, and works on every device that the MOV container does not.',
       }}
-      whyConvert="MOV files contain both video and audio data, making them large and impractical to share when you only need the audio. Converting MOV to MP3 strips out the video track and compresses the audio into a small, portable file. Common scenarios include extracting music or speech from iPhone screen recordings, pulling voiceover audio from video projects, converting recorded lectures or interviews, and getting audio from iMovie or Final Cut Pro exports. MP3 plays on every device and platform, making it the most practical format for distribution."
+      whyConvert={`MOV files carry both video and audio in a single QuickTime container, which makes them large and awkward to share when you only need the sound. Converting MOV to MP3 discards the video stream and re-encodes the audio into a compact, universally playable file — typically 10–20× smaller than the original.
+
+The most common source: iPhone and iPad recordings, which default to MOV. Also iMovie and Final Cut Pro exports, macOS QuickTime screen recordings, and some DSLR and mirrorless camera footage.
+
+Typical workflows: pulling voiceover or interview audio out of a video project, converting a family video's audio for sharing by messaging, extracting music that was recorded on an iPhone, or turning a screen recording into a listenable MP3 without the visual track. MP3 plays everywhere — car stereos, old Android devices, Bluetooth speakers — where MOV itself is not supported.`}
       faqItems={[
         {
           question: 'Does this extract the audio from the video?',
@@ -66,11 +75,11 @@ export default function MovToMp3Page() {
         { href: '/m4a-to-mp3',  label: 'M4A to MP3' },
       ]}
       relatedGuides={[
-        { href: '/formats/mov',                                           label: 'MOV format guide'                           },
-        { href: '/guides/extract-audio-from-video',                       label: 'How to Extract Audio from Video'            },
-        { href: '/learn/extracting-audio-from-video-best-format-choices', label: 'Best Format Choices When Extracting Audio'  },
-        { href: '/wiki/what-is-aac',                                      label: 'WikiSound: What Is AAC?'                    },
-        { href: '/wiki/codec-vs-container',                               label: 'WikiSound: Codec vs Container'              },
+        { href: '/guides/extract-audio-from-video', label: 'How to Extract Audio from Video' },
+        { href: '/formats/mov',                     label: 'MOV format guide'                },
+        { href: '/formats/mp3',                     label: 'MP3 format guide'                },
+        { href: '/formats/aac',                     label: 'AAC format guide'                },
+        { href: '/wiki/codec-vs-container',         label: 'Codec vs Container'              },
       ]}
       lastUpdated="2026-03-28"
     />

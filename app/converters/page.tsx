@@ -6,6 +6,9 @@ export const metadata: Metadata = {
   title: 'Audio Converters',
   description:
     'Browse all audio conversion tools — convert between MP3, WAV, FLAC, M4A, AAC, OGG, Opus, and more. Free, no account, no install required.',
+  alternates: {
+    canonical: '/converters',
+  },
   openGraph: {
     title: 'Audio Converters — QuickAudioConvert',
     description:
@@ -59,11 +62,17 @@ export default function ConvertersPage() {
 
       <div className="mb-12">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
-          All Converters
+          All Audio Converters
         </h1>
         <p className="mt-3 text-base text-gray-500 max-w-2xl leading-relaxed">
-          Upload a file, choose an output format, and download. All conversions run
-          server-side — nothing installs. Files are deleted automatically after 5 minutes.
+          Every conversion we support, grouped by output format. Upload the file, pick
+          the format, download. Conversions run server-side — nothing installs on your
+          device — and files are deleted automatically after 5 minutes.
+        </p>
+        <p className="mt-2 text-sm text-gray-500 max-w-2xl leading-relaxed">
+          New to format choice? MP3 is the safe default for sharing and playback. WAV
+          is for editing. FLAC is for lossless archiving. M4A is for Apple devices and
+          podcast submissions.
         </p>
       </div>
 

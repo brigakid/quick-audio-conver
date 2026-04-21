@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'ALAC to MP3 Converter',
   description:
     'Convert Apple Lossless (ALAC) to MP3 for universal device compatibility. Upload your ALAC file and download a high-quality MP3. Free, no account, no install.',
+  alternates: {
+    canonical: '/alac-to-mp3',
+  },
+
   openGraph: {
     title: 'ALAC to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AlacToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/alac-to-mp3"
       title="ALAC to MP3 Converter"
       subtitle="Upload Apple Lossless audio and convert it to compact, universally compatible MP3 — instantly and privately."
       inputFormat="alac"

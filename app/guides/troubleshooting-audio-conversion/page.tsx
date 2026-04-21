@@ -3,11 +3,18 @@ import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Why Did My Audio Conversion Fail?',
   description:
     'Common reasons an audio conversion fails on QuickAudioConvert — unsupported formats, corrupt files, file size limits, and how to fix each one.',
+  alternates: {
+    canonical: '/guides/troubleshooting-audio-conversion',
+  },
+
   openGraph: {
     title: 'Why Did My Audio Conversion Fail?',
     description:
@@ -24,6 +31,23 @@ export const metadata: Metadata = {
 export default function TroubleshootingPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <JsonLd
+        data={articleSchema({
+          headline: "Troubleshooting Audio Conversion: Why Conversions Fail",
+          description: "Common reasons audio conversions fail — DRM, corrupted files, unsupported codecs — and what to do about each.",
+          path: '/guides/troubleshooting-audio-conversion',
+          datePublished: '2026-01-15',
+          dateModified: '2026-04-14',
+        })}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: "Troubleshooting Audio Conversion", path: '/guides/troubleshooting-audio-conversion' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-4">
         <Link href="/guides" className="text-xs text-gray-400 hover:text-brand transition-colors">
@@ -48,7 +72,7 @@ export default function TroubleshootingPage() {
         This guide covers errors specific to QuickAudioConvert — each entry includes the exact
         error message and a specific fix. For a broader explanation of why audio files fail to
         convert (codec issues, container mismatches, re-encoding problems), see{' '}
-        <Link href="/learn/why-audio-files-fail-to-convert" className="text-brand hover:underline">
+        <Link href="/guides/troubleshooting-audio-conversion" className="text-brand hover:underline">
           Why Audio Files Fail to Convert
         </Link>
         .

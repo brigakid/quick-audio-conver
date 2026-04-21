@@ -238,10 +238,10 @@ export default function WhatIsAudioCompressionPage() {
         items={[
           { href: '/wiki/what-is-lossy-audio',              label: 'What Is Lossy Audio?'              },
           { href: '/wiki/what-is-lossless-audio',           label: 'What Is Lossless Audio?'           },
-          { href: '/wiki/what-is-audio-codec',              label: 'What Is an Audio Codec?'           },
-          { href: '/wiki/what-is-bitrate',                  label: 'What Is Bitrate?'                  },
-          { href: '/wiki/what-is-a-limiter',                label: 'What Is a Limiter?'                },
-          { href: '/wiki/what-is-sidechain-compression',    label: 'What Is Sidechain Compression?'   },
+          { href: '/wiki/what-is-audio-codec',    label: 'What Is an Audio Codec?'    },
+          { href: '/wiki/what-is-bitrate',        label: 'What Is Bitrate?'           },
+          { href: '/wiki/what-is-transcoding',    label: 'What Is Transcoding?'       },
+          { href: '/wiki/cbr-vs-vbr',             label: 'CBR vs VBR Encoding'        },
         ]}
       />
 

@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'M4A to WAV Converter',
   description:
     'Convert M4A audio to WAV for use in DAWs, audio editing software, and professional workflows. Works with iPhone voice memos and GarageBand exports.',
+  alternates: {
+    canonical: '/m4a-to-wav',
+  },
+
   openGraph: {
     title: 'M4A to WAV Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function M4aToWavPage() {
   return (
     <ToolPageLayout
+      slug="/m4a-to-wav"
       title="M4A to WAV Converter"
       subtitle="Convert M4A to uncompressed WAV — the format required by most audio editing tools and professional workflows."
       inputFormat="m4a"
@@ -72,7 +77,7 @@ Quality caveat: the WAV will sound exactly as good as the source M4A — no bett
       relatedGuides={[
         { href: '/formats/m4a', label: 'M4A format guide' },
         { href: '/guides/mp3-vs-wav', label: 'MP3 vs WAV' },
-        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, and MP3 — what actually matters' },
+        { href: '/formats/aac', label: 'AAC, M4A, and MP3 — what actually matters' },
       ]}
       lastUpdated="2026-03-01"
     />

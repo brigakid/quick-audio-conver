@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'WAV to M4A Converter',
   description:
     'Convert WAV audio to M4A (AAC) for Apple Podcasts, iTunes, and iOS devices. Better audio efficiency than MP3 at the same bitrate.',
+  alternates: {
+    canonical: '/wav-to-m4a',
+  },
+
   openGraph: {
     title: 'WAV to M4A Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function WavToM4aPage() {
   return (
     <ToolPageLayout
+      slug="/wav-to-m4a"
       title="WAV to M4A Converter"
       subtitle="Convert uncompressed WAV to M4A — the compressed format preferred by Apple Podcasts, iTunes, and the iOS ecosystem."
       inputFormat="wav"
@@ -71,8 +76,10 @@ The one limitation is older hardware — car stereos, legacy players, and some b
       ]}
       relatedGuides={[
         { href: '/guides/best-audio-format-for-podcasting', label: 'Best Audio Format for Podcasting' },
-        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC vs MP3: What Actually Matters' },
-        { href: '/formats/m4a',                            label: 'M4A format guide'                  },
+        { href: '/formats/m4a',                             label: 'M4A format guide'                 },
+        { href: '/formats/aac',                             label: 'AAC format guide'                 },
+        { href: '/formats/wav',                             label: 'WAV format guide'                 },
+        { href: '/guides/mp3-vs-wav',                       label: 'MP3 vs WAV'                       },
       ]}
       lastUpdated="2026-03-01"
     />

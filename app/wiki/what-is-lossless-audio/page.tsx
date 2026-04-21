@@ -232,8 +232,8 @@ export default function WhatIsLosslessAudioPage() {
         title="WikiSound"
         items={[
           { href: '/wiki/what-is-lossy-audio',  label: 'What Is Lossy Audio?'        },
-          { href: '/wiki/what-is-flac',         label: 'What Is FLAC?'               },
-          { href: '/wiki/what-is-wav',          label: 'What Is WAV?'                },
+          { href: '/formats/flac',         label: 'What Is FLAC?'               },
+          { href: '/formats/wav',          label: 'What Is WAV?'                },
           { href: '/wiki/what-is-audio-codec',  label: 'What Is an Audio Codec?'     },
         ]}
       />

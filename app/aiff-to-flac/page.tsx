@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'AIFF to FLAC Converter',
   description:
     'Convert Apple AIFF audio to lossless FLAC — compact archiving with no quality loss. Works with Logic Pro, Pro Tools, and GarageBand exports.',
+  alternates: {
+    canonical: '/aiff-to-flac',
+  },
+
   openGraph: {
     title: 'AIFF to FLAC Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AiffToFlacPage() {
   return (
     <ToolPageLayout
+      slug="/aiff-to-flac"
       title="AIFF to FLAC Converter"
       subtitle="Convert Apple AIFF to lossless FLAC — same audio quality, significantly smaller file, better metadata support."
       inputFormat="aiff"

@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MP4 to MP3 Converter',
   description:
     'Extract the audio from any MP4 video file and save it as MP3. Fast, private, no account required. Choose your bitrate and download in seconds.',
+  alternates: {
+    canonical: '/mp4-to-mp3',
+  },
+
   openGraph: {
     title: 'MP4 to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function Mp4ToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/mp4-to-mp3"
       title="MP4 to MP3 Converter"
       subtitle="Strip the audio track from an MP4 video and save it as an MP3. The video is discarded — only the audio is in the download."
       converterNote="Only the audio track is extracted. The video stream is not saved in the output and the original file on your device is not changed."
@@ -36,7 +41,11 @@ export default function Mp4ToMp3Page() {
         description:
           'MP3 is the standard format for sharing extracted video audio. Unlike the MP4 container, it plays without a video player — on any phone, car stereo, or audio app. For lectures or interviews, 128 kbps is sufficient. For music video audio, use 192 kbps or higher.',
       }}
-      whyConvert={`If you have downloaded a video and only need the audio — a podcast recording, a music video, a lecture, a YouTube clip — this converter handles it. The resulting MP3 is typically 10–20x smaller than the original MP4 and plays on any device without needing video playback capability. This is also the right tool for extracting audio from screen recordings, interviews, or any video where the audio track is what you actually need.`}
+      whyConvert={`If you have a video and only need the audio — a podcast recording, music video, lecture, YouTube download, screen recording, or interview — this converter strips out the video and keeps just the sound. The resulting MP3 is typically 10–20× smaller than the MP4 and plays on any phone, car stereo, or audio app without needing video playback.
+
+Common scenarios: pulling audio from a YouTube download for offline listening, extracting a podcast recording from a video call export, turning a lecture recording into something you can listen to on a commute, or getting a voiceover off a screen capture to reuse in another project.
+
+The file never leaves temporary storage — it is deleted automatically after 5 minutes. No account, no watermarks, and no quality downgrade beyond your chosen output bitrate (192 kbps for general use, 320 kbps when the original video had high-quality audio, 128 kbps for speech-only content).`}
       faqItems={[
         {
           question: 'Does the converter keep the audio quality from the original video?',
@@ -67,12 +76,11 @@ export default function Mp4ToMp3Page() {
         { href: '/mp3-to-wav',  label: 'MP3 to WAV'  },
       ]}
       relatedGuides={[
-        { href: '/guides/extract-audio-from-video',                       label: 'How to Extract Audio from Video'           },
-        { href: '/guides/mp3-vs-wav',                                     label: 'MP3 vs WAV'                                },
-        { href: '/formats/mp3',                                           label: 'MP3 format guide'                          },
-        { href: '/learn/extracting-audio-from-video-best-format-choices', label: 'Best Format Choices When Extracting Audio' },
-        { href: '/wiki/what-is-audio-codec',                              label: 'WikiSound: What Is an Audio Codec?'        },
-        { href: '/wiki/codec-vs-container',                               label: 'WikiSound: Codec vs Container'             },
+        { href: '/guides/extract-audio-from-video', label: 'How to Extract Audio from Video' },
+        { href: '/guides/how-to-choose-mp3-bitrate', label: 'How to Choose the Right MP3 Bitrate' },
+        { href: '/guides/mp3-vs-wav',               label: 'MP3 vs WAV'                      },
+        { href: '/formats/mp3',                     label: 'MP3 format guide'                },
+        { href: '/wiki/codec-vs-container',         label: 'Codec vs Container'              },
       ]}
       lastUpdated="2026-03-01"
     />

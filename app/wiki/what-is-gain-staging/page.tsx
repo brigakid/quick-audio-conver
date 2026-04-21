@@ -6,6 +6,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Gain Staging? Managing Audio Levels Through the Chain',
   description:
     'Gain staging means managing signal levels at each step of an audio chain — not too quiet (noise) and not too loud (clipping). It\'s the foundation of clean-sounding recordings.',

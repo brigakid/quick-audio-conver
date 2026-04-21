@@ -2,11 +2,45 @@ import type { Metadata } from 'next';
 import Link from 'next/link';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema, faqPageSchema } from '@/lib/seo';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Is MP3 good enough for music?',
+    answer:
+      'For everyday listening, yes. At 192 kbps or higher, most people cannot tell the difference between MP3 and lossless audio on typical headphones or speakers. If you are an audiophile listening on high-end equipment, you may prefer FLAC.',
+  },
+  {
+    question: 'Can I convert MP3 back to a lossless format?',
+    answer:
+      'You can convert an MP3 to WAV or FLAC, but the audio quality does not improve — the data discarded during MP3 compression is gone permanently. The resulting file is larger but not better-sounding.',
+  },
+  {
+    question: 'What is the difference between MP3 and AAC?',
+    answer:
+      'Both are lossy. AAC (used in M4A files) is technically more efficient — it produces better quality at the same bitrate. However, MP3 is more universally supported on older hardware and software. For most purposes the difference is small.',
+  },
+  {
+    question: 'Does re-encoding an MP3 reduce quality?',
+    answer:
+      'Yes. Each time you encode audio using a lossy format, quality is reduced. Avoid converting MP3 to MP3 or MP3 to AAC repeatedly. If you need to edit or re-encode, start from a lossless source whenever possible.',
+  },
+  {
+    question: 'What does MP3 stand for?',
+    answer:
+      'MP3 stands for MPEG-1 Audio Layer III. It was standardised in 1993 by the Moving Picture Experts Group (MPEG), with the compression algorithm developed by the Fraunhofer Institute in Germany.',
+  },
+];
 
 export const metadata: Metadata = {
-  title: 'What Is MP3? Format Guide',
+  title: 'What Is MP3? Format Guide, Bitrates, and When to Use It',
   description:
-    'MP3 is the most widely supported audio format. Learn how it works, when to use it, its trade-offs, and which formats to compare it against.',
+    'MP3 is the most universally compatible audio format. Learn how it works, recommended bitrates (128/192/320 kbps), when to use MP3, and when to choose WAV or FLAC instead.',
+  alternates: {
+    canonical: '/formats/mp3',
+  },
   openGraph: {
     title: 'What Is MP3? Format Guide',
     description:
@@ -23,6 +57,27 @@ export const metadata: Metadata = {
 export default function Mp3FormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <JsonLd
+        data={[
+          articleSchema({
+            headline: 'What Is MP3? Format Guide, Bitrates, and When to Use It',
+            description:
+              'MP3 is the most universally compatible audio format. Learn how it works, bitrates, and when to choose it.',
+            path: '/formats/mp3',
+            datePublished: '2026-01-15',
+            dateModified: '2026-04-14',
+          }),
+          faqPageSchema(FAQ_ITEMS),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Formats', path: '/formats' },
+          { name: 'MP3', path: '/formats/mp3' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Audio Format</p>
@@ -150,27 +205,10 @@ export default function Mp3FormatPage() {
       {/* FAQ */}
       <div className="mt-12 space-y-5">
         <h2 className="text-xl font-bold text-gray-900">Frequently asked questions</h2>
-        {[
-          {
-            q: 'Is MP3 good enough for music?',
-            a: 'For everyday listening, yes. At 192 kbps or higher, most people cannot tell the difference between MP3 and lossless audio on typical headphones or speakers. If you are an audiophile listening on high-end equipment, you may prefer FLAC.',
-          },
-          {
-            q: 'Can I convert MP3 back to a lossless format?',
-            a: 'You can convert an MP3 to WAV or FLAC, but the audio quality does not improve — the data discarded during MP3 compression is gone permanently. The resulting file is larger but not better-sounding.',
-          },
-          {
-            q: 'What is the difference between MP3 and AAC?',
-            a: 'Both are lossy. AAC (used in M4A files) is technically more efficient — it produces better quality at the same bitrate. However, MP3 is more universally supported on older hardware and software. For most purposes the difference is small.',
-          },
-          {
-            q: 'Does re-encoding an MP3 reduce quality?',
-            a: 'Yes. Each time you encode audio using a lossy format, quality is reduced. Avoid converting MP3 to MP3 or MP3 to AAC repeatedly. If you need to edit or re-encode, start from a lossless source whenever possible.',
-          },
-        ].map(({ q, a }) => (
-          <div key={q} className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm">
-            <h3 className="text-sm font-bold text-gray-900 mb-1.5">{q}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
+        {FAQ_ITEMS.map(({ question, answer }) => (
+          <div key={question} className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm">
+            <h3 className="text-sm font-bold text-gray-900 mb-1.5">{question}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">{answer}</p>
           </div>
         ))}
       </div>

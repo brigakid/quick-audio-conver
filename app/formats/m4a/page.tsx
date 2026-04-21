@@ -1,11 +1,40 @@
 import type { Metadata } from 'next';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema, faqPageSchema } from '@/lib/seo';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Is M4A higher quality than MP3?',
+    answer:
+      'At the same bitrate, AAC (used in M4A) generally produces better quality than MP3. However, both are lossy formats and the difference is small. Unless you are listening on high-quality equipment, you are unlikely to notice.',
+  },
+  {
+    question: 'Why does my car stereo not play M4A?',
+    answer:
+      'Many car stereos were built before AAC/M4A became common. They support MP3 but not M4A. Converting your M4A files to MP3 is the straightforward fix.',
+  },
+  {
+    question: 'Can I convert a protected iTunes M4A file?',
+    answer:
+      'No. Files purchased from iTunes with DRM (FairPlay) protection cannot be converted by third-party tools including this one. DRM protection is only removed if Apple has specifically made the track DRM-free (most tracks purchased today are DRM-free, but older purchases may not be).',
+  },
+  {
+    question: 'Is M4A the same as AAC?',
+    answer:
+      'M4A is a file container; AAC is the audio codec inside it. The .m4a extension indicates an MPEG-4 container that holds only audio (no video). The terms are often used interchangeably but technically AAC is the compression format and M4A is the file type.',
+  },
+];
 
 export const metadata: Metadata = {
-  title: 'What Is M4A? Format Guide',
+  title: 'What Is M4A? Apple\u2019s Audio Format Explained',
   description:
-    "M4A is Apple's audio format, built on the AAC codec. Learn how it compares to MP3, when it works well, and when you should convert it for broader compatibility.",
+    'M4A is the MPEG-4 audio container used by Apple — iTunes purchases, iPhone voice memos, and GarageBand exports. Learn when M4A works, when it doesn\u2019t, and how to convert it.',
+  alternates: {
+    canonical: '/formats/m4a',
+  },
   openGraph: {
     title: 'What Is M4A? Format Guide',
     description:
@@ -22,6 +51,27 @@ export const metadata: Metadata = {
 export default function M4aFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <JsonLd
+        data={[
+          articleSchema({
+            headline: 'What Is M4A? Apple\u2019s Audio Format Explained',
+            description:
+              'M4A is the MPEG-4 audio container used by Apple — iTunes purchases, iPhone voice memos, and GarageBand exports.',
+            path: '/formats/m4a',
+            datePublished: '2026-01-15',
+            dateModified: '2026-04-14',
+          }),
+          faqPageSchema(FAQ_ITEMS),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Formats', path: '/formats' },
+          { name: 'M4A', path: '/formats/m4a' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Audio Format</p>
@@ -154,27 +204,10 @@ export default function M4aFormatPage() {
       {/* FAQ */}
       <div className="mt-12 space-y-5">
         <h2 className="text-xl font-bold text-gray-900">Frequently asked questions</h2>
-        {[
-          {
-            q: 'Is M4A higher quality than MP3?',
-            a: 'At the same bitrate, AAC (used in M4A) generally produces better quality than MP3. However, both are lossy formats and the difference is small. Unless you are listening on high-quality equipment, you are unlikely to notice.',
-          },
-          {
-            q: 'Why does my car stereo not play M4A?',
-            a: 'Many car stereos were built before AAC/M4A became common. They support MP3 but not M4A. Converting your M4A files to MP3 is the straightforward fix.',
-          },
-          {
-            q: "Can I convert a protected iTunes M4A file?",
-            a: 'No. Files purchased from iTunes with DRM (FairPlay) protection cannot be converted by third-party tools including this one. DRM protection is only removed if Apple has specifically made the track DRM-free (most tracks purchased today are DRM-free, but older purchases may not be).',
-          },
-          {
-            q: 'Is M4A the same as AAC?',
-            a: 'M4A is a file container; AAC is the audio codec inside it. The .m4a extension indicates an MPEG-4 container that holds only audio (no video). The terms are often used interchangeably but technically AAC is the compression format and M4A is the file type.',
-          },
-        ].map(({ q, a }) => (
-          <div key={q} className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm">
-            <h3 className="text-sm font-bold text-gray-900 mb-1.5">{q}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
+        {FAQ_ITEMS.map(({ question, answer }) => (
+          <div key={question} className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm">
+            <h3 className="text-sm font-bold text-gray-900 mb-1.5">{question}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">{answer}</p>
           </div>
         ))}
       </div>

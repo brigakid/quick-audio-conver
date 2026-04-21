@@ -216,8 +216,8 @@ export default function MovFormatPage() {
         title="Related guides"
         items={[
           { href: '/guides/extract-audio-from-video',                               label: 'How to Extract Audio from Video'             },
-          { href: '/learn/extracting-audio-from-video-best-format-choices',         label: 'Best Format Choices When Extracting Audio'   },
-          { href: '/learn/when-converting-to-wav-does-not-improve-quality',         label: 'When WAV Doesn\'t Improve Quality'           },
+          { href: '/guides/extract-audio-from-video',         label: 'Best Format Choices When Extracting Audio'   },
+          { href: '/guides/mp3-vs-wav',         label: 'When WAV Doesn\'t Improve Quality'           },
         ]}
       />
 

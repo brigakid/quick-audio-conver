@@ -1,11 +1,40 @@
 import type { Metadata } from 'next';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema, faqPageSchema } from '@/lib/seo';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Why can\'t I play OGG on my iPhone?',
+    answer:
+      'Apple\'s iOS and macOS do not include a native OGG decoder. To play OGG files on an Apple device, you either need a third-party player app (like VLC for iOS) or convert the file to M4A or MP3 first.',
+  },
+  {
+    question: 'Is OGG the same as OGG Vorbis?',
+    answer:
+      'OGG is a container format; Vorbis is the audio codec inside it. "OGG Vorbis" (or just "OGG") refers to the combination. Other codecs can be wrapped in an OGG container (e.g., Opus), but .ogg files almost always contain Vorbis audio.',
+  },
+  {
+    question: 'Will converting OGG to MP3 reduce quality?',
+    answer:
+      'Yes, slightly. Converting from one lossy format to another always introduces generation loss — each encoding step discards more audio data. For most listeners the difference is inaudible at 192 kbps or above, but it is technically a degradation from the OGG original.',
+  },
+  {
+    question: 'Why do game engines use OGG?',
+    answer:
+      'OGG Vorbis is open and royalty-free, which is ideal for commercial games — developers can ship OGG audio without paying licensing fees to a patent holder. Unity, Unreal Engine, Godot, and most other game engines support OGG natively for music and sound effects.',
+  },
+];
 
 export const metadata: Metadata = {
-  title: 'What Is OGG? Format Guide',
+  title: 'What Is OGG? Open-Source Audio Format Guide',
   description:
-    'OGG Vorbis is a free, open-source audio format. Learn how it compares to MP3, where it\'s supported, and when you might need to convert OGG files.',
+    'OGG Vorbis is a free, royalty-free lossy audio format widely used in PC games and open-source software. Learn how OGG compares to MP3 and AAC, and when to convert.',
+  alternates: {
+    canonical: '/formats/ogg',
+  },
   openGraph: {
     title: 'What Is OGG? Format Guide',
     description:
@@ -22,6 +51,27 @@ export const metadata: Metadata = {
 export default function OggFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <JsonLd
+        data={[
+          articleSchema({
+            headline: 'What Is OGG? Open-Source Audio Format Guide',
+            description:
+              'OGG Vorbis is a free, royalty-free lossy audio format widely used in PC games and open-source software.',
+            path: '/formats/ogg',
+            datePublished: '2026-01-15',
+            dateModified: '2026-04-14',
+          }),
+          faqPageSchema(FAQ_ITEMS),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Formats', path: '/formats' },
+          { name: 'OGG', path: '/formats/ogg' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Audio Format</p>

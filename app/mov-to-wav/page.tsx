@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MOV to WAV Converter',
   description:
     'Extract uncompressed audio from a QuickTime MOV video and save it as WAV — ideal for DAWs, audio editors, and professional workflows. Free, no account.',
+  alternates: {
+    canonical: '/mov-to-wav',
+  },
+
   openGraph: {
     title: 'MOV to WAV Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function MovToWavPage() {
   return (
     <ToolPageLayout
+      slug="/mov-to-wav"
       title="MOV to WAV Converter"
       subtitle="Extract uncompressed WAV audio from a QuickTime MOV video — the format preferred by DAWs, video editors, and professional workflows."
       inputFormat="mov"

@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'ALAC to WAV Converter',
   description:
     'Convert Apple Lossless (ALAC) to uncompressed WAV for editing software, DAWs, and professional workflows. Both are lossless — no quality change. Free, no account.',
+  alternates: {
+    canonical: '/alac-to-wav',
+  },
+
   openGraph: {
     title: 'ALAC to WAV Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AlacToWavPage() {
   return (
     <ToolPageLayout
+      slug="/alac-to-wav"
       title="ALAC to WAV Converter"
       subtitle="Convert Apple Lossless audio to uncompressed WAV — the format preferred by DAWs, audio editors, and professional production tools."
       inputFormat="alac"

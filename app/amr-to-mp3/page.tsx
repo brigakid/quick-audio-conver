@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'AMR to MP3 Converter',
   description:
     'Convert AMR voice recordings to MP3. Works with mobile phone call recordings, voice memos, and any .amr file. Free, no account, no install required.',
+  alternates: {
+    canonical: '/amr-to-mp3',
+  },
+
   openGraph: {
     title: 'AMR to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AmrToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/amr-to-mp3"
       title="AMR to MP3 Converter"
       subtitle="Convert legacy AMR voice recordings from mobile phones to MP3 — a format that plays on any device, modern or old."
       inputFormat="amr"

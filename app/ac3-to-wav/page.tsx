@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'AC3 to WAV Converter',
   description:
     'Convert Dolby Digital (AC3) audio to uncompressed WAV for editing, mixing, and post-production workflows. Works with AC3 tracks from video containers. Free, no account.',
+  alternates: {
+    canonical: '/ac3-to-wav',
+  },
+
   openGraph: {
     title: 'AC3 to WAV Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function Ac3ToWavPage() {
   return (
     <ToolPageLayout
+      slug="/ac3-to-wav"
       title="AC3 to WAV Converter"
       subtitle="Convert Dolby Digital AC3 audio to uncompressed WAV — ready for editing software, mixing tools, and post-production workflows."
       inputFormat="ac3"

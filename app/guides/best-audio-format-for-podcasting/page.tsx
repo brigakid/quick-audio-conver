@@ -4,11 +4,18 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Best Audio Format for Podcasting',
   description:
     'Which audio format to use when recording, editing, and submitting your podcast. Specific recommendations for each stage of the workflow.',
+  alternates: {
+    canonical: '/guides/best-audio-format-for-podcasting',
+  },
+
   openGraph: {
     title: 'Best Audio Format for Podcasting',
     description:
@@ -25,6 +32,24 @@ export const metadata: Metadata = {
 export default function BestAudioFormatForPodcastingPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+
+      <JsonLd
+        data={articleSchema({
+          headline: "Best Audio Format for Podcasting",
+          description: "MP3, M4A, or WAV for podcasting? The practical recommendation for publishing, distribution, and archiving podcast audio.",
+          path: '/guides/best-audio-format-for-podcasting',
+          datePublished: '2026-01-15',
+          dateModified: '2026-04-14',
+        })}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: "Audio for Podcasting", path: '/guides/best-audio-format-for-podcasting' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-4">
         <Link href="/guides" className="text-xs text-gray-400 hover:text-brand transition-colors">
@@ -222,7 +247,7 @@ export default function BestAudioFormatForPodcastingPage() {
         items={[
           { href: '/guides/how-to-choose-mp3-bitrate', label: 'How to Choose the Right MP3 Bitrate' },
           { href: '/guides/mp3-vs-wav', label: 'MP3 vs WAV' },
-          { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, and MP3: What Actually Matters' },
+          { href: '/formats/aac', label: 'AAC, M4A, and MP3: What Actually Matters' },
         ]}
       />
 

@@ -4,11 +4,18 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'FLAC vs WAV: Which Lossless Format Should You Use?',
   description:
     'Both FLAC and WAV are lossless. The decoded audio is identical. The difference is in file size, software support, and what you need to do with the file.',
+  alternates: {
+    canonical: '/guides/flac-vs-wav',
+  },
+
   openGraph: {
     title: 'FLAC vs WAV: Which Lossless Format Should You Use?',
     description:
@@ -25,6 +32,24 @@ export const metadata: Metadata = {
 export default function FlacVsWavPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+
+      <JsonLd
+        data={articleSchema({
+          headline: "FLAC vs WAV: Which Lossless Format Should You Use?",
+          description: "FLAC and WAV both preserve full audio quality — but one is half the size. How to choose between them for archiving and editing.",
+          path: '/guides/flac-vs-wav',
+          datePublished: '2026-01-15',
+          dateModified: '2026-04-14',
+        })}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: "FLAC vs WAV", path: '/guides/flac-vs-wav' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-4">
         <Link href="/guides" className="text-xs text-gray-400 hover:text-brand transition-colors">

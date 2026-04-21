@@ -6,6 +6,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Clipping in Audio? Why It Sounds Harsh and How to Avoid It',
   description:
     'Clipping happens when audio exceeds the maximum level a system can handle. The waveform gets cut off — creating a harsh, distorted sound. Here\'s what causes it and how to fix it.',

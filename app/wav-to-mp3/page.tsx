@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'WAV to MP3 Converter',
   description:
     'Convert large WAV audio files to MP3 for easy sharing and uploading. Choose your bitrate and download a compressed MP3 in seconds. Free and private.',
+  alternates: {
+    canonical: '/wav-to-mp3',
+  },
+
   openGraph: {
     title: 'WAV to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function WavToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/wav-to-mp3"
       title="WAV to MP3 Converter"
       subtitle="Compress a WAV file to MP3. A 30 MB WAV typically becomes 3–5 MB — small enough to share by email, attach to a message, or upload anywhere."
       converterNote="WAV files are typically 8–10x larger than an equivalent MP3. A 40 MB WAV at CD quality becomes approximately 4 MB at 192 kbps. Your original WAV is unchanged on your device."
@@ -73,7 +78,7 @@ export default function WavToMp3Page() {
         { href: '/guides/how-to-choose-mp3-bitrate',                     label: 'How to Choose MP3 Bitrate'            },
         { href: '/bpm-changer',                                          label: 'BPM Changer & Detector'               },
         { href: '/key-changer',                                          label: 'Key Changer & Detector'               },
-        { href: '/wiki/what-is-wav',                                     label: 'WikiSound: What Is WAV?'              },
+        { href: '/formats/wav',                                     label: 'WikiSound: What Is WAV?'              },
         { href: '/wiki/what-is-lossless-audio',                          label: 'WikiSound: What Is Lossless Audio?'   },
         { href: '/wiki/what-is-bitrate',                                 label: 'WikiSound: What Is Bitrate?'          },
       ]}

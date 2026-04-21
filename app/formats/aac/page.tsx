@@ -1,11 +1,40 @@
 import type { Metadata } from 'next';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema, faqPageSchema } from '@/lib/seo';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Is AAC better than MP3?',
+    answer:
+      'For equivalent file sizes, yes — AAC delivers better audio quality than MP3 due to more efficient compression. At high bitrates (320 kbps), the practical difference is minimal for most listeners.',
+  },
+  {
+    question: 'Can I convert a DRM-protected AAC file?',
+    answer:
+      'No. Files purchased with FairPlay DRM (older iTunes purchases) are encrypted and cannot be converted by any standard converter, including this one. Only DRM-free AAC files can be processed.',
+  },
+  {
+    question: 'Will converting AAC to WAV improve quality?',
+    answer:
+      'No. Converting a lossy format to a lossless one creates a larger file but does not restore the audio data that was discarded during AAC encoding. The quality ceiling is set by the original AAC file.',
+  },
+  {
+    question: 'What is the difference between AAC and M4A?',
+    answer:
+      'M4A is a container format (an MPEG-4 audio file), and the audio inside it is almost always encoded using the AAC codec. A raw .aac file contains the same audio data without the MP4 container. Most players handle both extensions interchangeably.',
+  },
+];
 
 export const metadata: Metadata = {
-  title: 'What Is AAC? Format Guide',
+  title: 'What Is AAC? Advanced Audio Coding Explained',
   description:
-    'AAC (Advanced Audio Coding) is a lossy audio format designed to replace MP3. Learn how it works, where it\'s supported, and when to convert to or from AAC.',
+    'AAC is the successor to MP3 — better quality at the same bitrate, and the default for Apple Music, YouTube, and most streaming services. Learn how it works and when to use it.',
+  alternates: {
+    canonical: '/formats/aac',
+  },
   openGraph: {
     title: 'What Is AAC? Format Guide',
     description:
@@ -22,6 +51,27 @@ export const metadata: Metadata = {
 export default function AacFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <JsonLd
+        data={[
+          articleSchema({
+            headline: 'What Is AAC? Advanced Audio Coding Explained',
+            description:
+              'AAC is the successor to MP3 — better quality at the same bitrate, and the default for Apple Music, YouTube, and most streaming services.',
+            path: '/formats/aac',
+            datePublished: '2026-01-15',
+            dateModified: '2026-04-14',
+          }),
+          faqPageSchema(FAQ_ITEMS),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Formats', path: '/formats' },
+          { name: 'AAC', path: '/formats/aac' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Audio Format</p>

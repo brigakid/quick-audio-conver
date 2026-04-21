@@ -6,6 +6,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is a Limiter in Audio? Ceiling, Loudness, and True Peak',
   description:
     'A limiter is a compressor with an extreme ratio — it prevents audio from exceeding a set ceiling. It\'s the last thing in a mastering chain and the reason streaming music sounds loud without clipping.',

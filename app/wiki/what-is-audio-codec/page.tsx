@@ -226,8 +226,8 @@ export default function WhatIsAudioCodecPage() {
           { href: '/wiki/codec-vs-container',     label: 'Codec vs Container'         },
           { href: '/wiki/what-is-lossless-audio', label: 'What Is Lossless Audio?'    },
           { href: '/wiki/what-is-lossy-audio',    label: 'What Is Lossy Audio?'       },
-          { href: '/wiki/what-is-mp3',            label: 'What Is MP3?'               },
-          { href: '/wiki/what-is-flac',           label: 'What Is FLAC?'              },
+          { href: '/formats/mp3',            label: 'What Is MP3?'               },
+          { href: '/formats/flac',           label: 'What Is FLAC?'              },
         ]}
       />
 

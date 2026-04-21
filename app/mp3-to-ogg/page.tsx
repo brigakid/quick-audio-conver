@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'MP3 to OGG Converter',
   description:
     'Convert MP3 to OGG/Vorbis for game engines, Linux, and royalty-free audio workflows. No account, no installation.',
+  alternates: {
+    canonical: '/mp3-to-ogg',
+  },
+
   openGraph: {
     title: 'MP3 to OGG Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function Mp3ToOggPage() {
   return (
     <ToolPageLayout
+      slug="/mp3-to-ogg"
       title="MP3 to OGG Converter"
       subtitle="Convert MP3 to OGG/Vorbis — for game engines, open-source projects, and environments where royalty-free formats are required."
       inputFormat="mp3"
@@ -70,7 +75,7 @@ Important caveat: this is a lossy-to-lossy conversion. The OGG output will not s
       relatedGuides={[
         { href: '/formats/ogg',                    label: 'OGG format guide'           },
         { href: '/guides/mp3-vs-wav',              label: 'MP3 vs WAV'                 },
-        { href: '/learn/when-mp3-is-good-enough',  label: 'When MP3 Is Good Enough'    },
+        { href: '/formats/mp3',  label: 'When MP3 Is Good Enough'    },
       ]}
       lastUpdated="2026-03-01"
     />

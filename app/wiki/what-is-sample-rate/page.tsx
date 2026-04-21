@@ -264,8 +264,8 @@ export default function WhatIsSampleRatePage() {
         title="Related"
         items={[
           { href: '/guides/how-to-choose-mp3-bitrate',                       label: 'How to Choose MP3 Bitrate'         },
-          { href: '/learn/how-bitrate-affects-file-size-and-sound-quality',  label: 'How Bitrate Affects Quality'       },
-          { href: '/learn/wav-vs-mp3-for-editing-sharing-and-archiving',     label: 'WAV vs MP3 for Editing and Sharing' },
+          { href: '/guides/how-to-choose-mp3-bitrate',  label: 'How Bitrate Affects Quality'       },
+          { href: '/guides/mp3-vs-wav',     label: 'WAV vs MP3 for Editing and Sharing' },
           { href: '/formats/wav',                                             label: 'WAV format guide'                  },
         ]}
       />

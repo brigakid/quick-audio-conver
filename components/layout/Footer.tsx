@@ -31,13 +31,13 @@ const GUIDES = [
   { href: '/guides/extract-audio-from-video',         label: 'Extract Audio from Video'},
 ];
 
-const LEARN = [
-  { href: '/learn/when-mp3-is-good-enough',                    label: 'When MP3 Is Good Enough'      },
-  { href: '/learn/wav-vs-mp3-for-editing-sharing-and-archiving',    label: 'WAV vs MP3 by Workflow'    },
-  { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Works'         },
-  { href: '/learn/when-converting-to-wav-does-not-improve-quality', label: "WAV Doesn't Improve MP3"  },
-  { href: '/learn/aac-m4a-and-mp3-what-actually-matters',           label: 'AAC, M4A, and MP3'         },
-  { href: '/learn/why-audio-files-fail-to-convert',            label: 'Why Conversions Fail'          },
+const WIKI = [
+  { href: '/wiki/what-is-bitrate',          label: 'What Is Bitrate?'       },
+  { href: '/wiki/what-is-sample-rate',      label: 'What Is Sample Rate?'   },
+  { href: '/wiki/what-is-audio-codec',      label: 'What Is a Codec?'       },
+  { href: '/wiki/codec-vs-container',       label: 'Codec vs Container'     },
+  { href: '/wiki/cbr-vs-vbr',               label: 'CBR vs VBR'             },
+  { href: '/wiki/what-is-lossless-audio',   label: 'Lossless Audio'         },
 ];
 
 const COMPANY = [
@@ -145,13 +145,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Learn */}
+          {/* WikiSound */}
           <div>
             <h3 className="text-xs font-semibold text-gray-300 uppercase tracking-widest mb-4">
-              Learn
+              WikiSound
             </h3>
             <ul className="space-y-2">
-              {LEARN.map((l) => (
+              {WIKI.map((l) => (
                 <li key={l.href}>
                   <Link href={l.href} className="text-xs text-gray-500 hover:text-white transition-colors">
                     {l.label}
@@ -159,8 +159,8 @@ export default function Footer() {
                 </li>
               ))}
               <li>
-                <Link href="/learn" className="text-xs text-brand hover:text-white transition-colors">
-                  All articles →
+                <Link href="/wiki" className="text-xs text-brand hover:text-white transition-colors">
+                  All terms →
                 </Link>
               </li>
             </ul>

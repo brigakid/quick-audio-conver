@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'AC3 to MP3 Converter',
   description:
     'Convert Dolby Digital (AC3) audio tracks from video files to MP3. Works with standalone .ac3 files and extracted audio tracks. Free, no account needed.',
+  alternates: {
+    canonical: '/ac3-to-mp3',
+  },
+
   openGraph: {
     title: 'AC3 to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function Ac3ToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/ac3-to-mp3"
       title="AC3 to MP3 Converter"
       subtitle="Convert Dolby Digital AC3 audio to MP3 — a format that plays on any device without surround sound hardware or Dolby decoding."
       inputFormat="ac3"
@@ -78,7 +83,7 @@ export default function Ac3ToMp3Page() {
       relatedGuides={[
         { href: '/formats/ac3',                                           label: 'What Is AC3 (Dolby Digital)?'             },
         { href: '/guides/extract-audio-from-video',                       label: 'How to Extract Audio from Video'          },
-        { href: '/learn/extracting-audio-from-video-best-format-choices', label: 'Best Format Choices When Extracting Audio' },
+        { href: '/guides/extract-audio-from-video', label: 'Best Format Choices When Extracting Audio' },
         { href: '/wiki/what-is-transcoding',                              label: 'WikiSound: What Is Transcoding?'          },
         { href: '/wiki/what-is-lossy-audio',                              label: 'WikiSound: What Is Lossy Audio?'          },
       ]}

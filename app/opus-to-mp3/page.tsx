@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'Opus to MP3 Converter',
   description:
     'Convert Opus audio files to MP3. Works with Discord voice messages, WhatsApp voice notes, WebRTC recordings, and any .opus file. Free, no account needed.',
+  alternates: {
+    canonical: '/opus-to-mp3',
+  },
+
   openGraph: {
     title: 'Opus to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function OpusToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/opus-to-mp3"
       title="OPUS to MP3 Converter"
       subtitle="Upload an OPUS audio file and convert it to MP3 — perfect for Discord voice messages, WhatsApp audio, and WebRTC recordings."
       inputFormat="opus"
@@ -74,7 +79,7 @@ export default function OpusToMp3Page() {
       relatedGuides={[
         { href: '/guides/troubleshooting-audio-conversion',  label: 'Troubleshooting Audio Conversion' },
         { href: '/guides/how-to-choose-mp3-bitrate',         label: 'How to Choose MP3 Bitrate'        },
-        { href: '/wiki/what-is-opus',                        label: 'WikiSound: What Is Opus?'          },
+        { href: '/formats/opus',                        label: 'WikiSound: What Is Opus?'          },
         { href: '/wiki/what-is-bitrate',                     label: 'WikiSound: What Is Bitrate?'       },
         { href: '/wiki/what-is-lossy-audio',                 label: 'WikiSound: What Is Lossy Audio?'   },
       ]}

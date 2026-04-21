@@ -4,11 +4,18 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Lossless vs Lossy Audio Explained',
   description:
     'What lossless and lossy audio mean, which formats fall into each category, and why the distinction matters when you are converting or archiving audio.',
+  alternates: {
+    canonical: '/guides/lossless-vs-lossy-audio',
+  },
+
   openGraph: {
     title: 'Lossless vs Lossy Audio Explained',
     description:
@@ -25,6 +32,24 @@ export const metadata: Metadata = {
 export default function LosslessVsLossyPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+
+      <JsonLd
+        data={articleSchema({
+          headline: "Lossless vs Lossy Audio: What the Difference Actually Is",
+          description: "How lossy and lossless audio compression differ, when each makes sense, and how to pick the right format for your use case.",
+          path: '/guides/lossless-vs-lossy-audio',
+          datePublished: '2026-01-15',
+          dateModified: '2026-04-14',
+        })}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: "Lossless vs Lossy", path: '/guides/lossless-vs-lossy-audio' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-4">
         <Link href="/guides" className="text-xs text-gray-400 hover:text-brand transition-colors">

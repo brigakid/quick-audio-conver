@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'WAV to AAC Converter',
   description:
     'Convert uncompressed WAV to a raw AAC file (.aac). Better compression efficiency than MP3 at the same bitrate. Free, no account.',
+  alternates: {
+    canonical: '/wav-to-aac',
+  },
+
   openGraph: {
     title: 'WAV to AAC Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function WavToAacPage() {
   return (
     <ToolPageLayout
+      slug="/wav-to-aac"
       title="WAV to AAC Converter"
       subtitle="Convert WAV to a raw AAC file — better compression than MP3 at the same bitrate, without wrapping it in an MP4 container."
       inputFormat="wav"
@@ -70,7 +75,7 @@ At 192 kbps, WAV to AAC produces excellent quality that is transparent for most 
         { href: '/wav-to-ogg',  label: 'WAV to OGG'  },
       ]}
       relatedGuides={[
-        { href: '/learn/aac-m4a-and-mp3-what-actually-matters', label: 'AAC, M4A, MP3: What Matters' },
+        { href: '/formats/aac', label: 'AAC, M4A, MP3: What Matters' },
         { href: '/formats/aac',                    label: 'AAC format guide'            },
         { href: '/guides/mp3-vs-wav',              label: 'MP3 vs WAV'                 },
       ]}

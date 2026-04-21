@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'ALAC to FLAC Converter',
   description:
     'Convert Apple Lossless (ALAC) to FLAC with no quality loss. Lossless to lossless — same audio, smaller file, broader cross-platform support. Free, no account.',
+  alternates: {
+    canonical: '/alac-to-flac',
+  },
+
   openGraph: {
     title: 'ALAC to FLAC Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AlacToFlacPage() {
   return (
     <ToolPageLayout
+      slug="/alac-to-flac"
       title="ALAC to FLAC Converter"
       subtitle="Convert Apple Lossless to FLAC with no quality loss — the same audio, in a format that works on Android, Windows, and Linux without Apple software."
       inputFormat="alac"

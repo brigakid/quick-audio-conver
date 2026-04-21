@@ -1,11 +1,40 @@
 import type { Metadata } from 'next';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema, faqPageSchema } from '@/lib/seo';
+
+const FAQ_ITEMS = [
+  {
+    question: 'Is FLAC better than WAV?',
+    answer:
+      'The audio quality is identical — both are lossless. FLAC is more practical for storage because it is 40–60% smaller. WAV has broader software compatibility, particularly with older tools. For archiving, FLAC is the better choice if your software supports it.',
+  },
+  {
+    question: 'Can I play FLAC on my iPhone?',
+    answer:
+      'Not without a third-party app. iOS does not support FLAC natively. If you need lossless audio on an iPhone, convert to M4A (which can use ALAC lossless encoding). For general compatibility, MP3 at 320 kbps is the most practical option.',
+  },
+  {
+    question: 'Does converting FLAC to MP3 reduce quality?',
+    answer:
+      'Yes. MP3 is lossy, so converting from FLAC to MP3 permanently discards some audio data. At 320 kbps, the result sounds excellent for most listeners. At 192 kbps, it is still good for everyday use. The original FLAC quality cannot be recovered once you convert.',
+  },
+  {
+    question: 'Is FLAC royalty-free?',
+    answer:
+      'Yes. FLAC is a fully open and royalty-free format maintained by the Xiph.Org Foundation. There are no licensing restrictions on its use, encoding, or distribution — which is one reason it has broad support across open-source software.',
+  },
+];
 
 export const metadata: Metadata = {
-  title: 'What Is FLAC? Format Guide',
+  title: 'What Is FLAC? Lossless Audio Format Guide',
   description:
-    'FLAC is a lossless compressed audio format. Learn what makes it different from MP3 and WAV, its compatibility limitations, and when to use or convert it.',
+    'FLAC is a free, lossless audio format that reduces WAV file sizes by 40–60% with no quality loss. Learn when to use FLAC, its compatibility, and how it compares to WAV, ALAC, and MP3.',
+  alternates: {
+    canonical: '/formats/flac',
+  },
   openGraph: {
     title: 'What Is FLAC? Format Guide',
     description:
@@ -22,6 +51,27 @@ export const metadata: Metadata = {
 export default function FlacFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+      <JsonLd
+        data={[
+          articleSchema({
+            headline: 'What Is FLAC? Lossless Audio Format Guide',
+            description:
+              'FLAC is a free, lossless audio format that reduces WAV file sizes by 40–60% with no quality loss.',
+            path: '/formats/flac',
+            datePublished: '2026-01-15',
+            dateModified: '2026-04-14',
+          }),
+          faqPageSchema(FAQ_ITEMS),
+        ]}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Formats', path: '/formats' },
+          { name: 'FLAC', path: '/formats/flac' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Audio Format</p>
@@ -141,23 +191,10 @@ export default function FlacFormatPage() {
       {/* FAQ */}
       <div className="mt-12 space-y-5">
         <h2 className="text-xl font-bold text-gray-900">Frequently asked questions</h2>
-        {[
-          {
-            q: 'Is FLAC better than WAV?',
-            a: 'The audio quality is identical — both are lossless. FLAC is more practical for storage because it is 40–60% smaller. WAV has broader software compatibility, particularly with older tools. For archiving, FLAC is the better choice if your software supports it.',
-          },
-          {
-            q: 'Can I play FLAC on my iPhone?',
-            a: 'Not without a third-party app. iOS does not support FLAC natively. If you need lossless audio on an iPhone, convert to M4A (which can use ALAC lossless encoding). For general compatibility, MP3 at 320 kbps is the most practical option.',
-          },
-          {
-            q: 'Does converting FLAC to MP3 reduce quality?',
-            a: 'Yes. MP3 is lossy, so converting from FLAC to MP3 permanently discards some audio data. At 320 kbps, the result sounds excellent for most listeners. At 192 kbps, it is still good for everyday use. The original FLAC quality cannot be recovered once you convert.',
-          },
-        ].map(({ q, a }) => (
-          <div key={q} className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm">
-            <h3 className="text-sm font-bold text-gray-900 mb-1.5">{q}</h3>
-            <p className="text-sm text-gray-600 leading-relaxed">{a}</p>
+        {FAQ_ITEMS.map(({ question, answer }) => (
+          <div key={question} className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm">
+            <h3 className="text-sm font-bold text-gray-900 mb-1.5">{question}</h3>
+            <p className="text-sm text-gray-600 leading-relaxed">{answer}</p>
           </div>
         ))}
       </div>

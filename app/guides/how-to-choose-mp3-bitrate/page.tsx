@@ -4,11 +4,18 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'How to Choose the Right MP3 Bitrate',
   description:
     '128, 192, or 320 kbps — what actually changes between bitrates and which one you need for your use case.',
+  alternates: {
+    canonical: '/guides/how-to-choose-mp3-bitrate',
+  },
+
   openGraph: {
     title: 'How to Choose the Right MP3 Bitrate',
     description:
@@ -25,6 +32,24 @@ export const metadata: Metadata = {
 export default function HowToChooseMp3BitratePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+
+      <JsonLd
+        data={articleSchema({
+          headline: "How to Choose the Right MP3 Bitrate",
+          description: "128, 192, or 320 kbps — how to pick the MP3 bitrate that matches your source quality and your listeners.",
+          path: '/guides/how-to-choose-mp3-bitrate',
+          datePublished: '2026-01-15',
+          dateModified: '2026-04-14',
+        })}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: "Choosing MP3 Bitrate", path: '/guides/how-to-choose-mp3-bitrate' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-4">
         <Link href="/guides" className="text-xs text-gray-400 hover:text-brand transition-colors">
@@ -211,8 +236,8 @@ export default function HowToChooseMp3BitratePage() {
       <RelatedContent
         title="Related guides"
         items={[
-          { href: '/learn/how-bitrate-affects-file-size-and-sound-quality', label: 'How Bitrate Affects File Size and Sound' },
-          { href: '/learn/when-mp3-is-good-enough', label: 'When MP3 Is Good Enough' },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How Bitrate Affects File Size and Sound' },
+          { href: '/formats/mp3', label: 'When MP3 Is Good Enough' },
           { href: '/guides/mp3-vs-wav', label: 'MP3 vs WAV' },
         ]}
       />

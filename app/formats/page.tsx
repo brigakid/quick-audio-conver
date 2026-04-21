@@ -5,6 +5,9 @@ export const metadata: Metadata = {
   title: 'Audio Format Guide',
   description:
     'Reference guide to MP3, WAV, FLAC, M4A, AAC, OGG, AIFF, ALAC, AMR, AC3, MOV, and more — what each format is, when to use it, and which converters apply.',
+  alternates: {
+    canonical: '/formats',
+  },
 };
 
 const FORMATS = [

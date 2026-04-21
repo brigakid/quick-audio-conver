@@ -6,6 +6,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Mixing and Mastering? Two Separate Jobs',
   description:
     'Mixing balances individual tracks into a cohesive recording. Mastering prepares that recording for distribution. They solve different problems at different stages.',
@@ -178,7 +179,7 @@ export default function WhatIsMixingMasteringPage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/learn/best-audio-format-for-editing', label: 'Best Format for Editing'    },
+          { href: '/guides/mp3-vs-wav', label: 'Best Format for Editing'    },
           { href: '/formats/wav',                         label: 'WAV format guide'            },
         ]}
       />

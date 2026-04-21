@@ -6,6 +6,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Distortion in Audio? Damage vs Creative Effect',
   description:
     'Distortion means audio altered beyond its original waveform. Sometimes it\'s accidental damage. Sometimes it\'s the entire creative point — electric guitar, tape saturation, lo-fi aesthetics.',

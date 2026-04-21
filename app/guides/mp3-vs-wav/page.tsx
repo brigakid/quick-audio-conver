@@ -4,11 +4,18 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'MP3 vs WAV: Which Format Should You Use?',
   description:
     'The practical differences between MP3 and WAV — quality, file size, compatibility, and which one fits your situation. No fluff, just the decision.',
+  alternates: {
+    canonical: '/guides/mp3-vs-wav',
+  },
+
   openGraph: {
     title: 'MP3 vs WAV: Which Format Should You Use?',
     description:
@@ -25,6 +32,24 @@ export const metadata: Metadata = {
 export default function Mp3VsWavPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+
+      <JsonLd
+        data={articleSchema({
+          headline: "MP3 vs WAV: Which Format Should You Use?",
+          description: "The practical differences between MP3 and WAV — quality, file size, compatibility, and which one fits your situation.",
+          path: '/guides/mp3-vs-wav',
+          datePublished: '2026-01-15',
+          dateModified: '2026-04-14',
+        })}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: "MP3 vs WAV", path: '/guides/mp3-vs-wav' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
 
       <div className="mb-4">
         <Link href="/guides" className="text-xs text-gray-400 hover:text-brand transition-colors">

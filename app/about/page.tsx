@@ -1,20 +1,26 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { breadcrumbSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
-  title: 'About',
+  title: 'About QuickAudioConvert — Who Built It and How It Works',
   description:
-    'QuickAudioConvert is a free audio converter — no account, no downloads, no guessing about what happens to your files. Fast, private, and straightforward.',
+    'QuickAudioConvert is a free, server-side audio converter built on FFmpeg. Learn who built it, how conversion works, and how uploaded files are handled.',
+  alternates: {
+    canonical: '/about',
+  },
   openGraph: {
     title: 'About QuickAudioConvert',
     description:
-      'QuickAudioConvert is a free audio converter — no account, no downloads, no guessing about what happens to your files. Fast, private, and straightforward.',
+      'A free, server-side audio converter built on FFmpeg. No account, no install, files deleted after 5 minutes.',
   },
   twitter: {
     card: 'summary_large_image',
     title: 'About QuickAudioConvert',
     description:
-      'QuickAudioConvert is a free audio converter — no account, no downloads, no guessing about what happens to your files.',
+      'A free, server-side audio converter built on FFmpeg. No account, no install, files deleted after 5 minutes.',
   },
 };
 
@@ -35,9 +41,9 @@ const quickLinks = [
     desc: 'Format comparisons, quality tips, and how-to guides.',
   },
   {
-    href: '/learn',
-    label: 'Learn',
-    desc: 'Short articles on how audio formats actually work.',
+    href: '/wiki',
+    label: 'WikiSound',
+    desc: 'Plain-English explanations of audio terminology.',
   },
   {
     href: '/contact',
@@ -49,6 +55,20 @@ const quickLinks = [
 export default function AboutPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+
+      <JsonLd
+        data={breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ])}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About', path: '/about' },
+        ]}
+        schemaOnly
+      />
 
       {/* Header */}
       <div className="mb-12">
@@ -67,55 +87,57 @@ export default function AboutPage() {
         <section>
           <h2 className="text-xl font-bold text-gray-900 mb-3">Who built this</h2>
           <p className="text-sm text-gray-600 leading-relaxed">
-            QuickAudioConvert was created by James in 2026. I built it because I needed a
-            good audio converter myself, but most of the tools I found were cluttered,
-            misleading, or forced users to sign up before doing anything useful.
-            QuickAudioConvert was made to be a simpler alternative: fast, straightforward,
-            and focused on getting the conversion done without unnecessary friction.
+            QuickAudioConvert was created by James in 2026 and is independently maintained.
+            It grew out of a recurring frustration: most audio converters online are download
+            funnels, subscription walls, or ad-heavy pages that happen to convert files on
+            the side. The goal here was simpler — build a tool that does the conversion well,
+            explains what happens to your file, and gets out of the way.
+          </p>
+          <p className="text-sm text-gray-600 leading-relaxed mt-3">
+            The site also publishes written guidance on audio formats and conversion decisions.
+            Every article is written in-house and updated when formats change or something
+            turns out to be unclear. Nothing is generated, outsourced, or syndicated.
+          </p>
+        </section>
+
+        {/* How conversion works */}
+        <section>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">How conversion works</h2>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Every conversion runs server-side using{' '}
+            <a
+              href="https://ffmpeg.org/"
+              rel="noopener noreferrer"
+              target="_blank"
+              className="text-brand hover:underline"
+            >
+              FFmpeg
+            </a>
+            {' '}— the same open-source engine used by VLC, Handbrake, and most professional
+            media tools. Your browser uploads the file to our server, FFmpeg performs the
+            conversion with the codec parameters matched to the target format, and the
+            result is returned for download. Nothing is processed inside your browser and
+            nothing is installed on your device.
+          </p>
+          <p className="text-sm text-gray-600 leading-relaxed mt-3">
+            Conversion parameters are chosen per format rather than exposed as options. MP3
+            output uses LAME at 192 kbps VBR by default — the bitrate most listeners cannot
+            distinguish from the source. FLAC uses level 5 compression — the ratio vs speed
+            sweet spot. WAV output preserves the source sample rate and bit depth. These
+            defaults are documented on each individual converter page.
           </p>
         </section>
 
         {/* What it does */}
         <section>
-          <h2 className="text-xl font-bold text-gray-900 mb-3">What it does</h2>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">What it supports</h2>
           <p className="text-sm text-gray-600 leading-relaxed">
-            QuickAudioConvert converts audio and video files between formats. Upload a file —
-            MP4, MOV, WAV, FLAC, ALAC, M4A, MP3, AAC, OGG, AIFF, AIFC, AMR, AC3, OPUS,
-            WMA, and more — choose an output format, and download the result. Conversion runs
-            server-side using FFmpeg, so nothing is processed in your browser and nothing
-            installs on your device.
-          </p>
-          <p className="text-sm text-gray-600 leading-relaxed mt-3">
-            Output formats are MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS. The converter shows
-            which outputs are available for the file you upload — not every combination is
-            offered. FLAC output is only shown for lossless sources (WAV, AIFF, and ALAC).
-            MOV files are treated as video containers for audio extraction, like MP4. Files
-            up to 200 MB are supported.
-          </p>
-        </section>
-
-        {/* Why it exists */}
-        <section>
-          <h2 className="text-xl font-bold text-gray-900 mb-3">Why it exists</h2>
-          <p className="text-sm text-gray-600 leading-relaxed">
-            Most audio converters online are not really converters — they are download funnels,
-            ad networks, or subscription prompts that happen to convert files on the side. The
-            ones that do work tend to be cluttered, slow to load, or vague about what happens
-            to your files after you upload them.
-          </p>
-          <p className="text-sm text-gray-600 leading-relaxed mt-3">
-            This tool exists to be the straightforward alternative: no account wall before you
-            can use it, no upsell after you do, and no ambiguity about data handling. You
-            upload a file, get a converted file back, and that is the entire interaction.
-          </p>
-          <p className="text-sm text-gray-600 leading-relaxed mt-3">
-            That same reasoning shapes the rest of the site. The{' '}
-            <Link href="/guides" className="text-brand hover:underline">guides</Link> and{' '}
-            <Link href="/learn" className="text-brand hover:underline">learn articles</Link>{' '}
-            exist because a lot of people converting files are also trying to understand what
-            format to convert to, why their file sounds different after, or what bitrate
-            actually means. It seemed worth explaining that clearly rather than leaving people
-            to piece it together from forum posts.
+            Upload a file — MP4, MOV, WAV, FLAC, ALAC, M4A, MP3, AAC, OGG, AIFF, AIFC, AMR,
+            AC3, OPUS, WMA, and more — choose an output format, and download the result.
+            Output formats are MP3, WAV, M4A, FLAC, AAC, OGG, and OPUS. The converter only
+            shows outputs that make sense for your input — for example, FLAC output is only
+            offered when the source is lossless (WAV, AIFF, or ALAC). Files up to 200 MB are
+            supported.
           </p>
         </section>
 
@@ -211,13 +233,19 @@ export default function AboutPage() {
           </p>
         </section>
 
-        {/* Closing note */}
-        <section className="pt-2">
-          <p className="text-sm text-gray-500 leading-relaxed border-t border-gray-100 pt-8">
-            QuickAudioConvert is an actively maintained project. The{' '}
+        {/* Contact & editorial note */}
+        <section>
+          <h2 className="text-xl font-bold text-gray-900 mb-3">Contact and corrections</h2>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            Email{' '}
+            <a href="mailto:contact@quickaudioconvert.com" className="text-brand hover:underline">
+              contact@quickaudioconvert.com
+            </a>{' '}
+            for bug reports, format requests, corrections to any article, or general questions.
+            The site is actively maintained — the{' '}
             <Link href="/formats" className="text-brand hover:underline">format pages</Link>,{' '}
             <Link href="/guides" className="text-brand hover:underline">guides</Link>, and{' '}
-            <Link href="/learn" className="text-brand hover:underline">learn articles</Link>{' '}
+            <Link href="/wiki" className="text-brand hover:underline">WikiSound entries</Link>{' '}
             are updated when formats change or something turns out to be unclear. If a
             conversion is not working as described, the{' '}
             <Link href="/contact" className="text-brand hover:underline">Contact page</Link>{' '}

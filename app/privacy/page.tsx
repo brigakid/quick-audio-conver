@@ -3,6 +3,9 @@ import type { Metadata } from 'next';
 export const metadata: Metadata = {
   title: 'Privacy Policy',
   description: 'How QuickAudioConvert handles your files and data. Uploaded files are processed server-side and deleted automatically — never stored permanently.',
+  alternates: {
+    canonical: '/privacy',
+  },
 };
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {

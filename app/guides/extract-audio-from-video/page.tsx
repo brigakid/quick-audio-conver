@@ -4,11 +4,18 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import Breadcrumbs from '@/components/seo/Breadcrumbs';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'How to Extract Audio from a Video File',
   description:
     'Step-by-step: how to extract the audio track from an MP4 or MOV file and save it as MP3, WAV, M4A, AAC, OGG, or OPUS. No software installation required.',
+  alternates: {
+    canonical: '/guides/extract-audio-from-video',
+  },
+
   openGraph: {
     title: 'How to Extract Audio from a Video File',
     description:
@@ -26,6 +33,24 @@ export default function ExtractAudioFromVideoPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "How to Extract Audio from a Video File",
+          description: "Extract audio from MP4, MOV, and other video files. Which output format to choose, how quality works, and what to watch out for.",
+          path: '/guides/extract-audio-from-video',
+          datePublished: '2026-01-15',
+          dateModified: '2026-04-14',
+        })}
+      />
+      <Breadcrumbs
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Guides', path: '/guides' },
+          { name: "Extract Audio from Video", path: '/guides/extract-audio-from-video' },
+        ]}
+        className="text-xs text-gray-500 mb-6"
+      />
+
       <div className="mb-4">
         <Link href="/guides" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← Guides
@@ -42,13 +67,11 @@ export default function ExtractAudioFromVideoPage() {
       <Author />
 
       <div className="mb-6 p-4 rounded-xl bg-slate-50 border border-slate-100 text-sm text-gray-600 leading-relaxed">
-        This is the step-by-step how-to for extracting audio using QuickAudioConvert: upload,
-        choose a format, download. For a deeper look at which output format suits which use case —
-        codec trade-offs, why WAV vs MP3 matters for editing — see{' '}
-        <Link href="/learn/extracting-audio-from-video-best-format-choices" className="text-brand hover:underline">
-          Best Format Choices When Extracting Audio from Video
-        </Link>
-        .
+        The short version: upload the video, pick an audio format, download. The
+        trickier decision is <em>which</em> output format — and the answer depends on
+        what you plan to do next. If you just want to listen, MP3 at 192 kbps is the
+        right default. If you are going to edit it, use WAV. For Apple devices, M4A.
+        The sections below cover the full workflow and the trade-offs.
       </div>
 
       <QuickAnswer>

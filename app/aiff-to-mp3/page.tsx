@@ -5,6 +5,10 @@ export const metadata: Metadata = {
   title: 'AIFF to MP3 Converter',
   description:
     'Convert Apple AIFF audio to MP3. Works with Logic Pro, GarageBand, and Pro Tools exports. Upload, choose your bitrate, and download instantly. Free, no account.',
+  alternates: {
+    canonical: '/aiff-to-mp3',
+  },
+
   openGraph: {
     title: 'AIFF to MP3 Converter',
     description:
@@ -21,6 +25,7 @@ export const metadata: Metadata = {
 export default function AiffToMp3Page() {
   return (
     <ToolPageLayout
+      slug="/aiff-to-mp3"
       title="AIFF to MP3 Converter"
       subtitle="Upload an AIFF file and convert it to a compact, universally compatible MP3 — instantly and privately."
       inputFormat="aiff"

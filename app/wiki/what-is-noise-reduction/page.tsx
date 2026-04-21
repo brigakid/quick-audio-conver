@@ -6,6 +6,7 @@ import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Noise Reduction in Audio? How It Works and When to Use It',
   description:
     'Noise reduction removes background hiss, hum, and ambient sound from recordings. Here\'s how it works, when it genuinely helps, and when it makes audio sound worse.',
@@ -175,7 +176,7 @@ export default function WhatIsNoiseReductionPage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/learn/best-audio-format-for-voice-recordings', label: 'Best Format for Voice' },
+          { href: '/guides/best-audio-format-for-podcasting', label: 'Best Format for Voice' },
         ]}
       />
 
