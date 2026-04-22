@@ -56,11 +56,12 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
-      <head>
-        {/* eslint-disable-next-line @next/next/no-sync-scripts */}
-        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5139615638375778" crossOrigin="anonymous" />
-      </head>
       <body className="min-h-screen bg-white">
+        <Script
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5139615638375778"
+          strategy="afterInteractive"
+          crossOrigin="anonymous"
+        />
         {/* Site-wide structured data — WebSite + Organization */}
         <JsonLd data={[websiteSchema(), organizationSchema()]} />
         {/* Google Analytics 4 */}
