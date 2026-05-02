@@ -1,11 +1,16 @@
 import type { Metadata } from 'next';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is MOV? QuickTime Format Guide',
   description:
     "MOV is Apple's QuickTime video container format — commonly produced by iPhones, iPads, iMovie, and Final Cut Pro. Learn how to extract audio from MOV files and when to convert them.",
+  alternates: {
+    canonical: '/formats/mov',
+  },
   openGraph: {
     title: 'What Is MOV? QuickTime Format Guide',
     description:
@@ -23,6 +28,15 @@ export default function MovFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is MOV? QuickTime Format Guide",
+          description: "MOV is Apple's QuickTime video container format — commonly produced by iPhones, iPads, iMovie, and Final Cut Pro. Learn how to extract audio from MOV files and when to convert them.",
+          path: "/formats/mov",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Video Container</p>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
@@ -215,9 +229,9 @@ export default function MovFormatPage() {
       <RelatedContent
         title="Related guides"
         items={[
-          { href: '/guides/extract-audio-from-video',                               label: 'How to Extract Audio from Video'             },
-          { href: '/guides/extract-audio-from-video',         label: 'Best Format Choices When Extracting Audio'   },
-          { href: '/guides/mp3-vs-wav',         label: 'When WAV Doesn\'t Improve Quality'           },
+          { href: '/guides/extract-audio-from-video',  label: 'How to Extract Audio from Video' },
+          { href: '/guides/mp3-vs-wav',                label: 'MP3 vs WAV: Which Format to Use' },
+          { href: '/guides/lossless-vs-lossy-audio',   label: 'Lossless vs Lossy Audio'         },
         ]}
       />
 

@@ -77,12 +77,11 @@ export default function AacToMp3Page() {
         { href: '/mp3-to-wav', label: 'MP3 to WAV' },
       ]}
       relatedGuides={[
-        { href: '/formats/aac',        label: 'AAC, M4A and MP3 — What Actually Matters' },
-        { href: '/guides/mp3-vs-wav',                                  label: 'MP3 vs WAV'                              },
-        { href: '/guides/how-to-choose-mp3-bitrate',                   label: 'How to Choose MP3 Bitrate'               },
-        { href: '/formats/aac',                                   label: 'WikiSound: What Is AAC?'                 },
-        { href: '/wiki/what-is-lossy-audio',                           label: 'WikiSound: What Is Lossy Audio?'         },
-        { href: '/wiki/what-is-transcoding',                           label: 'WikiSound: What Is Transcoding?'         },
+        { href: '/formats/aac',                       label: 'AAC format guide'                },
+        { href: '/guides/mp3-vs-wav',                 label: 'MP3 vs WAV'                      },
+        { href: '/guides/how-to-choose-mp3-bitrate',  label: 'How to Choose MP3 Bitrate'       },
+        { href: '/wiki/what-is-lossy-audio',          label: 'WikiSound: What Is Lossy Audio?' },
+        { href: '/wiki/what-is-transcoding',          label: 'WikiSound: What Is Transcoding?' },
       ]}
       lastUpdated="2026-03-28"
     />

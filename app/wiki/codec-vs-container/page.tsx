@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'Codec vs Container: What\'s the Difference in Audio?',
   description:
     'A container is the file wrapper (MP4, M4A, WAV). A codec is the compression algorithm inside it (AAC, MP3, PCM). The same container can hold different codecs — here\'s why that matters.',
+  alternates: {
+    canonical: '/wiki/codec-vs-container',
+  },
   openGraph: {
     title: 'Codec vs Container: What\'s the Difference in Audio?',
     description:
@@ -26,6 +31,15 @@ export default function CodecVsContainerPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "Codec vs Container: What\\",
+          description: "A container is the file wrapper (MP4, M4A, WAV). A codec is the compression algorithm inside it (AAC, MP3, PCM). The same container can hold different codecs — here's why that matters.",
+          path: "/wiki/codec-vs-container",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound

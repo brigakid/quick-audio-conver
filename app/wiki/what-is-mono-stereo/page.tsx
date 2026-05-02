@@ -4,11 +4,17 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Mono vs Stereo Audio? When One Channel Is Better Than Two',
   description:
     'Mono is one channel. Stereo is two. Stereo sounds wider — but for voice, podcasts, and phone playback, mono is often the better choice. Here\'s the full breakdown.',
+  alternates: {
+    canonical: '/wiki/what-is-mono-stereo',
+  },
   openGraph: {
     title: 'What Is Mono vs Stereo Audio? When One Channel Is Better Than Two',
     description:
@@ -26,6 +32,15 @@ export default function WhatIsMonoStereoPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Mono vs Stereo Audio? When One Channel Is Better Than Two",
+          description: "Mono is one channel. Stereo is two. Stereo sounds wider — but for voice, podcasts, and phone playback, mono is often the better choice. Here's the full breakdown.",
+          path: "/wiki/what-is-mono-stereo",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound
@@ -220,8 +235,7 @@ export default function WhatIsMonoStereoPage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/guides/best-audio-format-for-podcasting',   label: 'Best Format for Podcasting' },
-          { href: '/guides/best-audio-format-for-podcasting', label: 'Best Format for Voice' },
+          { href: '/guides/best-audio-format-for-podcasting', label: 'Best Audio Format for Podcasting' },
         ]}
       />
 

@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'MOV to M4A Converter',
   description:
     'Extract and compress audio from a QuickTime MOV video into M4A — ideal for Apple Podcasts, iOS devices, and iTunes libraries. Free, no account needed.',

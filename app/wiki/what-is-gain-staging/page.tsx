@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'What Is Gain Staging? Managing Audio Levels Through the Chain',
   description:
     'Gain staging means managing signal levels at each step of an audio chain — not too quiet (noise) and not too loud (clipping). It\'s the foundation of clean-sounding recordings.',
+  alternates: {
+    canonical: '/wiki/what-is-gain-staging',
+  },
   openGraph: {
     title: 'What Is Gain Staging? Managing Audio Levels Through the Chain',
     description:

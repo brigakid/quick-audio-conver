@@ -4,11 +4,17 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Loudness in Audio? LUFS, Volume, and Streaming Normalisation',
   description:
     'Loudness isn\'t the same as volume. It\'s a measure of how audio is perceived over time. Streaming platforms normalise to specific LUFS targets — here\'s what that means for your audio.',
+  alternates: {
+    canonical: '/wiki/what-is-loudness',
+  },
   openGraph: {
     title: 'What Is Loudness in Audio? LUFS, Volume, and Streaming Normalisation',
     description:
@@ -26,6 +32,15 @@ export default function WhatIsLoudnessPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Loudness in Audio? LUFS, Volume, and Streaming Normalisation",
+          description: "Loudness isn't the same as volume. It's a measure of how audio is perceived over time. Streaming platforms normalise to specific LUFS targets — here's what that means for your audio.",
+          path: "/wiki/what-is-loudness",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound
@@ -188,8 +203,7 @@ export default function WhatIsLoudnessPage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/guides/best-audio-format-for-podcasting', label: 'Best Format for Podcasting' },
-          { href: '/guides/best-audio-format-for-podcasting',    label: 'Best Audio Format for Podcasts' },
+          { href: '/guides/best-audio-format-for-podcasting', label: 'Best Audio Format for Podcasting' },
         ]}
       />
 

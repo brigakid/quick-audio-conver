@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is Bitrate in Audio? A Plain-English Explanation',
   description:
     'Bitrate is how many bits of audio data are stored per second. Here\'s what that means for file size, sound quality, and choosing the right setting when you convert.',
+  alternates: {
+    canonical: '/wiki/what-is-bitrate',
+  },
   openGraph: {
     title: 'What Is Bitrate in Audio? A Plain-English Explanation',
     description:
@@ -26,6 +31,15 @@ export default function WhatIsBitratePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Bitrate in Audio? A Plain-English Explanation",
+          description: "Bitrate is how many bits of audio data are stored per second. Here's what that means for file size, sound quality, and choosing the right setting when you convert.",
+          path: "/wiki/what-is-bitrate",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound
@@ -248,9 +262,9 @@ export default function WhatIsBitratePage() {
       <RelatedContent
         title="Go deeper"
         items={[
-          { href: '/guides/how-to-choose-mp3-bitrate', label: 'Bitrate: The Calculations in Full' },
-          { href: '/guides/how-to-choose-mp3-bitrate',                      label: 'How to Choose the Right MP3 Bitrate' },
-          { href: '/formats/mp3',                                            label: 'MP3 format guide'                  },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How to Choose the Right MP3 Bitrate' },
+          { href: '/guides/lossless-vs-lossy-audio',   label: 'Lossless vs Lossy Audio'             },
+          { href: '/formats/mp3',                      label: 'MP3 format guide'                    },
         ]}
       />
 

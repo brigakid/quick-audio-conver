@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is Transcoding in Audio? When It Costs Quality and When It Doesn\'t',
   description:
     'Transcoding means re-encoding audio from one codec to another. Sometimes it\'s transparent. Sometimes it degrades quality. Here\'s how to know which situation you\'re in.',
+  alternates: {
+    canonical: '/wiki/what-is-transcoding',
+  },
   openGraph: {
     title: 'What Is Transcoding in Audio? When It Costs Quality and When It Doesn\'t',
     description:
@@ -26,6 +31,15 @@ export default function WhatIsTranscodingPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Transcoding in Audio? When It Costs Quality and When It Doesn\\",
+          description: "Transcoding means re-encoding audio from one codec to another. Sometimes it's transparent. Sometimes it degrades quality. Here's how to know which situation you're in.",
+          path: "/wiki/what-is-transcoding",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound

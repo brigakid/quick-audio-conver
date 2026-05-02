@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'What Is Distortion in Audio? Damage vs Creative Effect',
   description:
     'Distortion means audio altered beyond its original waveform. Sometimes it\'s accidental damage. Sometimes it\'s the entire creative point — electric guitar, tape saturation, lo-fi aesthetics.',
+  alternates: {
+    canonical: '/wiki/what-is-distortion',
+  },
   openGraph: {
     title: 'What Is Distortion in Audio? Damage vs Creative Effect',
     description:

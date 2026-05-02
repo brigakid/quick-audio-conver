@@ -4,11 +4,17 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Audio Normalization? Peak, LUFS, and Why It Matters',
   description:
     'Normalization sets audio to a target volume level. Peak normalization adjusts by the loudest peak. Loudness normalization (LUFS) adjusts for perceived loudness. Here\'s the difference.',
+  alternates: {
+    canonical: '/wiki/what-is-normalization',
+  },
   openGraph: {
     title: 'What Is Audio Normalization? Peak, LUFS, and Why It Matters',
     description:
@@ -26,6 +32,15 @@ export default function WhatIsNormalizationPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Audio Normalization? Peak, LUFS, and Why It Matters",
+          description: "Normalization sets audio to a target volume level. Peak normalization adjusts by the loudest peak. Loudness normalization (LUFS) adjusts for perceived loudness. Here's the difference.",
+          path: "/wiki/what-is-normalization",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound

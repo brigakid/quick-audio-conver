@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'AIFF to FLAC Converter',
   description:
     'Convert Apple AIFF audio to lossless FLAC — compact archiving with no quality loss. Works with Logic Pro, Pro Tools, and GarageBand exports.',

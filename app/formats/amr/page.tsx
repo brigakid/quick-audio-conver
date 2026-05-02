@@ -1,11 +1,17 @@
 import type { Metadata } from 'next';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is AMR? Audio Format Guide',
   description:
     'AMR is a voice-optimised audio codec used in mobile phone recordings. Learn what AMR is, where it comes from, and how to convert AMR files to MP3 or WAV.',
+  alternates: {
+    canonical: '/formats/amr',
+  },
   openGraph: {
     title: 'What Is AMR? Audio Format Guide',
     description:
@@ -23,6 +29,15 @@ export default function AmrFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is AMR? Audio Format Guide",
+          description: "AMR is a voice-optimised audio codec used in mobile phone recordings. Learn what AMR is, where it comes from, and how to convert AMR files to MP3 or WAV.",
+          path: "/formats/amr",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Audio Format</p>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">

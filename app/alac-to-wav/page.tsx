@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'ALAC to WAV Converter',
   description:
     'Convert Apple Lossless (ALAC) to uncompressed WAV for editing software, DAWs, and professional workflows. Both are lossless — no quality change. Free, no account.',

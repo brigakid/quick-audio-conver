@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is Lossy Audio? How Compression Removes Sound',
   description:
     'Lossy audio formats permanently remove audio data to shrink file sizes. Here\'s exactly what gets removed, how audible it is, and when lossy compression is completely fine.',
+  alternates: {
+    canonical: '/wiki/what-is-lossy-audio',
+  },
   openGraph: {
     title: 'What Is Lossy Audio? How Compression Removes Sound',
     description:
@@ -26,6 +31,15 @@ export default function WhatIsLossyAudioPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Lossy Audio? How Compression Removes Sound",
+          description: "Lossy audio formats permanently remove audio data to shrink file sizes. Here's exactly what gets removed, how audible it is, and when lossy compression is completely fine.",
+          path: "/wiki/what-is-lossy-audio",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound

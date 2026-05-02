@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is a Container Format in Audio and Video?',
   description:
     'A container format is the file wrapper — the packaging that holds audio, video, metadata, and more. MP4, WAV, MKV, and M4A are containers. Here\'s what they actually do.',
+  alternates: {
+    canonical: '/wiki/what-is-container-format',
+  },
   openGraph: {
     title: 'What Is a Container Format in Audio and Video?',
     description:
@@ -26,6 +31,15 @@ export default function WhatIsContainerFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is a Container Format in Audio and Video?",
+          description: "A container format is the file wrapper — the packaging that holds audio, video, metadata, and more. MP4, WAV, MKV, and M4A are containers. Here's what they actually do.",
+          path: "/wiki/what-is-container-format",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound
@@ -207,7 +221,7 @@ export default function WhatIsContainerFormatPage() {
         title="Related"
         items={[
           { href: '/guides/extract-audio-from-video', label: 'How to Extract Audio from Video' },
-          { href: '/guides/extract-audio-from-video', label: 'Best Format Choices When Extracting Audio' },
+          { href: '/guides/mp3-vs-wav',               label: 'MP3 vs WAV'                      },
         ]}
       />
 

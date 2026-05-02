@@ -81,11 +81,9 @@ export default function Ac3ToMp3Page() {
         { href: '/aac-to-mp3',   label: 'AAC to MP3' },
       ]}
       relatedGuides={[
-        { href: '/formats/ac3',                                           label: 'What Is AC3 (Dolby Digital)?'             },
-        { href: '/guides/extract-audio-from-video',                       label: 'How to Extract Audio from Video'          },
-        { href: '/guides/extract-audio-from-video', label: 'Best Format Choices When Extracting Audio' },
-        { href: '/wiki/what-is-transcoding',                              label: 'WikiSound: What Is Transcoding?'          },
-        { href: '/wiki/what-is-lossy-audio',                              label: 'WikiSound: What Is Lossy Audio?'          },
+        { href: '/guides/extract-audio-from-video',  label: 'How to Extract Audio from Video' },
+        { href: '/wiki/what-is-transcoding',         label: 'WikiSound: What Is Transcoding?' },
+        { href: '/wiki/what-is-lossy-audio',         label: 'WikiSound: What Is Lossy Audio?' },
       ]}
       lastUpdated="2026-04-14"
     />

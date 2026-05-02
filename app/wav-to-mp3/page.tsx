@@ -72,15 +72,14 @@ export default function WavToMp3Page() {
         { href: '/aac-to-mp3',  label: 'AAC to MP3'  },
       ]}
       relatedGuides={[
-        { href: '/guides/mp3-vs-wav',                                    label: 'MP3 vs WAV'                           },
-        { href: '/guides/lossless-vs-lossy-audio',                       label: 'Lossless vs Lossy Audio'              },
-        { href: '/formats/wav',                                          label: 'WAV format guide'                     },
-        { href: '/guides/how-to-choose-mp3-bitrate',                     label: 'How to Choose MP3 Bitrate'            },
-        { href: '/bpm-changer',                                          label: 'BPM Changer & Detector'               },
-        { href: '/key-changer',                                          label: 'Key Changer & Detector'               },
-        { href: '/formats/wav',                                     label: 'WikiSound: What Is WAV?'              },
-        { href: '/wiki/what-is-lossless-audio',                          label: 'WikiSound: What Is Lossless Audio?'   },
-        { href: '/wiki/what-is-bitrate',                                 label: 'WikiSound: What Is Bitrate?'          },
+        { href: '/guides/mp3-vs-wav',                 label: 'MP3 vs WAV'                          },
+        { href: '/guides/lossless-vs-lossy-audio',    label: 'Lossless vs Lossy Audio'             },
+        { href: '/formats/wav',                       label: 'WAV format guide'                    },
+        { href: '/guides/how-to-choose-mp3-bitrate',  label: 'How to Choose MP3 Bitrate'           },
+        { href: '/wiki/what-is-lossless-audio',       label: 'WikiSound: What Is Lossless Audio?'  },
+        { href: '/wiki/what-is-bitrate',              label: 'WikiSound: What Is Bitrate?'         },
+        { href: '/bpm-changer',                       label: 'BPM Changer & Detector'              },
+        { href: '/key-changer',                       label: 'Key Changer & Detector'              },
       ]}
       lastUpdated="2026-03-01"
     />

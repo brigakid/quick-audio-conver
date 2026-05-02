@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'AC3 to WAV Converter',
   description:
     'Convert Dolby Digital (AC3) audio to uncompressed WAV for editing, mixing, and post-production workflows. Works with AC3 tracks from video containers. Free, no account.',

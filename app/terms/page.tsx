@@ -22,7 +22,7 @@ export default function TermsPage() {
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
       <div className="mb-12">
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">Terms of Service</h1>
-        <p className="mt-3 text-sm text-gray-500">Last updated: March 2026</p>
+        <p className="mt-3 text-sm text-gray-500">Last updated: April 2026</p>
       </div>
 
       <Section title="Acceptance of Terms">
@@ -79,6 +79,16 @@ export default function TermsPage() {
           <li>Any attempt to overload, attack, or exploit the Service</li>
           <li>Commercial redistribution of the Service or its output as your own product</li>
         </ul>
+      </Section>
+
+      <Section title="Advertising">
+        <p>
+          QuickAudioConvert is funded by advertising. We display ads served by Google AdSense and its partners. You may see contextual or personalised advertising based on your browsing activity, in accordance with the choices you have made via Google&apos;s ad settings and any applicable consent prompts.
+        </p>
+        <p>
+          Ads are not endorsements. We are not responsible for the content of third-party advertisements or for any goods or services obtained from advertisers. For full details on how advertising data is handled, see the{' '}
+          <a href="/privacy" className="text-brand hover:underline">Privacy Policy</a>.
+        </p>
       </Section>
 
       <Section title="Disclaimer of Warranties">

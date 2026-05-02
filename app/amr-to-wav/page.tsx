@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'AMR to WAV Converter',
   description:
     'Convert AMR voice recordings to uncompressed WAV for editing, transcription software, or archiving. Works with mobile call recordings and voice memos. Free, no account.',

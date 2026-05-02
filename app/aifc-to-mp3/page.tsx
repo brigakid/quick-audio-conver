@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'AIFC to MP3 Converter',
   description:
     'Convert AIFC (compressed AIFF) audio to MP3. Works with AIFC files from Apple and professional audio software. Free, no account, no install required.',

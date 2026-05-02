@@ -4,11 +4,17 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'What Is Frequency in Audio? Pitch, Hz, and the Audible Spectrum',
   description:
     'Frequency is measured in Hz and determines pitch — low Hz is bass, high Hz is treble. Here\'s how the audible spectrum maps to what you hear, and why it matters for audio.',
+  alternates: {
+    canonical: '/wiki/what-is-frequency',
+  },
   openGraph: {
     title: 'What Is Frequency in Audio? Pitch, Hz, and the Audible Spectrum',
     description:
@@ -26,6 +32,15 @@ export default function WhatIsFrequencyPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Frequency in Audio? Pitch, Hz, and the Audible Spectrum",
+          description: "Frequency is measured in Hz and determines pitch — low Hz is bass, high Hz is treble. Here's how the audible spectrum maps to what you hear, and why it matters for audio.",
+          path: "/wiki/what-is-frequency",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound

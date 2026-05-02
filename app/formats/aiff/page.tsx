@@ -1,11 +1,16 @@
 import type { Metadata } from 'next';
 import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is AIFF? Format Guide (AIF and AIFC)',
   description:
     "AIFF is Apple's uncompressed audio format — lossless PCM audio in an Apple-native container. Learn about AIFF, AIF, and AIFC, their differences, and when to convert them.",
+  alternates: {
+    canonical: '/formats/aiff',
+  },
   openGraph: {
     title: 'What Is AIFF? Format Guide (AIF and AIFC)',
     description:
@@ -23,6 +28,15 @@ export default function AiffFormatPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is AIFF? Format Guide (AIF and AIFC)",
+          description: "AIFF is Apple's uncompressed audio format — lossless PCM audio in an Apple-native container. Learn about AIFF, AIF, and AIFC, their differences, and when to convert them.",
+          path: "/formats/aiff",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-10">
         <p className="text-xs font-semibold text-brand uppercase tracking-widest mb-2">Audio Format</p>
         <h1 className="text-3xl sm:text-4xl font-extrabold text-gray-900 tracking-tight">
@@ -184,6 +198,9 @@ export default function AiffFormatPage() {
         items={[
           { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio' },
           { href: '/guides/flac-vs-wav',             label: 'FLAC vs WAV'             },
+          { href: '/formats/flac',                   label: 'What Is FLAC?'           },
+          { href: '/formats/wav',                    label: 'What Is WAV?'            },
+          { href: '/wiki/what-is-lossless-audio',    label: 'WikiSound: What Is Lossless Audio?' },
         ]}
       />
 

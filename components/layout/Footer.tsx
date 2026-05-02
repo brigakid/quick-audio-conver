@@ -189,7 +189,12 @@ export default function Footer() {
             &copy; {currentYear} QuickAudioConvert. All rights reserved.
           </p>
           <p className="text-xs text-gray-600 text-center sm:text-right">
-            Uploaded files are automatically deleted. We do not store your data.
+            Files are processed server-side and automatically deleted within 5 minutes.
+            See the{' '}
+            <Link href="/privacy" className="underline hover:text-gray-300 transition-colors">
+              Privacy Policy
+            </Link>
+            {' '}for cookie and advertising disclosures.
           </p>
         </div>
 

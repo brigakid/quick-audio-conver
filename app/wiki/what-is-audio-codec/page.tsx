@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is an Audio Codec? How Encoding and Decoding Actually Work',
   description:
     'A codec is the algorithm that compresses audio when saving and decompresses it during playback. Every audio format you\'ve heard of — MP3, AAC, FLAC — is a codec.',
+  alternates: {
+    canonical: '/wiki/what-is-audio-codec',
+  },
   openGraph: {
     title: 'What Is an Audio Codec? How Encoding and Decoding Actually Work',
     description:
@@ -26,6 +31,15 @@ export default function WhatIsAudioCodecPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is an Audio Codec? How Encoding and Decoding Actually Work",
+          description: "A codec is the algorithm that compresses audio when saving and decompresses it during playback. Every audio format you've heard of — MP3, AAC, FLAC — is a codec.",
+          path: "/wiki/what-is-audio-codec",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound

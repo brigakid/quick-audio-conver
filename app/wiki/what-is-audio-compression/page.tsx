@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is Audio Compression? The Two Completely Different Meanings',
   description:
     '"Audio compression" means two different things: data compression (making files smaller) and dynamic range compression (controlling loud and quiet levels). Both explained here.',
+  alternates: {
+    canonical: '/wiki/what-is-audio-compression',
+  },
   openGraph: {
     title: 'What Is Audio Compression? The Two Completely Different Meanings',
     description:
@@ -26,6 +31,15 @@ export default function WhatIsAudioCompressionPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Audio Compression? The Two Completely Different Meanings",
+          description: "\"Audio compression\" means two different things: data compression (making files smaller) and dynamic range compression (controlling loud and quiet levels). Both explained here.",
+          path: "/wiki/what-is-audio-compression",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound

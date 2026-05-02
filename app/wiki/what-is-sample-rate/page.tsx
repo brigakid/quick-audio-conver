@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'What Is Sample Rate in Audio? 44.1kHz, 48kHz, and Why It Matters',
   description:
     'Sample rate is how many times per second audio is measured. Higher isn\'t always better. Here\'s what 44.1kHz and 48kHz actually mean — and when the difference matters.',
+  alternates: {
+    canonical: '/wiki/what-is-sample-rate',
+  },
   openGraph: {
     title: 'What Is Sample Rate in Audio? 44.1kHz, 48kHz, and Why It Matters',
     description:
@@ -26,6 +31,15 @@ export default function WhatIsSampleRatePage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "What Is Sample Rate in Audio? 44.1kHz, 48kHz, and Why It Matters",
+          description: "Sample rate is how many times per second audio is measured. Higher isn't always better. Here's what 44.1kHz and 48kHz actually mean — and when the difference matters.",
+          path: "/wiki/what-is-sample-rate",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound
@@ -263,10 +277,9 @@ export default function WhatIsSampleRatePage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/guides/how-to-choose-mp3-bitrate',                       label: 'How to Choose MP3 Bitrate'         },
-          { href: '/guides/how-to-choose-mp3-bitrate',  label: 'How Bitrate Affects Quality'       },
-          { href: '/guides/mp3-vs-wav',     label: 'WAV vs MP3 for Editing and Sharing' },
-          { href: '/formats/wav',                                             label: 'WAV format guide'                  },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How to Choose MP3 Bitrate' },
+          { href: '/guides/mp3-vs-wav',                label: 'MP3 vs WAV'                },
+          { href: '/formats/wav',                      label: 'WAV format guide'          },
         ]}
       />
 

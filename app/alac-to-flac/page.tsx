@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import ToolPageLayout from '@/components/converter/ToolPageLayout';
 
 export const metadata: Metadata = {
+  robots: { index: false },
   title: 'ALAC to FLAC Converter',
   description:
     'Convert Apple Lossless (ALAC) to FLAC with no quality loss. Lossless to lossless — same audio, smaller file, broader cross-platform support. Free, no account.',

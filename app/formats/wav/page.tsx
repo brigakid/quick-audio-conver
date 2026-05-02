@@ -219,10 +219,10 @@ export default function WavFormatPage() {
       <RelatedContent
         title="Related guides"
         items={[
-          { href: '/guides/mp3-vs-wav',                                       label: 'MP3 vs WAV'              },
-          { href: '/guides/lossless-vs-lossy-audio',                          label: 'Lossless vs Lossy Audio' },
-          { href: '/formats/wav',                                        label: 'WikiSound: What Is WAV?' },
-          { href: '/guides/mp3-vs-wav',      label: 'WAV vs MP3 by Workflow'  },
+          { href: '/guides/mp3-vs-wav',              label: 'MP3 vs WAV'                       },
+          { href: '/guides/flac-vs-wav',             label: 'FLAC vs WAV'                      },
+          { href: '/guides/lossless-vs-lossy-audio', label: 'Lossless vs Lossy Audio'          },
+          { href: '/wiki/what-is-lossless-audio',    label: 'WikiSound: What Is Lossless Audio?' },
         ]}
       />
 

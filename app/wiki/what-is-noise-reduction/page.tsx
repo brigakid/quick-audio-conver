@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'What Is Noise Reduction in Audio? How It Works and When to Use It',
   description:
     'Noise reduction removes background hiss, hum, and ambient sound from recordings. Here\'s how it works, when it genuinely helps, and when it makes audio sound worse.',
+  alternates: {
+    canonical: '/wiki/what-is-noise-reduction',
+  },
   openGraph: {
     title: 'What Is Noise Reduction in Audio? How It Works and When to Use It',
     description:

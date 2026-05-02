@@ -10,6 +10,9 @@ export const metadata: Metadata = {
   title: 'What Is Mixing and Mastering? Two Separate Jobs',
   description:
     'Mixing balances individual tracks into a cohesive recording. Mastering prepares that recording for distribution. They solve different problems at different stages.',
+  alternates: {
+    canonical: '/wiki/what-is-mixing-mastering',
+  },
   openGraph: {
     title: 'What Is Mixing and Mastering? Two Separate Jobs',
     description:

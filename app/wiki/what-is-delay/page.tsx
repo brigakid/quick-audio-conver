@@ -9,6 +9,9 @@ export const metadata: Metadata = {
   title: 'What Is Delay in Audio? Echo, Slap-Back, and Tempo Sync',
   description:
     'Delay is a time-based effect that repeats a sound after a set interval. From subtle slap-back to cascading echoes, here\'s how delay works and how it\'s used.',
+  alternates: {
+    canonical: '/wiki/what-is-delay',
+  },
   openGraph: {
     title: 'What Is Delay in Audio? Echo, Slap-Back, and Tempo Sync',
     description:

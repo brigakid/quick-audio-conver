@@ -4,11 +4,16 @@ import LastUpdated from '@/components/content/LastUpdated';
 import RelatedContent from '@/components/content/RelatedContent';
 import QuickAnswer from '@/components/content/QuickAnswer';
 import Author from '@/components/content/Author';
+import JsonLd from '@/components/seo/JsonLd';
+import { articleSchema } from '@/lib/seo';
 
 export const metadata: Metadata = {
   title: 'CBR vs VBR: What\'s the Difference in MP3 Encoding?',
   description:
     'CBR (constant bitrate) uses the same bit allocation throughout. VBR (variable bitrate) uses more bits on complex passages. Here\'s the quality, file size, and compatibility trade-offs.',
+  alternates: {
+    canonical: '/wiki/cbr-vs-vbr',
+  },
   openGraph: {
     title: 'CBR vs VBR: What\'s the Difference in MP3 Encoding?',
     description:
@@ -26,6 +31,15 @@ export default function CbrVsVbrPage() {
   return (
     <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
 
+      <JsonLd
+        data={articleSchema({
+          headline: "CBR vs VBR: What\\",
+          description: "CBR (constant bitrate) uses the same bit allocation throughout. VBR (variable bitrate) uses more bits on complex passages. Here's the quality, file size, and compatibility trade-offs.",
+          path: "/wiki/cbr-vs-vbr",
+          datePublished: "2026-02-01",
+          dateModified: "2026-04-28",
+        })}
+      />
       <div className="mb-4">
         <Link href="/wiki" className="text-xs text-gray-400 hover:text-brand transition-colors">
           ← WikiSound
@@ -190,8 +204,8 @@ export default function CbrVsVbrPage() {
       <RelatedContent
         title="Related"
         items={[
-          { href: '/guides/how-to-choose-mp3-bitrate',                      label: 'How to Choose MP3 Bitrate'    },
-          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How Bitrate Affects Quality'  },
+          { href: '/guides/how-to-choose-mp3-bitrate', label: 'How to Choose MP3 Bitrate' },
+          { href: '/guides/lossless-vs-lossy-audio',   label: 'Lossless vs Lossy Audio'   },
         ]}
       />
 
