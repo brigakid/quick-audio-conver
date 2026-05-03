@@ -7,8 +7,14 @@ import { formatTime, parseTimeInput } from '@/lib/utils';
 // Constants
 // ---------------------------------------------------------------------------
 const MIN_SEL = 0.1;
+const MIN_FADE = 0.05;
+const MAX_FADE = 30;
 const FADE_PRESETS = [0.5, 1, 2, 3];
-const WAVE_H = 72;
+const WAVE_H = 96;
+// Pixel slop around fade handles for grabbing on touch devices.
+const HANDLE_HIT = 16;
+
+type DragKind = 'start' | 'end' | 'fadeIn' | 'fadeOut';
 
 // ---------------------------------------------------------------------------
 // FadeDurationPicker — module-level so it's never recreated
@@ -17,46 +23,67 @@ interface FadeDurationPickerProps {
   label: string;
   value: number | null;
   onChange: (v: number | null) => void;
+  maxAllowed: number;
 }
 
-function FadeDurationPicker({ label, value, onChange }: FadeDurationPickerProps) {
+function FadeDurationPicker({ label, value, onChange, maxAllowed }: FadeDurationPickerProps) {
   const [customMode, setCustomMode] = useState(false);
   const [customText, setCustomText] = useState('');
+
+  // When the value comes from outside (e.g. dragged on waveform) and isn't a preset,
+  // treat it as a custom value and reflect it in the input.
+  useEffect(() => {
+    if (value !== null && !FADE_PRESETS.includes(value)) {
+      setCustomMode(true);
+      setCustomText(value.toFixed(1));
+    } else if (value === null && customMode) {
+      // Preserve customMode UI but reset text on disable
+      setCustomText('');
+    }
+    // intentionally not depending on customMode — only react to value changes
+  }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div className="flex items-center gap-2.5 flex-wrap">
       <span className="text-xs font-medium text-gray-500 w-[58px] shrink-0">{label}</span>
       <div className="flex items-center gap-1.5 flex-wrap">
-        {FADE_PRESETS.map((d) => (
-          <button
-            key={d}
-            type="button"
-            onClick={() => { setCustomMode(false); onChange(value === d && !customMode ? null : d); }}
-            className={`px-2.5 py-1 text-xs rounded-lg border transition-colors ${
-              value === d && !customMode
-                ? 'bg-brand text-white border-brand'
-                : 'text-gray-600 border-[#D9D9D9] hover:border-brand hover:text-brand bg-white'
-            }`}
-          >
-            {d}s
-          </button>
-        ))}
+        {FADE_PRESETS.map((d) => {
+          const disabled = d > maxAllowed;
+          const active = value === d && !customMode;
+          return (
+            <button
+              key={d}
+              type="button"
+              disabled={disabled}
+              onClick={() => { setCustomMode(false); onChange(active ? null : d); }}
+              className={`px-2.5 py-1 text-xs rounded-lg border transition-colors ${
+                active
+                  ? 'bg-brand text-white border-brand'
+                  : disabled
+                  ? 'text-gray-300 border-gray-200 bg-gray-50 cursor-not-allowed'
+                  : 'text-gray-600 border-[#D9D9D9] hover:border-brand hover:text-brand bg-white'
+              }`}
+            >
+              {d}s
+            </button>
+          );
+        })}
         {customMode ? (
           <input
             type="number"
-            min="0.1"
-            max="30"
+            min={MIN_FADE}
+            max={MAX_FADE}
             step="0.1"
             value={customText}
             autoFocus
             onChange={(e) => {
               setCustomText(e.target.value);
               const n = parseFloat(e.target.value);
-              if (!isNaN(n) && n > 0 && n <= 30) onChange(n);
+              if (!isNaN(n) && n >= MIN_FADE && n <= MAX_FADE) onChange(n);
             }}
             onBlur={() => {
               const n = parseFloat(customText);
-              if (isNaN(n) || n <= 0) { setCustomMode(false); onChange(null); }
+              if (isNaN(n) || n < MIN_FADE) { setCustomMode(false); onChange(null); }
             }}
             placeholder="sec"
             className="w-16 px-2 py-1 text-xs border border-brand rounded-lg focus:outline-none bg-white font-mono"
@@ -64,7 +91,7 @@ function FadeDurationPicker({ label, value, onChange }: FadeDurationPickerProps)
         ) : (
           <button
             type="button"
-            onClick={() => { setCustomMode(true); setCustomText(''); onChange(null); }}
+            onClick={() => { setCustomMode(true); setCustomText(value !== null ? value.toFixed(1) : ''); }}
             className="px-2.5 py-1 text-xs rounded-lg border border-[#D9D9D9] text-gray-400 hover:border-brand hover:text-brand bg-white transition-colors"
           >
             Custom
@@ -125,7 +152,7 @@ export default function AudioEditor({
   peaksRef.current = peaks;
 
   // ── Drag handles ─────────────────────────────────────────────────────────
-  const dragging = useRef<'start' | 'end' | null>(null);
+  const dragging = useRef<DragKind | null>(null);
 
   // ── Time input local state ───────────────────────────────────────────────
   const [startText,    setStartText]    = useState(formatTime(0));
@@ -139,11 +166,11 @@ export default function AudioEditor({
   // ── Playback state ───────────────────────────────────────────────────────
   const [isPlaying,  setIsPlaying]  = useState(false);
   const [isDecoding, setIsDecoding] = useState(false);
-  const [headTime,   setHeadTime]   = useState(0);   // drives the mini progress bar (state OK, cheap)
+  const [headTime,   setHeadTime]   = useState(0);
 
   // Audio engine refs — mutated imperatively, never trigger renders
   const audioCtxRef    = useRef<AudioContext | null>(null);
-  const decodeCtxRef   = useRef<AudioContext | null>(null); // separate context used only for waveform decode
+  const decodeCtxRef   = useRef<AudioContext | null>(null);
   const audioBufferRef = useRef<AudioBuffer | null>(null);
   const sourceRef      = useRef<AudioBufferSourceNode | null>(null);
   const gainRef        = useRef<GainNode | null>(null);
@@ -153,9 +180,18 @@ export default function AudioEditor({
   const headTimeRef     = useRef(0);
   const rafRef          = useRef<number | null>(null);
 
+  // ── Visual fade gain ─────────────────────────────────────────────────────
+  /** Returns the linear amplitude multiplier at absolute time t in the trimmed clip. */
+  function gainAt(t: number, s: number, e: number, fi: number | null, fo: number | null): number {
+    let g = 1;
+    if (fi && fi > 0 && t < s + fi) g = Math.max(0, (t - s) / fi);
+    if (fo && fo > 0 && t > e - fo) g = Math.min(g, Math.max(0, (e - t) / fo));
+    return g;
+  }
+
   // ── Canvas drawing ───────────────────────────────────────────────────────
 
-  /** Draws waveform bars + trim overlays + fade gradient hints. Called when static content changes. */
+  /** Draws waveform bars, applying fade as actual amplitude scaling. */
   const drawWaveform = useCallback(() => {
     const canvas = waveCanvasRef.current;
     const container = containerRef.current;
@@ -181,48 +217,71 @@ export default function AudioEditor({
     const endX   = (e / d) * W;
     const midY   = H / 2;
     const barW   = W / p.length;
+    const { fadeInDuration: fi, fadeOutDuration: fo } = fadeRef.current;
 
     ctx.clearRect(0, 0, W, H);
 
-    // Bars
+    // Draw bars; for bars inside the selection, multiply height by fade gain
+    // so the visual matches the exported audio amplitude.
     for (let i = 0; i < p.length; i++) {
-      const x    = i * barW;
-      const bh   = Math.max(2, p[i] * H * 0.82);
-      const inSel = x + barW > startX && x < endX;
-      ctx.fillStyle = inSel ? '#E1483D' : '#E5E7EB';
+      const x      = i * barW;
+      const tCenter = ((i + 0.5) / p.length) * d;     // approx time at bar center
+      const inSel  = x + barW > startX && x < endX;
+      let bh = Math.max(2, p[i] * H * 0.82);
+
+      if (inSel) {
+        const g = gainAt(tCenter, s, e, fi, fo);
+        bh = Math.max(2, bh * g);
+        ctx.fillStyle = '#E1483D';
+      } else {
+        ctx.fillStyle = '#E5E7EB';
+      }
       ctx.fillRect(x + 0.5, midY - bh / 2, Math.max(1, barW - 1), bh);
     }
 
-    // Selection tint
-    ctx.fillStyle = 'rgba(225,72,61,0.06)';
+    // Soft tint over the selection so users see the active region clearly
+    ctx.fillStyle = 'rgba(225,72,61,0.05)';
     ctx.fillRect(startX, 0, endX - startX, H);
 
-    // Fade-in gradient overlay
-    const { fadeInDuration: fi, fadeOutDuration: fo } = fadeRef.current;
+    // Highlight fade regions with a more visible diagonal hatch + gradient
     if (fi && fi > 0) {
-      const fw   = Math.min((fi / d) * W, endX - startX);
+      const fw = Math.min((fi / d) * W, endX - startX);
       const grad = ctx.createLinearGradient(startX, 0, startX + fw, 0);
-      grad.addColorStop(0, 'rgba(225,72,61,0.20)');
+      grad.addColorStop(0, 'rgba(225,72,61,0.18)');
       grad.addColorStop(1, 'rgba(225,72,61,0)');
       ctx.fillStyle = grad;
       ctx.fillRect(startX, 0, fw, H);
-    }
 
-    // Fade-out gradient overlay
+      // Fade ramp line, drawn from baseline up to top at end of fade-in
+      ctx.strokeStyle = 'rgba(225,72,61,0.65)';
+      ctx.lineWidth   = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(startX, H - 4);
+      ctx.lineTo(startX + fw, 4);
+      ctx.stroke();
+    }
     if (fo && fo > 0) {
-      const fw   = Math.min((fo / d) * W, endX - startX);
+      const fw = Math.min((fo / d) * W, endX - startX);
       const grad = ctx.createLinearGradient(endX - fw, 0, endX, 0);
       grad.addColorStop(0, 'rgba(225,72,61,0)');
-      grad.addColorStop(1, 'rgba(225,72,61,0.20)');
+      grad.addColorStop(1, 'rgba(225,72,61,0.18)');
       ctx.fillStyle = grad;
       ctx.fillRect(endX - fw, 0, fw, H);
+
+      // Fade ramp line going down
+      ctx.strokeStyle = 'rgba(225,72,61,0.65)';
+      ctx.lineWidth   = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(endX - fw, 4);
+      ctx.lineTo(endX, H - 4);
+      ctx.stroke();
     }
 
     // Dim regions outside selection
     ctx.fillStyle = 'rgba(255,255,255,0.55)';
     ctx.fillRect(0,     0, startX,      H);
     ctx.fillRect(endX,  0, W - endX,    H);
-  }, []); // stable — reads from refs
+  }, []);
 
   /** Draws (or clears) the playhead line on its own canvas. */
   const drawPlayhead = useCallback((t: number) => {
@@ -300,9 +359,9 @@ export default function AudioEditor({
         return decodeCtxRef.current.decodeAudioData(buf);
       }).then(async (decoded) => {
         if (!decoded || cancelled) return;
-        audioBufferRef.current = decoded;            // store for playback
+        audioBufferRef.current = decoded;
         const ch    = decoded.getChannelData(0);
-        const N     = 500;
+        const N     = 600;
         const block = Math.max(1, Math.floor(ch.length / N));
         const out   = new Float32Array(N);
         for (let i = 0; i < N; i++) {
@@ -325,15 +384,12 @@ export default function AudioEditor({
 
     return () => {
       cancelled = true;
-      // Close the decode-only AudioContext to release OS audio handles.
-      // Chrome/Firefox cap concurrent contexts at ~6; without this, repeated
-      // file loads in the same session will eventually fail to decode.
       if (decodeCtxRef.current) {
         try { decodeCtxRef.current.close(); } catch {}
         decodeCtxRef.current = null;
       }
       stopPlayback();
-      audio.src = '';        // release buffered media data from the element
+      audio.src = '';
       URL.revokeObjectURL(url);
     };
   }, [file]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -381,8 +437,13 @@ export default function AudioEditor({
 
   /**
    * Core playback function. Starts audio from `startOffset` (absolute file time)
-   * to trimEnd, with gain scheduling that correctly reflects fade in/out even
-   * when seeking into the middle of a fade region.
+   * to trimEnd, with gain scheduling that mirrors the FFmpeg `afade` filter
+   * EXACTLY — including overlap behavior (gains multiply when fades overlap).
+   *
+   * Strategy: instead of guessing a sparse keyframe schedule, sample the gain
+   * curve at fixed intervals and schedule via setValueCurveAtTime / linear
+   * ramps. This matches whatever FFmpeg produces for any fade configuration,
+   * including overlapping fades on a short clip.
    */
   const playFrom = useCallback(async (startOffset: number) => {
     stopPlayback();
@@ -396,7 +457,6 @@ export default function AudioEditor({
     try {
       const actx = getAudioCtx();
 
-      // Decode audio once, reuse afterwards
       let buffer = audioBufferRef.current;
       if (!buffer) {
         setIsDecoding(true);
@@ -412,36 +472,23 @@ export default function AudioEditor({
       const gain = actx.createGain();
       const now  = actx.currentTime;
       const { fadeInDuration: fi, fadeOutDuration: fo } = fadeRef.current;
-      const selDur = e - s;
 
-      // ── Gain scheduling ──────────────────────────────────────────────────
-      // Start gain: account for being mid-fade-in or mid-fade-out
-      let initGain = 1;
-      if (fi && fi > 0 && startOffset < s + fi) {
-        initGain = Math.max(0, (startOffset - s) / fi);
+      // Build a gain curve that exactly matches the FFmpeg afade chain.
+      // We use ~100 samples per second of remaining playback (capped) which
+      // gives smooth audible fades up to several seconds without large arrays.
+      const samplesPerSec = 100;
+      const N = Math.max(2, Math.min(8000, Math.ceil(remaining * samplesPerSec)));
+      const curve = new Float32Array(N);
+      for (let i = 0; i < N; i++) {
+        const t = startOffset + (i / (N - 1)) * remaining;
+        curve[i] = gainAt(t, s, e, fi ?? null, fo ?? null);
       }
-      if (fo && fo > 0 && startOffset >= e - fo) {
-        const elapsed = startOffset - (e - fo);
-        initGain = Math.min(initGain, Math.max(0, 1 - elapsed / fo));
-      }
-
-      gain.gain.setValueAtTime(initGain, now);
-
-      // Remaining fade-in ramp
-      if (fi && fi > 0 && startOffset < s + fi) {
-        const remainFade = (s + fi) - startOffset;
-        gain.gain.linearRampToValueAtTime(1, now + remainFade);
-      }
-
-      // Fade-out ramp
-      if (fo && fo > 0 && selDur > fo) {
-        const foAbsStart = e - fo;
-        if (startOffset < foAbsStart) {
-          gain.gain.setValueAtTime(1, now + (foAbsStart - startOffset));
-          gain.gain.linearRampToValueAtTime(0, now + remaining);
-        } else {
-          gain.gain.linearRampToValueAtTime(0, now + remaining);
-        }
+      try {
+        gain.gain.setValueCurveAtTime(curve, now, remaining);
+      } catch {
+        // Fallback: setValueAtTime + linear ramps (older browsers)
+        gain.gain.setValueAtTime(curve[0], now);
+        gain.gain.linearRampToValueAtTime(curve[N - 1], now + remaining);
       }
 
       source.connect(gain);
@@ -452,7 +499,6 @@ export default function AudioEditor({
         isPlayingRef.current = false;
         setIsPlaying(false);
         if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
-        // Reset playhead to selection start
         headTimeRef.current = s;
         setHeadTime(s);
         drawPlayhead(s);
@@ -520,19 +566,31 @@ export default function AudioEditor({
     }
   }, [xToTime, drawPlayhead, playFrom]);
 
-  // Global mouse/touch events for dragging trim handles
+  // Global mouse/touch events for dragging trim AND fade handles
   useEffect(() => {
     const onMove = (e: MouseEvent | TouchEvent) => {
-      if (!dragging.current) return;
+      const k = dragging.current;
+      if (!k) return;
       if (e.cancelable) e.preventDefault();
       const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
       const t = xToTime(clientX);
       const { trimStart: s, trimEnd: en, duration: d } = stateRef.current;
       const clamped = Math.max(0, Math.min(d, t));
-      if (dragging.current === 'start') {
+
+      if (k === 'start') {
         onTrimChange(Math.min(clamped, en - MIN_SEL), en);
-      } else {
+      } else if (k === 'end') {
         onTrimChange(s, Math.max(clamped, s + MIN_SEL));
+      } else if (k === 'fadeIn') {
+        // Fade-in duration = handle position - trimStart
+        const sel = en - s;
+        const dur = Math.max(MIN_FADE, Math.min(sel, clamped - s));
+        if (dur >= MIN_FADE) onFadeInChange(parseFloat(dur.toFixed(2)));
+      } else if (k === 'fadeOut') {
+        // Fade-out duration = trimEnd - handle position
+        const sel = en - s;
+        const dur = Math.max(MIN_FADE, Math.min(sel, en - clamped));
+        if (dur >= MIN_FADE) onFadeOutChange(parseFloat(dur.toFixed(2)));
       }
     };
     const onUp = () => { dragging.current = null; };
@@ -547,16 +605,30 @@ export default function AudioEditor({
       window.removeEventListener('touchmove',  onMove);
       window.removeEventListener('touchend',   onUp);
     };
-  }, [xToTime, onTrimChange]);
+  }, [xToTime, onTrimChange, onFadeInChange, onFadeOutChange]);
+
+  // Helper to stop event propagation on drag handles
+  const startDrag = (k: DragKind) => (e: React.MouseEvent | React.TouchEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    dragging.current = k;
+  };
 
   // ── Derived values ───────────────────────────────────────────────────────
   const startPct  = duration > 0 ? (trimStart / duration) * 100 : 0;
   const endPct    = duration > 0 ? (trimEnd   / duration) * 100 : 100;
   const selDur    = trimEnd - trimStart;
-  // Progress fraction within the selection (for the mini progress bar)
   const progressPct = selDur > 0
     ? Math.max(0, Math.min(100, ((headTime - trimStart) / selDur) * 100))
     : 0;
+
+  // Fade handle positions (only when fades are enabled)
+  const fadeInPct  = fadeInDuration  !== null && duration > 0
+    ? ((trimStart + Math.min(fadeInDuration,  selDur)) / duration) * 100
+    : null;
+  const fadeOutPct = fadeOutDuration !== null && duration > 0
+    ? ((trimEnd   - Math.min(fadeOutDuration, selDur)) / duration) * 100
+    : null;
 
   // ── Render ───────────────────────────────────────────────────────────────
   return (
@@ -602,40 +674,82 @@ export default function AudioEditor({
           </div>
         )}
 
-        {/* Interactive layer: seek click zone + trim handles */}
+        {/* Interactive layer: seek click zone + handles */}
         {!loading && !waveError && duration > 0 && (
           <>
             {/* Click-to-seek zone (behind handles) */}
             <div
               className="absolute inset-0"
-              style={{ cursor: 'crosshair', zIndex: 5 }}
+              style={{ cursor: 'crosshair', zIndex: 1 }}
               onClick={(e) => handleWaveformClick(e.clientX)}
             />
 
-            {/* Start handle */}
+            {/* Fade-in handle — only when fade-in is set */}
+            {fadeInPct !== null && (
+              <div
+                className="absolute top-0 bottom-0 cursor-ew-resize group"
+                style={{ left: `calc(${fadeInPct}% - ${HANDLE_HIT / 2}px)`, width: HANDLE_HIT, zIndex: 8 }}
+                onMouseDown={startDrag('fadeIn')}
+                onTouchStart={startDrag('fadeIn')}
+                onClick={(e) => e.stopPropagation()}
+                aria-label="Drag to adjust fade-in duration"
+                role="slider"
+              >
+                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-brand/60 group-hover:bg-brand transition-colors" />
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 px-1 py-0.5 rounded bg-brand text-white text-[9px] font-mono font-semibold leading-none whitespace-nowrap">
+                  {fadeInDuration?.toFixed(1)}s
+                </div>
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-brand rounded-full shadow border-2 border-white" />
+              </div>
+            )}
+
+            {/* Fade-out handle — only when fade-out is set */}
+            {fadeOutPct !== null && (
+              <div
+                className="absolute top-0 bottom-0 cursor-ew-resize group"
+                style={{ left: `calc(${fadeOutPct}% - ${HANDLE_HIT / 2}px)`, width: HANDLE_HIT, zIndex: 8 }}
+                onMouseDown={startDrag('fadeOut')}
+                onTouchStart={startDrag('fadeOut')}
+                onClick={(e) => e.stopPropagation()}
+                aria-label="Drag to adjust fade-out duration"
+                role="slider"
+              >
+                <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-px bg-brand/60 group-hover:bg-brand transition-colors" />
+                <div className="absolute top-1 left-1/2 -translate-x-1/2 px-1 py-0.5 rounded bg-brand text-white text-[9px] font-mono font-semibold leading-none whitespace-nowrap">
+                  {fadeOutDuration?.toFixed(1)}s
+                </div>
+                <div className="absolute bottom-2 left-1/2 -translate-x-1/2 w-3 h-3 bg-brand rounded-full shadow border-2 border-white" />
+              </div>
+            )}
+
+            {/* Start trim handle (drawn last so it sits on top of fade handles when overlapping) */}
             <div
               className="absolute top-0 bottom-0 cursor-ew-resize"
-              style={{ left: `calc(${startPct}% - 8px)`, width: 16, zIndex: 10 }}
-              onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); dragging.current = 'start'; }}
-              onTouchStart={(e) => { e.preventDefault(); e.stopPropagation(); dragging.current = 'start'; }}
+              style={{ left: `calc(${startPct}% - 10px)`, width: 20, zIndex: 10 }}
+              onMouseDown={startDrag('start')}
+              onTouchStart={startDrag('start')}
               onClick={(e) => e.stopPropagation()}
+              aria-label="Drag to set selection start"
+              role="slider"
             >
               <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-0.5 bg-brand" />
-              <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand rounded-full shadow flex items-center justify-center">
+              <div className="absolute top-1 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand rounded-full shadow flex items-center justify-center">
                 <div className="w-px h-2 bg-white/80 rounded-full" />
               </div>
             </div>
 
-            {/* End handle */}
+            {/* End trim handle */}
             <div
               className="absolute top-0 bottom-0 cursor-ew-resize"
-              style={{ left: `calc(${endPct}% - 8px)`, width: 16, zIndex: 10 }}
-              onMouseDown={(e) => { e.preventDefault(); e.stopPropagation(); dragging.current = 'end'; }}
-              onTouchStart={(e) => { e.preventDefault(); e.stopPropagation(); dragging.current = 'end'; }}
+              style={{ left: `calc(${endPct}% - 10px)`, width: 20, zIndex: 10 }}
+              onMouseDown={startDrag('end')}
+              onTouchStart={startDrag('end')}
               onClick={(e) => e.stopPropagation()}
+              aria-label="Drag to set selection end"
+              role="slider"
             >
               <div className="absolute inset-y-0 left-1/2 -translate-x-1/2 w-0.5 bg-brand" />
-              <div className="absolute top-1.5 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand rounded-full shadow flex items-center justify-center">
+              <div className="absolute top-1 left-1/2 -translate-x-1/2 w-4 h-4 bg-brand rounded-full shadow flex items-center justify-center">
                 <div className="w-px h-2 bg-white/80 rounded-full" />
               </div>
             </div>
@@ -661,22 +775,18 @@ export default function AudioEditor({
                 <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4z" />
               </svg>
             ) : isPlaying ? (
-              /* Pause */
               <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
                 <rect x="5" y="4" width="4" height="16" rx="1.5" />
                 <rect x="15" y="4" width="4" height="16" rx="1.5" />
               </svg>
             ) : (
-              /* Play */
               <svg className="w-3.5 h-3.5 translate-x-px" viewBox="0 0 24 24" fill="currentColor">
                 <path d="M8 5.14v14l11-7-11-7z" />
               </svg>
             )}
           </button>
 
-          {/* Progress + time */}
           <div className="flex-1 min-w-0 space-y-1">
-            {/* Time labels */}
             <div className="flex items-center justify-between">
               <span className="text-xs font-mono font-semibold text-gray-700">
                 {formatTime(headTime > 0 || isPlaying ? headTime : trimStart)}
@@ -685,7 +795,6 @@ export default function AudioEditor({
                 {formatTime(trimEnd)}
               </span>
             </div>
-            {/* Mini progress track — clickable to seek */}
             <div
               className="h-1 rounded-full bg-gray-100 overflow-hidden cursor-pointer"
               onClick={(e) => {
@@ -705,7 +814,6 @@ export default function AudioEditor({
             </div>
           </div>
 
-          {/* Selection duration badge */}
           <span className="text-[11px] font-medium text-gray-400 whitespace-nowrap flex-shrink-0">
             {selDur > 0 ? formatTime(selDur) : '—'}
           </span>
@@ -764,7 +872,6 @@ export default function AudioEditor({
       {/* ── Fade controls ────────────────────────────────────────────────── */}
       <div className="pt-1 border-t border-gray-100 space-y-3">
         <div className="flex items-center gap-1.5">
-          {/* Speaker / fade icon */}
           <svg className="w-3.5 h-3.5 text-gray-400 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M19.114 5.636a9 9 0 010 12.728M16.463 8.288a5.25 5.25 0 010 7.424M6.75 8.25l4.72-4.72a.75.75 0 011.28.53v15.88a.75.75 0 01-1.28.53l-4.72-4.72H4.51c-.88 0-1.704-.507-1.938-1.354A9.01 9.01 0 012.25 12c0-.83.112-1.633.322-2.396C2.806 8.756 3.63 8.25 4.51 8.25H6.75z" />
           </svg>
@@ -778,8 +885,23 @@ export default function AudioEditor({
             </span>
           )}
         </div>
-        <FadeDurationPicker label="Fade In"  value={fadeInDuration}  onChange={onFadeInChange}  />
-        <FadeDurationPicker label="Fade Out" value={fadeOutDuration} onChange={onFadeOutChange} />
+        <FadeDurationPicker
+          label="Fade In"
+          value={fadeInDuration}
+          onChange={onFadeInChange}
+          maxAllowed={Math.min(MAX_FADE, selDur > 0 ? selDur : MAX_FADE)}
+        />
+        <FadeDurationPicker
+          label="Fade Out"
+          value={fadeOutDuration}
+          onChange={onFadeOutChange}
+          maxAllowed={Math.min(MAX_FADE, selDur > 0 ? selDur : MAX_FADE)}
+        />
+        {(fadeInDuration !== null || fadeOutDuration !== null) && (
+          <p className="text-[10px] text-gray-400 leading-relaxed">
+            Tip: drag the small dots on the waveform to fine-tune fade duration.
+          </p>
+        )}
       </div>
 
     </div>

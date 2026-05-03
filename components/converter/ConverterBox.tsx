@@ -281,15 +281,19 @@ export default function ConverterBox({ presetInputFormat, presetOutputFormat }: 
         formData.append('trimEnd',   trimEnd.toString());
       }
 
-      // Fade: send whenever the trim/fade panel is open and a fade was chosen
+      // Fade: send whenever the trim/fade panel is open and a fade was chosen.
+      // Clamp each fade duration to the effective clip length so the output
+      // always reaches gain=1 (fade-in) and gain=0 (fade-out) within the clip.
       if (trimFadeEnabled && audioDuration > 0) {
         const effectiveDur = isTrimmed ? trimEnd - trimStart : audioDuration;
         if (fadeInDuration !== null && fadeInDuration > 0) {
-          formData.append('fadeIn', fadeInDuration.toString());
+          const clampedIn = Math.min(fadeInDuration, effectiveDur);
+          formData.append('fadeIn', clampedIn.toString());
         }
         if (fadeOutDuration !== null && fadeOutDuration > 0) {
-          const fadeOutStart = Math.max(0, effectiveDur - fadeOutDuration);
-          formData.append('fadeOut',      fadeOutDuration.toString());
+          const clampedOut   = Math.min(fadeOutDuration, effectiveDur);
+          const fadeOutStart = Math.max(0, effectiveDur - clampedOut);
+          formData.append('fadeOut',      clampedOut.toString());
           formData.append('fadeOutStart', fadeOutStart.toString());
         }
       }
