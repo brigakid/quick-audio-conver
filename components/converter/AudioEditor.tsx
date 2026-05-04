@@ -13,8 +13,13 @@ const FADE_PRESETS = [0.5, 1, 2, 3];
 const WAVE_H = 96;
 // Pixel slop around fade handles for grabbing on touch devices.
 const HANDLE_HIT = 16;
+// Grab-zone width for the playhead drag handle.
+const PLAYHEAD_HIT = 16;
+// "At end" tolerance — treat headTime within this many seconds of trimEnd as
+// "playback finished" for resume / play-from-here decisions.
+const END_TOL = 0.02;
 
-type DragKind = 'start' | 'end' | 'fadeIn' | 'fadeOut';
+type DragKind = 'start' | 'end' | 'fadeIn' | 'fadeOut' | 'playhead';
 
 // ---------------------------------------------------------------------------
 // FadeDurationPicker — module-level so it's never recreated
@@ -37,10 +42,8 @@ function FadeDurationPicker({ label, value, onChange, maxAllowed }: FadeDuration
       setCustomMode(true);
       setCustomText(value.toFixed(1));
     } else if (value === null && customMode) {
-      // Preserve customMode UI but reset text on disable
       setCustomText('');
     }
-    // intentionally not depending on customMode — only react to value changes
   }, [value]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
@@ -151,8 +154,10 @@ export default function AudioEditor({
   const peaksRef = useRef<Float32Array | null>(null);
   peaksRef.current = peaks;
 
-  // ── Drag handles ─────────────────────────────────────────────────────────
-  const dragging = useRef<DragKind | null>(null);
+  // ── Drag controller ──────────────────────────────────────────────────────
+  // Single source of truth for what's being dragged AND whether playback was
+  // active when the drag started. Pause-during-drag, resume-on-drag-end.
+  const dragRef = useRef<{ kind: DragKind | null; wasPlaying: boolean }>({ kind: null, wasPlaying: false });
 
   // ── Time input local state ───────────────────────────────────────────────
   const [startText,    setStartText]    = useState(formatTime(0));
@@ -168,7 +173,7 @@ export default function AudioEditor({
   const [isDecoding, setIsDecoding] = useState(false);
   const [headTime,   setHeadTime]   = useState(0);
 
-  // Audio engine refs — mutated imperatively, never trigger renders
+  // Audio engine refs — mutated imperatively, never trigger renders directly
   const audioCtxRef    = useRef<AudioContext | null>(null);
   const decodeCtxRef   = useRef<AudioContext | null>(null);
   const audioBufferRef = useRef<AudioBuffer | null>(null);
@@ -179,9 +184,12 @@ export default function AudioEditor({
   const isPlayingRef    = useRef(false);
   const headTimeRef     = useRef(0);
   const rafRef          = useRef<number | null>(null);
+  // Race protection: each playFrom call gets a fresh seq; awaits abort if it changes.
+  const playSeqRef      = useRef(0);
+  // Counters for verifying we never leak an active source. Exposed as window.__audioEditorDebug.
+  const debugRef        = useRef({ started: 0, stopped: 0 });
 
   // ── Visual fade gain ─────────────────────────────────────────────────────
-  /** Returns the linear amplitude multiplier at absolute time t in the trimmed clip. */
   function gainAt(t: number, s: number, e: number, fi: number | null, fo: number | null): number {
     let g = 1;
     if (fi && fi > 0 && t < s + fi) g = Math.max(0, (t - s) / fi);
@@ -221,11 +229,9 @@ export default function AudioEditor({
 
     ctx.clearRect(0, 0, W, H);
 
-    // Draw bars; for bars inside the selection, multiply height by fade gain
-    // so the visual matches the exported audio amplitude.
     for (let i = 0; i < p.length; i++) {
       const x      = i * barW;
-      const tCenter = ((i + 0.5) / p.length) * d;     // approx time at bar center
+      const tCenter = ((i + 0.5) / p.length) * d;
       const inSel  = x + barW > startX && x < endX;
       let bh = Math.max(2, p[i] * H * 0.82);
 
@@ -239,11 +245,9 @@ export default function AudioEditor({
       ctx.fillRect(x + 0.5, midY - bh / 2, Math.max(1, barW - 1), bh);
     }
 
-    // Soft tint over the selection so users see the active region clearly
     ctx.fillStyle = 'rgba(225,72,61,0.05)';
     ctx.fillRect(startX, 0, endX - startX, H);
 
-    // Highlight fade regions with a more visible diagonal hatch + gradient
     if (fi && fi > 0) {
       const fw = Math.min((fi / d) * W, endX - startX);
       const grad = ctx.createLinearGradient(startX, 0, startX + fw, 0);
@@ -251,8 +255,6 @@ export default function AudioEditor({
       grad.addColorStop(1, 'rgba(225,72,61,0)');
       ctx.fillStyle = grad;
       ctx.fillRect(startX, 0, fw, H);
-
-      // Fade ramp line, drawn from baseline up to top at end of fade-in
       ctx.strokeStyle = 'rgba(225,72,61,0.65)';
       ctx.lineWidth   = 1.5;
       ctx.beginPath();
@@ -267,8 +269,6 @@ export default function AudioEditor({
       grad.addColorStop(1, 'rgba(225,72,61,0.18)');
       ctx.fillStyle = grad;
       ctx.fillRect(endX - fw, 0, fw, H);
-
-      // Fade ramp line going down
       ctx.strokeStyle = 'rgba(225,72,61,0.65)';
       ctx.lineWidth   = 1.5;
       ctx.beginPath();
@@ -277,7 +277,6 @@ export default function AudioEditor({
       ctx.stroke();
     }
 
-    // Dim regions outside selection
     ctx.fillStyle = 'rgba(255,255,255,0.55)';
     ctx.fillRect(0,     0, startX,      H);
     ctx.fillRect(endX,  0, W - endX,    H);
@@ -317,12 +316,10 @@ export default function AudioEditor({
     ctx.stroke();
   }, []);
 
-  // Redraw waveform whenever relevant values change
   useEffect(() => {
     drawWaveform();
   }, [peaks, trimStart, trimEnd, duration, fadeInDuration, fadeOutDuration, drawWaveform]);
 
-  // ResizeObserver — redraw both layers on container resize
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
@@ -407,18 +404,30 @@ export default function AudioEditor({
     return audioCtxRef.current;
   }
 
+  /**
+   * Stops + disconnects the active audio source and gain node.
+   * Always clears `source.onended` BEFORE calling stop() so manual stops do
+   * not run the natural-end handler (which would clobber headTime).
+   */
   const stopPlayback = useCallback(() => {
     if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
-    if (sourceRef.current) {
-      try { sourceRef.current.stop(); } catch { /* already stopped */ }
-      sourceRef.current.disconnect();
+    const src = sourceRef.current;
+    if (src) {
+      try { src.onended = null; } catch {}
+      try { src.stop(); } catch { /* already stopped */ }
+      try { src.disconnect(); } catch {}
       sourceRef.current = null;
+      debugRef.current.stopped++;
     }
-    if (gainRef.current) { gainRef.current.disconnect(); gainRef.current = null; }
+    if (gainRef.current) {
+      try { gainRef.current.disconnect(); } catch {}
+      gainRef.current = null;
+    }
     isPlayingRef.current = false;
   }, []);
 
-  // RAF loop — updates headTimeRef + state + playhead canvas at 60 fps
+  // RAF loop — drives the visual playhead from the *active source's* clock.
+  // Runs only while isPlayingRef.current is true, so manual stops kill it.
   const startRaf = useCallback(() => {
     function tick() {
       if (!isPlayingRef.current) return;
@@ -436,22 +445,19 @@ export default function AudioEditor({
   }, [drawPlayhead]);
 
   /**
-   * Core playback function. Starts audio from `startOffset` (absolute file time)
-   * to trimEnd, with gain scheduling that mirrors the FFmpeg `afade` filter
-   * EXACTLY — including overlap behavior (gains multiply when fades overlap).
-   *
-   * Strategy: instead of guessing a sparse keyframe schedule, sample the gain
-   * curve at fixed intervals and schedule via setValueCurveAtTime / linear
-   * ramps. This matches whatever FFmpeg produces for any fade configuration,
-   * including overlapping fades on a short clip.
+   * Starts playback from `startOffset` (absolute file time) to current trimEnd.
+   * Always stops any previous source FIRST. Uses a sequence counter so a slow
+   * decode in one call cannot race a faster subsequent call.
    */
   const playFrom = useCallback(async (startOffset: number) => {
-    stopPlayback();
+    stopPlayback();                 // kills any previous source synchronously
+    const seq = ++playSeqRef.current;
     isPlayingRef.current = false;
     setIsPlaying(false);
 
     const { trimStart: s, trimEnd: e, duration: d } = stateRef.current;
-    const remaining = e - startOffset;
+    const sOff = Math.max(s, Math.min(e, startOffset));
+    const remaining = e - sOff;
     if (remaining <= 0.01 || d === 0) return;
 
     try {
@@ -461,10 +467,14 @@ export default function AudioEditor({
       if (!buffer) {
         setIsDecoding(true);
         const raw = await file.arrayBuffer();
+        if (seq !== playSeqRef.current) { setIsDecoding(false); return; }
         buffer = await actx.decodeAudioData(raw);
+        if (seq !== playSeqRef.current) { setIsDecoding(false); return; }
         audioBufferRef.current = buffer;
         setIsDecoding(false);
       }
+      // Final race check before allocating the source node
+      if (seq !== playSeqRef.current) return;
 
       const source = actx.createBufferSource();
       source.buffer = buffer;
@@ -473,43 +483,52 @@ export default function AudioEditor({
       const now  = actx.currentTime;
       const { fadeInDuration: fi, fadeOutDuration: fo } = fadeRef.current;
 
-      // Build a gain curve that exactly matches the FFmpeg afade chain.
-      // We use ~100 samples per second of remaining playback (capped) which
-      // gives smooth audible fades up to several seconds without large arrays.
+      // Build a gain curve that exactly mirrors FFmpeg's afade chain.
       const samplesPerSec = 100;
       const N = Math.max(2, Math.min(8000, Math.ceil(remaining * samplesPerSec)));
       const curve = new Float32Array(N);
       for (let i = 0; i < N; i++) {
-        const t = startOffset + (i / (N - 1)) * remaining;
+        const t = sOff + (i / (N - 1)) * remaining;
         curve[i] = gainAt(t, s, e, fi ?? null, fo ?? null);
       }
       try {
         gain.gain.setValueCurveAtTime(curve, now, remaining);
       } catch {
-        // Fallback: setValueAtTime + linear ramps (older browsers)
         gain.gain.setValueAtTime(curve[0], now);
         gain.gain.linearRampToValueAtTime(curve[N - 1], now + remaining);
       }
 
       source.connect(gain);
       gain.connect(actx.destination);
-      source.start(now, startOffset, remaining);
+      source.start(now, sOff, remaining);
+      debugRef.current.started++;
 
+      // Natural end: fires only when the source plays through `remaining` sec.
+      // Manual stops clear onended first so this is never called for stops.
       source.onended = () => {
+        if (sourceRef.current !== source) return; // already replaced
+        sourceRef.current = null;
+        debugRef.current.stopped++;
+        if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
         isPlayingRef.current = false;
         setIsPlaying(false);
-        if (rafRef.current) { cancelAnimationFrame(rafRef.current); rafRef.current = null; }
-        headTimeRef.current = s;
-        setHeadTime(s);
-        drawPlayhead(s);
+        // Snap visual playhead back to current trim start (so re-pressing Play replays)
+        const cs = stateRef.current.trimStart;
+        headTimeRef.current = cs;
+        setHeadTime(cs);
+        drawPlayhead(cs);
       };
 
       sourceRef.current     = source;
       gainRef.current       = gain;
       playCtxStartRef.current = now;
-      playOffsetRef.current   = startOffset;
+      playOffsetRef.current   = sOff;
       isPlayingRef.current    = true;
       setIsPlaying(true);
+      // Sync the playhead immediately so the UI doesn't lag a frame
+      headTimeRef.current = sOff;
+      setHeadTime(sOff);
+      drawPlayhead(sOff);
       startRaf();
 
     } catch (err) {
@@ -520,13 +539,151 @@ export default function AudioEditor({
     }
   }, [file, stopPlayback, startRaf, drawPlayhead]);
 
+  // Keep a ref to the latest playFrom so cross-effect callbacks can invoke it
+  // without putting it in their dep arrays (which would re-run them constantly).
+  const playFromRef = useRef(playFrom);
+  playFromRef.current = playFrom;
+  const stopPlaybackRef = useRef(stopPlayback);
+  stopPlaybackRef.current = stopPlayback;
+
+  // ── Drag controller ──────────────────────────────────────────────────────
+
+  const beginDrag = useCallback((k: DragKind) => {
+    if (dragRef.current.kind) return; // already dragging — ignore secondary
+    dragRef.current.kind = k;
+    if (isPlayingRef.current) {
+      dragRef.current.wasPlaying = true;
+      stopPlaybackRef.current();
+      setIsPlaying(false);
+    } else {
+      dragRef.current.wasPlaying = false;
+    }
+  }, []);
+
+  const endDrag = useCallback(() => {
+    if (!dragRef.current.kind) return;
+    const wasPlaying = dragRef.current.wasPlaying;
+    dragRef.current.kind = null;
+    dragRef.current.wasPlaying = false;
+    if (!wasPlaying) return;
+
+    // Snap headTime into [trimStart, trimEnd] then resume from there.
+    // If headTime is at/past trimEnd (selection ended before playhead),
+    // rewind to trimStart so the user gets a clean replay.
+    const { trimStart: s, trimEnd: e } = stateRef.current;
+    let h = headTimeRef.current;
+    if (h < s || h >= e - END_TOL) h = s;
+    if (h !== headTimeRef.current) {
+      headTimeRef.current = h;
+      setHeadTime(h);
+      drawPlayhead(h);
+    }
+    if (e - h > END_TOL) {
+      playFromRef.current(h);
+    }
+  }, [drawPlayhead]);
+
+  // Global mouse/touch listeners — single handler routes by drag kind
+  useEffect(() => {
+    function xToTime(clientX: number): number {
+      const el = containerRef.current;
+      if (!el) return 0;
+      const rect  = el.getBoundingClientRect();
+      const ratio = Math.max(0, Math.min(1, (clientX - rect.left) / rect.width));
+      return ratio * stateRef.current.duration;
+    }
+
+    const onMove = (e: MouseEvent | TouchEvent) => {
+      const k = dragRef.current.kind;
+      if (!k) return;
+      let clientX: number;
+      if ('touches' in e) {
+        if (e.touches.length === 0) return;
+        clientX = e.touches[0].clientX;
+      } else {
+        clientX = e.clientX;
+      }
+      if (e.cancelable) e.preventDefault();
+      const t = xToTime(clientX);
+      const { trimStart: s, trimEnd: en, duration: d } = stateRef.current;
+      const clamped = Math.max(0, Math.min(d, t));
+
+      if (k === 'start') {
+        onTrimChange(Math.min(clamped, en - MIN_SEL), en);
+      } else if (k === 'end') {
+        onTrimChange(s, Math.max(clamped, s + MIN_SEL));
+      } else if (k === 'fadeIn') {
+        const sel = en - s;
+        const dur = Math.max(MIN_FADE, Math.min(sel, clamped - s));
+        if (dur >= MIN_FADE) onFadeInChange(parseFloat(dur.toFixed(2)));
+      } else if (k === 'fadeOut') {
+        const sel = en - s;
+        const dur = Math.max(MIN_FADE, Math.min(sel, en - clamped));
+        if (dur >= MIN_FADE) onFadeOutChange(parseFloat(dur.toFixed(2)));
+      } else if (k === 'playhead') {
+        const h = Math.max(s, Math.min(en, clamped));
+        headTimeRef.current = h;
+        setHeadTime(h);
+        drawPlayhead(h);
+      }
+    };
+    const onUp = () => { endDrag(); };
+
+    window.addEventListener('mousemove',  onMove);
+    window.addEventListener('mouseup',    onUp);
+    window.addEventListener('touchmove',  onMove, { passive: false });
+    window.addEventListener('touchend',   onUp);
+    window.addEventListener('touchcancel',onUp);
+    return () => {
+      window.removeEventListener('mousemove',  onMove);
+      window.removeEventListener('mouseup',    onUp);
+      window.removeEventListener('touchmove',  onMove);
+      window.removeEventListener('touchend',   onUp);
+      window.removeEventListener('touchcancel',onUp);
+    };
+  }, [onTrimChange, onFadeInChange, onFadeOutChange, drawPlayhead, endDrag]);
+
+  // ── Reactive sync: trim/fade prop changes mid-playback ───────────────────
+  // When trim or fade changes from any source (drag, input, preset button, parent
+  // reset) clamp headTime into the new selection. If audio is currently playing
+  // *and* no drag is in progress, restart playback from the (clamped) headTime
+  // so the active source uses the new values — otherwise the old source plays
+  // the OLD selection/fade behind a UI showing the new one.
+  useEffect(() => {
+    let h = headTimeRef.current;
+    let changed = false;
+    if (h < trimStart)        { h = trimStart; changed = true; }
+    else if (h > trimEnd)     { h = trimEnd;   changed = true; }
+    if (changed) {
+      headTimeRef.current = h;
+      setHeadTime(h);
+      drawPlayhead(h);
+    }
+
+    if (isPlayingRef.current && !dragRef.current.kind) {
+      // Need to restart so the source/gain pick up the new trim or fade values.
+      if (trimEnd - h > END_TOL) {
+        playFromRef.current(h);
+      } else {
+        stopPlaybackRef.current();
+        setIsPlaying(false);
+      }
+    }
+  }, [trimStart, trimEnd, fadeInDuration, fadeOutDuration, drawPlayhead]);
+
+  // ── Play / Pause button ──────────────────────────────────────────────────
   const handlePlayPause = useCallback(() => {
+    if (dragRef.current.kind) return; // ignore during drag
     if (isPlayingRef.current) {
       stopPlayback();
       setIsPlaying(false);
-    } else {
-      playFrom(stateRef.current.trimStart);
+      return;
     }
+    const { trimStart: s, trimEnd: e } = stateRef.current;
+    let h = headTimeRef.current;
+    // Use current playhead if it's inside the selection, otherwise from start
+    if (h < s || h >= e - END_TOL) h = s;
+    playFrom(h);
   }, [playFrom, stopPlayback]);
 
   // Cleanup on unmount
@@ -543,8 +700,30 @@ export default function AudioEditor({
     };
   }, [stopPlayback]);
 
-  // ── Drag / seek interactions ─────────────────────────────────────────────
+  // ── Debug exposure (for browser tests) ───────────────────────────────────
+  useEffect(() => {
+    if (typeof window === 'undefined') return;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (window as unknown as { __audioEditorDebug: () => unknown }).__audioEditorDebug = () => ({
+      started: debugRef.current.started,
+      stopped: debugRef.current.stopped,
+      activeSources: debugRef.current.started - debugRef.current.stopped,
+      hasSourceRef: !!sourceRef.current,
+      isPlaying: isPlayingRef.current,
+      headTime: headTimeRef.current,
+      trimStart: stateRef.current.trimStart,
+      trimEnd: stateRef.current.trimEnd,
+      dragKind: dragRef.current.kind,
+      seq: playSeqRef.current,
+    });
+    return () => {
+      try {
+        delete (window as unknown as { __audioEditorDebug?: unknown }).__audioEditorDebug;
+      } catch {}
+    };
+  }, []);
 
+  // ── Click-to-seek on waveform (no drag) ──────────────────────────────────
   const xToTime = useCallback((clientX: number): number => {
     const el = containerRef.current;
     if (!el) return 0;
@@ -553,82 +732,46 @@ export default function AudioEditor({
     return ratio * stateRef.current.duration;
   }, []);
 
-  // Click on waveform → seek (and restart if playing)
   const handleWaveformClick = useCallback((clientX: number) => {
-    if (dragging.current) return;
+    if (dragRef.current.kind) return;
     const { trimStart: s, trimEnd: e } = stateRef.current;
     const t = Math.max(s, Math.min(e, xToTime(clientX)));
     headTimeRef.current = t;
     setHeadTime(t);
     drawPlayhead(t);
+    // Click-while-playing: restart from clicked position (replaces source)
     if (isPlayingRef.current) {
       playFrom(t);
     }
   }, [xToTime, drawPlayhead, playFrom]);
 
-  // Global mouse/touch events for dragging trim AND fade handles
-  useEffect(() => {
-    const onMove = (e: MouseEvent | TouchEvent) => {
-      const k = dragging.current;
-      if (!k) return;
-      if (e.cancelable) e.preventDefault();
-      const clientX = 'touches' in e ? e.touches[0].clientX : e.clientX;
-      const t = xToTime(clientX);
-      const { trimStart: s, trimEnd: en, duration: d } = stateRef.current;
-      const clamped = Math.max(0, Math.min(d, t));
-
-      if (k === 'start') {
-        onTrimChange(Math.min(clamped, en - MIN_SEL), en);
-      } else if (k === 'end') {
-        onTrimChange(s, Math.max(clamped, s + MIN_SEL));
-      } else if (k === 'fadeIn') {
-        // Fade-in duration = handle position - trimStart
-        const sel = en - s;
-        const dur = Math.max(MIN_FADE, Math.min(sel, clamped - s));
-        if (dur >= MIN_FADE) onFadeInChange(parseFloat(dur.toFixed(2)));
-      } else if (k === 'fadeOut') {
-        // Fade-out duration = trimEnd - handle position
-        const sel = en - s;
-        const dur = Math.max(MIN_FADE, Math.min(sel, en - clamped));
-        if (dur >= MIN_FADE) onFadeOutChange(parseFloat(dur.toFixed(2)));
-      }
-    };
-    const onUp = () => { dragging.current = null; };
-
-    window.addEventListener('mousemove',  onMove);
-    window.addEventListener('mouseup',    onUp);
-    window.addEventListener('touchmove',  onMove, { passive: false });
-    window.addEventListener('touchend',   onUp);
-    return () => {
-      window.removeEventListener('mousemove',  onMove);
-      window.removeEventListener('mouseup',    onUp);
-      window.removeEventListener('touchmove',  onMove);
-      window.removeEventListener('touchend',   onUp);
-    };
-  }, [xToTime, onTrimChange, onFadeInChange, onFadeOutChange]);
-
-  // Helper to stop event propagation on drag handles
   const startDrag = (k: DragKind) => (e: React.MouseEvent | React.TouchEvent) => {
     e.preventDefault();
     e.stopPropagation();
-    dragging.current = k;
+    beginDrag(k);
   };
 
   // ── Derived values ───────────────────────────────────────────────────────
   const startPct  = duration > 0 ? (trimStart / duration) * 100 : 0;
   const endPct    = duration > 0 ? (trimEnd   / duration) * 100 : 100;
+  const headPct   = duration > 0 ? (headTime  / duration) * 100 : 0;
   const selDur    = trimEnd - trimStart;
   const progressPct = selDur > 0
     ? Math.max(0, Math.min(100, ((headTime - trimStart) / selDur) * 100))
     : 0;
 
-  // Fade handle positions (only when fades are enabled)
   const fadeInPct  = fadeInDuration  !== null && duration > 0
     ? ((trimStart + Math.min(fadeInDuration,  selDur)) / duration) * 100
     : null;
   const fadeOutPct = fadeOutDuration !== null && duration > 0
     ? ((trimEnd   - Math.min(fadeOutDuration, selDur)) / duration) * 100
     : null;
+
+  // Show playhead handle only when playhead is meaningfully inside the selection
+  // (otherwise it sits on top of the trim handle and can't be grabbed).
+  const showPlayheadHandle =
+    !loading && !waveError && duration > 0 &&
+    headTime > trimStart + 0.05 && headTime < trimEnd - 0.05;
 
   // ── Render ───────────────────────────────────────────────────────────────
   return (
@@ -640,21 +783,18 @@ export default function AudioEditor({
         className="relative select-none touch-none rounded-lg overflow-hidden"
         style={{ height: WAVE_H }}
       >
-        {/* Static waveform canvas */}
         <canvas
           ref={waveCanvasRef}
           style={{ display: 'block' }}
           className={loading || waveError ? 'invisible' : ''}
         />
 
-        {/* Dynamic playhead canvas — pointer-events-none so clicks pass through */}
         <canvas
           ref={headCanvasRef}
           className={`absolute inset-0 pointer-events-none ${loading || waveError ? 'invisible' : ''}`}
           style={{ display: 'block' }}
         />
 
-        {/* Loading skeleton */}
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-50 border border-[#D9D9D9] rounded-lg">
             <div className="flex items-center gap-2 text-xs text-gray-400">
@@ -667,24 +807,38 @@ export default function AudioEditor({
           </div>
         )}
 
-        {/* Error fallback */}
         {waveError && !loading && (
           <div className="absolute inset-0 flex items-center justify-center bg-gray-50 border border-[#D9D9D9] rounded-lg">
             <span className="text-xs text-gray-400">Waveform unavailable — use the time inputs below</span>
           </div>
         )}
 
-        {/* Interactive layer: seek click zone + handles */}
         {!loading && !waveError && duration > 0 && (
           <>
-            {/* Click-to-seek zone (behind handles) */}
+            {/* Click-to-seek zone (lowest z) */}
             <div
               className="absolute inset-0"
               style={{ cursor: 'crosshair', zIndex: 1 }}
               onClick={(e) => handleWaveformClick(e.clientX)}
             />
 
-            {/* Fade-in handle — only when fade-in is set */}
+            {/* Draggable playhead handle (z 7 — under fade/trim) */}
+            {showPlayheadHandle && (
+              <div
+                className="absolute top-0 bottom-0 cursor-ew-resize"
+                style={{ left: `calc(${headPct}% - ${PLAYHEAD_HIT / 2}px)`, width: PLAYHEAD_HIT, zIndex: 7 }}
+                onMouseDown={startDrag('playhead')}
+                onTouchStart={startDrag('playhead')}
+                onClick={(e) => e.stopPropagation()}
+                aria-label="Drag to scrub playback position"
+                role="slider"
+              >
+                {/* Visible grab dot at top — canvas already draws the line */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 w-2.5 h-2.5 bg-brand rounded-full shadow ring-2 ring-white pointer-events-none" />
+              </div>
+            )}
+
+            {/* Fade-in handle */}
             {fadeInPct !== null && (
               <div
                 className="absolute top-0 bottom-0 cursor-ew-resize group"
@@ -703,7 +857,7 @@ export default function AudioEditor({
               </div>
             )}
 
-            {/* Fade-out handle — only when fade-out is set */}
+            {/* Fade-out handle */}
             {fadeOutPct !== null && (
               <div
                 className="absolute top-0 bottom-0 cursor-ew-resize group"
@@ -722,7 +876,7 @@ export default function AudioEditor({
               </div>
             )}
 
-            {/* Start trim handle (drawn last so it sits on top of fade handles when overlapping) */}
+            {/* Start trim handle */}
             <div
               className="absolute top-0 bottom-0 cursor-ew-resize"
               style={{ left: `calc(${startPct}% - 10px)`, width: 20, zIndex: 10 }}
@@ -761,7 +915,6 @@ export default function AudioEditor({
       {!loading && !waveError && duration > 0 && (
         <div className="flex items-center gap-3">
 
-          {/* Play / Pause button */}
           <button
             type="button"
             onClick={handlePlayPause}
